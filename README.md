@@ -1,6 +1,6 @@
 # 🌻 damla's portfolio
 
-**live →** [nosey-dewdrop.github.io/portfolio](https://nosey-dewdrop.github.io/portfolio/)
+**live →** [damla.github.io/](https://damla.github.io/)
 
 my personal portfolio! includes 12 projects i'm building — LadyBug (debugging platform), Dewdrop (event + social platform with AI posters), Everlong (slow letter app), League of Bilkent (campus events, 30 Java files + MySQL), Lady Fantasy (AI tarot, live on Vercel!), Musical Improvisation Tool (scale identifier, also live!), Linçmatik, Moonlight, BilMart, Interactive Coffee Menu, Flower Timer, and Lala Retro.
 
