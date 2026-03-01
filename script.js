@@ -33,11 +33,15 @@ const P=[
    d:"Born from my experience as a Python TA at Bilkent: students never really learned by writing code — they learned when they had to find and fix logical errors. LadyBug teaches algorithmic thinking through real debugging challenges with a code execution sandbox, personalized error profiles, and an instructor dashboard. In an AI world where code generation is trivial, the ability to read, evaluate, and fix code is the real human edge.",
    t:["Next.js 16","React 19","TypeScript","Supabase (PostgreSQL + Auth + Realtime)","Tailwind CSS 4","Node.js","ESLint"],
    s:"MVP in progress",g:"https://github.com/nosey-dewdrop/ladybug",co:"#E8453C"},
+  {e:"🌊",n:"Dewdrop",tg:"general-purpose event + social platform with AI posters",
+   d:"\"we are drops in an ocean of time\" — a full-scale event and social platform with a 67-step roadmap across 10 phases! Create events, discover what's happening, RSVP (Going/Interested/Maybe), connect with friends. AI-generated event posters via fal.ai, mutual-friends-only messaging enforced at database level (Supabase RLS), XP/tier gamification (Newcomer → Tide Rider → Storm Chaser → Wave Maker → Ocean), threaded comments, calendar with conflict detection, personalized recommendations, category filters, leaderboards, and real-time notifications via Supabase Realtime. 10 pages designed: Feed, Discover, Event Detail, Create Event, Profile, Messaging, Notifications, Leaderboard, Calendar, Auth 🌊",
+   t:["Python","JavaScript","HTML/CSS","Supabase (PostgreSQL + Auth + Realtime)","fal.ai Queue API"],
+   s:"In development",g:"https://github.com/nosey-dewdrop/dewdrop",co:"#3498DB"},
   {e:"💌",n:"Everlong",tg:"letters that last — 40+ screens, full PRD",
    d:"A full-scale slow letter platform with 40+ screens and a complete PostgreSQL schema (15+ tables). Letters travel based on real geographic distance (Istanbul→Tokyo = 3.5 days). Features: bottle mail with random matching, memory box for unsent letters with time capsules, playlist sharing via Spotify/Apple Music, AI compatibility scoring with Claude, an XP/leveling gamification system with collectible stamps, a mythology blog about historical love stories (Orpheus & Eurydice, Abelard & Héloïse, Kafka's letters to Milena), and Stripe-powered premium subscriptions. Designed from scratch — every screen, every table, every game mechanic documented.",
    t:["Next.js 14 (App Router)","React","Supabase (PostgreSQL + Auth + Realtime)","Anthropic Claude API","Mapbox GL JS","Leaflet","Stripe Payments","Tailwind CSS","Vercel (Serverless)","React Native / Expo (Phase 2)"],
    s:"Full PRD + DB schema done",g:"https://github.com/nosey-dewdrop/everlong",co:"#9B59B6"},
-  {e:"🐿️",n:"League of Bilkent (Squirrel)",tg:"campus event social platform — CS102 final project, 30 Java files",
+  {e:"🐿️",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",
    d:"A full-stack campus event management platform built as the CS102 final project. 30 Java classes across MVC architecture: 4 screens (login, register, home, main), 13 panel components (feed, event detail, calendar, leaderboard, discover, profile, search, messaging, notifications, create event, interest selection), 8 data models with MySQL integration, and 4 tool utilities. Features SHA-256 + salt password hashing, Bilkent email verification via JavaMail API, a complete XP/tier gamification system (Seedling → Cosmos), Going/Interested/Maybe RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations based on interest tags and attendance patterns. UI prototyped in Figma, inspired by Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.",
    t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],
    s:"Built & Deployed",g:"https://github.com/nosey-dewdrop/leagueofbilkent-mvp",co:"#E67E22"},
@@ -76,18 +80,12 @@ const P=[
 ];
 
 const CP=[
-  {cat:"⚔️ LeetCode — 18 problems in Java & C++",
-   items:["Two Sum (hash maps, C++)", "Valid Parentheses (stack-based parsing)", "ZigZag Conversion (matrix pattern traversal)", "Longest Common Prefix (string comparison algorithms)", "Island Perimeter (2D grid traversal, neighbor counting)", "Insert Position (binary search)", "Plus One (array carry arithmetic)", "Remove Duplicates / Remove Element (in-place two-pointer)", "String Shift (circular array manipulation)", "Missing Number (XOR / math approach, C++)", "Permutation Difference (index mapping)", "Sudoku Validator + Solver (backtracking, constraint propagation, Java Swing GUI)"]},
-  {cat:"🏋️ Exercism — 42+ problems across 3 languages",
-   items:["<strong>Java (31 tracks):</strong> OOP design (Wizards & Warriors, inheritance chains), string processing (Squeaky Clean, Acronym, Isogram), control flow (Leap Year, Bird Watcher, Annalyn's Infiltration), class design (Need for Speed, Jedlik's Toy Car, Remote Control Competition), type systems (Resistor Color Duo/Trio, Captain's Log), error handling (Calculator Conundrum), collection manipulation (Gotta Snatch 'Em All, Karl's Languages)", "<strong>Python (10 tracks):</strong> conditional logic (Bob, Meltdown Mitigation), mathematical reasoning (Perfect Numbers, Raindrops), string transformation (Pig Latin), type handling (Currency Exchange, Ghost Gobble Arcade Game)", "<strong>JavaScript (1 track):</strong> Hello World — foundation for web projects"]},
-  {cat:"🎄 Advent of Code — algorithmic problem solving in Java",
-   items:["Day 1 challenges: input parsing, frequency analysis, optimization"]},
-  {cat:"📚 CS201 Data Structures — C++ homework projects",
-   items:["GradeBook system (custom data structures, file I/O, OOP in C++)", "Wizard Potion Inventory System (linked lists, dynamic memory management, header/implementation separation)", "Nodes & Linked Lists implementation from scratch"]},
-  {cat:"📝 CS102 Object-Oriented Programming — Java",
-   items:["League of Bilkent (Squirrel) — full-stack CS102 final project (30 Java files, MySQL, MVC)", "Git & GitHub collaboration report (version control workflows)", "Abstract classes & polymorphism exercises", "Selection sort implementation"]},
-  {cat:"🐍 CS115 Python TA Labs — teaching material",
-   items:["Developed and guided labs 01–10 covering: variables & types, control flow, functions, lists & strings, file I/O, dictionaries, recursion, and object basics"]},
+  {cat:"⚔️ LeetCode — 18 problems in Java & C++",items:[]},
+  {cat:"🏋️ Exercism — 42+ problems across Java (31), Python (10), JavaScript (1)",items:[]},
+  {cat:"🎄 Advent of Code — Java",items:[]},
+  {cat:"📚 CS201 Data Structures — 3 C++ projects",items:[]},
+  {cat:"📝 CS102 Object-Oriented Programming — League of Bilkent, BilMart",items:[]},
+  {cat:"🐍 CS115 Python TA — developed & guided labs",items:[]},
 ];
 
 const SK={
@@ -150,7 +148,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   const cs=document.getElementById("coding-sec");
   cs.innerHTML=`<div class="es"><h4>coding practice — <a href="https://github.com/nosey-dewdrop/fantaisie-impromptu" target="_blank" style="color:var(--amber);text-decoration:none">fantaisie-impromptu repo</a></h4>
-    ${CP.map(c=>`<div class="cp-cat"><div class="cp-h">${c.cat}</div><ul class="cp-list">${c.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("")}
+    ${CP.map(c=>`<div class="cp-cat"><div class="cp-h">${c.cat}</div>${c.items.length?`<ul class="cp-list">${c.items.map(i=>`<li>${i}</li>`).join("")}</ul>`:""}</div>`).join("")}
   </div>`;
 
   const es=document.getElementById("exp-sec");
