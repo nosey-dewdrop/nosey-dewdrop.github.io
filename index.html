@@ -1,156 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Damla Su Bilge — Portfolio 🌻</title>
-  <meta name="description" content="CS student at Bilkent University. IEEE President. Builder of things that come from the heart.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damla Su Bilge — Portfolio 🌻</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="dot-bg"></div>
+<div class="float-box" id="fb"></div>
 
-  <!-- dot pattern background -->
-  <div class="dot-pattern"></div>
+<nav class="nav">
+  <div class="nl" onclick="go('home')"><span class="nl-e">🌻</span><span class="nl-n">damla</span></div>
+  <div class="nr" id="nr"></div>
+</nav>
 
-  <!-- floating emojis -->
-  <div class="floating-emojis" id="floating-emojis"></div>
-
-  <!-- ═══ NAV ═══ -->
-  <nav class="nav">
-    <div class="nav-logo" id="nav-logo">
-      <span class="nav-logo-emoji">🌻</span>
-      <span class="nav-logo-name">damla</span>
-      <span class="nav-logo-surname">su</span>
+<div class="pc">
+  <!-- HOME -->
+  <div class="pg" id="p-home"><div class="hm" id="hm"><div class="hc">
+    <div style="font-size:56px;margin-bottom:14px">🌻</div>
+    <div class="hm-b">bilkent university · computer science</div>
+    <h1>hi, i'm <em>damla</em> 🌼</h1>
+    <p class="hm-d">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
+    <div class="hm-a">
+      <button class="bp" onclick="go('projects')">explore projects 🌷</button>
+      <a href="https://github.com/nosey-dewdrop" target="_blank" class="bs">github →</a>
     </div>
-    <div class="nav-links">
-      <button class="nav-btn active" data-page="home">🌻 home</button>
-      <button class="nav-btn" data-page="about">🦋 about</button>
-      <button class="nav-btn" data-page="projects">💐 projects</button>
-      <button class="nav-btn" data-page="technical">👾 technical</button>
+  </div></div></div>
+
+  <!-- ABOUT -->
+  <div class="pg" id="p-about"><div class="pi">
+    <div class="ph"><div class="ph-e">🦋</div><h2>about me</h2><div class="ph-s" style="max-width:520px;margin:8px auto 0;line-height:1.7;letter-spacing:.06em">music enthusiast 🎸 pink floyd · beatles · radiohead · i love quiet days and romanticising life ✨<br><br><a href="mailto:su.bilge@ug.bilkent.edu.tr" style="color:var(--muted);text-decoration:none">📧 su.bilge@ug.bilkent.edu.tr</a> · <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" style="color:var(--muted);text-decoration:none">🔗 LinkedIn</a> · <a href="https://github.com/nosey-dewdrop" target="_blank" style="color:var(--muted);text-decoration:none">🐙 GitHub</a></div></div>
+    <div class="ac">
+      <div class="at" style="margin-top:0;padding-top:0;border-top:none;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)">cs @ bilkent, ieee board member & pr coordinator, python ta, fab fellow, sociology club exec board, ex-med student, guitarist · ukulele · bass · harmonica · piano, music theory lover, gym lover 💪, slow living enthusiast 🍃, matcha lover 🍵, infp, i love good brewed coffee ☕, dostoyevsky · kafka · frankl 📖, philosophy lover, future youtuber 🎬</div>
+      <p>I'm <strong>Damla Su Bilge</strong> — my name means <em>drop</em> in English! CS student at Bilkent, former TA for CS115, and I was studying medicine before life had other plans. I found computer science and honestly? best plot twist ever. I love dancing with AI 🤖✨</p>
+      <p>I LOVE music!! 🎸🎹 I play ukulele, harmonica, bass, guitar, electric guitar, piano — literally anything I can get my hands on. symphonic rock, indie, soft rock — psychedelic rock's bohemian nature inspires me so much! Pink Floyd, Radiohead, and The Beatles shaped how I think about art, longing, and beauty 🌙💫</p>
+      <p>slow living enthusiast 🍃 I was a competitive swimmer from age 6 to 11 before my cancer diagnosis changed everything. now I've been at the gym for 3 years and do pilates regularly — not for aesthetics, for my mind! I love quiet walks, meditation, a good matcha 🍵, brewing coffee every way possible (chemex, V60, French press, aeropress — I know them all!), and long afternoons with a book 📖</p>
+      <p>speaking of books — Dostoyevsky's Budala and Jack London's Martin Eden are my favorites!! I adore Kafka, Dostoyevsky, and Viktor Frankl. the way they write about meaning, suffering, and what it means to be human just... gets me every time 🦋</p>
+      <p>this lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty 🌻!</p>
     </div>
-  </nav>
+  </div></div>
 
-  <!-- ═══ PAGE CONTAINER ═══ -->
-  <div class="page-container">
+  <!-- PROJECTS -->
+  <div class="pg" id="p-projects"><div class="pi">
+    <div class="ph"><div class="ph-e">💐</div><h2>projects</h2><div class="ph-s">march – september 2026 pipeline & deployed work</div></div>
+    <div class="pl" id="plist"></div>
+  </div></div>
 
-    <!-- ─── HOME ─── -->
-    <div class="page" id="page-home">
-      <div class="home">
-        <div class="home-content">
-          <div class="home-emoji">🌻</div>
-          <div class="home-badge">bilkent university · computer science</div>
-          <h1>hi, i'm <em>damla</em> 🌼</h1>
-          <p class="home-desc">
-            cs student, ieee president, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨
-          </p>
-          <div class="home-actions">
-            <button class="btn-primary" id="btn-projects">explore projects 🌷</button>
-            <a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener noreferrer" class="btn-secondary">github →</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- TECHNICAL -->
+  <div class="pg" id="p-technical"><div class="pi">
+    <div class="ph"><div class="ph-e">👾</div><h2>technical details</h2><div class="ph-s" style="max-width:480px;margin:8px auto 0;line-height:1.7;letter-spacing:.06em">i only listed tools i actually used in my projects. it's not about knowing — it's about evaluating knowledge.</div></div>
+    <div class="sg" id="sgrid"></div>
+    <div class="sec" id="coding-sec"></div>
+    <div class="sec" id="exp-sec"></div>
+    <div class="sec" id="edu-sec"></div>
+  </div></div>
+</div>
 
-    <!-- ─── ABOUT ─── -->
-    <div class="page" id="page-about">
-      <div class="page-inner">
-        <div class="page-header">
-          <div class="page-header-emoji">🦋</div>
-          <h2>about me</h2>
-        </div>
+<div class="fs"><span>🌼 💫 🌙 ✨ 🌻 💐 🌞 🌷 🌈 👾</span></div>
 
-        <div class="about-card">
-          <p>
-            I'm <strong>Damla Su Bilge</strong> — my name means <em>drop</em> in English. CS student at Bilkent University, President of IEEE Bilkent, and former TA for CS115 (Python). Before CS, I was studying medicine at Medipol — my family is full of doctors, but life had other plans after cancer treatment. I found computer science, and what started as an unexpected path became a real passion.
-          </p>
-          <p>
-            I started Python in 2022 while still in med. Now I work across Java, C++, JavaScript, and TypeScript. As a TA, I discovered students learn best by debugging — that insight became LadyBug. I don't believe in fighting AI with traditional coding pedagogy. Coding is evolving; imagination, project management, and critical evaluation of AI output are the new literacy.
-          </p>
-          <p>
-            I'm a bizarre person, and I consider that a virtue. I read Schopenhauer and play guitar. I study tarot and build APIs. Why so many projects? Because I have nothing to lose and everything to create. This lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty. 🌻
-          </p>
-          <div class="about-tags">
-            cs @ bilkent, ieee president & pr coordinator, python ta, sociology club exec board, ex-med student (medipol), infp, guitarist, barista at hound coffee, philosopher, music theory (MSC110), youtuber & blogger (damumya), dark academia lover
-          </div>
-        </div>
+<script src="script.js"></script>
 
-        <div class="contact-bar">
-          <a href="mailto:su.bilge@ug.bilkent.edu.tr" class="contact-link" target="_blank" rel="noopener noreferrer">
-            <span>📧</span> su.bilge@ug.bilkent.edu.tr
-          </a>
-          <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" class="contact-link" target="_blank" rel="noopener noreferrer">
-            <span>🔗</span> LinkedIn
-          </a>
-          <a href="https://github.com/nosey-dewdrop" class="contact-link" target="_blank" rel="noopener noreferrer">
-            <span>🐙</span> GitHub
-          </a>
-        </div>
-
-        <div class="languages-bar">
-          🌍 Turkish (native), English (C1), German (A1.1)
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── PROJECTS ─── -->
-    <div class="page" id="page-projects">
-      <div class="page-inner">
-        <div class="page-header">
-          <div class="page-header-emoji">💐</div>
-          <h2>projects</h2>
-          <div class="page-header-sub">march – september 2026 pipeline</div>
-        </div>
-        <div class="projects-list" id="projects-list"></div>
-      </div>
-    </div>
-
-    <!-- ─── TECHNICAL ─── -->
-    <div class="page" id="page-technical">
-      <div class="page-inner">
-        <div class="page-header">
-          <div class="page-header-emoji">👾</div>
-          <h2>technical details</h2>
-        </div>
-
-        <div class="skills-grid" id="skills-grid"></div>
-
-        <div class="coding-section">
-          <h4>
-            coding practice —
-            <a href="https://github.com/nosey-dewdrop/fantaisie-impromptu" target="_blank" rel="noopener noreferrer">fantaisie-impromptu</a>
-          </h4>
-          <div class="coding-grid" id="coding-grid"></div>
-        </div>
-
-        <div class="exp-section">
-          <h4>experience & involvement</h4>
-          <div id="exp-list"></div>
-        </div>
-
-        <div class="exp-section">
-          <h4>education</h4>
-          <div class="exp-item">
-            <div class="exp-role">Bilkent University</div>
-            <div class="exp-detail">B.Sc. in Computer Science</div>
-            <div class="exp-period">2023 – present</div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-role">Medipol University</div>
-            <div class="exp-detail">Medicine</div>
-            <div class="exp-period">2020 – 2023</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- footer emoji strip -->
-  <div class="footer-strip">
-    <span>🌼  💫  🌙  ✨  🌻  💐  🌞  🌷  🌈  👾</span>
-  </div>
-
-  <script src="script.js"></script>
+<link rel="stylesheet" href="styles.css">
 </body>
 </html>
