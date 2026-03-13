@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     <div class="ei"><div class="er">Nesibe Aydın Fen Lisesi (Science High School)</div><div class="ed">GPA: 96.68/100 — Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.</div><div class="ep">2016 – 2019</div></div>
   </div>`;
 
-  const eu="su.bilge",ed="ug.bilkent.edu.tr",ea=eu+"@"+ed;
+  const eu="su.bilge",edom="ug.bilkent.edu.tr",ea=eu+"@"+edom;
   const el=document.getElementById("email-link"),et=document.getElementById("email-text");
   if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
 
