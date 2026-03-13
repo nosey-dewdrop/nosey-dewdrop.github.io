@@ -73,7 +73,7 @@ const P=[
   {e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",
    d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",
    t:["JavaScript","HTML/CSS"],
-   s:"In development",g:"https://github.com/nosey-dewdrop/coffee-menu",co:"#6F4E37"},
+   s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
   {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",
    d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",
    t:["Java","Java Swing","JavaFX"],
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
 
   const sg=document.getElementById("sgrid");
-  Object.entries(SK).forEach(([k,v])=>{sg.innerHTML+=`<div class="sc"><h4>${k}</h4>${v.map(i=>`<span>${i}</span>`).join("")}</div>`});
+  sg.innerHTML=Object.entries(SK).map(([k,v])=>`<div class="sc"><h4>${k}</h4>${v.map(i=>`<span>${i}</span>`).join("")}</div>`).join("");
 
   const cs=document.getElementById("coding-sec");
   cs.innerHTML=`<div class="es"><h4>coding practice — <a href="https://github.com/nosey-dewdrop/fantaisie-impromptu" target="_blank" style="color:var(--amber);text-decoration:none">fantaisie-impromptu repo</a></h4>
@@ -166,6 +166,10 @@ document.addEventListener("DOMContentLoaded",()=>{
     <div class="ei"><div class="er">Damla Fen Lisesi (Open High School)</div><div class="ed">Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life — learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.</div><div class="ep">2019 – 2020</div></div>
     <div class="ei"><div class="er">Nesibe Aydın Fen Lisesi (Science High School)</div><div class="ed">GPA: 96.68/100 — Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.</div><div class="ep">2016 – 2019</div></div>
   </div>`;
+
+  const eu="su.bilge",ed="ug.bilkent.edu.tr",ea=eu+"@"+ed;
+  const el=document.getElementById("email-link"),et=document.getElementById("email-text");
+  if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
 
   setTimeout(()=>{document.getElementById("p-home").classList.add("on");document.getElementById("hm").classList.add("vis")},100);
 });
