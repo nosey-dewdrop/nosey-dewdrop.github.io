@@ -1,5 +1,6 @@
-const NAV=[{k:"home",l:"🌻 home"},{k:"about",l:"🦋 about me"},{k:"schedule",l:"📋 schedule"},{k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}];
-const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾"];
+const NAV=[{k:"home",l:"🌻 home"},{k:"about",l:"🦋 about me"},{k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}];
+const SCHEDULE_KEY="schedule";
+const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖","🧸","🪻","🌹","🎵","☕","🍵","💌","🫧"];
 
 const T={
   "Next.js 16":{i:"▲",c:"nxt"},"Next.js 15":{i:"▲",c:"nxt"},"Next.js 14 (App Router)":{i:"▲",c:"nxt"},
@@ -42,7 +43,15 @@ const P=[
   {e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media criticism simulator",
    d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental toughness trainer. Write anything you'd post online → <strong>Claude API generates brutally realistic toxic comments</strong> from different troll personas → you practice handling harsh criticism to build resilience. Features a curated library of quotes and book recommendations. <strong>Python</strong> for the API backend, <strong>React</strong> for the frontend, deployed on <strong>Vercel</strong>. <em>Schopenhauer — people will use dirty tricks in arguments, always expect the worst. Nietzsche — most people aren't trying to destroy you, this is how they act in their point of view. Prince Myshkin — he is the best person. this was his crime.</em>",
    t:["Python","Flask + CORS","Anthropic Claude API","React","Vercel","JavaScript"],
-   s:"💐 Live",g:"https://github.com/nosey-dewdrop/linc-matik",l:"https://linc-matik.vercel.app",co:"#8e35b8"},
+   s:"💐 Live",g:"https://github.com/nosey-dewdrop/linc-matik",l:"https://lincmatik.vercel.app",co:"#8e35b8"},
+  {e:"🎵",n:"Musical Improvisation Tool",tg:"Y2K aesthetic scale identifier & composition aid with Web Audio API — deployed",
+   d:"Play or input a few notes → get every possible <strong>scale, mode, chord, and progression</strong> instantly. Built with a <strong>custom music theory algorithm</strong> (Circle of Fifths, 7 diatonic modes, enharmonic mapping). Features <strong>Web Audio API</strong> synthesis for piano & guitar, interactive <strong>piano + guitar fretboard</strong>, QWERTY keyboard mapping, <strong>Spotify</strong> song suggestions per key, and a <strong>chord progression planner</strong>. Includes handwritten essays on music theory & philosophy. <em>Hear a riff like Sails of Charon, punch in the notes, get B Phrygian instantly.</em>",
+   t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],
+   s:"💐 Live",g:"https://github.com/nosey-dewdrop/musical-improvisation-tool",l:"https://nosey-dewdrop.github.io/musical-improvisation-tool/",co:"#00B894"},
+  {e:"🦢",n:"Lala Retro",tg:"skincare ingredient & allergen tracker",
+   d:"I'm allergic to something, but what? A tracker to identify which skincare ingredients cause reactions by logging products and symptoms over time. Because a $200 cream (looking at you, La La Retro) isn't special — it just has fewer ingredients.",
+   t:["Web Technologies","JavaScript"],
+   s:"Planning",g:"https://github.com/nosey-dewdrop/lala-retro",co:"#A29BFE"},
   {e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",
    d:"Draw cards from a full <strong>78-card Rider-Waite tarot deck</strong> and watch AI bring them to life as <strong>cinematic video</strong>. Hand-crafted prompts for each card describe the illustration animating — <em>fabrics sway, objects glow, figures reach toward each other.</em> Three fal.ai video models to choose from. Architecture: browser → <strong>4 serverless API routes</strong> (generate, status, result, image) → fal.ai Queue API. API key is server-side only — never exposed to the client.",
    t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],
@@ -59,10 +68,6 @@ const P=[
    d:"A personal community platform for building a space around <strong>content creation</strong>. Becoming a YouTuber — <em>I believe I have so much to say, but my innocence has been used up on the wrong people.</em> This is where I build my own community, on my own terms. <strong>Database security is critical</strong> — because leaking people's data would get me linçed like Tosuncuk from Çiftlik Bank.",
    t:["Web Technologies","JavaScript","Supabase (PostgreSQL + Auth + Realtime)"],
    s:"Planning",g:"https://github.com/nosey-dewdrop",co:"#E91E63"},
-  {e:"🎵",n:"Musical Improvisation Tool",tg:"Y2K aesthetic scale identifier & composition aid with Web Audio API — deployed",
-   d:"Identifies all possible musical scales from a few notes you play or hear, then suggests <strong>compatible triad chords, 7th chords, sus chords</strong> and <strong>common chord progressions</strong> (Pop Classic, Jazz ii-V-I, Andalusian, Canon) for improvisation and composition. Built with a <strong>custom music theory algorithm</strong> — pitch-class enharmonic mapping (C#=Db), all 12 major scales via Circle of Fifths, and <strong>7 diatonic modes</strong> (Ionian through Locrian) derived from degree rotation. <strong>Web Audio API</strong> synthesizes real-time sound: sine waves for piano, triangle oscillators with 2nd & 3rd harmonics for guitar timbre — each with proper ADSR envelopes. <strong>Spotify Embed API</strong> powers an iPod-style player with curated song suggestions per key. <strong>LocalStorage API</strong> persists your note selections, octave preference, and saved chord progressions across sessions. Features a <strong>dynamic piano generator</strong> (1–3 octaves with responsive key sizing), interactive <strong>guitar fretboard</strong> (6 strings × 12 frets with correct string-to-octave mapping), <strong>QWERTY keyboard mapping</strong> for live playing, and a <strong>chord progression planner</strong> where you build, save, and recall your own progressions. Wrapped in a <strong>Y2K aesthetic</strong> design with dark/light mode toggle. Designed for musicians who want to compose or jam fluently: <em>hear a riff like Sails of Charon by Scorpions, punch in the notes, get B Phrygian instantly, know all the triads.</em> Includes a <strong>handwritten music theory & philosophy section</strong> — essays on why music is nature, how the seven modes survived a form of natural selection, how Bach and Vivaldi composed from observation rather than rules, and an explanation of intervals, triads, and chord construction from first principles. Written from <strong>MSC110 at Bilkent</strong> and years of self-taught music theory.",
-   t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],
-   s:"💐 Live",g:"https://github.com/nosey-dewdrop/musical-improvisation-tool",l:"https://nosey-dewdrop.github.io/musical-improvisation-tool/",co:"#00B894"},
   {e:"🌙",n:"Moonlight",tg:"astrology platform — moon phases & horary",
    d:"Moon phase tracking, horary astrology calculations, and celestial event monitoring. There's something meditative about following the sky's rhythm — this platform makes it beautiful and accessible.",
    t:["Web Technologies","Astronomy APIs","JavaScript"],
@@ -79,10 +84,6 @@ const P=[
    d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",
    t:["Java","Java Swing","JavaFX"],
    s:"Early build",g:"https://github.com/nosey-dewdrop/flower-timer",co:"#FD79A8"},
-  {e:"🦢",n:"Lala Retro",tg:"skincare ingredient & allergen tracker",
-   d:"I'm allergic to something, but what? A tracker to identify which skincare ingredients cause reactions by logging products and symptoms over time. Because a $200 cream (looking at you, La La Retro) isn't special — it just has fewer ingredients.",
-   t:["Web Technologies","JavaScript"],
-   s:"Planning",g:"https://github.com/nosey-dewdrop/lala-retro",co:"#A29BFE"},
 ];
 
 const SCHED=[
@@ -135,7 +136,12 @@ function go(p){
   history.replaceState(null,null,"#"+p);
   requestAnimationFrame(()=>{
     document.getElementById("p-"+p).classList.add("on");
-    document.querySelector(`[data-p="${p}"]`).classList.add("on");
+    const navBtn=document.querySelector(`[data-p="${p}"]`);
+    if(navBtn)navBtn.classList.add("on");
+    const schedBtn=document.querySelector(".nl-sched");
+    if(schedBtn){if(p==="schedule")schedBtn.classList.add("on");else schedBtn.classList.remove("on");}
+    const lpBtn=document.querySelector(".nl-lp");
+    if(lpBtn){if(p==="lifeplan")lpBtn.classList.add("on");else lpBtn.classList.remove("on");}
     if(p==="home") setTimeout(()=>{const hm=document.querySelector(".hm");if(hm)hm.classList.add("vis");},30);
     if(p==="projects") setTimeout(()=>document.querySelectorAll(".pk").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),50+i*30)),30);
     if(p==="schedule") setTimeout(()=>document.querySelectorAll("#sched-list .es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
@@ -154,35 +160,33 @@ document.addEventListener("DOMContentLoaded",()=>{
   NAV.forEach(n=>{const b=document.createElement("button");b.className="nb"+(n.k==="home"?" on":"");b.dataset.p=n.k;b.textContent=n.l;b.onclick=()=>go(n.k);nr.appendChild(b)});
 
   const fb=document.getElementById("fb");
-  EM.forEach((e,i)=>{const s=document.createElement("span");s.className="fl";s.textContent=e;s.style.left=`${5+i*9.5}%`;s.style.animationDelay=`${i*2.8}s`;fb.appendChild(s)});
+  const selEM=EM.sort(()=>Math.random()-.5).slice(0,12);
+  selEM.forEach((e)=>{const s=document.createElement("span");s.className="fl";s.textContent=e;s.style.left=`${40+Math.random()*58}%`;s.style.animationDelay=`${Math.random()*16}s`;s.style.animationDuration=`${10+Math.random()*8}s`;fb.appendChild(s)});
 
   const pl=document.getElementById("plist");
   P.forEach((p,i)=>{
     const d=document.createElement("div");d.className="pk";d.style.transitionDelay=`${i*.03}s`;
     d.innerHTML=`
       <div class="pt"><span class="pe">${p.e}</span><div style="flex:1">
-        <div class="ptr"><h3 class="pn">${p.n}</h3><span class="ps" style="color:${p.co};background:${p.co}15;border:1px solid ${p.co}30">${p.s}</span></div>
+        <div class="ptr"><h3 class="pn">${p.n}</h3><span class="ps" style="color:${p.s.includes('Live')?'#2B8A3E':p.co};background:${p.s.includes('Live')?'#E6F9ED':p.co+'15'};border:1px solid ${p.s.includes('Live')?'#8FD5A6':p.co+'30'}">${p.s}</span></div>
         <div class="ptg">${p.tg}</div>
       </div></div>
       <p class="pd">${p.d}</p>
       <div class="tb">${p.t.map(tb).join("")}</div>
       <div class="pll">
         <a href="${p.g}" target="_blank" class="plk">→ github</a>
-        ${p.l?`<a href="${p.l}" target="_blank" class="plk plk-l">✦ live demo</a>`:""}
+        ${p.l?`<a href="${p.l}" target="_blank" class="plk plk-l">✨ live demo !</a>`:""}
       </div>`;
     pl.appendChild(d);
   });
 
   const sl=document.getElementById("sched-list");
-  sl.innerHTML=`<div class="es">${SCHED.map(s=>`<div class="ei"><div class="er"><span style="margin-right:6px">${s.e}</span>${s.n} <span class="ps" style="color:var(--sun);background:var(--sun)15;border:1px solid var(--sun)30;margin-left:8px;font-size:9px;font-family:var(--fm);padding:2px 8px;border-radius:12px">${s.s}</span></div><div class="ed" style="font-style:italic">${s.note}</div></div>`).join("")}</div>`;
+  sl.innerHTML=`<div class="es">${SCHED.map(s=>{const isLive=s.s.includes('live');return `<div class="ei"><div class="er"><span style="margin-right:6px">${s.e}</span>${s.n} <span class="ps" style="color:${isLive?'#2B8A3E':'var(--muted)'};background:${isLive?'#E6F9ED':'var(--peach)'};border:1px solid ${isLive?'#8FD5A6':'var(--border)'};margin-left:8px;font-size:9px;padding:2px 8px;border-radius:2px">${s.s}</span></div><div class="ed">${s.note}</div></div>`;}).join("")}</div>`;
 
   const sg=document.getElementById("sgrid");
   sg.innerHTML=Object.entries(SK).map(([k,v])=>`<div class="sc"><h4>${k}</h4>${v.map(i=>`<span>${i}</span>`).join("")}</div>`).join("");
 
   const cs=document.getElementById("coding-sec");
-  cs.innerHTML=`<div class="es"><h4>coding practice — <a href="https://github.com/nosey-dewdrop/fantaisie-impromptu" target="_blank" style="color:var(--amber);text-decoration:none">fantaisie-impromptu repo</a></h4>
-    ${CP.map(c=>`<div class="cp-cat"><div class="cp-h">${c.cat}</div>${c.items.length?`<ul class="cp-list">${c.items.map(i=>`<li>${i}</li>`).join("")}</ul>`:""}</div>`).join("")}
-  </div>`;
 
   const es=document.getElementById("exp-sec");
   es.innerHTML=`<div class="es"><h4>experience & involvement</h4>${EX.map(e=>`<div class="ei"><div class="er">${e.r}</div><div class="ed">${e.d}</div><div class="ep">${e.p}</div></div>`).join("")}</div>`;
@@ -198,8 +202,11 @@ document.addEventListener("DOMContentLoaded",()=>{
   const eu="su.bilge",edom="ug.bilkent.edu.tr",ea=eu+"@"+edom;
   const el=document.getElementById("email-link"),et=document.getElementById("email-text");
   if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
+  const mi=document.getElementById("mail-ideas");
+  if(mi)mi.href="mailto:"+ea+"?subject=Project Idea";
 
   const hash=location.hash.replace("#","");
-  const startPage=NAV.some(n=>n.k===hash)?hash:"home";
+  const allPages=[...NAV.map(n=>n.k),"schedule","lifeplan"];
+  const startPage=allPages.includes(hash)?hash:"home";
   cur="";go(startPage);
 });
