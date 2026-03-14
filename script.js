@@ -1,4 +1,4 @@
-const NAV=[{k:"home",l:"🌻 home"},{k:"about",l:"🦋 about me"},{k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}];
+const NAV=[{k:"home",l:"🌻 home"},{k:"about",l:"🦋 about me"},{k:"schedule",l:"📋 schedule"},{k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}];
 const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾"];
 
 const T={
@@ -26,6 +26,7 @@ const T={
   "MVC Architecture":{i:"🏗",c:"def"},"Figma (UI Prototyping)":{i:"🎨",c:"fig"},
   "Git/GitHub":{i:"🐙",c:"git"},"VS Code":{i:"💻",c:"def"},
   "C++":{i:"⚙️",c:"cpp"},
+  "Google OAuth":{i:"🔑",c:"sec"},"CSS":{i:"🎨",c:"hc"},"Next.js (App Router)":{i:"▲",c:"nxt"},"Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},
 };
 function tb(n){const m=T[n]||{i:"•",c:"def"};return `<span class="t t-${m.c}"><span class="ti">${m.i}</span>${n}</span>`;}
 
@@ -84,6 +85,20 @@ const P=[
    s:"Planning",g:"https://github.com/nosey-dewdrop/lala-retro",co:"#A29BFE"},
 ];
 
+const SCHED=[
+  {e:"🎀",n:"Linçmatik",note:"it is live. i bought tokens. you can mentally practice yourself. slay!!!",s:"💐 live"},
+  {e:"🎵",n:"Musical Improvisation Tool",note:"such a beautiful website. helps you identify scales, make chord progressions. no database but local storage. i think it is a useful tool with song recommendations in related scale.",s:"💐 live"},
+  {e:"💌",n:"Forget-Me-Not",note:"a huge letter platform. there is a lot to implement. will take weeks, maybe whole semester. nevertheless, it is live now! i need to start advertising it on linkedin.",s:"💐 live"},
+  {e:"💫",n:"Lady Fantasy",note:"tarot, lenormand, blogs using claude api and fal.ai api — finished but needs to be polished. it simply uses fortune telling with prompts.",s:"needs polish"},
+  {e:"🌙",n:"Moonlight",note:"easy, astrology platform. i love watching moon phases. moon phases, horary added.",s:"core done"},
+  {e:"🌊",n:"Dewdrop",note:"events platform. MVP can be done. my name is damla su, in english drop, drip, dewdrop, waterdrop. inspo is communities are like an ocean, nevertheless we are all individual drops. everyone does a project like this. what i can have that they don't?",s:"MVP possible"},
+  {e:"🐞",n:"LadyBug",note:"will take ages but MVP can be done. while working as a TA for CS115, i found out that people were not really learning by writing code. it was teaching when you were trying to find and correct a logical error, which is silent but more destructive for the code.",s:"MVP possible"},
+  {e:"🌷",n:"Damlacık",note:"a personal community platform. i am becoming a youtuber. i believe i have so much to say, but my innocence has been used up on the wrong people. it might take some weeks. database should be secured, else i will be linçed like tosuncuk from çiftlik bank for stealing (leaking) people's data. for building a community. still on planning because i want a community platform but i can't find an astonishing point for this project only for this moment because my mind is too full...",s:"planning"},
+  {e:"🦢",n:"Lala Retro",note:"i am allergic to something and this shows what. will be simple.",s:"planning"},
+  {e:"☕",n:"Interactive Coffee Menu",note:"i have done implementing it before i was a vibecoder but a barista!!!! doesn't sound incredible now but i want to finish it. i have one more programming idea for my future coffee shop. but i don't have money to open it only at this moment! hahhaaha",s:"💐 live"},
+  {e:"🏥",n:"Medical Case Generator",note:"when i finish engineering, and if i am still alive and not dead of cancer, i will study medicine in muğla... akyaka... and it is literally on a mountain. meaning it doesn't have a great range of cases as much as universities in big cities such as ankara, izmir... this is a platform which generates cases. when i was in medical school, problem-based learning was such a privileged class.",s:"future dream"},
+];
+
 const CP=[
   {cat:"⚔️ LeetCode — 18 problems in Java & C++",items:[]},
   {cat:"🏋️ Exercism — 42+ problems across Java (31), Python (10), JavaScript (1)",items:[]},
@@ -122,6 +137,7 @@ function go(p){
     document.getElementById("p-"+p).classList.add("on");
     document.querySelector(`[data-p="${p}"]`).classList.add("on");
     if(p==="projects") setTimeout(()=>document.querySelectorAll(".pk").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),50+i*30)),30);
+    if(p==="schedule") setTimeout(()=>document.querySelectorAll("#sched-list .es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
     if(p==="technical") setTimeout(()=>document.querySelectorAll(".sc,.es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
   });
 }
@@ -155,6 +171,9 @@ document.addEventListener("DOMContentLoaded",()=>{
       </div>`;
     pl.appendChild(d);
   });
+
+  const sl=document.getElementById("sched-list");
+  sl.innerHTML=`<div class="es">${SCHED.map(s=>`<div class="ei"><div class="er"><span style="margin-right:6px">${s.e}</span>${s.n} <span class="ps" style="color:var(--sun);background:var(--sun)15;border:1px solid var(--sun)30;margin-left:8px;font-size:9px;font-family:var(--fm);padding:2px 8px;border-radius:12px">${s.s}</span></div><div class="ed" style="font-style:italic">${s.note}</div></div>`).join("")}</div>`;
 
   const sg=document.getElementById("sgrid");
   sg.innerHTML=Object.entries(SK).map(([k,v])=>`<div class="sc"><h4>${k}</h4>${v.map(i=>`<span>${i}</span>`).join("")}</div>`).join("");
