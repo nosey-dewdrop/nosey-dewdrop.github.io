@@ -38,8 +38,8 @@ const P=[
    d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong> — full PRD with <strong>40+ screens</strong>, complete PostgreSQL schema (15+ tables), and a <strong>vibecoded mock prototype</strong> via deep research. Features: bottle mail with random matching, memory box for unsent letters with time capsules, playlist sharing, <strong>AI compatibility scoring with Claude</strong>, XP/leveling gamification with collectible stamps, <em>a mythology blog about historical love stories</em>, and Stripe-powered premium subscriptions.",
    t:["Next.js 14 (App Router)","React","Supabase (PostgreSQL + Auth + Realtime)","Anthropic Claude API","Mapbox GL JS","Leaflet","Stripe Payments","Tailwind CSS","Vercel (Serverless)","React Native / Expo (Phase 2)"],
    s:"Mock prototype ready",g:"https://github.com/nosey-dewdrop/everlong",co:"#9B59B6"},
-  {e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media lynch simulator",
-   d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental resilience trainer. Write anything you'd post online → <strong>Claude generates 5 brutally realistic toxic comments</strong> from different troll personas (Toxic Teyze, Keyboard Warrior, Moral Bekçisi, Haklı Hasan, Bilmiş Burcu) → you practice responding → get a <strong>psychological analysis</strong> of the interaction. Features a curated library of important quotes (<em>Marcus Aurelius, Musashi, Pink Floyd, Mevlana</em>) and book recommendations (<em>Schopenhauer, Nietzsche, Dostoyevski, Sun Tzu</em>). Lila-pink design system with floating emojis, grain overlay, dot-bg pattern, dark mode. Inspired by <em>Schopenhauer's eristic dialectics, Nietzsche's rawness, and Dostoevsky's Prince Myshkin — because being good was his crime.</em>",
+  {e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media criticism simulator",
+   d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental toughness trainer. Write anything you'd post online → <strong>Claude API generates brutally realistic toxic comments</strong> from different troll personas → you practice handling harsh criticism to build resilience. Features a curated library of quotes and book recommendations. <strong>Python</strong> for the API backend, <strong>React</strong> for the frontend, deployed on <strong>Vercel</strong>. <em>Schopenhauer — people will use dirty tricks in arguments, always expect the worst. Nietzsche — most people aren't trying to destroy you, this is how they act in their point of view. Prince Myshkin — he is the best person. this was his crime.</em>",
    t:["Python","Flask + CORS","Anthropic Claude API","React","Vercel","JavaScript"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/linc-matik",l:"https://linc-matik.vercel.app",co:"#8e35b8"},
   {e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",
@@ -114,15 +114,23 @@ const EX=[
 let cur="home";
 function go(p){
   if(p===cur)return;
-  document.querySelectorAll(".pg").forEach(x=>x.classList.remove("on"));
+  document.querySelectorAll(".pg").forEach(x=>{x.classList.remove("on");x.scrollTop=0});
   document.querySelectorAll(".nb").forEach(x=>x.classList.remove("on"));
   cur=p;
+  history.replaceState(null,null,"#"+p);
   requestAnimationFrame(()=>{
     document.getElementById("p-"+p).classList.add("on");
     document.querySelector(`[data-p="${p}"]`).classList.add("on");
     if(p==="projects") setTimeout(()=>document.querySelectorAll(".pk").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),50+i*30)),30);
+    if(p==="technical") setTimeout(()=>document.querySelectorAll(".sc,.es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
   });
 }
+document.addEventListener("keydown",e=>{
+  if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA")return;
+  const keys=NAV.map(n=>n.k);const i=keys.indexOf(cur);
+  if(e.key==="ArrowRight"&&i<keys.length-1)go(keys[i+1]);
+  if(e.key==="ArrowLeft"&&i>0)go(keys[i-1]);
+});
 
 document.addEventListener("DOMContentLoaded",()=>{
   const nr=document.getElementById("nr");
@@ -171,5 +179,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   const el=document.getElementById("email-link"),et=document.getElementById("email-text");
   if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
 
-  setTimeout(()=>{document.getElementById("p-home").classList.add("on");document.getElementById("hm").classList.add("vis")},100);
+  const hash=location.hash.replace("#","");
+  const startPage=NAV.some(n=>n.k===hash)?hash:"home";
+  cur="";go(startPage);
 });
