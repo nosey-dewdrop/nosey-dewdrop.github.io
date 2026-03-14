@@ -136,6 +136,7 @@ function go(p){
   requestAnimationFrame(()=>{
     document.getElementById("p-"+p).classList.add("on");
     document.querySelector(`[data-p="${p}"]`).classList.add("on");
+    if(p==="home") setTimeout(()=>{const hm=document.querySelector(".hm");if(hm)hm.classList.add("vis");},30);
     if(p==="projects") setTimeout(()=>document.querySelectorAll(".pk").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),50+i*30)),30);
     if(p==="schedule") setTimeout(()=>document.querySelectorAll("#sched-list .es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
     if(p==="technical") setTimeout(()=>document.querySelectorAll(".sc,.es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
