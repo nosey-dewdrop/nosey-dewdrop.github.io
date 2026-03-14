@@ -5,7 +5,8 @@
       "Bash(gh repo:*)",
       "WebFetch(domain:github.com)",
       "Bash(python3 -c \"\nh='4033356e22292c27250035276e22292c2b252e346e2524356e3432'\nk=int\\(h[:2],16\\)\nd=''.join\\(chr\\(int\\(h[i:i+2],16\\)^k\\) for i in range\\(2,len\\(h\\),2\\)\\)\nprint\\(d\\)\n\")",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "WebFetch(domain:nosey-dewdrop.github.io)"
     ]
   }
 }
