@@ -35,7 +35,7 @@ const P=[
   {e:"🐞",n:"LadyBug",tg:"a debugging-first learning platform",
    d:"Born from my experience as a <strong>Python TA</strong> at Bilkent: students never really learned by writing code — <em>they learned when they had to find and fix logical errors.</em> LadyBug teaches <strong>algorithmic thinking through real debugging challenges</strong> with a code execution sandbox, personalized error profiles, and an instructor dashboard. In an AI world where code generation is trivial, <em>the ability to read, evaluate, and fix code is the real human edge.</em>",
    t:["Next.js 16","React 19","TypeScript","Supabase (PostgreSQL + Auth + Realtime)","Tailwind CSS 4","Node.js","ESLint"],
-   s:"MVP in progress",g:"https://github.com/nosey-dewdrop/ladybug",co:"#E8453C"},
+   s:"💐 MVP in progress",g:"https://github.com/nosey-dewdrop/ladybug",co:"#E8453C"},
   {e:"💌",n:"Forget-Me-Not",tg:"slow letter platform — letters travel based on real distance",
    d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong>. Features: <strong>Google OAuth</strong> via Supabase, bottle mail with random matching, memory box for unsent letters, <strong>user matching with conversation starters</strong>, XP/leveling gamification with collectible stamps, seasonal themes, and <em>a mythology blog about historical love stories</em>. No instant messaging, no read receipts, no pressure — intentionally slow.",
    t:["Next.js (App Router)","React","TypeScript","Supabase (PostgreSQL + Auth)","Google OAuth","CSS","Vercel"],
@@ -48,34 +48,18 @@ const P=[
    d:"Play or input a few notes → get every possible <strong>scale, mode, chord, and progression</strong> instantly. Built with a <strong>custom music theory algorithm</strong> (Circle of Fifths, 7 diatonic modes, enharmonic mapping). Features <strong>Web Audio API</strong> synthesis for piano & guitar, interactive <strong>piano + guitar fretboard</strong>, QWERTY keyboard mapping, <strong>Spotify</strong> song suggestions per key, and a <strong>chord progression planner</strong>. Includes handwritten essays on music theory & philosophy. <em>Hear a riff like Sails of Charon, punch in the notes, get B Phrygian instantly.</em>",
    t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/musical-improvisation-tool",l:"https://nosey-dewdrop.github.io/musical-improvisation-tool/",co:"#00B894"},
-  {e:"🦢",n:"Lala Retro",tg:"skincare ingredient & allergen tracker",
-   d:"I'm allergic to something, but what? A tracker to identify which skincare ingredients cause reactions by logging products and symptoms over time. Because a $200 cream (looking at you, La La Retro) isn't special — it just has fewer ingredients.",
-   t:["Web Technologies","JavaScript"],
-   s:"Planning",g:"https://github.com/nosey-dewdrop/lala-retro",co:"#A29BFE"},
   {e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",
    d:"Draw cards from a full <strong>78-card Rider-Waite tarot deck</strong> and watch AI bring them to life as <strong>cinematic video</strong>. Hand-crafted prompts for each card describe the illustration animating — <em>fabrics sway, objects glow, figures reach toward each other.</em> Three fal.ai video models to choose from. Architecture: browser → <strong>4 serverless API routes</strong> (generate, status, result, image) → fal.ai Queue API. API key is server-side only — never exposed to the client.",
    t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/lady-fantasy",l:"https://lady-fantasy.vercel.app",co:"#6C5CE7"},
-  {e:"🌊",n:"Dewdrop",tg:"general-purpose event + social platform with AI posters",
-   d:"<em>\"we are drops in an ocean of time\"</em> — a full-scale event and social platform with a <strong>67-step roadmap across 10 phases</strong>. Create events, discover what's happening, RSVP, connect with friends. <strong>AI-generated event posters</strong> via fal.ai, <strong>mutual-friends-only messaging</strong> enforced at database level (Supabase RLS), XP/tier gamification (Newcomer → Tide Rider → Storm Chaser → Wave Maker → Ocean), threaded comments, calendar with conflict detection, personalized recommendations, and real-time notifications. <strong>10 pages designed</strong>: Feed, Discover, Event Detail, Create Event, Profile, Messaging, Notifications, Leaderboard, Calendar, Auth 🌊",
-   t:["Python","JavaScript","HTML/CSS","Supabase (PostgreSQL + Auth + Realtime)","fal.ai Queue API"],
-   s:"In development",g:"https://github.com/nosey-dewdrop/dewdrop",co:"#3498DB"},
   {e:"👾",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",
    d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em>",
    t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],
-   s:"Built & Deployed",g:"https://github.com/nosey-dewdrop/leagueofbilkent-mvp",co:"#E67E22"},
-  {e:"🌷",n:"Damlacık",tg:"personal community platform — YouTube & content hub",
-   d:"A personal community platform for building a space around <strong>content creation</strong>. Becoming a YouTuber — <em>I believe I have so much to say, but my innocence has been used up on the wrong people.</em> This is where I build my own community, on my own terms. <strong>Database security is critical</strong> — because leaking people's data would get me linçed like Tosuncuk from Çiftlik Bank.",
-   t:["Web Technologies","JavaScript","Supabase (PostgreSQL + Auth + Realtime)"],
-   s:"Planning",g:"https://github.com/nosey-dewdrop",co:"#E91E63"},
-  {e:"🌙",n:"Moonlight",tg:"astrology platform — moon phases & horary",
-   d:"Moon phase tracking, horary astrology calculations, and celestial event monitoring. There's something meditative about following the sky's rhythm — this platform makes it beautiful and accessible.",
-   t:["Web Technologies","Astronomy APIs","JavaScript"],
-   s:"Core features done",g:"https://github.com/nosey-dewdrop",co:"#2C3E50"},
+   s:"💐 Built & Deployed",g:"https://github.com/nosey-dewdrop/leagueofbilkent-mvp",co:"#E67E22"},
   {e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",
    d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",
    t:["Java","Java Swing","Database","SQL"],
-   s:"Built",g:"https://github.com/nosey-dewdrop",co:"#27AE60"},
+   s:"💐 Built",g:"https://github.com/nosey-dewdrop",co:"#27AE60"},
   {e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",
    d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",
    t:["JavaScript","HTML/CSS"],
@@ -83,7 +67,7 @@ const P=[
   {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",
    d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",
    t:["Java","Java Swing","JavaFX"],
-   s:"Early build",g:"https://github.com/nosey-dewdrop/flower-timer",co:"#FD79A8"},
+   s:"💐 Early build",g:"https://github.com/nosey-dewdrop/flower-timer",co:"#FD79A8"},
 ];
 
 const SCHED=[
@@ -94,8 +78,8 @@ const SCHED=[
   {e:"🌙",n:"Moonlight",note:"easy, astrology platform. i love watching moon phases. moon phases, horary added.",s:"core done"},
   {e:"🌊",n:"Dewdrop",note:"events platform. MVP can be done. my name is damla su, in english drop, drip, dewdrop, waterdrop. inspo is communities are like an ocean, nevertheless we are all individual drops. everyone does a project like this. what i can have that they don't?",s:"MVP possible"},
   {e:"🐞",n:"LadyBug",note:"will take ages but MVP can be done. while working as a TA for CS115, i found out that people were not really learning by writing code. it was teaching when you were trying to find and correct a logical error, which is silent but more destructive for the code.",s:"MVP possible"},
-  {e:"🌷",n:"Damlacık",note:"a personal community platform. i am becoming a youtuber. i believe i have so much to say, but my innocence has been used up on the wrong people. it might take some weeks. database should be secured, else i will be linçed like tosuncuk from çiftlik bank for stealing (leaking) people's data. for building a community. still on planning because i want a community platform but i can't find an astonishing point for this project only for this moment because my mind is too full...",s:"planning"},
-  {e:"🦢",n:"Lala Retro",note:"i am allergic to something and this shows what. will be simple.",s:"planning"},
+  {e:"🌷",n:"Damlacık",note:"a personal community platform. i am becoming a youtuber. i believe i have so much to say, but my innocence has been used up on the wrong people. it might take some weeks. database should be secured, else i will be linçed like tosuncuk from çiftlik bank for stealing (leaking) people's data. for building a community. still on planning because i want a community platform but i can't find an astonishing point for this project only for this moment because my mind is too full... <strong>stack:</strong> Supabase (PostgreSQL + Auth + Realtime), JavaScript, Web Technologies. <strong>mock:</strong> youtube channel integration, community feed, user profiles, content scheduling, comment threads.",s:"planning"},
+  {e:"🦢",n:"Lala Retro",note:"i am allergic to something and this shows what. will be simple. a skincare ingredient & allergen tracker — log products, track symptoms over time, find the culprit. because a $200 cream (looking at you, La La Retro) isn't special — it just has fewer ingredients. <strong>stack:</strong> JavaScript, Web Technologies. <strong>mock:</strong> product scanner/input, ingredient database, symptom timeline, reaction heatmap, product comparison.",s:"planning"},
   {e:"☕",n:"Interactive Coffee Menu",note:"i have done implementing it before i was a vibecoder but a barista!!!! doesn't sound incredible now but i want to finish it. i have one more programming idea for my future coffee shop. but i don't have money to open it only at this moment! hahhaaha",s:"💐 live"},
   {e:"🏥",n:"Medical Case Generator",note:"when i finish engineering, and if i am still alive and not dead of cancer, i will study medicine in muğla... akyaka... and it is literally on a mountain. meaning it doesn't have a great range of cases as much as universities in big cities such as ankara, izmir... this is a platform which generates cases. when i was in medical school, problem-based learning was such a privileged class.",s:"future dream"},
 ];
@@ -143,9 +127,9 @@ function go(p){
     const lpBtn=document.querySelector(".nl-lp");
     if(lpBtn){if(p==="lifeplan")lpBtn.classList.add("on");else lpBtn.classList.remove("on");}
     if(p==="home") setTimeout(()=>{const hm=document.querySelector(".hm");if(hm)hm.classList.add("vis");},30);
-    if(p==="projects") setTimeout(()=>document.querySelectorAll(".pk").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),50+i*30)),30);
+    if(p==="projects") renderProjects(0);
     if(p==="schedule") setTimeout(()=>document.querySelectorAll("#sched-list .es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
-    if(p==="technical") setTimeout(()=>document.querySelectorAll(".sc,.es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
+    if(p==="technical") renderTech(0);
   });
 }
 document.addEventListener("keydown",e=>{
@@ -164,40 +148,68 @@ document.addEventListener("DOMContentLoaded",()=>{
   selEM.forEach((e)=>{const s=document.createElement("span");s.className="fl";s.textContent=e;s.style.left=`${40+Math.random()*58}%`;s.style.animationDelay=`${Math.random()*16}s`;s.style.animationDuration=`${10+Math.random()*8}s`;fb.appendChild(s)});
 
   const pl=document.getElementById("plist");
-  P.forEach((p,i)=>{
-    const d=document.createElement("div");d.className="pk";d.style.transitionDelay=`${i*.03}s`;
-    d.innerHTML=`
-      <div class="pt"><span class="pe">${p.e}</span><div style="flex:1">
-        <div class="ptr"><h3 class="pn">${p.n}</h3><span class="ps" style="color:${p.s.includes('Live')?'#2B8A3E':p.co};background:${p.s.includes('Live')?'#E6F9ED':p.co+'15'};border:1px solid ${p.s.includes('Live')?'#8FD5A6':p.co+'30'}">${p.s}</span></div>
-        <div class="ptg">${p.tg}</div>
-      </div></div>
-      <p class="pd">${p.d}</p>
-      <div class="tb">${p.t.map(tb).join("")}</div>
-      <div class="pll">
-        <a href="${p.g}" target="_blank" class="plk">→ github</a>
-        ${p.l?`<a href="${p.l}" target="_blank" class="plk plk-l">✨ live demo !</a>`:""}
-      </div>`;
-    pl.appendChild(d);
-  });
+  const PER_PAGE=4;
+  let pPage=0;
+  function renderProjects(page){
+    pPage=page;
+    const start=page*PER_PAGE,end=Math.min(start+PER_PAGE,P.length);
+    pl.innerHTML="";
+    P.slice(start,end).forEach((p,i)=>{
+      const d=document.createElement("div");d.className="pk";d.style.transitionDelay=`${i*.05}s`;
+      const isGreen=p.s.includes('Live')||p.s.includes('Built')||p.s.includes('MVP');
+      d.innerHTML=`
+        <div class="pt"><span class="pe">${p.e}</span><div style="flex:1">
+          <div class="ptr"><h3 class="pn">${p.n}</h3><span class="ps" style="color:${isGreen?'#2B8A3E':p.co};background:${isGreen?'#E6F9ED':p.co+'15'};border:1px solid ${isGreen?'#8FD5A6':p.co+'30'}">${p.s}</span></div>
+          <div class="ptg">${p.tg}</div>
+        </div></div>
+        <p class="pd">${p.d}</p>
+        <div class="tb">${p.t.map(tb).join("")}</div>
+        <div class="pll">
+          <a href="${p.g}" target="_blank" class="plk">→ github</a>
+          ${p.l?`<a href="${p.l}" target="_blank" class="plk plk-l">✨ live demo !</a>`:""}
+        </div>`;
+      pl.appendChild(d);
+    });
+    const totalPages=Math.ceil(P.length/PER_PAGE);
+    const pagerTop=document.getElementById("proj-pager-top");
+    pagerTop.className="pp";pagerTop.style.marginBottom="14px";pagerTop.innerHTML="";
+    for(let i=0;i<totalPages;i++){
+      const b=document.createElement("button");b.className="pp-b"+(i===page?" on":"");b.textContent=i+1;
+      b.onclick=()=>{renderProjects(i);document.getElementById("p-projects").scrollTop=0;};
+      pagerTop.appendChild(b);
+    }
+    setTimeout(()=>pl.querySelectorAll(".pk").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
+  }
+  renderProjects(0);
 
   const sl=document.getElementById("sched-list");
   sl.innerHTML=`<div class="es">${SCHED.map(s=>{const isLive=s.s.includes('live');return `<div class="ei"><div class="er"><span style="margin-right:6px">${s.e}</span>${s.n} <span class="ps" style="color:${isLive?'#2B8A3E':'var(--muted)'};background:${isLive?'#E6F9ED':'var(--peach)'};border:1px solid ${isLive?'#8FD5A6':'var(--border)'};margin-left:8px;font-size:9px;padding:2px 8px;border-radius:2px">${s.s}</span></div><div class="ed">${s.note}</div></div>`;}).join("")}</div>`;
 
-  const sg=document.getElementById("sgrid");
-  sg.innerHTML=Object.entries(SK).map(([k,v])=>`<div class="sc"><h4>${k}</h4>${v.map(i=>`<span>${i}</span>`).join("")}</div>`).join("");
-
-  const cs=document.getElementById("coding-sec");
-
-  const es=document.getElementById("exp-sec");
-  es.innerHTML=`<div class="es"><h4>experience & involvement</h4>${EX.map(e=>`<div class="ei"><div class="er">${e.r}</div><div class="ed">${e.d}</div><div class="ep">${e.p}</div></div>`).join("")}</div>`;
-
-  const ed=document.getElementById("edu-sec");
-  ed.innerHTML=`<div class="es"><h4>education</h4>
-    <div class="ei"><div class="er">Bilkent University</div><div class="ed">B.Sc. in Computer Science</div><div class="ep">2023 – present</div></div>
-    <div class="ei"><div class="er">Medipol University</div><div class="ed">Medicine — 91/100</div><div class="ep">2020 – 2023</div></div>
-    <div class="ei"><div class="er">Damla Fen Lisesi (Open High School)</div><div class="ed">Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life — learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.</div><div class="ep">2019 – 2020</div></div>
-    <div class="ei"><div class="er">Nesibe Aydın Fen Lisesi (Science High School)</div><div class="ed">GPA: 96.68/100 — Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.</div><div class="ep">2016 – 2019</div></div>
-  </div>`;
+  const techContent=document.getElementById("tech-content");
+  const techPagerTop=document.getElementById("tech-pager-top");
+  const techPages=[
+    {label:"experience",html:`<div class="es"><h4>experience & involvement</h4>${EX.map(e=>`<div class="ei"><div class="er">${e.r}</div><div class="ed">${e.d}</div><div class="ep">${e.p}</div></div>`).join("")}</div>`},
+    {label:"education",html:`<div class="es"><h4>education</h4>
+      <div class="ei"><div class="er">Bilkent University</div><div class="ed">B.Sc. in Computer Science</div><div class="ep">2023 – present</div></div>
+      <div class="ei"><div class="er">Medipol University</div><div class="ed">Medicine — 91/100</div><div class="ep">2020 – 2023</div></div>
+      <div class="ei"><div class="er">Damla Fen Lisesi (Open High School)</div><div class="ed">Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life — learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.</div><div class="ep">2019 – 2020</div></div>
+      <div class="ei"><div class="er">Nesibe Aydın Fen Lisesi (Science High School)</div><div class="ed">GPA: 96.68/100 — Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.</div><div class="ep">2016 – 2019</div></div>
+    </div>`},
+    {label:"skills",html:`<div class="sg">${Object.entries(SK).map(([k,v])=>`<div class="sc"><h4>${k}</h4>${v.map(i=>`<span>${i}</span>`).join("")}</div>`).join("")}</div>`}
+  ];
+  let tPage=0;
+  function renderTech(page){
+    tPage=page;
+    techContent.innerHTML=techPages[page].html;
+    techPagerTop.className="pp";techPagerTop.style.marginBottom="14px";techPagerTop.innerHTML="";
+    techPages.forEach((tp,i)=>{
+      const b=document.createElement("button");b.className="pp-b"+(i===page?" on":"");b.textContent=tp.label;
+      b.onclick=()=>{renderTech(i);document.getElementById("p-technical").scrollTop=0;};
+      techPagerTop.appendChild(b);
+    });
+    setTimeout(()=>techContent.querySelectorAll(".sc,.es").forEach((c,i)=>setTimeout(()=>c.classList.add("vis"),40+i*60)),30);
+  }
+  renderTech(0);
 
   const eu="su.bilge",edom="ug.bilkent.edu.tr",ea=eu+"@"+edom;
   const el=document.getElementById("email-link"),et=document.getElementById("email-text");
