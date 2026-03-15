@@ -53,9 +53,9 @@ const P=[
    t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/lady-fantasy",l:"https://lady-fantasy.vercel.app",co:"#6C5CE7"},
   {e:"👾",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",
-   d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em>",
+   d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em> <strong>Interactive UML class diagram</strong> with method descriptions and dependency mapping is <a href='https://nosey-dewdrop.github.io/leagueofbilkent-mvp/' target='_blank'>deployed on GitHub Pages</a>.",
    t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],
-   s:"💐 Built & Deployed",g:"https://github.com/nosey-dewdrop/leagueofbilkent-mvp",co:"#E67E22"},
+   s:"💐 Built & Deployed",g:"https://github.com/nosey-dewdrop/leagueofbilkent-mvp",l:"https://nosey-dewdrop.github.io/leagueofbilkent-mvp/",ll:"✨ live uml website!",co:"#E67E22"},
   {e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",
    d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",
    t:["Java","Java Swing","Database","SQL"],
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         <div class="tb">${p.t.map(tb).join("")}</div>
         <div class="pll">
           <a href="${p.g}" target="_blank" class="plk">→ github</a>
-          ${p.l?`<a href="${p.l}" target="_blank" class="plk plk-l">✨ live demo !</a>`:""}
+          ${p.l?`<a href="${p.l}" target="_blank" class="plk plk-l">${p.ll||"✨ live demo !"}</a>`:""}
         </div>`;
       pl.appendChild(d);
     });
