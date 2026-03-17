@@ -1,4 +1,4 @@
-const NAV=[{k:"home",l:"🌻 home"},{k:"about",l:"🦋 about me"},{k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}];
+const NAV=[{k:"home",l:"🦋 home"},{k:"about",l:"💃🏽 about me"},{k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}];
 const SCHEDULE_KEY="schedule";
 const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖","🧸","🪻","🌹","🎵","☕","🍵","💌","🫧"];
 
@@ -36,11 +36,7 @@ const P=[
   {e:"☀️",n:"Sunny",tg:"iOS weather app with hand-drawn backgrounds & sunscreen reminders",
    d:"A native iOS weather app that shows <strong>current conditions with illustrated backgrounds</strong> that change based on weather (sunny, cloudy, rainy, hot). Uses <strong>CoreLocation</strong> for GPS + reverse geocoding, fetches real-time data from <strong>WeatherAPI</strong>, and sends <strong>sunscreen reminder notifications</strong> when temperature exceeds your threshold. Features 8 unique hand-drawn weather illustrations, doodle-style typography, staggered entrance animations, and a baby blue settings screen. Built entirely in <strong>SwiftUI</strong> — my first iOS app.",
    t:["SwiftUI","CoreLocation","WeatherAPI","UserNotifications"],
-   s:"💐 Built",g:"https://github.com/nosey-dewdrop/sunny",co:"#F39C12"},
-  {e:"🐞",n:"LadyBug",tg:"a debugging-first learning platform",
-   d:"Born from my experience as a <strong>Python TA</strong> at Bilkent: students never really learned by writing code — <em>they learned when they had to find and fix logical errors.</em> LadyBug teaches <strong>algorithmic thinking through real debugging challenges</strong> with a code execution sandbox, personalized error profiles, and an instructor dashboard. In an AI world where code generation is trivial, <em>the ability to read, evaluate, and fix code is the real human edge.</em>",
-   t:["Next.js 16","React 19","TypeScript","Supabase (PostgreSQL + Auth + Realtime)","Tailwind CSS 4","Node.js","ESLint"],
-   s:"💐 MVP in progress",g:"https://github.com/nosey-dewdrop/ladybug",co:"#E8453C"},
+   s:"💐 Built",g:"https://github.com/nosey-dewdrop/sunny",l:"https://nosey-dewdrop.github.io/sunny/",ll:"☀️ documentation",co:"#F39C12"},
   {e:"💌",n:"Forget-Me-Not",tg:"slow letter platform — letters travel based on real distance",
    d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong>. Features: <strong>Google OAuth</strong> via Supabase, bottle mail with random matching, memory box for unsent letters, <strong>user matching with conversation starters</strong>, XP/leveling gamification with collectible stamps, seasonal themes, and <em>a mythology blog about historical love stories</em>. No instant messaging, no read receipts, no pressure — intentionally slow.",
    t:["Next.js (App Router)","React","TypeScript","Supabase (PostgreSQL + Auth)","Google OAuth","CSS","Vercel"],
@@ -188,7 +184,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   renderProjects(0);
 
   const sl=document.getElementById("sched-list");
-  sl.innerHTML=`<div class="es">${SCHED.map(s=>{const isLive=s.s.includes('live');return `<div class="ei"><div class="er"><span style="margin-right:6px">${s.e}</span>${s.n} <span class="ps" style="color:${isLive?'#2B8A3E':'var(--muted)'};background:${isLive?'#E6F9ED':'var(--peach)'};border:1px solid ${isLive?'#8FD5A6':'var(--border)'};margin-left:8px;font-size:9px;padding:2px 8px;border-radius:2px">${s.s}</span></div><div class="ed">${s.note}</div></div>`;}).join("")}</div>`;
+  sl.innerHTML=`<div class="es">${SCHED.map(s=>{const isLive=s.s.includes('live');return `<div class="ei"><div class="er"><span style="margin-right:6px">${s.e}</span>${s.n} <span class="ps" style="color:${isLive?'#2B8A3E':'var(--muted)'};background:${isLive?'#E6F9ED':'var(--baby-light)'};border:1px solid ${isLive?'#8FD5A6':'var(--border)'};margin-left:8px;font-size:9px;padding:2px 8px;border-radius:2px">${s.s}</span></div><div class="ed">${s.note}</div></div>`;}).join("")}</div>`;
 
   const techContent=document.getElementById("tech-content");
   const techPagerTop=document.getElementById("tech-pager-top");
