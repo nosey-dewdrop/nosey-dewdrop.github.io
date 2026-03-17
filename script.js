@@ -28,6 +28,7 @@ const T={
   "Git/GitHub":{i:"🐙",c:"git"},"VS Code":{i:"💻",c:"def"},
   "C++":{i:"⚙️",c:"cpp"},
   "Google OAuth":{i:"🔑",c:"sec"},"CSS":{i:"🎨",c:"hc"},"Next.js (App Router)":{i:"▲",c:"nxt"},"Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},
+  "SwiftUI":{i:"🍎",c:"swu"},"CoreLocation":{i:"📍",c:"swu"},"WeatherAPI":{i:"🌤",c:"web"},"UserNotifications":{i:"🔔",c:"swu"},
 };
 function tb(n){const m=T[n]||{i:"•",c:"def"};return `<span class="t t-${m.c}"><span class="ti">${m.i}</span>${n}</span>`;}
 
@@ -64,6 +65,10 @@ const P=[
    d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",
    t:["JavaScript","HTML/CSS"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
+  {e:"☀️",n:"Sunny",tg:"iOS weather app with hand-drawn backgrounds & sunscreen reminders",
+   d:"A native iOS weather app that shows <strong>current conditions with illustrated backgrounds</strong> that change based on weather (sunny, cloudy, rainy, hot). Uses <strong>CoreLocation</strong> for GPS + reverse geocoding, fetches real-time data from <strong>WeatherAPI</strong>, and sends <strong>sunscreen reminder notifications</strong> when temperature exceeds your threshold. Features 8 unique hand-drawn weather illustrations, doodle-style typography, staggered entrance animations, and a baby blue settings screen. Built entirely in <strong>SwiftUI</strong> — my first iOS app.",
+   t:["SwiftUI","CoreLocation","WeatherAPI","UserNotifications"],
+   s:"💐 Built",g:"https://github.com/nosey-dewdrop/sunny",co:"#F39C12"},
   {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",
    d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",
    t:["Java","Java Swing","JavaFX"],
@@ -94,8 +99,8 @@ const CP=[
 ];
 
 const SK={
-  "programming languages":["Java","Python","C++","JavaScript","TypeScript","HTML/CSS","SQL","SystemVerilog"],
-  "frameworks & libraries":["Next.js (14–16, App Router)","React 19","Flask","Tailwind CSS","Java Swing","JavaFX","SpringBoot","Numpy","Matplotlib"],
+  "programming languages":["Java","Python","C++","JavaScript","TypeScript","Swift","HTML/CSS","SQL","SystemVerilog"],
+  "frameworks & libraries":["Next.js (14–16, App Router)","React 19","SwiftUI","Flask","Tailwind CSS","Java Swing","JavaFX","SpringBoot","Numpy","Matplotlib"],
   "platforms & tools":["Git/GitHub","Vercel","Supabase","MySQL","fal.ai","Mapbox GL","Figma","Maven","Vivado","VS Code","Reaper (DAW)"],
   "architecture & concepts":["RESTful API Design","Serverless Functions","Queue-based Async Processing","PostgreSQL Schema Design","MVC Pattern","SHA-256 Hashing","OAuth & Auth Flows","Algorithm Analysis","Data Structures"]
 };
