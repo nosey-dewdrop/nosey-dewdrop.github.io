@@ -28,7 +28,7 @@ const T={
   "Git/GitHub":{i:"🐙",c:"git"},"VS Code":{i:"💻",c:"def"},
   "C++":{i:"⚙️",c:"cpp"},
   "Google OAuth":{i:"🔑",c:"sec"},"CSS":{i:"🎨",c:"hc"},"Next.js (App Router)":{i:"▲",c:"nxt"},"Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},
-  "SwiftUI":{i:"🍎",c:"swu"},"CoreLocation":{i:"📍",c:"swu"},"WeatherAPI":{i:"🌤",c:"web"},"UserNotifications":{i:"🔔",c:"swu"},
+  "SwiftUI":{i:"🍎",c:"swu"},"SwiftData":{i:"💾",c:"swu"},"CoreLocation":{i:"📍",c:"swu"},"WeatherAPI":{i:"🌤",c:"web"},"UserNotifications":{i:"🔔",c:"swu"},
 };
 function tb(n){const m=T[n]||{i:"•",c:"def"};return `<span class="t t-${m.c}"><span class="ti">${m.i}</span>${n}</span>`;}
 
@@ -57,6 +57,10 @@ const P=[
    d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em> <strong>Interactive UML class diagram</strong> with method descriptions and dependency mapping is <a href='https://nosey-dewdrop.github.io/leagueofbilkent-mvp/' target='_blank'>deployed on GitHub Pages</a>.",
    t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],
    s:"💐 Built & Deployed",g:"https://github.com/nosey-dewdrop/leagueofbilkent-mvp",l:"https://nosey-dewdrop.github.io/leagueofbilkent-mvp/",ll:"✨ live uml website!",co:"#E67E22"},
+  {e:"<img src='https://nosey-dewdrop.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:28px;height:28px;border-radius:6px;'>",n:"Scrapp",tg:"digital scrapbook app — frame photos, collect memories, sticker packs",
+   d:"A native iOS scrapbook app. Create <strong>themed notebooks</strong>, frame your photos with <strong>decorative borders</strong> (polaroid, flower wreath, cloud, heart), add short notes, and collect memories. Features <strong>camera & gallery</strong> photo picking, <strong>hand-drawn sticker packs</strong> (butterflies, kawaii animals, fairy garden, vintage), free-form canvas with drag/pinch/rotate, haptic feedback, and smooth animations. No third-party dependencies — pure SwiftUI + SwiftData.",
+   t:["SwiftUI","SwiftData"],
+   s:"💐 Built",g:"https://github.com/nosey-dewdrop/scrapp",l:"https://nosey-dewdrop.github.io/scrapp/",ll:"📒 landing page",co:"#F8B4C8"},
   {e:"🥦",n:"Butterfry",tg:"food allergen detective — find what's messing with your stomach",
    d:"A food ingredient cross-reference tool. When multiple foods cause reactions (bloating, nausea, heartburn...), add them and <strong>find common ingredients</strong> — the culprit. Features: <strong>24 curated products</strong> + Open Food Facts API for unlimited search, OCR label scanning via <strong>Tesseract.js</strong>, personal reaction tracking, suspect ingredient watchlist, and cross-reference analysis engine. Mint green health-themed UI. All data stays in your browser via localStorage — no accounts, no servers, no tracking.",
    t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","LocalStorage API"],
