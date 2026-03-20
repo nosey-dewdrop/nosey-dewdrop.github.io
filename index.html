@@ -322,17 +322,11 @@ body {
     </div>
   </div>
 
-  <!-- ABOUT -->
+  <!-- ABOUT — loaded from content/about-me.md -->
   <div class="page" id="p-about">
     <h1 class="md-h1">🦋 about me</h1>
-    <div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:16px;font-weight:300">music enthusiast 🎸 pink floyd · beatles · radiohead · i love quiet days and romanticising life ✨ · cs @ bilkent · ieee board member & pr coordinator · python ta · fab fellow · sociology club exec board · ex-med student · guitarist · ukulele · bass · harmonica · piano · music theory lover · gym lover 💪 · slow living enthusiast 🍃 · matcha lover 🍵 · infp · i love good brewed coffee ☕ · dostoyevsky · kafka · frankl 📖 · philosophy lover · future youtuber 🎬</div>
-    <hr class="md-hr">
-    <p class="md-p">🧿 I'm <strong>Damla Su Bilge</strong> CS student at Bilkent, former TA for CS115, and I was studying medicine before life had other plans. I love dancing with AI 🤖✨</p>
-    <p class="md-p">I LOVE music!! 🎸🎹 I play ukulele, harmonica, bass, guitar, electric guitar, piano — literally anything I can get my hands on. symphonic rock, indie, soft rock — psychedelic rock's bohemian nature inspires me so much! Pink Floyd, Radiohead, and The Beatles shaped how I think about art, longing, and beauty 🌙💫</p>
-    <p class="md-p">slow living enthusiast 🍃 I was a competitive swimmer from age 6 to 11 before my cancer diagnosis changed everything. now I've been at the gym for 3 years and do pilates regularly — not for aesthetics, for my mind! I love quiet walks, meditation, a good matcha 🍵, brewing coffee every way possible (chemex, V60, French press, aeropress — I know them all!), and long afternoons with a book 📖</p>
-    <p class="md-p">speaking of books — Dostoyevsky's The Idiot and Jack London's Martin Eden are my favorites!! I adore Kafka, Dostoyevsky, and Viktor Frankl. the way they write about meaning, suffering, and what it means to be human just... gets me every time 🦋</p>
-    <p class="md-p">this lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty 🦋!</p>
-    <div class="md-links">
+    <div id="about-content"></div>
+    <div class="md-links" style="margin-top:16px">
       <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
       <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" class="md-link">🔗 LinkedIn</a>
       <a href="https://github.com/nosey-dewdrop" target="_blank" class="md-link">🐙 GitHub</a>
@@ -348,23 +342,12 @@ body {
     <div id="sched-list"></div>
   </div>
 
-  <!-- LIFE PLAN -->
+  <!-- LIFE PLAN — loaded from content/life-plan.md -->
   <div class="page" id="p-lifeplan">
     <h1 class="md-h1">🌸 life plan & dreams</h1>
     <p class="md-sub">thoughts, reflections, and the road ahead</p>
     <hr class="md-hr">
-    <div class="blog-entry">
-      <div class="blog-date">march 2026 · on building things</div>
-      <p class="md-p">I am a <strong>cancer survivor</strong>, that's why my self-fulfillments are my priority. so, I want to build things that make me happy, and if they make other people happy too, that's just a bonus!</p>
-      <p class="md-p">I never built this portfolio to impress anyone or to make someone else happy. I only want to make my <strong>future users and customers</strong> happy — and I want to <strong>impress myself</strong>.</p>
-      <p class="md-p">that's the whole point. everything here exists because I believed in it, not because someone told me to build it.</p>
-    </div>
-    <hr class="md-hr">
-    <div class="blog-entry">
-      <div class="blog-date">march 2026 · on finding my own way</div>
-      <p class="md-p">should i totally believe at heart that someone who has half of my result in yks, 1/10 of my projects, coding knowledge and experience deserves a job more than i do? and gets the job just because that person is such a cool human being? :=) i don't believe it so i hope i'll find my own way!</p>
-      <p class="md-p">my next act is, i will build an honest linkedin.</p>
-    </div>
+    <div id="lifeplan-content"></div>
   </div>
 
   <!-- PROJECTS -->
@@ -573,6 +556,40 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
   const mi=document.getElementById("mail-ideas");
   if(mi)mi.href="mailto:"+ea+"?subject=Project Idea";
+
+  // simple markdown to HTML
+  function md2html(md){
+    return md
+      .replace(/^\/\/ (.+)$/gm,'<div class="blog-date">$1</div>')
+      .replace(/^---$/gm,'<hr class="md-hr">')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank">$1</a>')
+      .split('\n\n')
+      .map(block=>{
+        block=block.trim();
+        if(!block)return '';
+        if(block.startsWith('<hr')||block.startsWith('<div class="blog-date"'))return block;
+        return `<p class="md-p">${block}</p>`;
+      })
+      .join('\n');
+  }
+
+  // load markdown content
+  function loadMd(file,targetId,firstBlockStyle){
+    fetch('content/'+file)
+      .then(r=>r.text())
+      .then(md=>{
+        let html=md2html(md);
+        if(firstBlockStyle){
+          html=html.replace(/<p class="md-p">/,`<p class="md-p" style="${firstBlockStyle}">`);
+        }
+        document.getElementById(targetId).innerHTML=html;
+      })
+      .catch(()=>{});
+  }
+  loadMd('about-me.md','about-content','font-size:11px;color:var(--text);line-height:1.5;margin-bottom:16px');
+  loadMd('life-plan.md','lifeplan-content');
 
   // init
   const hash=location.hash.replace("#","");
