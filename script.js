@@ -26,7 +26,7 @@ const T={
   "SHA-256 + Salt (Password Hashing)":{i:"🔐",c:"sec"},"JavaMail API (Email Verification)":{i:"📧",c:"jav"},
   "MVC Architecture":{i:"🏗",c:"def"},"Figma (UI Prototyping)":{i:"🎨",c:"fig"},
   "Git/GitHub":{i:"🐙",c:"git"},"VS Code":{i:"💻",c:"def"},
-  "C++":{i:"⚙️",c:"cpp"},
+  "C++":{i:"⚙️",c:"cpp"},"face_recognition":{i:"👁",c:"fr"},"dlib":{i:"🧠",c:"fr"},
   "Google OAuth":{i:"🔑",c:"sec"},"CSS":{i:"🎨",c:"hc"},"Next.js (App Router)":{i:"▲",c:"nxt"},"Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},
   "SwiftUI":{i:"🍎",c:"swu"},"SwiftData":{i:"💾",c:"swu"},"CoreLocation":{i:"📍",c:"swu"},"WeatherAPI":{i:"🌤",c:"web"},"UserNotifications":{i:"🔔",c:"swu"},
 };
@@ -73,6 +73,10 @@ const P=[
    d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",
    t:["JavaScript","HTML/CSS"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
+  {e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",
+   d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",
+   t:["Python","face_recognition","dlib"],
+   s:"💐 Built",g:"https://github.com/nosey-dewdrop/age-wiz",co:"#8E44AD"},
   {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",
    d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",
    t:["Java","Java Swing","JavaFX"],
@@ -89,6 +93,7 @@ const SCHED=[
   {e:"🐞",n:"LadyBug",note:"will take ages but MVP can be done. while working as a TA for CS115, i found out that people were not really learning by writing code. it was teaching when you were trying to find and correct a logical error, which is silent but more destructive for the code.",s:"MVP possible"},
   {e:"🌷",n:"Damlacık",note:"a personal community platform. i am becoming a youtuber. i believe i have so much to say, but my innocence has been used up on the wrong people. it might take some weeks. database should be secured, else i will be linçed like tosuncuk from çiftlik bank for stealing (leaking) people's data. for building a community. still on planning because i want a community platform but i can't find an astonishing point for this project only for this moment because my mind is too full... <strong>stack:</strong> Supabase (PostgreSQL + Auth + Realtime), JavaScript, Web Technologies. <strong>mock:</strong> youtube channel integration, community feed, user profiles, content scheduling, comment threads.",s:"planning"},
   {e:"🥦",n:"Butterfry",note:"food allergen detective! cross-reference foods that mess with you to find the common ingredient culprit. 24 curated products + Open Food Facts API. OCR scanning. mint themed. it's built!",s:"💐 built"},
+  {e:"🔮",n:"Age Wiz",note:"a real ai model! face recognition trained on my own photos. uses face_recognition + dlib. small and sweet.",s:"💐 built",g:"https://github.com/nosey-dewdrop/age-wiz"},
   {e:"☕",n:"Interactive Coffee Menu",note:"i have done implementing it before i was a vibecoder but a barista!!!! doesn't sound incredible now but i want to finish it. i have one more programming idea for my future coffee shop. but i don't have money to open it only at this moment! hahhaaha",s:"💐 live"},
   {e:"🏥",n:"Medical Case Generator",note:"when i finish engineering, and if i am still alive and not dead of cancer, i will study medicine in muğla... akyaka... and it is literally on a mountain. meaning it doesn't have a great range of cases as much as universities in big cities such as ankara, izmir... this is a platform which generates cases. when i was in medical school, problem-based learning was such a privileged class.",s:"future dream"},
 ];
