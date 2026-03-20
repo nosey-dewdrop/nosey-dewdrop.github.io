@@ -1,4 +1,12 @@
-const NAV=[{k:"home",l:"🦋 home"},{k:"about",l:"💃🏽 about me"},{k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}];
+const NAV_L=[
+  {k:"home",l:"✨damla.log🐝"},{k:"schedule",l:"📋 schedule"},
+  {k:"lifeplan",l:"🌷 life plan"},{k:"about",l:"💃🏽 about me"}
+];
+const NAV_R=[
+  {k:"projects",l:"💐 projects"},{k:"indev",l:"🐝 in development"},
+  {k:"technical",l:"👾 technical"}
+];
+const NAV=[...NAV_L,...NAV_R];
 const SCHEDULE_KEY="schedule";
 const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖","🧸","🪻","🌹","🎵","☕","🍵","💌","🫧"];
 
@@ -99,6 +107,11 @@ const SCHED=[
   {e:"☀️",n:"Sunny",note:"my first iOS app! weather app with hand-drawn backgrounds and sunscreen reminders. CoreLocation + WeatherAPI.",s:"💐 built"},
   {e:"👾",n:"League of Bilkent",note:"CS102 final project. 30 Java classes, MVC architecture, MySQL, gamification, SHA-256 hashing. interactive UML deployed on GitHub Pages.",s:"💐 built"},
   {e:"🛒",n:"BilMart",note:"secondhand marketplace for Bilkent students. Java Swing + relational database. student ID verification.",s:"💐 built"},
+  {e:"🐝",n:"damla.log",note:"personal assistant for coding projects. i always come up with lots of ideas, issues, tasks and forget them. i need to manage them.",s:"🐝 in dev"},
+  {e:"🐝",n:"Braindot",note:"a content production pipeline.",s:"🐝 in dev"},
+  {e:"🐝",n:"Lala Retro",note:"ingredient comparison algorithm applied to iOS. beauty facts API isn't enough so users create our db by inputting the ingredients by barcode or by scanning.",s:"🐝 in dev"},
+  {e:"🐝",n:"Daylight",note:"lettering platform on iOS.",s:"🐝 in dev"},
+  {e:"🐝",n:"Wildflower",note:"focus timer.",s:"🐝 in dev"},
   {e:"🏥",n:"Medical Case Generator",note:"when i finish engineering, and if i am still alive and not dead of cancer, i will study medicine in muğla... akyaka... and it is literally on a mountain. meaning it doesn't have a great range of cases as much as universities in big cities such as ankara, izmir... this is a platform which generates cases. when i was in medical school, problem-based learning was such a privileged class.",s:"future dream"},
 ];
 
@@ -159,7 +172,11 @@ document.addEventListener("keydown",e=>{
 
 document.addEventListener("DOMContentLoaded",()=>{
   const nr=document.getElementById("nr");
-  NAV.forEach(n=>{const b=document.createElement("button");b.className="nb"+(n.k==="home"?" on":"");b.dataset.p=n.k;b.textContent=n.l;b.onclick=()=>go(n.k);nr.appendChild(b)});
+  const navL=document.createElement("div");navL.style.cssText="display:flex;gap:2px;align-items:center";
+  const navR=document.createElement("div");navR.style.cssText="display:flex;gap:2px;align-items:center";
+  NAV_L.forEach(n=>{const b=document.createElement("button");b.className="nb"+(n.k==="home"?" on":"");b.dataset.p=n.k;b.textContent=n.l;b.onclick=()=>go(n.k);navL.appendChild(b)});
+  NAV_R.forEach(n=>{const b=document.createElement("button");b.className="nb";b.dataset.p=n.k;b.textContent=n.l;b.onclick=()=>go(n.k);navR.appendChild(b)});
+  nr.appendChild(navL);nr.appendChild(navR);
 
   const fb=document.getElementById("fb");
   const selEM=EM.sort(()=>Math.random()-.5).slice(0,12);
