@@ -3,127 +3,582 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Damla Su Bilge - CS Student at Bilkent | Last AI Bender </title>
-<meta name="description" content="Damla Su Bilge — Computer Science student at Bilkent University, FAB Fellowship startup builder, IEEE board member, Python TA. Projects with Next.js, React, Supabase, Claude API, and more.">
-<meta name="keywords" content="Damla Su Bilge, Bilkent University, computer science, CS student, vibecoder, FAB Fellowship, IEEE, startup, React, Next.js, Supabase, Claude API, Python, portfolio, software engineer, Turkey">
-<meta name="author" content="Damla Su Bilge">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://nosey-dewdrop.github.io/">
-
-<!-- Open Graph / Social Media -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Damla Su Bilge — CS Student at Bilkent | Vibecoder & AI Builder">
-<meta property="og:description" content="CS student at Bilkent, FAB Fellow, IEEE board member. Building apps with Next.js, React, Supabase, Claude API. 12+ projects from AI tarot to debugging platforms.">
-<meta property="og:url" content="https://nosey-dewdrop.github.io/">
-<meta property="og:site_name" content="Damla Su Bilge Portfolio">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Damla Su Bilge — CS Student at Bilkent | Vibecoder & AI Builder">
-<meta name="twitter:description" content="CS student at Bilkent, FAB Fellow, IEEE board member. Building apps with Next.js, React, Supabase, Claude API.">
-
+<title>damla — preview</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f8ff;
+  --text: #1a3a4a;
+  --muted: #4a7a8a;
+  --light: #6a9aaa;
+  --faint: #b8d8e8;
+  --sky: #87ceeb;
+  --border: #c4dfe8;
+  --cream: #f7fbfe;
+  --baby-light: #ddf0fa;
+  --pink: #D6336C;
+  --glow: rgba(135,206,235,.12);
+  --fm: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--fm);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--sky); color: #fff; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+
+/* floating emojis */
+.float-box { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.fl { position: absolute; top: -30px; font-size: 28px; opacity: 0; animation: floatD 8s linear infinite; pointer-events: none; }
+@keyframes floatD { 0% { transform: translateY(0) rotate(0); opacity: 0; } 5% { opacity: .25; } 70% { opacity: .1; } 100% { transform: translateY(100vh) rotate(60deg); opacity: 0; } }
+
+/* cursor blink */
+@keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
+.cursor { display: inline-block; width: 2px; height: .85em; background: var(--sky); margin-left: 3px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+
+/* NAV — left group | center logo | right group */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; padding: 18px 40px;
+  background: rgba(240,248,255,.88);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(196,223,232,.5);
+}
+.nav-left { display: flex; gap: 2px; justify-self: start; }
+.nav-right { display: flex; gap: 2px; justify-self: end; }
+.nav-center {
+  font-size: 15px; font-weight: 500; color: var(--text);
+  letter-spacing: .02em; cursor: pointer;
+  justify-self: center; white-space: nowrap;
+}
+.nav-btn {
+  font: 400 13px/1 var(--fm);
+  color: var(--muted); background: none; border: none;
+  padding: 10px 16px; border-radius: 6px;
+  cursor: pointer; transition: all .2s;
+  letter-spacing: .02em;
+}
+.nav-btn:hover { color: var(--text); }
+.nav-btn.on { color: var(--text); font-weight: 500; background: var(--baby-light); }
+
+/* PAGE CONTAINER */
+.pages { margin-top: 64px; position: relative; }
+.page {
+  display: none; min-height: calc(100vh - 48px);
+  max-width: 900px; margin: 0 auto;
+  padding: 48px 24px 120px;
+  position: relative; z-index: 1;
+}
+.page.on { display: block; animation: fadeUp .4s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* MARKDOWN-STYLE TYPOGRAPHY — Bear-inspired */
+.md-h1 {
+  font-size: 28px; font-weight: 500; color: var(--text);
+  margin-bottom: 6px; line-height: 1.3;
+  letter-spacing: -.02em;
+}
+.md-h1::before { content: '> '; color: var(--faint); font-weight: 300; }
+
+.md-h2 {
+  font-size: 16px; font-weight: 500; color: var(--text);
+  margin: 36px 0 12px; line-height: 1.4;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.md-h2::before { content: '> '; color: var(--faint); font-weight: 300; }
+
+.md-h3 {
+  font-size: 13px; font-weight: 500; color: var(--text);
+  margin: 24px 0 8px;
+}
+.md-h3::before { content: '### '; color: var(--faint); font-weight: 300; }
+
+.md-sub {
+  font-size: 12px; color: var(--muted); font-weight: 300;
+  margin-bottom: 24px; line-height: 1.7;
+}
+
+.md-p {
+  font-size: 13px; color: var(--text); font-weight: 300;
+  line-height: 1.5; margin-bottom: 8px;
+}
+.md-p strong { font-weight: 500; }
+.md-p em { font-style: italic; color: var(--muted); }
+.md-p a { color: var(--sky); text-decoration: none; border-bottom: 1px solid rgba(135,206,235,.3); }
+.md-p a:hover { border-bottom-color: var(--sky); }
+
+.md-hr {
+  border: none; border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+.md-tags {
+  font-size: 11px; color: var(--muted); line-height: 2;
+  margin-bottom: 16px;
+}
+.md-tag {
+  display: inline; padding: 2px 0;
+  color: var(--sky); font-weight: 400;
+}
+.md-tag::before { content: '#'; opacity: .5; }
+
+.md-links {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;
+}
+.md-link {
+  font-size: 11px; color: var(--muted); text-decoration: none;
+  padding: 3px 10px; border: 1px solid var(--border); border-radius: 6px;
+  transition: all .2s; font-weight: 300;
+}
+.md-link:hover { border-color: var(--text); color: var(--text); }
+
+/* PROJECT LIST — Bear-style, no cards, just clean entries */
+.proj-entry {
+  padding: 14px 0; border-bottom: 1px solid rgba(196,223,232,.4);
+  opacity: 0; transform: translateY(8px);
+  animation: fadeUp .4s ease forwards;
+}
+.proj-entry:last-child { border-bottom: none; }
+
+.proj-head {
+  display: flex; align-items: baseline; gap: 8px;
+  margin-bottom: 4px; flex-wrap: wrap;
+}
+.proj-icon { font-size: 18px; line-height: 1; }
+.proj-name {
+  font-size: 14px; font-weight: 500; color: var(--text);
+  letter-spacing: .02em; text-transform: uppercase;
+}
+.proj-status {
+  font-size: 9px; padding: 2px 8px; border-radius: 6px;
+  font-weight: 400; white-space: nowrap;
+}
+
+.proj-tagline {
+  font-size: 12px; color: var(--muted); font-weight: 300;
+  margin-bottom: 8px; line-height: 1.5;
+}
+.proj-tagline::before { content: '> '; color: var(--faint); }
+
+.proj-desc {
+  font-size: 13px; line-height: 1.45; color: var(--text);
+  font-weight: 300; margin-bottom: 10px;
+}
+.proj-desc strong { font-weight: 500; }
+.proj-desc em { font-style: italic; color: var(--muted); }
+
+.proj-stack {
+  display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;
+}
+.t { font-size: 10px; font-weight: 400; padding: 2px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.ti { font-size: 9px; line-height: 1; }
+.t-nxt{background:#ddf0fa;color:#1a5a7a;border:1px solid #b8dced}.t-rct{background:#daf0fb;color:#0a6a9a;border:1px solid #b0d8f0}
+.t-ts{background:#d8eaf8;color:#1a4a7a;border:1px solid #b0cce8}.t-sup{background:#d5f0e5;color:#1a6a4a;border:1px solid #a0d8c0}
+.t-tw{background:#d8f0fb;color:#0a5a8a;border:1px solid #a8d8f0}.t-cla{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}
+.t-ver{background:#e8e8e8;color:#333;border:1px solid #ccc}.t-js{background:#fdf6d8;color:#6a5a00;border:1px solid #e8dda0}
+.t-hc{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}.t-py{background:#dae4f8;color:#2a4a8a;border:1px solid #b0c8e8}
+.t-fl{background:#d8f0f0;color:#1a5a5a;border:1px solid #a8d8d8}.t-wau{background:#eadaf8;color:#5a2a7a;border:1px solid #d0b8e8}
+.t-spo{background:#d5f0d8;color:#0a6a2a;border:1px solid #a0d8a8}.t-ls{background:#f0f0d8;color:#5a5a1a;border:1px solid #d8d8a0}
+.t-mu{background:#d8f0d8;color:#1a5a1a;border:1px solid #a8d8a8}.t-jav{background:#f8e8d8;color:#7a4a0a;border:1px solid #e8c8a0}
+.t-sw{background:#f8e4d8;color:#6a3a0a;border:1px solid #e8c0a0}.t-db{background:#d8f0f0;color:#0a5a5a;border:1px solid #a8d8d8}
+.t-sec{background:#f8d8d8;color:#7a1a1a;border:1px solid #e8a8a8}.t-fig{background:#e4d8f8;color:#5a2a8a;border:1px solid #c8a8e8}
+.t-git{background:#f8e0d8;color:#8a2a1a;border:1px solid #e8b0a0}.t-def{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}
+.t-fal{background:#f0d8f0;color:#6a1a6a;border:1px solid #d8a8d8}.t-web{background:#f8f0d8;color:#6a5a00;border:1px solid #e8d8a0}
+.t-swu{background:#dae0f8;color:#2a3a7a;border:1px solid #b0c0e8}
+
+.proj-links {
+  display: flex; gap: 6px;
+}
+.proj-link {
+  font-size: 10px; color: var(--muted); text-decoration: none;
+  padding: 2px 8px; border: 1px solid var(--border); border-radius: 6px;
+  transition: all .2s; font-weight: 300;
+}
+.proj-link:hover { border-color: var(--text); color: var(--text); }
+.proj-link-live {
+  color: #fff; background: var(--pink); border-color: var(--pink); font-weight: 400;
+}
+.proj-link-live:hover { background: #C2255C; }
+
+/* PAGINATION */
+.pager {
+  display: flex; justify-content: center; gap: 6px; margin: 20px 0 8px;
+}
+.pager-btn {
+  font: 300 11px/1 var(--fm); padding: 5px 12px; border-radius: 6px;
+  border: 1px solid var(--border); background: none; color: var(--muted);
+  cursor: pointer; transition: all .2s;
+}
+.pager-btn:hover, .pager-btn.on { background: var(--sky); color: #fff; border-color: var(--sky); }
+
+/* SKILLS — 4 column, Bear-style clean list */
+.skills-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 12px;
+}
+.skill-col { padding: 0 16px 16px 0; }
+.skill-col:last-child { padding-right: 0; }
+.skill-col-title {
+  font-size: 10px; font-weight: 500; color: var(--muted);
+  text-transform: lowercase; letter-spacing: .08em;
+  margin-bottom: 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-col-title::before { content: '## '; color: var(--faint); font-weight: 300; }
+.skill-item {
+  font-size: 11px; color: var(--text); font-weight: 300;
+  padding: 3px 0; line-height: 1.6;
+}
+.skill-item::before { content: '- '; color: var(--faint); }
+
+/* EXPERIENCE — clean list */
+.exp-entry {
+  padding: 12px 0; border-bottom: 1px solid rgba(196,223,232,.3);
+}
+.exp-entry:last-child { border-bottom: none; }
+.exp-role { font-size: 13px; font-weight: 500; color: var(--text); }
+.exp-desc { font-size: 12px; color: var(--text); line-height: 1.7; margin-top: 3px; font-weight: 300; }
+.exp-desc strong { font-weight: 500; }
+.exp-desc em { font-style: italic; color: var(--muted); }
+.exp-period { font-size: 10px; color: var(--light); margin-top: 3px; font-weight: 300; }
+
+/* SCHEDULE */
+.sched-entry {
+  padding: 12px 0; border-bottom: 1px solid rgba(196,223,232,.3);
+}
+.sched-entry:last-child { border-bottom: none; }
+.sched-head { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.sched-name { font-size: 12px; font-weight: 500; color: var(--text); }
+.sched-note { font-size: 11px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+.sched-note strong { font-weight: 500; color: var(--text); }
+
+/* BLOG */
+.blog-entry { margin-bottom: 28px; }
+.blog-date {
+  font-size: 10px; color: var(--light); letter-spacing: .06em;
+  margin-bottom: 8px; font-weight: 300;
+}
+.blog-date::before { content: '// '; color: var(--faint); }
+
+/* FOOTER */
+.footer {
+  text-align: center; padding: 32px; font-size: 8px;
+  color: var(--faint); letter-spacing: .06em;
+  position: relative; z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .nav { padding: 6px 10px; }
+  .nav-btn { font-size: 9px; padding: 4px 8px; }
+  .page { padding: 32px 16px 80px; }
+  .md-h1 { font-size: 22px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 400px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Damla Su Bilge",
-  "url": "https://nosey-dewdrop.github.io/",
-  "jobTitle": "Computer Science Student",
-  "affiliation": {"@type": "Organization", "name": "Bilkent University"},
-  "sameAs": [
-    "https://github.com/nosey-dewdrop",
-    "https://www.linkedin.com/in/damla-su-bilge-278841278/"
-  ],
-  "knowsAbout": ["Vibecoding", "AI Tools","React", "Next.js", "Python", "Java", "Supabase", "AI Applications", "Music Theory"]
-}
-</script>
-<div class="dot-bg"></div>
+
 <div class="float-box" id="fb"></div>
 
 <nav class="nav">
-  <div class="nl-group">
-    <div class="nl" onclick="go('home')"><span class="nl-e">🦋</span><span class="nl-n">damla</span></div>
-    <button class="nb nl-sched" onclick="go('schedule')">📋 schedule</button>
-    <button class="nb nl-lp" onclick="go('lifeplan')">🌷 life plan & dreams</button>
-  </div>
-  <div class="nr" id="nr"></div>
+  <div class="nav-left" id="nav-left"></div>
+  <div class="nav-center" onclick="go('home')">✨damla.log🐝</div>
+  <div class="nav-right" id="nav-right"></div>
 </nav>
 
-<div class="pc">
+<div class="pages">
   <!-- HOME -->
-  <div class="pg" id="p-home"><div class="hm" id="hm"><div class="hc">
-    <div style="font-size:56px;margin-bottom:14px">🦋🐞🌞🍃💐</div>
-    <div class="hm-b"> bilkent university · computer science</div>
-    <h1>hi, i'm <em>damla</em> 👩🏻‍💻<span class="cursor"></span></h1>
-    <p class="hm-d">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
-    <div class="hm-a">
-      <button class="bp" onclick="go('projects')">explore projects 🌷</button>
-      <a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener" class="bs">github →</a>
-      <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" rel="noopener" class="bs">sponsor 💖</a>
+  <div class="page" id="p-home">
+    <div style="min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;max-width:620px;margin:0 auto">
+      <div style="font-size:48px;margin-bottom:14px">🦋🐞🌞🍃💐</div>
+      <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:16px">// bilkent university · computer science</div>
+      <h1 class="md-h1" style="font-size:clamp(28px,5vw,44px);margin-bottom:16px">hi, i'm <span style="border-bottom:2px solid var(--sky)">damla</span> 👩🏻‍💻<span class="cursor"></span></h1>
+      <p class="md-p" style="font-size:13px;max-width:560px;margin-bottom:24px">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+        <button onclick="go('projects')" style="font:400 11px/1 var(--fm);padding:10px 22px;background:var(--sky);color:#fff;border:none;border-radius:6px;cursor:pointer">explore projects 🌷</button>
+        <a href="https://github.com/nosey-dewdrop" target="_blank" class="md-link" style="padding:10px 22px;font-size:11px">github →</a>
+        <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" class="md-link" style="padding:10px 22px;font-size:11px">sponsor 💖</a>
+      </div>
     </div>
-  </div></div></div>
+  </div>
 
   <!-- ABOUT -->
-  <div class="pg" id="p-about"><div class="pi">
-    <div class="ph"><span class="ph-e">🦋</span><h2>about me</h2><div class="ph-s" style="line-height:1.7">music enthusiast 🎸 pink floyd · beatles · radiohead · i love quiet days and romanticising life ✨<br><a id="email-link" href="#" style="color:var(--muted);text-decoration:none">📧 <span id="email-text"></span></a> · <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" style="color:var(--muted);text-decoration:none">🔗 LinkedIn</a> · <a href="https://github.com/nosey-dewdrop" target="_blank" style="color:var(--muted);text-decoration:none">🐙 GitHub</a> · <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" style="color:var(--muted);text-decoration:none">💖 Sponsor</a></div></div>
-    <div class="ac">
-      <div class="at" style="margin-top:0;padding-top:0;border-top:none;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)">cs @ bilkent, ieee board member & pr coordinator, python ta, fab fellow, sociology club exec board, ex-med student, guitarist · ukulele · bass · harmonica · piano, music theory lover, gym lover 💪, slow living enthusiast 🍃, matcha lover 🍵, infp, i love good brewed coffee ☕, dostoyevsky · kafka · frankl 📖, philosophy lover, future youtuber 🎬</div>
-      <p>🧿 I'm <strong>Damla Su Bilge</strong> CS student at Bilkent, former TA for CS115, and I was studying medicine before life had other plans. I love dancing with AI 🤖✨</p>
-      <p>I LOVE music!! 🎸🎹 I play ukulele, harmonica, bass, guitar, electric guitar, piano — literally anything I can get my hands on. symphonic rock, indie, soft rock — psychedelic rock's bohemian nature inspires me so much! Pink Floyd, Radiohead, and The Beatles shaped how I think about art, longing, and beauty 🌙💫</p>
-      <p>slow living enthusiast 🍃 I was a competitive swimmer from age 6 to 11 before my cancer diagnosis changed everything. now I've been at the gym for 3 years and do pilates regularly — not for aesthetics, for my mind! I love quiet walks, meditation, a good matcha 🍵, brewing coffee every way possible (chemex, V60, French press, aeropress — I know them all!), and long afternoons with a book 📖</p>
-      <p>speaking of books — Dostoyevsky's The Idiot and Jack London's Martin Eden are my favorites!! I adore Kafka, Dostoyevsky, and Viktor Frankl. the way they write about meaning, suffering, and what it means to be human just... gets me every time 🦋</p>
-      <p>this lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty 🦋!</p>
+  <div class="page" id="p-about">
+    <h1 class="md-h1">🦋 about me</h1>
+    <div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:16px;font-weight:300">music enthusiast 🎸 pink floyd · beatles · radiohead · i love quiet days and romanticising life ✨ · cs @ bilkent · ieee board member & pr coordinator · python ta · fab fellow · sociology club exec board · ex-med student · guitarist · ukulele · bass · harmonica · piano · music theory lover · gym lover 💪 · slow living enthusiast 🍃 · matcha lover 🍵 · infp · i love good brewed coffee ☕ · dostoyevsky · kafka · frankl 📖 · philosophy lover · future youtuber 🎬</div>
+    <hr class="md-hr">
+    <p class="md-p">🧿 I'm <strong>Damla Su Bilge</strong> CS student at Bilkent, former TA for CS115, and I was studying medicine before life had other plans. I love dancing with AI 🤖✨</p>
+    <p class="md-p">I LOVE music!! 🎸🎹 I play ukulele, harmonica, bass, guitar, electric guitar, piano — literally anything I can get my hands on. symphonic rock, indie, soft rock — psychedelic rock's bohemian nature inspires me so much! Pink Floyd, Radiohead, and The Beatles shaped how I think about art, longing, and beauty 🌙💫</p>
+    <p class="md-p">slow living enthusiast 🍃 I was a competitive swimmer from age 6 to 11 before my cancer diagnosis changed everything. now I've been at the gym for 3 years and do pilates regularly — not for aesthetics, for my mind! I love quiet walks, meditation, a good matcha 🍵, brewing coffee every way possible (chemex, V60, French press, aeropress — I know them all!), and long afternoons with a book 📖</p>
+    <p class="md-p">speaking of books — Dostoyevsky's The Idiot and Jack London's Martin Eden are my favorites!! I adore Kafka, Dostoyevsky, and Viktor Frankl. the way they write about meaning, suffering, and what it means to be human just... gets me every time 🦋</p>
+    <p class="md-p">this lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty 🦋!</p>
+    <div class="md-links">
+      <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
+      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" class="md-link">🔗 LinkedIn</a>
+      <a href="https://github.com/nosey-dewdrop" target="_blank" class="md-link">🐙 GitHub</a>
+      <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" class="md-link">💖 Sponsor</a>
     </div>
-  </div></div>
+  </div>
 
   <!-- SCHEDULE -->
-  <div class="pg" id="p-schedule"><div class="pi">
-    <div class="ph"><span class="ph-e">📋</span><h2>personal schedule</h2> <a id="mail-ideas" href="#" style="margin-left:12px;padding:5px 14px;border-radius:2px;background:#D6336C;border:1px solid #D6336C;color:#fff;font-size:10px;font-weight:400;text-decoration:none;vertical-align:middle">✨ mail me for ideas !</a><div class="ph-s">what i'm working on, what's next, and the stories behind each project</div></div>
-    <div class="sched-list" id="sched-list"></div>
-  </div></div>
+  <div class="page" id="p-schedule">
+    <h1 class="md-h1">📋 schedule</h1>
+    <p class="md-sub">what i'm working on, what's next, and the stories behind each project · <a id="mail-ideas" href="#" style="color:var(--pink);font-weight:400;text-decoration:underline">✨ mail me for ideas !</a></p>
+    <hr class="md-hr">
+    <div id="sched-list"></div>
+  </div>
 
-  <!-- LIFE PLAN & DREAMS (blog-ready) -->
-  <div class="pg" id="p-lifeplan"><div class="pi">
-    <div class="ph"><span class="ph-e">🌸</span><h2>life plan & dreams</h2><div class="ph-s">thoughts, reflections, and the road ahead</div></div>
-    <div id="blog-posts">
-      <div class="ac" style="margin-bottom:16px">
-        <div style="font-size:10px;color:var(--muted);margin-bottom:8px;letter-spacing:.06em">march 2026 · on building things</div>
-        <p>I am a <strong>cancer survivor</strong>, that's why my self-fulfillments are my priority. so, I want to build things that make me happy, and if they make other people happy too, that's just a bonus!</p>
-        <p>I never built this portfolio to impress anyone or to make someone else happy. I only want to make my <strong>future users and customers</strong> happy — and I want to <strong>impress myself</strong>.</p>
-        <p>that's the whole point. everything here exists because I believed in it, not because someone told me to build it.</p>
-      </div>
-      <div class="ac" style="margin-bottom:16px">
-        <div style="font-size:10px;color:var(--muted);margin-bottom:8px;letter-spacing:.06em">march 2026 · on finding my own way</div>
-        <p>should i totally believe at heart that someone who has half of my result in yks, 1/10 of my projects, coding knowledge and experience deserves a job more than i do? and gets the job just because that person is such a cool human being? :=) i don't believe it so i hope i'll find my own way!</p>
-        <p>my next act is, i will build an honest linkedin.</p>
-      </div>
+  <!-- LIFE PLAN -->
+  <div class="page" id="p-lifeplan">
+    <h1 class="md-h1">🌸 life plan & dreams</h1>
+    <p class="md-sub">thoughts, reflections, and the road ahead</p>
+    <hr class="md-hr">
+    <div class="blog-entry">
+      <div class="blog-date">march 2026 · on building things</div>
+      <p class="md-p">I am a <strong>cancer survivor</strong>, that's why my self-fulfillments are my priority. so, I want to build things that make me happy, and if they make other people happy too, that's just a bonus!</p>
+      <p class="md-p">I never built this portfolio to impress anyone or to make someone else happy. I only want to make my <strong>future users and customers</strong> happy — and I want to <strong>impress myself</strong>.</p>
+      <p class="md-p">that's the whole point. everything here exists because I believed in it, not because someone told me to build it.</p>
     </div>
-  </div></div>
+    <hr class="md-hr">
+    <div class="blog-entry">
+      <div class="blog-date">march 2026 · on finding my own way</div>
+      <p class="md-p">should i totally believe at heart that someone who has half of my result in yks, 1/10 of my projects, coding knowledge and experience deserves a job more than i do? and gets the job just because that person is such a cool human being? :=) i don't believe it so i hope i'll find my own way!</p>
+      <p class="md-p">my next act is, i will build an honest linkedin.</p>
+    </div>
+  </div>
 
   <!-- PROJECTS -->
-  <div class="pg" id="p-projects"><div class="pi">
-    <div class="ph"><div class="ph-e">💐</div><h2>projects</h2><div class="ph-s">march – september 2026 pipeline & deployed work</div></div>
-    <div id="proj-pager-top"></div>
-    <div class="pl" id="plist"></div>
-  </div></div>
+  <div class="page" id="p-projects">
+    <h1 class="md-h1">💐 projects</h1>
+    <p class="md-sub">march – september 2026 pipeline & deployed work</p>
+    <div id="proj-pager" class="pager"></div>
+    <div id="proj-list"></div>
+  </div>
 
   <!-- TECHNICAL -->
-  <div class="pg" id="p-technical"><div class="pi">
-    <div class="ph"><span class="ph-e">👾</span><h2>technical details</h2><div class="ph-s" style="line-height:1.7">i only listed tools i actually used in my projects. it's not about knowing — it's about evaluating knowledge.</div></div>
-    <div id="tech-pager-top"></div>
+  <div class="page" id="p-technical">
+    <h1 class="md-h1">👾 technical details</h1>
+    <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing — it's about evaluating knowledge.</p>
+    <div id="tech-pager" class="pager"></div>
     <div id="tech-content"></div>
-  </div></div>
+  </div>
 </div>
 
-<div class="fs"><span>🌼 💫 🌙 ✨ 🦋 💐 🌞 🌷 🌈 👾</span></div>
+<div class="footer">🌼 💫 🌙 ✨ 🦋 💐 🌞 🌷 🌈 👾</div>
 
-<script src="script.js"></script>
+<script>
+const NAV=[
+  {k:"schedule",l:"📋 schedule"},{k:"lifeplan",l:"🌷 life plan"},{k:"about",l:"💃🏽 about me"},
+  {k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"},
+  {k:"home",l:"🦋 home"}
+];
+
+const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖"];
+const T={
+  "Next.js 16":{i:"▲",c:"nxt"},"Next.js 15":{i:"▲",c:"nxt"},"Next.js (App Router)":{i:"▲",c:"nxt"},
+  "React 19":{i:"⚛",c:"rct"},"React":{i:"⚛",c:"rct"},
+  "TypeScript":{i:"TS",c:"ts"},"JavaScript":{i:"JS",c:"js"},
+  "Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},
+  "Tailwind CSS 4":{i:"🌊",c:"tw"},"Anthropic Claude API":{i:"✦",c:"cla"},
+  "Vercel (Serverless)":{i:"▲",c:"ver"},"Vercel":{i:"▲",c:"ver"},
+  "HTML/CSS":{i:"🎨",c:"hc"},"Music Theory Algorithms":{i:"🎵",c:"mu"},
+  "Python":{i:"🐍",c:"py"},"Flask + CORS":{i:"🧪",c:"fl"},
+  "Web Audio API":{i:"🔊",c:"wau"},"Spotify Embed API":{i:"🎧",c:"spo"},
+  "LocalStorage API":{i:"💾",c:"ls"},"Google OAuth":{i:"🔑",c:"sec"},
+  "Java 17+":{i:"☕",c:"jav"},"Java":{i:"☕",c:"jav"},"Java Swing":{i:"🖼",c:"sw"},
+  "MySQL 8.0":{i:"🐬",c:"db"},"Database":{i:"🗄",c:"db"},"SQL":{i:"🗃",c:"db"},
+  "Next.js Serverless API Routes":{i:"⚡",c:"nxt"},
+  "fal.ai Queue API":{i:"✨",c:"fal"},"Minimax Video-01":{i:"🎬",c:"fal"},
+  "Hailuo-02 Text-to-Video":{i:"🎬",c:"fal"},"FLUX Schnell (Image Gen)":{i:"🎨",c:"fal"},
+  "SHA-256 + Salt (Password Hashing)":{i:"🔐",c:"sec"},"JavaMail API (Email Verification)":{i:"📧",c:"jav"},
+  "MVC Architecture":{i:"🏗",c:"def"},"Figma (UI Prototyping)":{i:"🎨",c:"fig"},
+  "Git/GitHub":{i:"🐙",c:"git"},"CSS":{i:"🎨",c:"hc"},"JavaFX":{i:"🖼",c:"sw"},
+  "SwiftUI":{i:"🍎",c:"swu"},"SwiftData":{i:"💾",c:"swu"},"CoreLocation":{i:"📍",c:"swu"},
+  "WeatherAPI":{i:"🌤",c:"web"},"UserNotifications":{i:"🔔",c:"swu"},
+};
+function mkTag(n){const m=T[n]||{i:"•",c:"def"};return `<span class="t t-${m.c}"><span class="ti">${m.i}</span>${n}</span>`;}
+
+const P=[
+  {e:"<img src='https://nosey-dewdrop.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:22px;height:22px;border-radius:5px;vertical-align:middle'>",n:"Scrapp",tg:"digital scrapbook app — frame photos, collect memories, sticker packs",d:"A native iOS scrapbook app. Create <strong>themed notebooks</strong>, frame your photos with <strong>decorative borders</strong> (polaroid, flower wreath, cloud, heart), add short notes, and collect memories. Features <strong>camera & gallery</strong> photo picking, <strong>hand-drawn sticker packs</strong> (butterflies, kawaii animals, fairy garden, vintage), free-form canvas with drag/pinch/rotate, haptic feedback, and smooth animations. No third-party dependencies — pure SwiftUI + SwiftData.",t:["SwiftUI","SwiftData"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/scrapp",l:"https://nosey-dewdrop.github.io/scrapp/",ll:"📒 landing page",co:"#F8B4C8"},
+  {e:"🥦",n:"Butterfry",tg:"food allergen detective — find what's messing with your stomach",d:"A food ingredient cross-reference tool. When multiple foods cause reactions (bloating, nausea, heartburn...), add them and <strong>find common ingredients</strong> — the culprit. Features: <strong>24 curated products</strong> + Open Food Facts API for unlimited search, OCR label scanning via <strong>Tesseract.js</strong>, personal reaction tracking, suspect ingredient watchlist, and cross-reference analysis engine. Mint green health-themed UI. All data stays in your browser via localStorage — no accounts, no servers, no tracking.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","LocalStorage API"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/butterfry",co:"#34d399"},
+  {e:"☀️",n:"Sunny",tg:"iOS weather app with hand-drawn backgrounds & sunscreen reminders",d:"A native iOS weather app that shows <strong>current conditions with illustrated backgrounds</strong> that change based on weather (sunny, cloudy, rainy, hot). Uses <strong>CoreLocation</strong> for GPS + reverse geocoding, fetches real-time data from <strong>WeatherAPI</strong>, and sends <strong>sunscreen reminder notifications</strong> when temperature exceeds your threshold. Features 8 unique hand-drawn weather illustrations, doodle-style typography, staggered entrance animations, and a baby blue settings screen. Built entirely in <strong>SwiftUI</strong> — my first iOS app.",t:["SwiftUI","CoreLocation","WeatherAPI","UserNotifications"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/sunny",l:"https://nosey-dewdrop.github.io/sunny/",ll:"☀️ documentation",co:"#F39C12"},
+  {e:"💌",n:"Forget-Me-Not",tg:"slow letter platform — letters travel based on real distance",d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong>. Features: <strong>Google OAuth</strong> via Supabase, bottle mail with random matching, memory box for unsent letters, <strong>user matching with conversation starters</strong>, XP/leveling gamification with collectible stamps, seasonal themes, and <em>a mythology blog about historical love stories</em>. No instant messaging, no read receipts, no pressure — intentionally slow.",t:["Next.js (App Router)","React","TypeScript","Supabase (PostgreSQL + Auth)","Google OAuth","CSS","Vercel"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/forget-me-not",l:"https://myosotis-sylvatica.vercel.app",co:"#9B59B6"},
+  {e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media criticism simulator",d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental toughness trainer. Write anything you'd post online → <strong>Claude API generates brutally realistic toxic comments</strong> from different troll personas → you practice handling harsh criticism to build resilience. Features a curated library of quotes and book recommendations. <strong>Python</strong> for the API backend, <strong>React</strong> for the frontend, deployed on <strong>Vercel</strong>.",t:["Python","Flask + CORS","Anthropic Claude API","React","Vercel","JavaScript"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/linc-matik",l:"https://lincmatik.vercel.app",co:"#8e35b8"},
+  {e:"🎵",n:"Musical Improvisation Tool",tg:"scale identifier & composition aid with Web Audio API",d:"Play or input a few notes → get every possible <strong>scale, mode, chord, and progression</strong> instantly. Built with a <strong>custom music theory algorithm</strong> (Circle of Fifths, 7 diatonic modes, enharmonic mapping). Features <strong>Web Audio API</strong> synthesis for piano & guitar, interactive <strong>piano + guitar fretboard</strong>, QWERTY keyboard mapping, <strong>Spotify</strong> song suggestions per key, and a <strong>chord progression planner</strong>.",t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/musical-improvisation-tool",l:"https://nosey-dewdrop.github.io/musical-improvisation-tool/",co:"#00B894"},
+  {e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",d:"Draw cards from a full <strong>78-card Rider-Waite tarot deck</strong> and watch AI bring them to life as <strong>cinematic video</strong>. Hand-crafted prompts for each card describe the illustration animating. Three fal.ai video models to choose from. Architecture: browser → <strong>4 serverless API routes</strong> → fal.ai Queue API.",t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/lady-fantasy",l:"https://lady-fantasy.vercel.app",co:"#6C5CE7"},
+  {e:"👾",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em> <strong>Interactive UML class diagram</strong> with method descriptions and dependency mapping is deployed on GitHub Pages.",t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],s:"💐 Built & Deployed",g:"https://github.com/nosey-dewdrop/leagueofbilkent-mvp",l:"https://nosey-dewdrop.github.io/leagueofbilkent-mvp/",ll:"✨ live uml website!",co:"#E67E22"},
+  {e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",t:["Java","Java Swing","Database","SQL"],s:"💐 Built",g:"https://github.com/nosey-dewdrop",co:"#27AE60"},
+  {e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",t:["JavaScript","HTML/CSS"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
+  {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",t:["Java","Java Swing","JavaFX"],s:"💐 Early build",g:"https://github.com/nosey-dewdrop/flower-timer",co:"#FD79A8"},
+];
+
+const SCHED=[
+  {e:"🎀",n:"Linçmatik",note:"it is live. i bought tokens. you can mentally practice yourself. slay!!!",s:"💐 live"},
+  {e:"🎵",n:"Musical Improvisation Tool",note:"such a beautiful website. helps you identify scales, make chord progressions. no database but local storage.",s:"💐 live"},
+  {e:"💌",n:"Forget-Me-Not",note:"a huge letter platform. there is a lot to implement. will take weeks, maybe whole semester. nevertheless, it is live now!",s:"💐 live"},
+  {e:"💫",n:"Lady Fantasy",note:"tarot, lenormand, blogs using claude api and fal.ai api — finished but needs to be polished.",s:"needs polish"},
+  {e:"🌙",n:"Moonlight",note:"easy, astrology platform. i love watching moon phases.",s:"core done"},
+  {e:"🌊",n:"Dewdrop",note:"events platform. communities are like an ocean, we are all individual drops.",s:"MVP possible"},
+  {e:"🐞",n:"LadyBug",note:"debugging teaches algorithmic thinking better than writing code from scratch.",s:"MVP possible"},
+  {e:"🥦",n:"Butterfry",note:"food allergen detective! cross-reference foods. it's built!",s:"💐 built"},
+  {e:"☕",n:"Interactive Coffee Menu",note:"i built it when i was a barista!!!! i have one more idea for my future coffee shop.",s:"💐 live"},
+];
+
+const SK={
+  "programming languages":["Java","Python","C++","JavaScript","TypeScript","Swift","HTML/CSS","SQL","SystemVerilog"],
+  "frameworks & libraries":["Next.js (14–16)","React 19","SwiftUI","Flask","Tailwind CSS","Java Swing","JavaFX","SpringBoot","Numpy","Matplotlib"],
+  "platforms & tools":["Git/GitHub","Vercel","Supabase","MySQL","fal.ai","Mapbox GL","Figma","Maven","Vivado","VS Code","Reaper (DAW)"],
+  "architecture & concepts":["RESTful API Design","Serverless Functions","Queue-based Async","PostgreSQL Schema","MVC Pattern","SHA-256 Hashing","OAuth & Auth Flows","Algorithm Analysis","Data Structures"]
+};
+
+const EX=[
+  {r:"FAB Fellowship",d:"My window into the <strong>startup world</strong> — and it changed how I think about building things. Designed community-building projects from scratch, conducted <strong>client interviews with 5 participants</strong> across completely different tech literacy levels (from my doctor parents who barely use AI agents to CS students who critique API architecture), and learned to evaluate products from <strong>a real user's perspective, not a developer's</strong>. Built <strong>Lady Fantasy</strong> (AI tarot video experience) with fal.ai during this period. <em>Startups aren't about code — they're about solving real problems for real people.</em> This fellowship shaped every project I've built since.",p:"2026 – present"},
+  {r:"IEEE Bilkent",d:"<strong>Board Member & Public Relations Coordinator</strong> — one of Bilkent's most active student communities, organizing events, coordinating outreach",p:"2024 – present"},
+  {r:"CS115 Teaching Assistant",d:"Introduction to Programming with Python at Bilkent — guided <strong>100+ students through 10 labs</strong>, discovered that <em>debugging teaches algorithmic thinking better than writing code from scratch</em>",p:"2025"},
+  {r:"Software Persona (Internship)",d:"A program that gives everyone a chance — <em>and at first I didn't find that impressive enough. But that's exactly what makes it beautiful: life is what you make it, and the important thing isn't being chosen, it's what you do with the opportunity.</em> Learned <strong>UI/UX fundamentals, Figma prototyping, HTML/CSS/JS from scratch, React basics, database design</strong>, open source concepts, and frameworks vs libraries. Built real projects including the <strong>Interactive Coffee Menu</strong>. Went from someone who only wrote backend logic to someone who understands the full product — <em>design thinking to deployment.</em>",p:"2026"},
+  {r:"Hound Coffee Group",d:"<strong>Third wave barista & developer</strong> — built the interactive coffee menu in JavaScript while learning the art of <em>specialty coffee</em>",p:"2024 – 2025"},
+  {r:"Bilkent Sociology Society",d:"<strong>Audit Board President</strong> (Denetim Kurulu Başkanı) — exploring how society, culture, power, and norms shape every interaction. Also took <strong>PSYC102</strong> (Social Psychology). Skills: <em>professional writing, philosophy, critical analysis.</em>",p:"Mar 2024 – Sep 2025"},
+  {r:"Bilkent Music, Crochet & TEMA Clubs",d:"<strong>Former Board Member</strong> across three communities — music theory & performance (Music Club), textile arts (Knitting & Crocheting Society), environmental volunteering (TEMA)",p:"2023 – 2024"},
+  {r:"Joyport One Tower",d:"<strong>Game Warden</strong> — <em>I love spending time with children. They're kind, bright, and innocent in a way the world desperately needs more of.</em> Getting the chance to be around them, play with them, and watch them figure things out was genuinely precious to me.",p:"Aug – Sep 2023"},
+];
+
+// --- RENDER ---
+let cur="";
+function go(p){
+  if(p===cur)return;
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("on"));
+  document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("on"));
+  cur=p;
+  history.replaceState(null,null,"#"+p);
+  const pg=document.getElementById("p-"+p);
+  if(pg)pg.classList.add("on");
+  const btn=document.querySelector(`[data-p="${p}"]`);
+  if(btn)btn.classList.add("on");
+  if(p==="projects")renderProjects(0);
+  if(p==="technical")renderTech(0);
+  window.scrollTo(0,0);
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  // nav — left: about, schedule, lifeplan | center: logo | right: home, projects, technical
+  const leftNav=["schedule","lifeplan","about"];
+  const rightNav=["projects","technical"];
+  const navL=document.getElementById("nav-left");
+  const navR=document.getElementById("nav-right");
+  NAV.forEach(n=>{
+    const b=document.createElement("button");
+    b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
+    b.onclick=()=>go(n.k);
+    if(leftNav.includes(n.k)) navL.appendChild(b);
+    else if(rightNav.includes(n.k)) navR.appendChild(b);
+  });
+
+  // floating emojis
+  const fb=document.getElementById("fb");
+  EM.sort(()=>Math.random()-.5).slice(0,10).forEach(e=>{
+    const s=document.createElement("span");s.className="fl";s.textContent=e;
+    s.style.left=`${40+Math.random()*55}%`;
+    s.style.animationDelay=`${Math.random()*16}s`;
+    s.style.animationDuration=`${10+Math.random()*8}s`;
+    fb.appendChild(s);
+  });
+
+  // schedule
+  const sl=document.getElementById("sched-list");
+  sl.innerHTML=SCHED.map(s=>{
+    const isLive=s.s.includes('live')||s.s.includes('built');
+    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:${isLive?'#2B8A3E':'var(--muted)'};background:${isLive?'#E6F9ED':'var(--baby-light)'};border:1px solid ${isLive?'#8FD5A6':'var(--border)'}">${s.s}</span></div><div class="sched-note">${s.note}</div></div>`;
+  }).join("");
+
+  // projects
+  const PER=4;
+  function renderProjects(page){
+    const list=document.getElementById("proj-list");
+    const pager=document.getElementById("proj-pager");
+    const start=page*PER,end=Math.min(start+PER,P.length);
+    list.innerHTML=P.slice(start,end).map((p,i)=>{
+      const isGreen=p.s.includes('Live')||p.s.includes('Built')||p.s.includes('MVP');
+      const uid='pd-'+page+'-'+i;
+      return `<div class="proj-entry" style="animation-delay:${i*.06}s">
+        <div class="proj-head">
+          <span class="proj-icon">${p.e}</span>
+          <span class="proj-name">${p.n}</span>
+          <span class="proj-status" style="color:${isGreen?'#2B8A3E':p.co};background:${isGreen?'#E6F9ED':p.co+'15'};border:1px solid ${isGreen?'#8FD5A6':p.co+'30'}">${p.s}</span>
+        </div>
+        <div class="proj-tagline">${p.tg}</div>
+        <div class="proj-desc">${p.d}</div>
+        <div class="proj-stack">${p.t.map(mkTag).join("")}</div>
+        <div class="proj-links">
+          <a href="${p.g}" target="_blank" class="proj-link">→ github</a>
+          ${p.l?`<a href="${p.l}" target="_blank" class="proj-link proj-link-live">${p.ll||"✨ live demo !"}</a>`:""}
+        </div>
+      </div>`;
+    }).join("");
+    const total=Math.ceil(P.length/PER);
+    pager.innerHTML="";
+    for(let i=0;i<total;i++){
+      const b=document.createElement("button");
+      b.className="pager-btn"+(i===page?" on":"");b.textContent=i+1;
+      b.onclick=()=>{renderProjects(i);window.scrollTo({top:document.getElementById("p-projects").offsetTop,behavior:"smooth"});};
+      pager.appendChild(b);
+    }
+  }
+  window.renderProjects=renderProjects;
+
+  // technical
+  const techPages=[
+    {label:"experience",render:()=>EX.map(e=>`<div class="exp-entry"><div class="exp-role">${e.r}</div><div class="exp-desc">${e.d}</div><div class="exp-period">${e.p}</div></div>`).join("")},
+    {label:"education",render:()=>[
+      {r:"Bilkent University",d:"B.Sc. in Computer Science",p:"2023 – present"},
+      {r:"Medipol University",d:"Medicine — 91/100",p:"2020 – 2023"},
+      {r:"Damla Fen Lisesi (Open High School)",d:"Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life — learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
+      {r:"Nesibe Aydın Fen Lisesi (Science High School)",d:"GPA: 96.68/100 — Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.",p:"2016 – 2019"},
+    ].map(e=>`<div class="exp-entry"><div class="exp-role">${e.r}</div><div class="exp-desc">${e.d}</div><div class="exp-period">${e.p}</div></div>`).join("")},
+    {label:"skills",render:()=>`<div class="skills-grid">${Object.entries(SK).map(([k,v])=>`<div class="skill-col"><div class="skill-col-title">${k}</div>${v.map(i=>`<div class="skill-item">${i}</div>`).join("")}</div>`).join("")}</div>`}
+  ];
+  function renderTech(page){
+    document.getElementById("tech-content").innerHTML=techPages[page].render();
+    const pager=document.getElementById("tech-pager");pager.innerHTML="";
+    techPages.forEach((tp,i)=>{
+      const b=document.createElement("button");
+      b.className="pager-btn"+(i===page?" on":"");b.textContent=tp.label;
+      b.onclick=()=>renderTech(i);pager.appendChild(b);
+    });
+  }
+  window.renderTech=renderTech;
+
+  // email
+  const ea="su.bilge@ug.bilkent.edu.tr";
+  const el=document.getElementById("email-link"),et=document.getElementById("email-text");
+  if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
+  const mi=document.getElementById("mail-ideas");
+  if(mi)mi.href="mailto:"+ea+"?subject=Project Idea";
+
+  // init
+  const hash=location.hash.replace("#","");
+  const allPages=NAV.map(n=>n.k);
+  go(allPages.includes(hash)?hash:"home");
+});
+</script>
 </body>
 </html>
