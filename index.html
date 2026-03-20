@@ -52,28 +52,21 @@ body {
 @keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
 .cursor { display: inline-block; width: 2px; height: .85em; background: var(--sky); margin-left: 3px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
 
-/* NAV — left group | center logo | right group */
+/* NAV — single centered row */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: grid; grid-template-columns: 1fr auto 1fr;
-  align-items: center; padding: 10px 32px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 2px; padding: 8px 32px;
   background: rgba(240,248,255,.88);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(196,223,232,.5);
 }
-.nav-left { display: flex; gap: 2px; justify-self: start; }
-.nav-right { display: flex; gap: 2px; justify-self: end; }
-.nav-center {
-  font-size: 15px; font-weight: 500; color: var(--text);
-  letter-spacing: .02em; cursor: pointer;
-  justify-self: center; white-space: nowrap;
-}
 .nav-btn {
-  font: 400 13px/1 var(--fm);
+  font: 400 12px/1 var(--fm);
   color: var(--muted); background: none; border: none;
-  padding: 10px 16px; border-radius: 6px;
+  padding: 8px 12px; border-radius: 6px;
   cursor: pointer; transition: all .2s;
-  letter-spacing: .02em;
+  letter-spacing: .02em; white-space: nowrap;
 }
 .nav-btn:hover { color: var(--text); }
 .nav-btn.on { color: var(--text); font-weight: 500; background: var(--baby-light); }
@@ -285,8 +278,8 @@ body {
 }
 
 @media (max-width: 640px) {
-  .nav { padding: 6px 10px; }
-  .nav-btn { font-size: 9px; padding: 4px 8px; }
+  .nav { padding: 6px 8px; gap: 2px; flex-wrap: wrap; }
+  .nav-btn { font-size: 9px; padding: 4px 6px; }
   .page { padding: 32px 16px 80px; }
   .md-h1 { font-size: 22px; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
@@ -300,11 +293,7 @@ body {
 
 <div class="float-box" id="fb"></div>
 
-<nav class="nav">
-  <div class="nav-left" id="nav-left"></div>
-  <div class="nav-center" onclick="go('home')">✨damla.log🐝</div>
-  <div class="nav-right" id="nav-right"></div>
-</nav>
+<nav class="nav" id="nav-bar"></nav>
 
 <div class="pages">
   <!-- HOME -->
@@ -379,9 +368,9 @@ body {
 
 <script>
 const NAV=[
-  {k:"schedule",l:"📋 schedule"},{k:"indev",l:"🐝 in development"},{k:"lifeplan",l:"🌷 life plan"},{k:"about",l:"💃🏽 about me"},
-  {k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"},
-  {k:"home",l:"🦋 home"}
+  {k:"home",l:"✨damla.log🐝"},{k:"about",l:"💃🏽 about me"},{k:"projects",l:"💐 projects"},
+  {k:"indev",l:"🐝 in development"},{k:"technical",l:"👾 technical"},
+  {k:"lifeplan",l:"🌷 life plan"},{k:"schedule",l:"📋 schedule"}
 ];
 
 const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖"];
@@ -421,26 +410,34 @@ const P=[
   {e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",t:["Java","Java Swing","Database","SQL"],s:"💐 Built",g:"https://github.com/nosey-dewdrop",co:"#27AE60"},
   {e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",t:["JavaScript","HTML/CSS"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
   {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",t:["Java","Java Swing","JavaFX"],s:"💐 Early build",g:"https://github.com/nosey-dewdrop/flower-timer",co:"#FD79A8"},
+  {e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",t:["Python","face_recognition","dlib"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/age-wiz",co:"#8E44AD"},
 ];
 
 const SCHED=[
   {e:"🎀",n:"Linçmatik",note:"it is live. i bought tokens. you can mentally practice yourself. slay!!!",s:"💐 live"},
-  {e:"🎵",n:"Musical Improvisation Tool",note:"such a beautiful website. helps you identify scales, make chord progressions. no database but local storage.",s:"💐 live"},
-  {e:"💌",n:"Forget-Me-Not",note:"a huge letter platform. there is a lot to implement. will take weeks, maybe whole semester. nevertheless, it is live now!",s:"💐 live"},
-  {e:"💫",n:"Lady Fantasy",note:"tarot, lenormand, blogs using claude api and fal.ai api — finished but needs to be polished.",s:"needs polish"},
-  {e:"🌙",n:"Moonlight",note:"easy, astrology platform. i love watching moon phases.",s:"core done"},
-  {e:"🌊",n:"Dewdrop",note:"events platform. communities are like an ocean, we are all individual drops.",s:"MVP possible"},
-  {e:"🐞",n:"LadyBug",note:"debugging teaches algorithmic thinking better than writing code from scratch.",s:"MVP possible"},
-  {e:"🥦",n:"Butterfry",note:"food allergen detective! cross-reference foods. it's built!",s:"💐 built"},
-  {e:"☕",n:"Interactive Coffee Menu",note:"i built it when i was a barista!!!! i have one more idea for my future coffee shop.",s:"💐 live"},
+  {e:"🎵",n:"Musical Improvisation Tool",note:"such a beautiful website. helps you identify scales, make chord progressions. no database but local storage. i think it is a useful tool with song recommendations in related scale.",s:"💐 live"},
+  {e:"💌",n:"Forget-Me-Not",note:"a huge letter platform. there is a lot to implement. will take weeks, maybe whole semester. nevertheless, it is live now! i need to start advertising it on linkedin.",s:"💐 live"},
+  {e:"💫",n:"Lady Fantasy",note:"tarot, lenormand, blogs using claude api and fal.ai api — finished but needs to be polished. it simply uses fortune telling with prompts.",s:"needs polish"},
+  {e:"🌙",n:"Moonlight",note:"easy, astrology platform. i love watching moon phases. moon phases, horary added.",s:"core done"},
+  {e:"🌊",n:"Dewdrop",note:"events platform. MVP can be done. my name is damla su, in english drop, drip, dewdrop, waterdrop. inspo is communities are like an ocean, nevertheless we are all individual drops. everyone does a project like this. what i can have that they don't?",s:"MVP possible"},
+  {e:"🐞",n:"LadyBug",note:"will take ages but MVP can be done. while working as a TA for CS115, i found out that people were not really learning by writing code. it was teaching when you were trying to find and correct a logical error, which is silent but more destructive for the code.",s:"MVP possible"},
+  {e:"🌷",n:"Damlacık",note:"a personal community platform. i am becoming a youtuber. i believe i have so much to say, but my innocence has been used up on the wrong people. it might take some weeks. database should be secured, else i will be linçed like tosuncuk from çiftlik bank for stealing (leaking) people's data. for building a community. still on planning because i want a community platform but i can't find an astonishing point for this project only for this moment because my mind is too full... <strong>stack:</strong> Supabase (PostgreSQL + Auth + Realtime), JavaScript, Web Technologies.",s:"planning"},
+  {e:"🥦",n:"Butterfry",note:"food allergen detective! cross-reference foods that mess with you to find the common ingredient culprit. 24 curated products + Open Food Facts API. OCR scanning. mint themed. it's built!",s:"💐 built"},
+  {e:"🔮",n:"Age Wiz",note:"a real ai model! face recognition trained on my own photos. uses face_recognition + dlib. small and sweet.",s:"💐 built"},
+  {e:"☕",n:"Interactive Coffee Menu",note:"i have done implementing it before i was a vibecoder but a barista!!!! doesn't sound incredible now but i want to finish it. i have one more programming idea for my future coffee shop. but i don't have money to open it only at this moment! hahhaaha",s:"💐 live"},
+  {e:"<img src='https://nosey-dewdrop.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:16px;height:16px;border-radius:3px;vertical-align:middle'>",n:"Scrapp",note:"digital scrapbook app. frame photos, collect memories, hand-drawn sticker packs. pure SwiftUI + SwiftData, no third-party dependencies.",s:"💐 built"},
+  {e:"☀️",n:"Sunny",note:"my first iOS app! weather app with hand-drawn backgrounds and sunscreen reminders. CoreLocation + WeatherAPI.",s:"💐 built"},
+  {e:"👾",n:"League of Bilkent",note:"CS102 final project. 30 Java classes, MVC architecture, MySQL, gamification, SHA-256 hashing. interactive UML deployed on GitHub Pages.",s:"💐 built"},
+  {e:"🛒",n:"BilMart",note:"secondhand marketplace for Bilkent students. Java Swing + relational database. student ID verification.",s:"💐 built"},
+  {e:"🏥",n:"Medical Case Generator",note:"when i finish engineering, and if i am still alive and not dead of cancer, i will study medicine in muğla... akyaka... and it is literally on a mountain. meaning it doesn't have a great range of cases as much as universities in big cities such as ankara, izmir... this is a platform which generates cases. when i was in medical school, problem-based learning was such a privileged class.",s:"future dream"},
 ];
 
 const INDEV=[
-  {e:"🐝",n:"damla.log",note:"personal assistant for coding projects. i always come up with lots of ideas, issues, tasks and forget them. i need to manage them.",s:"🐝 in dev"},
-  {e:"🐝",n:"Braindot",note:"a content production pipeline.",s:"🐝 in dev"},
-  {e:"🐝",n:"Lala Retro",note:"ingredient comparison algorithm applied to iOS. beauty facts API isn't enough so users create our db by inputting the ingredients by barcode or by scanning.",s:"🐝 in dev"},
-  {e:"🐝",n:"Daylight",note:"lettering platform on iOS.",s:"🐝 in dev"},
-  {e:"🐝",n:"Wildflower",note:"focus timer.",s:"🐝 in dev"},
+  {e:"👾",n:"damla.log",note:"personal assistant for coding projects. i always come up with lots of ideas, issues, tasks and forget them. i need to manage them.",s:"in dev"},
+  {e:"🧠",n:"Braindot",note:"a content production pipeline.",s:"in dev"},
+  {e:"💅🏻",n:"Lala Retro",note:"ingredient comparison algorithm applied to iOS. beauty facts API isn't enough so users create our db by inputting the ingredients by barcode or by scanning.",s:"in dev"},
+  {e:"💫",n:"Daylight",note:"lettering platform on iOS.",s:"in dev"},
+  {e:"🪻",n:"Wildflower",note:"focus timer.",s:"in dev"},
 ];
 
 const SK={
@@ -479,17 +476,13 @@ function go(p){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
-  // nav — left: about, schedule, lifeplan | center: logo | right: home, projects, technical
-  const leftNav=["schedule","indev","lifeplan","about"];
-  const rightNav=["projects","technical"];
-  const navL=document.getElementById("nav-left");
-  const navR=document.getElementById("nav-right");
+  // nav — single centered row
+  const nav=document.getElementById("nav-bar");
   NAV.forEach(n=>{
     const b=document.createElement("button");
     b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
     b.onclick=()=>go(n.k);
-    if(leftNav.includes(n.k)) navL.appendChild(b);
-    else if(rightNav.includes(n.k)) navR.appendChild(b);
+    nav.appendChild(b);
   });
 
   // floating emojis
