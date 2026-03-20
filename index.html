@@ -55,7 +55,7 @@ body {
 /* NAV — single centered row */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: space-between;
   gap: 2px; padding: 8px 32px;
   background: rgba(240,248,255,.88);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
@@ -279,7 +279,7 @@ body {
 
 @media (max-width: 640px) {
   .nav { padding: 6px 8px; gap: 2px; flex-wrap: wrap; }
-  .nav-btn { font-size: 9px; padding: 4px 6px; }
+  .nav-btn { font-size: 9px; padding: 4px 5px; }
   .page { padding: 32px 16px 80px; }
   .md-h1 { font-size: 22px; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
@@ -367,11 +367,15 @@ body {
 <div class="footer">🌼 💫 🌙 ✨ 🦋 💐 🌞 🌷 🌈 👾</div>
 
 <script>
-const NAV=[
-  {k:"home",l:"✨damla.log🐝"},{k:"about",l:"💃🏽 about me"},{k:"projects",l:"💐 projects"},
-  {k:"indev",l:"🐝 in development"},{k:"technical",l:"👾 technical"},
-  {k:"lifeplan",l:"🌷 life plan"},{k:"schedule",l:"📋 schedule"}
+const NAV_L=[
+  {k:"home",l:"✨damla.log🐝"},{k:"schedule",l:"📋 schedule"},
+  {k:"lifeplan",l:"🌷 life plan"},{k:"about",l:"💃🏽 about me"}
 ];
+const NAV_R=[
+  {k:"projects",l:"💐 projects"},{k:"indev",l:"🐝 in development"},
+  {k:"technical",l:"👾 technical"}
+];
+const NAV=[...NAV_L,...NAV_R];
 
 const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖"];
 const T={
@@ -476,14 +480,21 @@ function go(p){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
-  // nav — single centered row
+  // nav — left + right groups
   const nav=document.getElementById("nav-bar");
-  NAV.forEach(n=>{
+  const navL=document.createElement("div");navL.style.cssText="display:flex;gap:2px;align-items:center";
+  const navR=document.createElement("div");navR.style.cssText="display:flex;gap:2px;align-items:center";
+  NAV_L.forEach(n=>{
     const b=document.createElement("button");
     b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
-    b.onclick=()=>go(n.k);
-    nav.appendChild(b);
+    b.onclick=()=>go(n.k);navL.appendChild(b);
   });
+  NAV_R.forEach(n=>{
+    const b=document.createElement("button");
+    b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
+    b.onclick=()=>go(n.k);navR.appendChild(b);
+  });
+  nav.appendChild(navL);nav.appendChild(navR);
 
   // floating emojis
   const fb=document.getElementById("fb");
