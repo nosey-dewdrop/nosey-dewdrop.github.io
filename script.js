@@ -73,14 +73,14 @@ const P=[
    d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",
    t:["JavaScript","HTML/CSS"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
-  {e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",
-   d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",
-   t:["Python","face_recognition","dlib"],
-   s:"💐 Built",g:"https://github.com/nosey-dewdrop/age-wiz",co:"#8E44AD"},
   {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",
    d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",
    t:["Java","Java Swing","JavaFX"],
    s:"💐 Early build",g:"https://github.com/nosey-dewdrop/flower-timer",co:"#FD79A8"},
+  {e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",
+   d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",
+   t:["Python","face_recognition","dlib"],
+   s:"💐 Built",g:"https://github.com/nosey-dewdrop/age-wiz",co:"#8E44AD"},
 ];
 
 const SCHED=[
