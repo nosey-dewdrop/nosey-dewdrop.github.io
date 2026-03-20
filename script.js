@@ -73,10 +73,6 @@ const P=[
    d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",
    t:["JavaScript","HTML/CSS"],
    s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
-  {e:"🎲",n:"YouDecide",tg:"quick decision maker — add options, shuffle, done",
-   d:"A simple decision-making tool. Add your options one by one, hit shuffle, and get a random pick. Built in <strong>20 minutes</strong> as a fun gift for my brother. Pastel UI with flower emojis and smooth interactions. Sometimes the simplest tools are the most useful.",
-   t:["JavaScript","HTML/CSS"],
-   s:"💐 Built",g:"https://github.com/nosey-dewdrop/youdecide",l:"https://nosey-dewdrop.github.io/youdecide/",co:"#E056A0"},
   {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",
    d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",
    t:["Java","Java Swing","JavaFX"],
@@ -103,7 +99,6 @@ const SCHED=[
   {e:"☀️",n:"Sunny",note:"my first iOS app! weather app with hand-drawn backgrounds and sunscreen reminders. CoreLocation + WeatherAPI.",s:"💐 built"},
   {e:"👾",n:"League of Bilkent",note:"CS102 final project. 30 Java classes, MVC architecture, MySQL, gamification, SHA-256 hashing. interactive UML deployed on GitHub Pages.",s:"💐 built"},
   {e:"🛒",n:"BilMart",note:"secondhand marketplace for Bilkent students. Java Swing + relational database. student ID verification.",s:"💐 built"},
-  {e:"🎲",n:"YouDecide",note:"a quick decision maker — add options, shuffle, get your answer. built it in 20 minutes for my brother!",s:"💐 built"},
   {e:"🏥",n:"Medical Case Generator",note:"when i finish engineering, and if i am still alive and not dead of cancer, i will study medicine in muğla... akyaka... and it is literally on a mountain. meaning it doesn't have a great range of cases as much as universities in big cities such as ankara, izmir... this is a platform which generates cases. when i was in medical school, problem-based learning was such a privileged class.",s:"future dream"},
 ];
 
