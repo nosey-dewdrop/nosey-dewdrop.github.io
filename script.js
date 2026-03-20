@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   selEM.forEach((e)=>{const s=document.createElement("span");s.className="fl";s.textContent=e;s.style.left=`${40+Math.random()*58}%`;s.style.animationDelay=`${Math.random()*16}s`;s.style.animationDuration=`${10+Math.random()*8}s`;fb.appendChild(s)});
 
   const pl=document.getElementById("plist");
-  const PER_PAGE=4;
+  const PER_PAGE=3;
   let pPage=0;
   function renderProjects(page){
     pPage=page;
