@@ -437,7 +437,7 @@ const SCHED=[
 ];
 
 const INDEV=[
-  {e:"👾",n:"damla.log",note:"personal assistant for coding projects. i always come up with lots of ideas, issues, tasks and forget them. i need to manage them.",s:"in dev"},
+  {e:"👾",n:"damla.log",note:"developer companion iOS app. tracks tasks, ideas, bugs, and release versions across all my projects. swiftui, icloud sync, github oauth, url scheme integration with claude code. swipe up for stats with contribution grid.",s:"in dev",url:"https://nosey-dewdrop.github.io/damla-log/"},
   {e:"🧠",n:"Braindot",note:"a content production pipeline.",s:"in dev"},
   {e:"💅🏻",n:"Lala Retro",note:"ingredient comparison algorithm applied to iOS. beauty facts API isn't enough so users create our db by inputting the ingredients by barcode or by scanning.",s:"in dev"},
   {e:"💫",n:"Daylight",note:"lettering platform on iOS.",s:"in dev"},
@@ -516,7 +516,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   // in development
   const idl=document.getElementById("indev-list");
   idl.innerHTML=INDEV.map(s=>{
-    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:var(--muted);background:var(--baby-light);border:1px solid var(--border)">${s.s}</span></div><div class="sched-note">${s.note}</div></div>`;
+    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:var(--muted);background:var(--baby-light);border:1px solid var(--border)">${s.s}</span></div><div class="sched-note">${s.note}</div>${s.url?`<a href="${s.url}" target="_blank" style="font-size:11px;color:var(--sky);text-decoration:none;margin-top:6px;display:inline-block">→ landing page</a>`:""}</div>`;
   }).join("");
 
   // projects

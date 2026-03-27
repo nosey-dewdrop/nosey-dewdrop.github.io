@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>damla.log — developer companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FCFCFB;
+    --text: #2C2C2E;
+    --text-sec: #8E8E93;
+    --accent: #D4A5C7;
+    --accent-soft: rgba(212, 165, 199, 0.12);
+    --accent-mid: rgba(212, 165, 199, 0.35);
+    --done: #6B9E78;
+    --done-soft: rgba(107, 158, 120, 0.12);
+    --imp: #C4748A;
+    --ip: #C4956A;
+    --card: #FFFFFF;
+    --search: #F2F0ED;
+    --tag-pill: #E8DEF8;
+    --tag-text: #9B7DC4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--accent-mid);
+    color: var(--text);
+  }
+
+  /* ---- NOISE TEXTURE ---- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 clamp(24px, 8vw, 120px);
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--tag-text);
+    background: var(--tag-pill);
+    padding: 5px 12px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(52px, 9vw, 110px);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.35s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 300;
+    color: var(--text-sec);
+    max-width: 480px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.5s;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.65s;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover {
+    background: #1a1a1c;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-sec);
+  }
+
+  .btn-ghost:hover {
+    color: var(--text);
+    background: var(--search);
+  }
+
+  .hero-grid {
+    position: absolute;
+    right: clamp(24px, 8vw, 120px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+    animation-delay: 0.8s;
+  }
+
+  .hero-grid .cell {
+    width: clamp(8px, 1.1vw, 14px);
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background: var(--search);
+    transition: background 0.4s ease;
+  }
+
+  .hero-grid .cell.l1 { background: rgba(212,165,199,0.25); }
+  .hero-grid .cell.l2 { background: rgba(212,165,199,0.45); }
+  .hero-grid .cell.l3 { background: rgba(212,165,199,0.7); }
+  .hero-grid .cell.l4 { background: var(--accent); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-sec);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 1.2s;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: pulse 2s ease infinite;
+  }
+
+  /* ---- SECTION: FEATURES ---- */
+  .section {
+    padding: clamp(60px, 10vw, 140px) clamp(24px, 8vw, 120px);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 60px;
+    max-width: 600px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .feature-card {
+    padding: 32px;
+    background: var(--card);
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(212,165,199,0.1);
+  }
+
+  .feature-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .feature-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-sec);
+    line-height: 1.6;
+  }
+
+  /* ---- SECTION: HOW IT WORKS ---- */
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--search);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .flow-step {
+    background: var(--card);
+    padding: 36px 28px;
+    position: relative;
+  }
+
+  .flow-num {
+    font-family: 'Newsreader', serif;
+    font-size: 48px;
+    color: var(--accent-mid);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .flow-step h4 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .flow-step p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-sec);
+    line-height: 1.55;
+  }
+
+  /* ---- SECTION: PHONE MOCKUP ---- */
+  .mockup-section {
+    display: flex;
+    align-items: center;
+    gap: clamp(40px, 6vw, 100px);
+    padding: clamp(60px, 10vw, 140px) clamp(24px, 8vw, 120px);
+  }
+
+  .mockup-text {
+    flex: 1;
+  }
+
+  .mockup-phone {
+    flex-shrink: 0;
+    width: clamp(240px, 28vw, 320px);
+    background: var(--card);
+    border-radius: 32px;
+    padding: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .mockup-screen {
+    background: var(--bg);
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 20px 16px;
+  }
+
+  .mock-nav {
+    font-family: 'Newsreader', serif;
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .mock-search {
+    background: var(--search);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 11px;
+    color: var(--text-sec);
+    margin-bottom: 8px;
+  }
+
+  .mock-pills {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+
+  .mock-pill {
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 500;
+    background: var(--search);
+    color: var(--text-sec);
+  }
+
+  .mock-pill.active {
+    background: var(--accent);
+    color: white;
+  }
+
+  .mock-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+  }
+
+  .mock-check {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    border: 1.5px solid var(--text-sec);
+    flex-shrink: 0;
+  }
+
+  .mock-check.imp { border-color: var(--imp); }
+  .mock-check.ip { border-color: var(--ip); }
+  .mock-check.done {
+    border-color: var(--done);
+    background: var(--done-soft);
+    position: relative;
+  }
+
+  .mock-check.done::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--done);
+  }
+
+  .mock-title {
+    font-size: 11px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mock-title.done {
+    text-decoration: line-through;
+    color: var(--text-sec);
+    text-decoration-color: var(--done);
+  }
+
+  .mock-tag {
+    font-size: 8px;
+    font-weight: 500;
+    padding: 2px 5px;
+    border-radius: 6px;
+    background: var(--tag-pill);
+    color: var(--tag-text);
+    flex-shrink: 0;
+  }
+
+  .mock-time {
+    font-size: 9px;
+    color: var(--text-sec);
+    flex-shrink: 0;
+  }
+
+  .mock-row.imp-bg { background: rgba(196,116,138,0.06); border-radius: 6px; padding: 8px 6px; }
+  .mock-row.ip-bg { background: rgba(196,149,106,0.06); border-radius: 6px; padding: 8px 6px; }
+
+  /* ---- STATS SHOWCASE ---- */
+  .stats-showcase {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 20px 12px;
+    background: var(--card);
+    border-radius: 12px;
+  }
+
+  .stat-val {
+    font-family: 'Newsreader', serif;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-sec);
+    margin-top: 4px;
+  }
+
+  /* ---- TECH STRIP ---- */
+  .tech-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 4vw, 60px);
+    padding: 40px 24px;
+    flex-wrap: wrap;
+  }
+
+  .tech-item {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-sec);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tech-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    padding: 60px clamp(24px, 8vw, 120px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-left {
+    font-family: 'Newsreader', serif;
+    font-size: 20px;
+  }
+
+  .footer-left em {
+    font-style: italic;
+  }
+
+  .footer-right {
+    font-size: 13px;
+    color: var(--text-sec);
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-right a {
+    color: var(--text-sec);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-right a:hover { color: var(--accent); }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    .hero-grid { display: none; }
+    .flow { grid-template-columns: repeat(2, 1fr); }
+    .mockup-section { flex-direction: column-reverse; text-align: center; }
+    .mockup-text .section-title { margin-left: auto; margin-right: auto; }
+  }
+
+  @media (max-width: 600px) {
+    .flow { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .stats-showcase { grid-template-columns: repeat(2, 1fr); }
+    .hero-cta { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> ios app</div>
+  <h1>damla.log</h1>
+  <p class="hero-sub">a personal developer companion. track tasks, capture ideas, manage issues, plan versions — all from your pocket.</p>
+  <div class="hero-cta">
+    <a href="#features" class="btn btn-primary">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      explore
+    </a>
+    <a href="https://github.com/nosey-dewdrop/damla.log" class="btn btn-ghost" target="_blank">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      source
+    </a>
+  </div>
+
+  <!-- Contribution grid decoration -->
+  <div class="hero-grid" id="heroGrid"></div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="reveal">
+    <div class="section-label">what it does</div>
+    <h2 class="section-title">four tabs, zero friction.</h2>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background: var(--accent-soft);">&#9997;&#65039;</div>
+      <h3>tasks</h3>
+      <p>track what needs to be done. mark important, in-progress, or done. filter by project tags. swipe to change status.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background: rgba(107,158,120,0.12);">&#10024;</div>
+      <h3>ideas</h3>
+      <p>capture thoughts before they disappear. tag them to projects, revisit later. the best features start as quick notes.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background: rgba(196,116,138,0.12);">&#128027;</div>
+      <h3>issues</h3>
+      <p>log bugs and problems. track resolution. see which projects have the most open issues at a glance.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon" style="background: rgba(196,149,106,0.12);">&#127793;</div>
+      <h3>versions</h3>
+      <p>plan releases with feature lists. track status from planning to shipped. know exactly what goes into each update.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHONE MOCKUP + STATS -->
+<section class="mockup-section">
+  <div class="mockup-phone reveal">
+    <div class="mockup-screen">
+      <div class="mock-nav">tasks</div>
+      <div class="mock-search">&#128269; search...</div>
+      <div class="mock-pills">
+        <span class="mock-pill active">all</span>
+        <span class="mock-pill">damla.log</span>
+        <span class="mock-pill">gymlog</span>
+        <span class="mock-pill">melodi</span>
+      </div>
+      <div class="mock-row imp-bg">
+        <div class="mock-check imp"></div>
+        <span class="mock-title">fix core data migration</span>
+        <span class="mock-tag">gymlog</span>
+        <span class="mock-time">2h</span>
+      </div>
+      <div class="mock-row ip-bg">
+        <div class="mock-check ip"></div>
+        <span class="mock-title">rebuild icloud sync</span>
+        <span class="mock-tag">damla.log</span>
+        <span class="mock-time">1d</span>
+      </div>
+      <div class="mock-row">
+        <div class="mock-check"></div>
+        <span class="mock-title">add export to csv</span>
+        <span class="mock-tag">gymlog</span>
+        <span class="mock-time">2d</span>
+      </div>
+      <div class="mock-row">
+        <div class="mock-check"></div>
+        <span class="mock-title">research competitor pricing</span>
+        <span class="mock-tag">melodi</span>
+        <span class="mock-time">3d</span>
+      </div>
+      <div class="mock-row">
+        <div class="mock-check done"></div>
+        <span class="mock-title done">setup project structure</span>
+        <span class="mock-tag">damla.log</span>
+        <span class="mock-time">1w</span>
+      </div>
+      <div class="mock-row">
+        <div class="mock-check done"></div>
+        <span class="mock-title done">add dark mode support</span>
+        <span class="mock-tag">gymlog</span>
+        <span class="mock-time">1w</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-text">
+    <div class="reveal">
+      <div class="section-label">built for flow</div>
+      <h2 class="section-title">your projects, at a glance.</h2>
+      <p style="font-size: 15px; font-weight: 300; color: var(--text-sec); line-height: 1.7; max-width: 420px;">
+        tag-based organization keeps everything connected. filter by project, see what's important, track your streak. swipe up for stats — contribution grid, weekly breakdown, project health.
+      </p>
+    </div>
+
+    <div class="stats-showcase reveal">
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--accent);">5</div>
+        <div class="stat-label">streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--done);">12</div>
+        <div class="stat-label">this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--imp);">7</div>
+        <div class="stat-label">open</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--ip);">34</div>
+        <div class="stat-label">this month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="reveal">
+    <div class="section-label">how it works</div>
+    <h2 class="section-title">from terminal to pocket.</h2>
+  </div>
+
+  <div class="flow reveal">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <h4>code with claude</h4>
+      <p>work on your projects with claude code in the terminal. tasks and issues get logged automatically.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <h4>auto-sync</h4>
+      <p>url scheme sends tasks, ideas, and issues directly to the app. no copy-paste, no context switching.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <h4>check your phone</h4>
+      <p>icloud keeps everything synced. open the app anywhere and see exactly where every project stands.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <h4>ship it</h4>
+      <p>plan versions, track features, mark them shipped. your entire dev lifecycle in one place.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STRIP -->
+<div class="tech-strip reveal">
+  <span class="tech-item"><span class="tech-dot"></span> swiftui</span>
+  <span class="tech-item"><span class="tech-dot"></span> icloud sync</span>
+  <span class="tech-item"><span class="tech-dot"></span> url schemes</span>
+  <span class="tech-item"><span class="tech-dot"></span> github oauth</span>
+  <span class="tech-item"><span class="tech-dot"></span> keychain</span>
+  <span class="tech-item"><span class="tech-dot"></span> json codable</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">damla.log</div>
+  <div class="footer-right">
+    <a href="https://github.com/nosey-dewdrop/damla.log" target="_blank">github</a>
+    <span>made by damla</span>
+  </div>
+</footer>
+
+<script>
+// Generate hero contribution grid
+const grid = document.getElementById('heroGrid');
+for (let w = 0; w < 24; w++) {
+  for (let d = 0; d < 7; d++) {
+    const cell = document.createElement('div');
+    const r = Math.random();
+    cell.className = 'cell' + (r > 0.65 ? ' l' + Math.ceil(Math.random() * 4) : '');
+    grid.appendChild(cell);
+  }
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
