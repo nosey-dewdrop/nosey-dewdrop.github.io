@@ -165,10 +165,13 @@ body {
 
 /* PROJECT LIST — Bear-style, no cards, just clean entries */
 .proj-entry {
-  padding: 14px 0; border-bottom: 1px solid rgba(196,223,232,.4);
+  padding: 14px 10px; margin: 0 -10px;
+  border-bottom: 1px solid rgba(196,223,232,.4); border-radius: 10px;
   opacity: 0; transform: translateY(8px);
   animation: fadeUp .4s ease forwards;
+  transition: background .25s ease;
 }
+.proj-entry:hover { background: rgba(221,240,250,.45); }
 .proj-entry:last-child { border-bottom: none; }
 
 .proj-head {
@@ -275,8 +278,11 @@ body {
 
 /* SCHEDULE */
 .sched-entry {
-  padding: 12px 0; border-bottom: 1px solid rgba(196,223,232,.3);
+  padding: 12px 10px; margin: 0 -10px;
+  border-bottom: 1px solid rgba(196,223,232,.3); border-radius: 10px;
+  transition: background .25s ease;
 }
+.sched-entry:hover { background: rgba(221,240,250,.35); }
 .sched-entry:last-child { border-bottom: none; }
 .sched-head { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
 .sched-name { font-size: 12px; font-weight: 500; color: var(--text); }
@@ -299,14 +305,31 @@ body {
 }
 
 @media (max-width: 640px) {
-  .nav { padding: 6px 8px; gap: 2px; flex-wrap: wrap; }
-  .nav-btn { font-size: 9px; padding: 4px 5px; }
+  .nav { padding: 4px 8px; gap: 2px; flex-wrap: wrap; justify-content: center; }
+  .nav-btn { font-size: 10px; padding: 9px 8px; }
   .page { padding: 32px 16px 80px; }
   .md-h1 { font-size: 22px; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
+  .proj-link, .md-link { padding: 6px 12px; }
 }
 @media (max-width: 400px) {
   .skills-grid { grid-template-columns: 1fr; }
+}
+
+/* klavye ile gezenler icin gorunur odak */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--sky); outline-offset: 2px; border-radius: 6px;
+}
+
+/* hareket azaltma tercihine saygi */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .proj-entry, .page.on { opacity: 1; transform: none; }
 }
 </style>
 </head>
@@ -326,8 +349,8 @@ body {
       <p class="md-p" style="font-size:13px;max-width:560px;margin-bottom:24px">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
         <button onclick="go('projects')" style="font:400 11px/1 var(--fm);padding:10px 22px;background:var(--sky);color:#fff;border:none;border-radius:6px;cursor:pointer">explore projects 🌷</button>
-        <a href="https://github.com/nosey-dewdrop" target="_blank" class="md-link" style="padding:10px 22px;font-size:11px">github →</a>
-        <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" class="md-link" style="padding:10px 22px;font-size:11px">sponsor 💖</a>
+        <a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener" class="md-link" style="padding:10px 22px;font-size:11px">github →</a>
+        <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" rel="noopener" class="md-link" style="padding:10px 22px;font-size:11px">sponsor 💖</a>
       </div>
     </div>
   </div>
@@ -338,9 +361,9 @@ body {
     <div id="about-content"></div>
     <div class="md-links" style="margin-top:16px">
       <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
-      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" class="md-link">🔗 LinkedIn</a>
-      <a href="https://github.com/nosey-dewdrop" target="_blank" class="md-link">🐙 GitHub</a>
-      <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" class="md-link">💖 Sponsor</a>
+      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">🔗 LinkedIn</a>
+      <a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener" class="md-link">🐙 GitHub</a>
+      <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" rel="noopener" class="md-link">💖 Sponsor</a>
     </div>
   </div>
 
@@ -538,19 +561,16 @@ document.addEventListener("DOMContentLoaded",()=>{
   // in development
   const idl=document.getElementById("indev-list");
   idl.innerHTML=INDEV.map(s=>{
-    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:var(--muted);background:var(--baby-light);border:1px solid var(--border)">${s.s}</span></div><div class="sched-note">${s.note}</div>${s.url?`<a href="${s.url}" target="_blank" style="font-size:11px;color:var(--sky);text-decoration:none;margin-top:6px;display:inline-block">→ landing page</a>`:""}</div>`;
+    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:var(--muted);background:var(--baby-light);border:1px solid var(--border)">${s.s}</span></div><div class="sched-note">${s.note}</div>${s.url?`<a href="${s.url}" target="_blank" rel="noopener" style="font-size:11px;color:var(--sky);text-decoration:none;margin-top:6px;display:inline-block">→ landing page</a>`:""}</div>`;
   }).join("");
 
-  // projects
-  const PER=3;
-  function renderProjects(page){
+  // projects — hepsi tek listede, sayfalama yok (ziyaretci kaydirarak gorur)
+  function renderProjects(){
     const list=document.getElementById("proj-list");
-    const pager=document.getElementById("proj-pager");
-    const start=page*PER,end=Math.min(start+PER,P.length);
-    list.innerHTML=P.slice(start,end).map((p,i)=>{
+    document.getElementById("proj-pager").innerHTML="";
+    list.innerHTML=P.map((p,i)=>{
       const isGreen=p.s.includes('Live')||p.s.includes('Built')||p.s.includes('MVP');
-      const uid='pd-'+page+'-'+i;
-      return `<div class="proj-entry" style="animation-delay:${i*.06}s">
+      return `<div class="proj-entry" style="animation-delay:${Math.min(i*.05,.45)}s">
         <div class="proj-head">
           <span class="proj-icon">${p.e}</span>
           <span class="proj-name">${p.n}</span>
@@ -560,19 +580,11 @@ document.addEventListener("DOMContentLoaded",()=>{
         <div class="proj-desc">${p.d}</div>
         <div class="proj-stack">${p.t.map(mkTag).join("")}</div>
         <div class="proj-links">
-          <a href="${p.g}" target="_blank" class="proj-link">→ github</a>
-          ${p.l?`<a href="${p.l}" target="_blank" class="proj-link proj-link-live">${p.ll||"✨ live demo !"}</a>`:""}
+          <a href="${p.g}" target="_blank" rel="noopener" class="proj-link">→ github</a>
+          ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live">${p.ll||"✨ live demo !"}</a>`:""}
         </div>
       </div>`;
     }).join("");
-    const total=Math.ceil(P.length/PER);
-    pager.innerHTML="";
-    for(let i=0;i<total;i++){
-      const b=document.createElement("button");
-      b.className="pager-btn"+(i===page?" on":"");b.textContent=i+1;
-      b.onclick=()=>{renderProjects(i);window.scrollTo({top:document.getElementById("p-projects").offsetTop,behavior:"smooth"});};
-      pager.appendChild(b);
-    }
   }
   window.renderProjects=renderProjects;
 
