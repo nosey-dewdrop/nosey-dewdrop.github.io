@@ -305,6 +305,14 @@ body.note-open { overflow: hidden; }
 .exp-desc strong { font-weight: 700; }
 .exp-desc em { font-style: italic; color: var(--muted); }
 
+/* buyuk beyaz kagit — education */
+.paper-sheet {
+  background: var(--paper);
+  padding: 32px 38px;
+  box-shadow: 0 2px 4px rgba(34,51,63,.1), 0 16px 38px rgba(34,51,63,.13);
+}
+.pcard.static { cursor: default; }
+
 /* FOOTER */
 .footer { text-align: center; padding: 30px; font-size: 13px; color: var(--light); letter-spacing: .12em; position: relative; z-index: 1; }
 
@@ -379,24 +387,25 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
     <div id="proj-list" class="pgrid"></div>
   </div>
 
-  <!-- EDUCATION -->
+  <!-- EDUCATION — bembeyaz kagit, one cikar -->
   <div class="page" id="p-education">
     <h1 class="md-h1">🎓 education</h1>
     <p class="md-sub">i am so honoured to have an opportunity to get an education. thank you mom and dad for always supporting me 💗</p>
-    <div id="edu-content"></div>
+    <div class="paper-sheet"><div id="edu-content"></div></div>
   </div>
 
   <!-- EXPERIENCE -->
-  <div class="page" id="p-experience">
+  <div class="page page-wide" id="p-experience">
     <h1 class="md-h1">🐝 experience</h1>
-    <div id="exp-content" style="margin-top:10px"></div>
+    <p class="md-sub">tap a note to read the full story</p>
+    <div id="exp-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))"></div>
   </div>
 
   <!-- SKILLS -->
   <div class="page page-wide" id="p-skills">
     <h1 class="md-h1">👾 skills</h1>
     <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing — it's about evaluating knowledge.</p>
-    <div id="skills-content"></div>
+    <div id="skills-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
   </div>
 </div>
 
@@ -624,11 +633,38 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(e.key==="Escape"&&document.getElementById("note-overlay").classList.contains("on"))closeNote();
   });
 
-  // experience, education, skills
+  // education — beyaz kagit uzerinde liste
   const expRow=e=>`<div class="exp-entry"><div class="exp-top"><span class="exp-role">${e.r}</span><span class="exp-period">${e.p}</span></div><div class="exp-desc">${e.d}</div></div>`;
   document.getElementById("edu-content").innerHTML=EDU.map(expRow).join("");
-  document.getElementById("exp-content").innerHTML=EX.map(expRow).join("");
-  document.getElementById("skills-content").innerHTML=`<div class="skills-grid">${Object.entries(SK).map(([k,v])=>`<div class="skill-col"><div class="skill-col-title">${k}</div>${v.map(i=>`<div class="skill-item">${i}</div>`).join("")}</div>`).join("")}</div>`;
+
+  // experience — kart sistemi
+  window.openExpNote=i=>{
+    const e=EX[i]; if(!e)return;
+    lastFocus=document.activeElement;
+    const box=document.getElementById("note-box");
+    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">✕ close</button>
+      <div class="note-head">${e.r}</div>
+      <div class="blog-date" style="margin:2px 0 0">${e.p}</div>
+      <hr class="note-line">
+      <div class="note-desc">${e.d}</div>`;
+    document.getElementById("note-overlay").classList.add("on");
+    document.body.classList.add("note-open");
+    box.querySelector(".note-close").focus();
+  };
+  document.getElementById("exp-content").innerHTML=EX.map((e,i)=>{
+    const plain=e.d.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
+    return `<div class="pcard" role="button" tabindex="0" onclick="openExpNote(${i})"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openExpNote(${i})}">
+      <div class="blog-date" style="margin:0 0 6px">${e.p}</div>
+      <div class="pcard-name">${e.r}</div>
+      <div class="pcard-line" style="-webkit-line-clamp:4">${plain}</div>
+    </div>`;
+  }).join("");
+
+  // skills — kategori kartlari
+  document.getElementById("skills-content").innerHTML=Object.entries(SK).map(([k,v])=>
+    `<div class="pcard static"><div class="pcard-name">${k}</div>${v.map(i=>`<div class="skill-item">${i}</div>`).join("")}</div>`
+  ).join("");
 
   // email
   const ea="su.bilge@ug.bilkent.edu.tr";
