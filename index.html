@@ -79,7 +79,7 @@ body {
 }
 /* her buton ayri bir tus */
 .nav-btn {
-  font: 500 15.5px/1 var(--ft); font-variant: small-caps; letter-spacing: .07em;
+  font: italic 700 15.5px/1 var(--ft);
   color: var(--muted); border: none;
   padding: 11px 16px;
   background: rgba(255,254,251,.94);
@@ -98,7 +98,7 @@ body {
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='6' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 3.6 C 20 1.4, 40 4.8, 58 3.2 S 88 2.4, 98 3.4' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
   background-size: 100% 100%;
 }
-.nav-brand { font-style: italic; font-variant: normal; font-size: 17px; font-weight: 700; }
+.nav-brand { font-size: 17px; }
 
 /* technical hover menu */
 .nav-drop { position: relative; }
@@ -198,7 +198,7 @@ body {
 /* FILTERS */
 .filters { display: flex; flex-wrap: wrap; gap: 3px 2px; align-items: center; margin: 0 0 22px; }
 .fsep { width: 1px; height: 18px; background: var(--ink-line); margin: 0 10px; }
-.flabel { font-variant: small-caps; font-size: 13px; letter-spacing: .08em; color: var(--light); margin-right: 4px; }
+.flabel { font-style: italic; font-weight: 700; font-size: 13.5px; color: var(--light); margin-right: 4px; }
 .fchip {
   font: italic 500 14.5px/1 var(--ft); color: var(--muted);
   background: none; border: none; padding: 6px 11px;
@@ -352,11 +352,11 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
   <div class="page page-wide" id="p-home">
     <div style="padding:34px 0 30px">
       <div style="font-size:28px;margin-bottom:14px;letter-spacing:.2em">🦋🐞🌞🍃💐</div>
-      <div style="font-variant:small-caps;font-size:16px;letter-spacing:.14em;color:var(--muted);margin-bottom:12px">damla su bilge · bilkent university · computer science</div>
+      <div style="font-style:italic;font-weight:700;font-size:16px;letter-spacing:.04em;color:var(--muted);margin-bottom:12px">damla su bilge · bilkent university · computer science</div>
       <h1 class="md-h1" style="font-size:clamp(36px,5.5vw,50px);margin-bottom:10px">hi, i'm damla 👩🏻‍💻</h1>
       <p class="md-p" style="font-size:17.5px;max-width:580px;margin-bottom:22px;font-style:italic;color:var(--muted)">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button onclick="go('projects')" style="font:700 16px/1 var(--ft);font-variant:small-caps;letter-spacing:.06em;padding:11px 26px;background:rgba(255,112,166,.38);color:var(--text);border:1.6px solid var(--text);border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;cursor:pointer">explore projects 🌷</button>
+        <button onclick="go('projects')" style="font:italic 700 16px/1 var(--ft);padding:11px 26px;background:rgba(255,112,166,.38);color:var(--text);border:1.6px solid var(--text);border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;cursor:pointer">explore projects 🌷</button>
         <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link" style="padding:11px 22px">github →</a>
       </div>
     </div>
@@ -423,12 +423,13 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 <script>
 const NAV_L=[
   {k:"home",l:"damla.log 🐝",brand:true},
-  {k:"projects",l:"projects"},
-  {k:"technical",l:"technical",sub:[{k:"experience",l:"experience"},{k:"skills",l:"skills"}]},
-  {k:"education",l:"education"}
+  {k:"about",l:"about me"}
 ];
 const NAV_R=[
-  {k:"lifeplan",l:"life plan"},{k:"about",l:"about me"}
+  {k:"projects",l:"projects"},
+  {k:"technical",l:"technical",sub:[{k:"experience",l:"experience"},{k:"skills",l:"skills"}]},
+  {k:"education",l:"education"},
+  {k:"lifeplan",l:"life plan"}
 ];
 const NAV=[...NAV_L,...NAV_R];
 const ALL_PAGES=NAV.flatMap(n=>n.sub?n.sub.map(s=>s.k):[n.k]);
@@ -490,7 +491,7 @@ const EX=[
 const EDU=[
   {r:"Bilkent University",d:"B.Sc. in Computer Science",p:"2023 – present"},
   {r:"Medipol University",d:"Medicine, 91/100",p:"2020 – 2023"},
-  {r:"Damla Fen Lisesi (Open High School)",d:"Transferred in 12th grade for  treatment. What looked like darkness became the most transformative period of my life, learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
+  {r:"Damla Fen Lisesi (Homeschooling)",d:"Transferred in 12th grade for  treatment. What looked like darkness became the most transformative period of my life, learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
   {r:"Nesibe Aydın Fen Lisesi (Science High School)",d:"GPA: 96.68/100, Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.",p:"2016 – 2019"},
 ];
 
