@@ -29,20 +29,20 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f0f8ff;
-  --text: #1a3a4a;
-  --muted: #4a7a8a;
-  --light: #6a9aaa;
+  --text: #22333f;
+  --muted: #55707e;
+  --light: #7c96a3;
   --faint: #b8d8e8;
   --sky: #87ceeb;
-  --border: #c4dfe8;
-  --cream: #f7fbfe;
-  --baby-light: #ddf0fa;
+  --sky-deep: #4d9fc7;
+  --border: #c9dfe9;
+  --paper: #fffefb;
   --pink: #D6336C;
-  --glow: rgba(135,206,235,.12);
+  --ink-line: rgba(34,51,63,.22);
+  --ft: 'Times New Roman', Times, serif;
   --fm: 'JetBrains Mono', monospace;
 }
 
@@ -50,287 +50,228 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  /* ombre: baby blue → soft pink */
+  background: linear-gradient(180deg, #cde7f7 0%, #e3f1fa 38%, #f7eff2 74%, #fbe9ef 100%) fixed;
   color: var(--text);
-  font-family: var(--fm);
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.55;
+  font-family: var(--ft);
+  font-size: 16.5px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 ::selection { background: var(--sky); color: #fff; }
-::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
 
 /* floating emojis */
 .float-box { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.fl { position: absolute; top: -30px; font-size: 28px; opacity: 0; animation: floatD 8s linear infinite; pointer-events: none; }
-@keyframes floatD { 0% { transform: translateY(0) rotate(0); opacity: 0; } 5% { opacity: .25; } 70% { opacity: .1; } 100% { transform: translateY(100vh) rotate(60deg); opacity: 0; } }
+.fl { position: absolute; top: -30px; font-size: 26px; opacity: 0; animation: floatD 9s linear infinite; pointer-events: none; }
+@keyframes floatD { 0% { transform: translateY(0) rotate(0); opacity: 0; } 5% { opacity: .22; } 70% { opacity: .1; } 100% { transform: translateY(100vh) rotate(50deg); opacity: 0; } }
 
-/* cursor blink */
-@keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
-.cursor { display: inline-block; width: 2px; height: .85em; background: var(--sky); margin-left: 3px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
-
-/* NAV — single centered row */
+/* NAV */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  gap: 2px; padding: 8px 48px;
-  background: rgba(240,248,255,.88);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(196,223,232,.5);
+  gap: 2px; padding: 10px 44px;
+  background: rgba(226,240,249,.82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201,223,233,.6);
 }
 .nav-btn {
-  font: 500 14px/1 var(--fm);
+  font: italic 500 16px/1 var(--ft);
   color: var(--muted); background: none; border: none;
-  padding: 11px 14px; border-radius: 8px;
+  padding: 11px 15px; border-radius: 8px;
   cursor: pointer; transition: all .2s;
-  letter-spacing: .02em; white-space: nowrap;
+  white-space: nowrap;
 }
 .nav-btn:hover { color: var(--text); }
-.nav-btn.on { color: var(--text); font-weight: 700; background: var(--baby-light); }
+.nav-btn.on { color: var(--text); font-weight: 700; background: rgba(221,240,250,.9); }
+.nav-brand { font-size: 18px; font-weight: 700; }
 
-/* PAGE CONTAINER */
+/* PAGES */
 .pages { margin-top: 72px; position: relative; }
 .page {
-  display: none; min-height: calc(100vh - 48px);
-  max-width: 900px; margin: 0 auto;
-  padding: 48px 24px 120px;
+  display: none; min-height: calc(100vh - 72px);
+  max-width: 720px; margin: 0 auto;
+  padding: 44px 24px 110px;
   position: relative; z-index: 1;
 }
-.page.on { display: block; animation: fadeUp .4s ease; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.page.on { display: block; animation: fadeUp .35s ease; }
+.page-wide { max-width: 980px; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* MARKDOWN-STYLE TYPOGRAPHY — Bear-inspired */
+/* TYPOGRAPHY — italic Times elegance */
 .md-h1 {
-  font-size: 34px; font-weight: 700; color: var(--text);
-  margin-bottom: 6px; line-height: 1.25;
-  letter-spacing: -.02em;
+  font-style: italic; font-size: 40px; font-weight: 700; color: var(--text);
+  margin-bottom: 6px; line-height: 1.2;
 }
-.md-h1::before { content: '> '; color: var(--faint); font-weight: 400; }
-
 .md-h2 {
-  font-size: 20px; font-weight: 600; color: var(--text);
-  margin: 36px 0 12px; line-height: 1.35;
-  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  font-style: italic; font-size: 24px; font-weight: 700; color: var(--text);
+  margin: 32px 0 10px; line-height: 1.3;
+  padding-bottom: 6px; border-bottom: 1px solid var(--ink-line);
 }
-.md-h2::before { content: '> '; color: var(--faint); font-weight: 400; }
+.md-h3 { font-style: italic; font-size: 19px; font-weight: 700; color: var(--text); margin: 22px 0 6px; }
 
-.md-h3 {
-  font-size: 15px; font-weight: 600; color: var(--text);
-  margin: 24px 0 8px;
-}
-.md-h3::before { content: '### '; color: var(--faint); font-weight: 400; }
+.md-sub { font-style: italic; font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
 
-.md-sub {
-  font-size: 14px; color: var(--muted); font-weight: 400;
-  margin-bottom: 24px; line-height: 1.6;
-}
+.md-p { font-size: 16.5px; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
+.md-p strong { font-weight: 700; }
+.md-p em { font-style: italic; }
+.md-p a { color: var(--sky-deep); text-decoration: none; border-bottom: 1px solid rgba(135,206,235,.5); }
+.md-p a:hover { border-bottom-color: var(--sky-deep); }
 
-.md-p {
-  font-size: 15px; color: var(--text); font-weight: 400;
-  line-height: 1.6; margin-bottom: 10px;
-}
-.md-p strong { font-weight: 600; }
-.md-p em { font-style: italic; color: var(--muted); }
-.md-p a { color: var(--sky); text-decoration: none; border-bottom: 1px solid rgba(135,206,235,.3); }
-.md-p a:hover { border-bottom-color: var(--sky); }
+.md-hr { border: none; border-top: 1px solid var(--ink-line); margin: 22px 0; }
 
-.md-hr {
-  border: none; border-top: 1px solid var(--border);
-  margin: 24px 0;
-}
+.blog-date { font: 500 12px/1.4 var(--fm); color: var(--light); letter-spacing: .05em; margin: 16px 0 6px; }
 
-.md-tags {
-  font-size: 11px; color: var(--muted); line-height: 2;
-  margin-bottom: 16px;
-}
-.md-tag {
-  display: inline; padding: 2px 0;
-  color: var(--sky); font-weight: 400;
-}
-.md-tag::before { content: '#'; opacity: .5; }
-
-.md-links {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;
-}
+.md-links { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
 .md-link {
-  font-size: 13px; color: var(--muted); text-decoration: none;
-  padding: 7px 14px; border: 1px solid var(--border); border-radius: 8px;
-  transition: all .2s; font-weight: 500;
+  font-style: italic; font-size: 15px; color: var(--muted); text-decoration: none;
+  padding: 7px 15px; border: 1px solid var(--ink-line); border-radius: 999px;
+  transition: all .2s; background: rgba(255,254,251,.6);
 }
-.md-link:hover { border-color: var(--text); color: var(--text); }
+.md-link:hover { color: var(--text); border-color: var(--text); }
 
-/* PROJECT LIST — Bear-style, no cards, just clean entries */
-.proj-entry {
-  padding: 14px 10px; margin: 0 -10px;
-  border-bottom: 1px solid rgba(196,223,232,.4); border-radius: 10px;
-  opacity: 0; transform: translateY(8px);
-  animation: fadeUp .4s ease forwards;
-  transition: background .25s ease;
+/* ============ PAPER CARDS ============ */
+.pgrid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px; align-items: stretch;
 }
-.proj-entry:hover { background: rgba(221,240,250,.45); }
-.proj-entry:last-child { border-bottom: none; }
+.pcard {
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 18px 18px 14px;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  box-shadow: 0 1px 2px rgba(34,51,63,.08), 0 6px 18px rgba(34,51,63,.07);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.pcard:hover { transform: translateY(-3px); box-shadow: 0 2px 3px rgba(34,51,63,.09), 0 12px 26px rgba(34,51,63,.11); }
 
-.proj-head {
-  display: flex; align-items: baseline; gap: 8px;
-  margin-bottom: 4px; flex-wrap: wrap;
+.pcard-emoji { font-size: 24px; line-height: 1; margin-bottom: 8px; }
+.pcard-emoji img { width: 26px; height: 26px; border-radius: 6px; display: block; }
+.pcard-name {
+  font-style: italic; font-size: 18.5px; font-weight: 700; color: var(--text);
+  line-height: 1.2; padding-bottom: 7px; margin-bottom: 8px;
+  border-bottom: 1px solid var(--ink-line);
 }
-.proj-icon { font-size: 18px; line-height: 1; }
-.proj-name {
-  font-size: 17px; font-weight: 700; color: var(--text);
-  letter-spacing: .02em; text-transform: uppercase;
+.pcard-line {
+  font-size: 14.5px; color: var(--muted); line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-.proj-status {
-  font-size: 11px; padding: 3px 10px; border-radius: 6px;
-  font-weight: 500; white-space: nowrap;
+.pcard-status {
+  font-style: italic; font-size: 13.5px; margin-top: auto; padding-top: 10px;
+  text-align: right;
 }
+.st-live { color: var(--pink); }
+.st-built { color: #2b6a8a; }
+.st-dev { color: #8a6d1f; }
+.st-idea { color: #6a7a86; }
 
-.proj-tagline {
-  font-size: 14px; color: var(--muted); font-weight: 400;
-  margin-bottom: 8px; line-height: 1.55;
+/* ============ ZOOM NOTE (overlay) ============ */
+.note-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+  background: rgba(34,51,63,.32);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
 }
-.proj-tagline::before { content: '> '; color: var(--faint); }
-
-.proj-desc {
-  font-size: 14.5px; line-height: 1.6; color: var(--text);
-  font-weight: 400; margin: 10px 0;
+.note-overlay.on { display: flex; animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.note {
+  background: var(--paper);
+  border-radius: 10px;
+  max-width: 620px; width: 100%; max-height: 84vh;
+  overflow-y: auto;
+  padding: 34px 38px 30px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(34,51,63,.18), 0 26px 60px rgba(34,51,63,.28);
+  animation: noteUp .25s ease;
 }
-.proj-desc strong { font-weight: 600; }
-.proj-desc em { font-style: italic; color: var(--muted); }
-
-.proj-stack {
-  display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;
+@keyframes noteUp { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+.note-doodle { text-align: center; margin-bottom: 14px; display: none; }
+.note-doodle.hasimg { display: block; }
+.note-doodle img { max-height: 150px; max-width: 80%; object-fit: contain; }
+.note-head { font-style: italic; font-size: 27px; font-weight: 700; color: var(--text); line-height: 1.25; }
+.note-head .note-emoji { font-style: normal; margin-right: 6px; }
+.note-head .note-emoji img { width: 30px; height: 30px; border-radius: 7px; display: inline-block; vertical-align: -4px; }
+.note-head .note-st { font-size: 16px; font-weight: 400; }
+.note-line { border: none; border-top: 1px solid var(--ink-line); margin: 14px 0; }
+.note-desc { font-size: 16px; line-height: 1.55; color: var(--text); }
+.note-desc strong { font-weight: 700; }
+.note-desc em { font-style: italic; }
+.note-desc code { font: 500 13px/1 var(--fm); }
+.note-stack { font: 500 12.5px/1.8 var(--fm); color: var(--muted); }
+.note-links { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
+.note-close {
+  position: absolute; top: 12px; right: 14px;
+  font: italic 700 15px/1 var(--ft); color: var(--light);
+  background: none; border: none; cursor: pointer; padding: 8px 10px; border-radius: 8px;
 }
-.t { font-size: 11.5px; font-weight: 500; padding: 3px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
-.ti { font-size: 10px; line-height: 1; }
-.t-nxt{background:#ddf0fa;color:#1a5a7a;border:1px solid #b8dced}.t-rct{background:#daf0fb;color:#0a6a9a;border:1px solid #b0d8f0}
-.t-ts{background:#d8eaf8;color:#1a4a7a;border:1px solid #b0cce8}.t-sup{background:#d5f0e5;color:#1a6a4a;border:1px solid #a0d8c0}
-.t-tw{background:#d8f0fb;color:#0a5a8a;border:1px solid #a8d8f0}.t-cla{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}
-.t-ver{background:#e8e8e8;color:#333;border:1px solid #ccc}.t-js{background:#fdf6d8;color:#6a5a00;border:1px solid #e8dda0}
-.t-hc{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}.t-py{background:#dae4f8;color:#2a4a8a;border:1px solid #b0c8e8}
-.t-fl{background:#d8f0f0;color:#1a5a5a;border:1px solid #a8d8d8}.t-wau{background:#eadaf8;color:#5a2a7a;border:1px solid #d0b8e8}
-.t-spo{background:#d5f0d8;color:#0a6a2a;border:1px solid #a0d8a8}.t-ls{background:#f0f0d8;color:#5a5a1a;border:1px solid #d8d8a0}
-.t-mu{background:#d8f0d8;color:#1a5a1a;border:1px solid #a8d8a8}.t-jav{background:#f8e8d8;color:#7a4a0a;border:1px solid #e8c8a0}
-.t-sw{background:#f8e4d8;color:#6a3a0a;border:1px solid #e8c0a0}.t-db{background:#d8f0f0;color:#0a5a5a;border:1px solid #a8d8d8}
-.t-sec{background:#f8d8d8;color:#7a1a1a;border:1px solid #e8a8a8}.t-fig{background:#e4d8f8;color:#5a2a8a;border:1px solid #c8a8e8}
-.t-git{background:#f8e0d8;color:#8a2a1a;border:1px solid #e8b0a0}.t-def{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}
-.t-fal{background:#f0d8f0;color:#6a1a6a;border:1px solid #d8a8d8}.t-web{background:#f8f0d8;color:#6a5a00;border:1px solid #e8d8a0}
-.t-swu{background:#dae0f8;color:#2a3a7a;border:1px solid #b0c0e8}
-
-.proj-links {
-  display: flex; gap: 6px;
-}
+.note-close:hover { color: var(--text); background: rgba(221,240,250,.7); }
 .proj-link {
-  font-size: 12.5px; color: var(--muted); text-decoration: none;
-  padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px;
-  transition: all .2s; font-weight: 500;
+  font-style: italic; font-size: 15px; color: var(--muted); text-decoration: none;
+  padding: 7px 16px; border: 1px solid var(--ink-line); border-radius: 999px;
+  transition: all .2s;
 }
-.proj-link:hover { border-color: var(--text); color: var(--text); }
-.proj-link-live {
-  color: #fff; background: var(--pink); border-color: var(--pink); font-weight: 600;
-}
-.proj-link-live:hover { background: #C2255C; }
+.proj-link:hover { color: var(--text); border-color: var(--text); }
+.proj-link-live { color: #fff; background: var(--pink); border-color: var(--pink); font-style: italic; }
+.proj-link-live:hover { background: #C2255C; border-color: #C2255C; color: #fff; }
+body.note-open { overflow: hidden; }
 
-/* PAGINATION */
-.pager {
-  display: flex; justify-content: center; gap: 6px; margin: 20px 0 8px;
-}
+/* PAGER (technical tabs) */
+.pager { display: flex; gap: 8px; margin: 18px 0 8px; flex-wrap: wrap; }
 .pager-btn {
-  font: 500 13px/1 var(--fm); padding: 8px 16px; border-radius: 6px;
-  border: 1px solid var(--border); background: none; color: var(--muted);
+  font: italic 500 15px/1 var(--ft); padding: 7px 17px; border-radius: 999px;
+  border: 1px solid var(--ink-line); background: rgba(255,254,251,.6); color: var(--muted);
   cursor: pointer; transition: all .2s;
 }
-.pager-btn:hover, .pager-btn.on { background: var(--sky); color: #fff; border-color: var(--sky); }
+.pager-btn:hover, .pager-btn.on { background: var(--text); color: #fff; border-color: var(--text); }
 
-/* SKILLS — 4 column, Bear-style clean list */
-.skills-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; margin-top: 12px;
-}
-.skill-col { padding: 0 16px 16px 0; }
-.skill-col:last-child { padding-right: 0; }
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 22px; margin-top: 10px; }
+.skill-col { padding-bottom: 14px; }
 .skill-col-title {
-  font-size: 13px; font-weight: 600; color: var(--muted);
-  text-transform: lowercase; letter-spacing: .06em;
-  margin-bottom: 8px; padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
+  font-style: italic; font-size: 17px; font-weight: 700; color: var(--text);
+  margin-bottom: 7px; padding-bottom: 5px; border-bottom: 1px solid var(--ink-line);
 }
-.skill-col-title::before { content: '## '; color: var(--faint); font-weight: 400; }
-.skill-item {
-  font-size: 14.5px; color: var(--text); font-weight: 400;
-  padding: 3px 0; line-height: 1.5;
-}
-.skill-item::before { content: '- '; color: var(--faint); }
+.skill-item { font-size: 15px; color: var(--text); padding: 2.5px 0; line-height: 1.4; }
 
-/* EXPERIENCE — clean list */
-.exp-entry {
-  padding: 12px 0; border-bottom: 1px solid rgba(196,223,232,.3);
-}
+/* EXPERIENCE / EDUCATION */
+.exp-entry { padding: 14px 0; border-bottom: 1px solid var(--ink-line); }
 .exp-entry:last-child { border-bottom: none; }
-.exp-role { font-size: 16.5px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: .02em; line-height: 1.4; }
-.exp-desc { font-size: 14.5px; color: var(--text); line-height: 1.6; margin-top: 4px; font-weight: 400; }
-.exp-desc strong { font-weight: 600; }
+.exp-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.exp-role { font-style: italic; font-size: 19px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.exp-period { margin-left: auto; font-style: italic; font-size: 14px; color: var(--light); white-space: nowrap; }
+.exp-desc { font-size: 15.5px; color: var(--text); line-height: 1.5; margin-top: 4px; }
+.exp-desc strong { font-weight: 700; }
 .exp-desc em { font-style: italic; color: var(--muted); }
-.exp-period { font-size: 12px; color: var(--light); margin-top: 4px; font-weight: 400; line-height: 1.4; }
-
-/* SCHEDULE */
-.sched-entry {
-  padding: 12px 10px; margin: 0 -10px;
-  border-bottom: 1px solid rgba(196,223,232,.3); border-radius: 10px;
-  transition: background .25s ease;
-}
-.sched-entry:hover { background: rgba(221,240,250,.35); }
-.sched-entry:last-child { border-bottom: none; }
-.sched-head { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
-.sched-name { font-size: 15px; font-weight: 700; color: var(--text); }
-.sched-note { font-size: 13.5px; color: var(--muted); line-height: 1.6; font-weight: 400; }
-.sched-note strong { font-weight: 600; color: var(--text); }
-
-/* BLOG */
-.blog-entry { margin-bottom: 28px; }
-.blog-date {
-  font-size: 12px; color: var(--light); letter-spacing: .06em;
-  margin-bottom: 8px; font-weight: 400;
-}
-.blog-date::before { content: '// '; color: var(--faint); }
 
 /* FOOTER */
-.footer {
-  text-align: center; padding: 32px; font-size: 11px;
-  color: var(--faint); letter-spacing: .06em;
-  position: relative; z-index: 1;
-}
+.footer { text-align: center; padding: 30px; font-size: 13px; color: var(--light); letter-spacing: .12em; position: relative; z-index: 1; }
 
 @media (max-width: 640px) {
-  .nav { padding: 4px 8px; gap: 2px; flex-wrap: wrap; justify-content: center; }
-  .nav-btn { font-size: 12px; padding: 10px 9px; }
-  .page { padding: 32px 16px 80px; }
-  .md-h1 { font-size: 22px; }
+  .nav { padding: 5px 8px; gap: 2px; flex-wrap: wrap; justify-content: center; }
+  .nav-btn { font-size: 14px; padding: 10px 10px; }
+  .nav-brand { font-size: 16px; }
+  .pages { margin-top: 96px; }
+  .page { padding: 30px 16px 80px; }
+  .md-h1 { font-size: 32px; }
+  .pgrid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
-  .proj-link, .md-link { padding: 6px 12px; }
+  .note { padding: 26px 22px 22px; max-height: 88vh; }
+  .exp-period { margin-left: 0; width: 100%; }
 }
-@media (max-width: 400px) {
-  .skills-grid { grid-template-columns: 1fr; }
-}
+@media (max-width: 380px) { .skills-grid { grid-template-columns: 1fr; } }
 
-/* klavye ile gezenler icin gorunur odak */
-button:focus-visible, a:focus-visible {
-  outline: 2px solid var(--sky); outline-offset: 2px; border-radius: 6px;
+button:focus-visible, a:focus-visible, .pcard:focus-visible {
+  outline: 2px solid var(--sky-deep); outline-offset: 2px; border-radius: 8px;
 }
-
-/* hareket azaltma tercihine saygi */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   html { scroll-behavior: auto; }
-  .proj-entry, .page.on { opacity: 1; transform: none; }
 }
 </style>
 </head>
@@ -343,15 +284,15 @@ button:focus-visible, a:focus-visible {
 <div class="pages">
   <!-- HOME -->
   <div class="page" id="p-home">
-    <div style="min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;max-width:620px;margin:0 auto">
-      <div style="font-size:48px;margin-bottom:14px">🦋🐞🌞🍃💐</div>
-      <div style="font-size:13px;letter-spacing:.12em;color:var(--muted);margin-bottom:16px">// bilkent university · computer science</div>
-      <h1 class="md-h1" style="font-size:clamp(28px,5vw,44px);margin-bottom:16px">hi, i'm <span style="border-bottom:2px solid var(--sky)">damla</span> 👩🏻‍💻<span class="cursor"></span></h1>
-      <p class="md-p" style="font-size:15.5px;max-width:580px;margin-bottom:24px">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-        <button onclick="go('projects')" style="font:600 13.5px/1 var(--fm);padding:12px 24px;background:var(--sky);color:#fff;border:none;border-radius:6px;cursor:pointer">explore projects 🌷</button>
-        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link" style="padding:12px 24px;font-size:13.5px">github →</a>
-        <a href="https://github.com/sponsors/damlahelloworld" target="_blank" rel="noopener" class="md-link" style="padding:12px 24px;font-size:13.5px">sponsor 💖</a>
+    <div style="min-height:calc(100vh - 150px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center">
+      <div style="font-size:40px;margin-bottom:16px">🦋🐞🌞🍃💐</div>
+      <div style="font:500 12.5px/1.4 var(--fm);letter-spacing:.1em;color:var(--muted);margin-bottom:14px">// bilkent university · computer science</div>
+      <h1 class="md-h1" style="font-size:clamp(38px,6vw,54px);margin-bottom:12px">hi, i'm damla 👩🏻‍💻</h1>
+      <p class="md-p" style="font-size:18px;max-width:560px;margin-bottom:26px;font-style:italic;color:var(--muted)">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button onclick="go('projects')" style="font:italic 700 16px/1 var(--ft);padding:11px 24px;background:var(--sky-deep);color:#fff;border:none;border-radius:999px;cursor:pointer">explore projects 🌷</button>
+        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link" style="padding:11px 22px">github →</a>
+        <a href="https://github.com/sponsors/damlahelloworld" target="_blank" rel="noopener" class="md-link" style="padding:11px 22px">sponsor 💖</a>
       </div>
     </div>
   </div>
@@ -359,49 +300,31 @@ button:focus-visible, a:focus-visible {
   <!-- ABOUT — loaded from content/about-me.md -->
   <div class="page" id="p-about">
     <h1 class="md-h1">🦋 about me</h1>
-    <div id="about-content"></div>
+    <div id="about-content" style="margin-top:14px"></div>
     <div class="md-links" style="margin-top:16px">
       <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
-      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">🔗 LinkedIn</a>
-      <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">🐙 GitHub</a>
-      <a href="https://github.com/sponsors/damlahelloworld" target="_blank" rel="noopener" class="md-link">💖 Sponsor</a>
+      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">LinkedIn</a>
+      <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">GitHub</a>
+      <a href="https://github.com/sponsors/damlahelloworld" target="_blank" rel="noopener" class="md-link">Sponsor 💖</a>
     </div>
-  </div>
-
-  <!-- SCHEDULE -->
-  <div class="page" id="p-schedule">
-    <h1 class="md-h1">📋 schedule</h1>
-    <p class="md-sub">what i'm working on, what's next, and the stories behind each project · <a id="mail-ideas" href="#" style="color:var(--pink);font-weight:400;text-decoration:underline">✨ mail me for ideas !</a></p>
-    <hr class="md-hr">
-    <div id="sched-list"></div>
-  </div>
-
-  <!-- IN DEVELOPMENT -->
-  <div class="page" id="p-indev">
-    <h1 class="md-h1">🐝 in development</h1>
-    <p class="md-sub">repos that are actively being built</p>
-    <hr class="md-hr">
-    <div id="indev-list"></div>
   </div>
 
   <!-- LIFE PLAN — loaded from content/life-plan.md -->
   <div class="page" id="p-lifeplan">
     <h1 class="md-h1">🌸 life plan & dreams</h1>
     <p class="md-sub">thoughts, reflections, and the road ahead</p>
-    <hr class="md-hr">
     <div id="lifeplan-content"></div>
   </div>
 
   <!-- PROJECTS -->
-  <div class="page" id="p-projects">
+  <div class="page page-wide" id="p-projects">
     <h1 class="md-h1">💐 projects</h1>
-    <p class="md-sub">march – september 2026 pipeline & deployed work</p>
-    <div id="proj-pager" class="pager"></div>
-    <div id="proj-list"></div>
+    <p class="md-sub" id="proj-count"></p>
+    <div id="proj-list" class="pgrid"></div>
   </div>
 
   <!-- TECHNICAL -->
-  <div class="page" id="p-technical">
+  <div class="page page-wide" id="p-technical">
     <h1 class="md-h1">👾 technical details</h1>
     <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing — it's about evaluating knowledge.</p>
     <div id="tech-pager" class="pager"></div>
@@ -409,86 +332,51 @@ button:focus-visible, a:focus-visible {
   </div>
 </div>
 
+<!-- ZOOM NOTE -->
+<div class="note-overlay" id="note-overlay" role="dialog" aria-modal="true" aria-label="project detail">
+  <div class="note" id="note-box"></div>
+</div>
+
 <div class="footer">🌼 💫 🌙 ✨ 🦋 💐 🌞 🌷 🌈 👾</div>
 
 <script>
 const NAV_L=[
-  {k:"home",l:"✨damla.log🐝"},{k:"schedule",l:"📋 schedule"},
+  {k:"home",l:"✨damla.log🐝",brand:true},
   {k:"lifeplan",l:"🌷 life plan"},{k:"about",l:"💃🏽 about me"}
 ];
 const NAV_R=[
-  {k:"projects",l:"💐 projects"},{k:"indev",l:"🐝 in development"},
-  {k:"technical",l:"👾 technical"}
+  {k:"projects",l:"💐 projects"},{k:"technical",l:"👾 technical"}
 ];
 const NAV=[...NAV_L,...NAV_R];
 
 const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖"];
-const T={
-  "Next.js 16":{i:"▲",c:"nxt"},"Next.js 15":{i:"▲",c:"nxt"},"Next.js (App Router)":{i:"▲",c:"nxt"},
-  "React 19":{i:"⚛",c:"rct"},"React":{i:"⚛",c:"rct"},
-  "TypeScript":{i:"TS",c:"ts"},"JavaScript":{i:"JS",c:"js"},
-  "Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},
-  "Tailwind CSS 4":{i:"🌊",c:"tw"},"Anthropic Claude API":{i:"✦",c:"cla"},
-  "Vercel (Serverless)":{i:"▲",c:"ver"},"Vercel":{i:"▲",c:"ver"},
-  "HTML/CSS":{i:"🎨",c:"hc"},"Music Theory Algorithms":{i:"🎵",c:"mu"},
-  "Python":{i:"🐍",c:"py"},"Flask + CORS":{i:"🧪",c:"fl"},
-  "Web Audio API":{i:"🔊",c:"wau"},"Spotify Embed API":{i:"🎧",c:"spo"},
-  "LocalStorage API":{i:"💾",c:"ls"},"Google OAuth":{i:"🔑",c:"sec"},
-  "Java 17+":{i:"☕",c:"jav"},"Java":{i:"☕",c:"jav"},"Java Swing":{i:"🖼",c:"sw"},
-  "MySQL 8.0":{i:"🐬",c:"db"},"Database":{i:"🗄",c:"db"},"SQL":{i:"🗃",c:"db"},
-  "Next.js Serverless API Routes":{i:"⚡",c:"nxt"},
-  "fal.ai Queue API":{i:"✨",c:"fal"},"Minimax Video-01":{i:"🎬",c:"fal"},
-  "Hailuo-02 Text-to-Video":{i:"🎬",c:"fal"},"FLUX Schnell (Image Gen)":{i:"🎨",c:"fal"},
-  "SHA-256 + Salt (Password Hashing)":{i:"🔐",c:"sec"},"JavaMail API (Email Verification)":{i:"📧",c:"jav"},
-  "MVC Architecture":{i:"🏗",c:"def"},"Figma (UI Prototyping)":{i:"🎨",c:"fig"},
-  "Git/GitHub":{i:"🐙",c:"git"},"CSS":{i:"🎨",c:"hc"},"JavaFX":{i:"🖼",c:"sw"},
-  "SwiftUI":{i:"🍎",c:"swu"},"SwiftData":{i:"💾",c:"swu"},"CoreLocation":{i:"📍",c:"swu"},
-  "WeatherAPI":{i:"🌤",c:"web"},"UserNotifications":{i:"🔔",c:"swu"},
-};
-function mkTag(n){const m=T[n]||{i:"•",c:"def"};return `<span class="t t-${m.c}"><span class="ti">${m.i}</span>${n}</span>`;}
 
+// sl: doodle filename → doodles/<sl>.png (Damla'nın çizimleri; dosya varsa notta görünür)
 const P=[
-  {e:"🌷",n:"Kısa Lafın Uzunu",tg:"impromptu speaking practice — 2,900+ real topics, live on custom domain",d:"A Turkish <strong>impromptu speaking practice</strong> web app: draw a random topic from <strong>2,908 real, sourced topics</strong> (philosophy, psychology, literature, science...), set a 5–30 min timer, and speak. Every topic comes from a real source — books, academic concepts, ekşi sözlük threads, Reddit debates — harvested by <strong>parallel AI research agents</strong>, never AI-invented. Features: swipeable topic deck, <strong>draggable liquid-glass post-it notes board</strong>, spoken-topics box, save-for-later hearts, and a <strong>Supabase waitlist</strong> (insert-only RLS, email enumeration protected). <strong>Programmatic SEO</strong>: 2,908 static topic pages + 16 category pages + 13 keyword landing pages, sitemap submitted to Search Console.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Supabase (PostgreSQL + RLS)","Programmatic SEO","Vercel"],s:"💐 Live",g:"https://github.com/damlahelloworld/kisalafinuzunu",l:"https://www.kisalafinuzunu.com",co:"#7059BD"},
-  {e:"🍬",n:"kitschat",tg:"english twin of kısa lafın uzunu — whimsy pastel, live on vercel",d:"The <strong>English twin</strong> of Kısa Lafın Uzunu with a whimsy pastel redesign: <strong>2,272 sourced English topics</strong>, the best of the Turkish pool translated with <strong>verified published quote wording</strong> (misattributed quotes caught and dropped) plus fresh topics harvested from Reddit, Hacker News, YouTube and X discourse by <strong>parallel AI research agents</strong>. Hand-drawn wobble cards, candy buttons, a living animated topic deck, and <strong>programmatic SEO</strong>: 2,272 static topic pages + 15 category pages + 13 keyword landing pages.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Programmatic SEO","Vercel"],s:"💐 Live",g:"https://github.com/damlahelloworld/kitschat",l:"https://kitschat.vercel.app",co:"#8A70D6"},
-  {e:"<img src='https://damlahelloworld.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:22px;height:22px;border-radius:5px;vertical-align:middle'>",n:"Scrapp",tg:"digital scrapbook app — frame photos, collect memories, sticker packs",d:"A native iOS scrapbook app. Create <strong>themed notebooks</strong>, frame your photos with <strong>decorative borders</strong> (polaroid, flower wreath, cloud, heart), add short notes, and collect memories. Features <strong>camera & gallery</strong> photo picking, <strong>hand-drawn sticker packs</strong> (butterflies, kawaii animals, fairy garden, vintage), free-form canvas with drag/pinch/rotate, haptic feedback, and smooth animations. No third-party dependencies — pure SwiftUI + SwiftData.",t:["SwiftUI","SwiftData"],s:"💐 Built",g:"https://github.com/damlahelloworld/scrapp",l:"https://damlahelloworld.github.io/scrapp/",ll:"📒 landing page",co:"#F8B4C8"},
-  {e:"🥦",n:"Butterfry",tg:"food allergen detective — find what's messing with your stomach",d:"A food ingredient cross-reference tool. When multiple foods cause reactions (bloating, nausea, heartburn...), add them and <strong>find common ingredients</strong> — the culprit. Features: <strong>24 curated products</strong> + Open Food Facts API for unlimited search, OCR label scanning via <strong>Tesseract.js</strong>, personal reaction tracking, suspect ingredient watchlist, and cross-reference analysis engine. Mint green health-themed UI. All data stays in your browser via localStorage — no accounts, no servers, no tracking.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","LocalStorage API"],s:"💐 Built",g:"https://github.com/damlahelloworld/butterfry",co:"#34d399"},
-  {e:"☀️",n:"Sunny",tg:"iOS weather app with hand-drawn backgrounds & sunscreen reminders",d:"A native iOS weather app that shows <strong>current conditions with illustrated backgrounds</strong> that change based on weather (sunny, cloudy, rainy, hot). Uses <strong>CoreLocation</strong> for GPS + reverse geocoding, fetches real-time data from <strong>WeatherAPI</strong>, and sends <strong>sunscreen reminder notifications</strong> when temperature exceeds your threshold. Features 8 unique hand-drawn weather illustrations, doodle-style typography, staggered entrance animations, and a baby blue settings screen. Built entirely in <strong>SwiftUI</strong> — my first iOS app.",t:["SwiftUI","CoreLocation","WeatherAPI","UserNotifications"],s:"💐 Built",g:"https://github.com/damlahelloworld/sunny",l:"https://damlahelloworld.github.io/sunny/",ll:"☀️ documentation",co:"#F39C12"},
-  {e:"💌",n:"Forget-Me-Not",tg:"slow letter platform — letters travel based on real distance",d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong>. Features: <strong>Google OAuth</strong> via Supabase, bottle mail with random matching, memory box for unsent letters, <strong>user matching with conversation starters</strong>, XP/leveling gamification with collectible stamps, seasonal themes, and <em>a mythology blog about historical love stories</em>. No instant messaging, no read receipts, no pressure — intentionally slow.",t:["Next.js (App Router)","React","TypeScript","Supabase (PostgreSQL + Auth)","Google OAuth","CSS","Vercel"],s:"💐 Live",g:"https://github.com/damlahelloworld/forget-me-not",l:"https://myosotis-sylvatica.vercel.app",co:"#9B59B6"},
-  {e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media criticism simulator",d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental toughness trainer. Write anything you'd post online → <strong>Claude API generates brutally realistic toxic comments</strong> from different troll personas → you practice handling harsh criticism to build resilience. Features a curated library of quotes and book recommendations. <strong>Python</strong> for the API backend, <strong>React</strong> for the frontend, deployed on <strong>Vercel</strong>.",t:["Python","Flask + CORS","Anthropic Claude API","React","Vercel","JavaScript"],s:"💐 Live",g:"https://github.com/damlahelloworld/linc-matik",l:"https://lincmatik.vercel.app",co:"#8e35b8"},
-  {e:"🎵",n:"Musical Improvisation Tool",tg:"scale identifier & composition aid with Web Audio API",d:"Play or input a few notes → get every possible <strong>scale, mode, chord, and progression</strong> instantly. Built with a <strong>custom music theory algorithm</strong> (Circle of Fifths, 7 diatonic modes, enharmonic mapping). Features <strong>Web Audio API</strong> synthesis for piano & guitar, interactive <strong>piano + guitar fretboard</strong>, QWERTY keyboard mapping, <strong>Spotify</strong> song suggestions per key, and a <strong>chord progression planner</strong>.",t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],s:"💐 Live",g:"https://github.com/damlahelloworld/musical-improvisation-tool",l:"https://damlahelloworld.github.io/musical-improvisation-tool/",co:"#00B894"},
-  {e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",d:"Draw cards from a full <strong>78-card Rider-Waite tarot deck</strong> and watch AI bring them to life as <strong>cinematic video</strong>. Hand-crafted prompts for each card describe the illustration animating. Three fal.ai video models to choose from. Architecture: browser → <strong>4 serverless API routes</strong> → fal.ai Queue API.",t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],s:"💐 Live",g:"https://github.com/damlahelloworld/lady-fantasy.ai",l:"https://lady-fantasy.vercel.app",co:"#6C5CE7"},
-  {e:"👾",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em> <strong>Interactive UML class diagram</strong> with method descriptions and dependency mapping is deployed on GitHub Pages.",t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],s:"💐 Built & Deployed",g:"https://github.com/damlahelloworld/league-of-bilkent",l:"https://damlahelloworld.github.io/league-of-bilkent/",ll:"✨ live uml website!",co:"#E67E22"},
-  {e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",t:["Java","Java Swing","Database","SQL"],s:"💐 Built",g:null,co:"#27AE60"},
-  {e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",t:["JavaScript","HTML/CSS"],s:"💐 Live",g:"https://github.com/damlahelloworld/coffee-menu",l:"https://damlahelloworld.github.io/coffee-menu/",co:"#6F4E37"},
-  {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",t:["Java","Java Swing","JavaFX"],s:"💐 Early build",g:null,co:"#FD79A8"},
-  {e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",t:["Python","face_recognition","dlib"],s:"💐 Built",g:"https://github.com/damlahelloworld/age-wiz",co:"#8E44AD"},
-  {e:"<img src='https://damlahelloworld.github.io/damla-log/app_icon.png' style='width:22px;height:22px;border-radius:5px;vertical-align:middle'>",n:"damla.log",tg:"developer companion iOS app — tasks, ideas, bugs, versions",d:"A native iOS app for managing all my coding projects from my phone. <strong>4 tabs</strong> — tasks, ideas, issues, versions — each with its own stats page (contribution grid, weekly breakdown, project bars). <strong>Tag-based organization</strong> across projects, swipe gestures for status changes, vertical paging between content and analytics. Syncs via <strong>iCloud Documents</strong> with real-time conflict resolution. Connects to <strong>GitHub OAuth</strong> for repo tagging. Integrates with <strong>Claude Code via URL schemes</strong> — tasks created in terminal appear on phone instantly. Built entirely in SwiftUI with JSON Codable persistence and backward-compatible decoding.",t:["SwiftUI","iCloud Documents","GitHub OAuth","Keychain","URL Schemes","JSON Codable","NSMetadataQuery"],s:"💐 Built",g:"https://github.com/damlahelloworld/damla.log",l:"https://damlahelloworld.github.io/damla-log/",ll:"🌸 landing page",co:"#D4A5C7"},
-];
-
-const SCHED=[
-  {e:"🎀",n:"Linçmatik",note:"it is live. i bought tokens. you can mentally practice yourself. slay!!!",s:"💐 live"},
-  {e:"🎵",n:"Musical Improvisation Tool",note:"such a beautiful website. helps you identify scales, make chord progressions. no database but local storage. i think it is a useful tool with song recommendations in related scale.",s:"💐 live"},
-  {e:"💌",n:"Forget-Me-Not",note:"a huge letter platform. there is a lot to implement. will take weeks, maybe whole semester. nevertheless, it is live now! i need to start advertising it on linkedin.",s:"💐 live"},
-  {e:"💫",n:"Lady Fantasy",note:"tarot, lenormand, blogs using claude api and fal.ai api — finished but needs to be polished. it simply uses fortune telling with prompts.",s:"needs polish"},
-  {e:"🌙",n:"Moonlight",note:"easy, astrology platform. i love watching moon phases. moon phases, horary added.",s:"core done"},
-  {e:"🌊",n:"Dewdrop",note:"events platform. MVP can be done. my name is damla su, in english drop, drip, dewdrop, waterdrop. inspo is communities are like an ocean, nevertheless we are all individual drops. everyone does a project like this. what i can have that they don't?",s:"MVP possible"},
-  {e:"🐞",n:"LadyBug",note:"will take ages but MVP can be done. while working as a TA for CS115, i found out that people were not really learning by writing code. it was teaching when you were trying to find and correct a logical error, which is silent but more destructive for the code.",s:"MVP possible"},
-  {e:"🌷",n:"Damlacık",note:"a personal community platform. i am becoming a youtuber. i believe i have so much to say, but my innocence has been used up on the wrong people. it might take some weeks. database should be secured, else i will be linçed like tosuncuk from çiftlik bank for stealing (leaking) people's data. for building a community. still on planning because i want a community platform but i can't find an astonishing point for this project only for this moment because my mind is too full... <strong>stack:</strong> Supabase (PostgreSQL + Auth + Realtime), JavaScript, Web Technologies.",s:"planning"},
-  {e:"🥦",n:"Butterfry",note:"food allergen detective! cross-reference foods that mess with you to find the common ingredient culprit. 24 curated products + Open Food Facts API. OCR scanning. mint themed. it's built!",s:"💐 built"},
-  {e:"🔮",n:"Age Wiz",note:"a real ai model! face recognition trained on my own photos. uses face_recognition + dlib. small and sweet.",s:"💐 built"},
-  {e:"☕",n:"Interactive Coffee Menu",note:"i have done implementing it before i was a vibecoder but a barista!!!! doesn't sound incredible now but i want to finish it. i have one more programming idea for my future coffee shop. but i don't have money to open it only at this moment! hahhaaha",s:"💐 live"},
-  {e:"<img src='https://damlahelloworld.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:16px;height:16px;border-radius:3px;vertical-align:middle'>",n:"Scrapp",note:"digital scrapbook app. frame photos, collect memories, hand-drawn sticker packs. pure SwiftUI + SwiftData, no third-party dependencies.",s:"💐 built"},
-  {e:"☀️",n:"Sunny",note:"my first iOS app! weather app with hand-drawn backgrounds and sunscreen reminders. CoreLocation + WeatherAPI.",s:"💐 built"},
-  {e:"👾",n:"League of Bilkent",note:"CS102 final project. 30 Java classes, MVC architecture, MySQL, gamification, SHA-256 hashing. interactive UML deployed on GitHub Pages.",s:"💐 built"},
-  {e:"🛒",n:"BilMart",note:"secondhand marketplace for Bilkent students. Java Swing + relational database. student ID verification.",s:"💐 built"},
-  {e:"🏥",n:"Medical Case Generator",note:"when i finish engineering, and if i am still alive and not dead of cancer, i will study medicine in muğla... akyaka... and it is literally on a mountain. meaning it doesn't have a great range of cases as much as universities in big cities such as ankara, izmir... this is a platform which generates cases. when i was in medical school, problem-based learning was such a privileged class.",s:"future dream"},
-];
-
-const INDEV=[
-  {e:"🧠",n:"Braindot",note:"a content production pipeline.",s:"in dev"},
-  {e:"💅🏻",n:"Lala Retro",note:"ingredient comparison algorithm applied to iOS. beauty facts API isn't enough so users create our db by inputting the ingredients by barcode or by scanning.",s:"in dev"},
-  {e:"💫",n:"Daylight",note:"lettering platform on iOS.",s:"in dev"},
-  {e:"🪻",n:"Wildflower",note:"focus timer.",s:"in dev"},
+  {sl:"kisalafinuzunu",e:"🌷",n:"Kısa Lafın Uzunu",tg:"impromptu speaking practice — 2,900+ real topics, live on custom domain",d:"A Turkish <strong>impromptu speaking practice</strong> web app: draw a random topic from <strong>2,908 real, sourced topics</strong> (philosophy, psychology, literature, science...), set a 5–30 min timer, and speak. Every topic comes from a real source — books, academic concepts, ekşi sözlük threads, Reddit debates — harvested by <strong>parallel AI research agents</strong>, never AI-invented. Features: swipeable topic deck, <strong>draggable liquid-glass post-it notes board</strong>, spoken-topics box, save-for-later hearts, and a <strong>Supabase waitlist</strong> (insert-only RLS, email enumeration protected). <strong>Programmatic SEO</strong>: 2,908 static topic pages + 16 category pages + 13 keyword landing pages, sitemap submitted to Search Console.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Supabase (PostgreSQL + RLS)","Programmatic SEO","Vercel"],s:"live",g:"https://github.com/damlahelloworld/kisalafinuzunu",l:"https://www.kisalafinuzunu.com"},
+  {sl:"kitschat",e:"🍬",n:"kitschat",tg:"english twin of kısa lafın uzunu — whimsy pastel, live on vercel",d:"The <strong>English twin</strong> of Kısa Lafın Uzunu with a whimsy pastel redesign: <strong>2,272 sourced English topics</strong>, the best of the Turkish pool translated with <strong>verified published quote wording</strong> (misattributed quotes caught and dropped) plus fresh topics harvested from Reddit, Hacker News, YouTube and X discourse by <strong>parallel AI research agents</strong>. Hand-drawn wobble cards, candy buttons, a living animated topic deck, and <strong>programmatic SEO</strong>: 2,272 static topic pages + 15 category pages + 13 keyword landing pages.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Programmatic SEO","Vercel"],s:"live",g:"https://github.com/damlahelloworld/kitschat",l:"https://kitschat.vercel.app"},
+  {sl:"scrapp",img:"https://damlahelloworld.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png",e:"📒",n:"Scrapp",tg:"digital scrapbook app — frame photos, collect memories, sticker packs",d:"A native iOS scrapbook app. Create <strong>themed notebooks</strong>, frame your photos with <strong>decorative borders</strong> (polaroid, flower wreath, cloud, heart), add short notes, and collect memories. Features <strong>camera & gallery</strong> photo picking, <strong>hand-drawn sticker packs</strong> (butterflies, kawaii animals, fairy garden, vintage), free-form canvas with drag/pinch/rotate, haptic feedback, and smooth animations. No third-party dependencies — pure SwiftUI + SwiftData.",t:["SwiftUI","SwiftData"],s:"built",g:"https://github.com/damlahelloworld/scrapp",l:"https://damlahelloworld.github.io/scrapp/",ll:"📒 landing page"},
+  {sl:"butterfry",e:"🥦",n:"Butterfry",tg:"food allergen detective — find what's messing with your stomach",d:"A food ingredient cross-reference tool. When multiple foods cause reactions (bloating, nausea, heartburn...), add them and <strong>find common ingredients</strong> — the culprit. Features: <strong>24 curated products</strong> + Open Food Facts API for unlimited search, OCR label scanning via <strong>Tesseract.js</strong>, personal reaction tracking, suspect ingredient watchlist, and cross-reference analysis engine. Mint green health-themed UI. All data stays in your browser via localStorage — no accounts, no servers, no tracking.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","LocalStorage API"],s:"built",g:"https://github.com/damlahelloworld/butterfry"},
+  {sl:"sunny",e:"☀️",n:"Sunny",tg:"iOS weather app with hand-drawn backgrounds & sunscreen reminders",d:"A native iOS weather app that shows <strong>current conditions with illustrated backgrounds</strong> that change based on weather (sunny, cloudy, rainy, hot). Uses <strong>CoreLocation</strong> for GPS + reverse geocoding, fetches real-time data from <strong>WeatherAPI</strong>, and sends <strong>sunscreen reminder notifications</strong> when temperature exceeds your threshold. Features 8 unique hand-drawn weather illustrations, doodle-style typography, staggered entrance animations, and a baby blue settings screen. Built entirely in <strong>SwiftUI</strong> — my first iOS app.",t:["SwiftUI","CoreLocation","WeatherAPI","UserNotifications"],s:"built",g:"https://github.com/damlahelloworld/sunny",l:"https://damlahelloworld.github.io/sunny/",ll:"☀️ documentation"},
+  {sl:"forget-me-not",e:"💌",n:"Forget-Me-Not",tg:"slow letter platform — letters travel based on real distance",d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong>. Features: <strong>Google OAuth</strong> via Supabase, bottle mail with random matching, memory box for unsent letters, <strong>user matching with conversation starters</strong>, XP/leveling gamification with collectible stamps, seasonal themes, and <em>a mythology blog about historical love stories</em>. No instant messaging, no read receipts, no pressure — intentionally slow.",t:["Next.js (App Router)","React","TypeScript","Supabase (PostgreSQL + Auth)","Google OAuth","CSS","Vercel"],s:"live",g:"https://github.com/damlahelloworld/forget-me-not",l:"https://myosotis-sylvatica.vercel.app"},
+  {sl:"lincmatik",e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media criticism simulator",d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental toughness trainer. Write anything you'd post online → <strong>Claude API generates brutally realistic toxic comments</strong> from different troll personas → you practice handling harsh criticism to build resilience. Features a curated library of quotes and book recommendations. <strong>Python</strong> for the API backend, <strong>React</strong> for the frontend, deployed on <strong>Vercel</strong>.",t:["Python","Flask + CORS","Anthropic Claude API","React","Vercel","JavaScript"],s:"live",g:"https://github.com/damlahelloworld/linc-matik",l:"https://lincmatik.vercel.app"},
+  {sl:"musical-improvisation",e:"🎵",n:"Musical Improvisation Tool",tg:"scale identifier & composition aid with Web Audio API",d:"Play or input a few notes → get every possible <strong>scale, mode, chord, and progression</strong> instantly. Built with a <strong>custom music theory algorithm</strong> (Circle of Fifths, 7 diatonic modes, enharmonic mapping). Features <strong>Web Audio API</strong> synthesis for piano & guitar, interactive <strong>piano + guitar fretboard</strong>, QWERTY keyboard mapping, <strong>Spotify</strong> song suggestions per key, and a <strong>chord progression planner</strong>.",t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],s:"live",g:"https://github.com/damlahelloworld/musical-improvisation-tool",l:"https://damlahelloworld.github.io/musical-improvisation-tool/"},
+  {sl:"lady-fantasy",e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",d:"Draw cards from a full <strong>78-card Rider-Waite tarot deck</strong> and watch AI bring them to life as <strong>cinematic video</strong>. Hand-crafted prompts for each card describe the illustration animating. Three fal.ai video models to choose from. Architecture: browser → <strong>4 serverless API routes</strong> → fal.ai Queue API.",t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],s:"live",g:"https://github.com/damlahelloworld/lady-fantasy.ai",l:"https://lady-fantasy.vercel.app"},
+  {sl:"league-of-bilkent",e:"👾",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em> <strong>Interactive UML class diagram</strong> with method descriptions and dependency mapping is deployed on GitHub Pages.",t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],s:"built",g:"https://github.com/damlahelloworld/league-of-bilkent",l:"https://damlahelloworld.github.io/league-of-bilkent/",ll:"✨ live uml website!"},
+  {sl:"bilmart",e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",t:["Java","Java Swing","Database","SQL"],s:"built",g:null},
+  {sl:"coffee-menu",e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",t:["JavaScript","HTML/CSS"],s:"live",g:"https://github.com/damlahelloworld/coffee-menu",l:"https://damlahelloworld.github.io/coffee-menu/"},
+  {sl:"flower-timer",e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",t:["Java","Java Swing","JavaFX"],s:"built",g:null},
+  {sl:"age-wiz",e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",t:["Python","face_recognition","dlib"],s:"built",g:"https://github.com/damlahelloworld/age-wiz"},
+  {sl:"damla-log",img:"https://damlahelloworld.github.io/damla-log/app_icon.png",e:"🦋",n:"damla.log",tg:"developer companion iOS app — tasks, ideas, bugs, versions",d:"A native iOS app for managing all my coding projects from my phone. <strong>4 tabs</strong> — tasks, ideas, issues, versions — each with its own stats page (contribution grid, weekly breakdown, project bars). <strong>Tag-based organization</strong> across projects, swipe gestures for status changes, vertical paging between content and analytics. Syncs via <strong>iCloud Documents</strong> with real-time conflict resolution. Connects to <strong>GitHub OAuth</strong> for repo tagging. Integrates with <strong>Claude Code via URL schemes</strong> — tasks created in terminal appear on phone instantly. Built entirely in SwiftUI with JSON Codable persistence and backward-compatible decoding.",t:["SwiftUI","iCloud Documents","GitHub OAuth","Keychain","URL Schemes","JSON Codable","NSMetadataQuery"],s:"built",g:"https://github.com/damlahelloworld/damla.log",l:"https://damlahelloworld.github.io/damla-log/",ll:"🌸 landing page"},
+  {sl:"braindot",e:"🧠",n:"Braindot",tg:"a content production pipeline",d:"A content production pipeline — actively being built.",t:[],s:"in dev",g:null},
+  {sl:"lala-retro",e:"💅🏻",n:"Lala Retro",tg:"ingredient comparison on iOS — users build the database by scanning",d:"Ingredient comparison algorithm applied to iOS. Beauty facts API isn't enough, so users create the database by inputting ingredients by barcode or by scanning.",t:[],s:"in dev",g:null},
+  {sl:"daylight",e:"💫",n:"Daylight",tg:"lettering platform on iOS",d:"Lettering platform on iOS — actively being built.",t:[],s:"in dev",g:null},
+  {sl:"wildflower",e:"🪻",n:"Wildflower",tg:"focus timer",d:"Focus timer — actively being built.",t:[],s:"in dev",g:null},
+  {sl:"moonlight",e:"🌙",n:"Moonlight",tg:"astrology platform — moon phases & horary",d:"An astrology platform. I love watching moon phases — moon phases and horary are already added, core is done.",t:[],s:"in dev",g:null},
+  {sl:"dewdrop",e:"🌊",n:"Dewdrop",tg:"events platform — communities are an ocean, we are the drops",d:"An events platform. My name is damla su — in english: drop, dewdrop. The inspiration: communities are like an ocean, nevertheless we are all individual drops.",t:[],s:"idea",g:null},
+  {sl:"ladybug",e:"🐞",n:"LadyBug",tg:"learn programming by debugging, not by writing",d:"While working as a TA for CS115, I found out that people were not really learning by writing code. The real teaching happened when they were trying to find and correct a logical error — silent, but more destructive for the code.",t:[],s:"idea",g:null},
+  {sl:"damlacik",e:"🌷",n:"Damlacık",tg:"a personal community platform",d:"A personal community platform for the youtube journey — still in planning, the database must be properly secured before anything else.",t:["Supabase (PostgreSQL + Auth + Realtime)","JavaScript"],s:"idea",g:null},
+  {sl:"medical-case-generator",e:"🏥",n:"Medical Case Generator",tg:"problem-based learning case generator for med students",d:"A platform that generates medical cases for problem-based learning — born from my medical school years, for schools that don't see a big range of real cases.",t:[],s:"idea",g:null},
 ];
 
 const SK={
@@ -509,7 +397,14 @@ const EX=[
   {r:"Joyport One Tower",d:"<strong>Game Warden</strong> — <em>I love spending time with children. They're kind, bright, and innocent in a way the world desperately needs more of.</em> Getting the chance to be around them, play with them, and watch them figure things out was genuinely precious to me.",p:"Aug – Sep 2023"},
 ];
 
-// --- RENDER ---
+const EDU=[
+  {r:"Bilkent University",d:"B.Sc. in Computer Science",p:"2023 – present"},
+  {r:"Medipol University",d:"Medicine — 91/100",p:"2020 – 2023"},
+  {r:"Damla Fen Lisesi (Open High School)",d:"Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life — learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
+  {r:"Nesibe Aydın Fen Lisesi (Science High School)",d:"GPA: 96.68/100 — Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.",p:"2016 – 2019"},
+];
+
+// --- NAVIGATION ---
 let cur="";
 function go(p){
   if(p===cur)return;
@@ -521,19 +416,65 @@ function go(p){
   if(pg)pg.classList.add("on");
   const btn=document.querySelector(`[data-p="${p}"]`);
   if(btn)btn.classList.add("on");
-  if(p==="projects")renderProjects(0);
-  if(p==="technical")renderTech(0);
   window.scrollTo(0,0);
 }
 
+// --- ZOOM NOTE ---
+function stCls(s){ return s==="live"?"st-live":s==="built"?"st-built":s==="in dev"?"st-dev":"st-idea"; }
+let lastFocus=null;
+function openNote(sl){
+  const p=P.find(x=>x.sl===sl);
+  if(!p)return;
+  lastFocus=document.activeElement;
+  const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
+  const box=document.getElementById("note-box");
+  box.innerHTML=`
+    <button class="note-close" onclick="closeNote()" aria-label="close">✕ close</button>
+    <div class="note-doodle"><img src="doodles/${p.sl}.png" alt="" onload="this.parentElement.classList.add('hasimg')" onerror="this.parentElement.remove()"></div>
+    <div class="note-head"><span class="note-emoji">${emoji}</span>${p.n} <span class="note-st ${stCls(p.s)}">· ${p.s}</span></div>
+    <hr class="note-line">
+    <div class="note-desc">${p.d}</div>
+    ${p.t.length?`<hr class="note-line"><div class="note-stack">${p.t.join(" · ")}</div>`:""}
+    ${(p.g||p.l)?`<div class="note-links">
+      ${p.g?`<a href="${p.g}" target="_blank" rel="noopener" class="proj-link">→ github</a>`:""}
+      ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live">${p.ll||"✨ live demo !"}</a>`:""}
+    </div>`:""}`;
+  document.getElementById("note-overlay").classList.add("on");
+  document.body.classList.add("note-open");
+  history.replaceState(null,null,"#projects/"+p.sl);
+  box.querySelector(".note-close").focus();
+}
+function closeNote(){
+  document.getElementById("note-overlay").classList.remove("on");
+  document.body.classList.remove("note-open");
+  history.replaceState(null,null,"#projects");
+  if(lastFocus)lastFocus.focus();
+}
+
+function renderProjects(){
+  const list=document.getElementById("proj-list");
+  list.innerHTML=P.map(p=>{
+    const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
+    return `<div class="pcard" role="button" tabindex="0" onclick="openNote('${p.sl}')"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
+      <span class="pcard-emoji">${emoji}</span>
+      <div class="pcard-name">${p.n}</div>
+      <div class="pcard-line">${p.tg}</div>
+      <div class="pcard-status ${stCls(p.s)}">${p.s}</div>
+    </div>`;
+  }).join("");
+  const live=P.filter(p=>p.s==="live").length;
+  document.getElementById("proj-count").textContent=`${P.length} projects · ${live} live on the internet — tap a card to pick up the note 🌷`;
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
-  // nav — left + right groups
+  // nav
   const nav=document.getElementById("nav-bar");
-  const navL=document.createElement("div");navL.style.cssText="display:flex;gap:2px;align-items:center";
-  const navR=document.createElement("div");navR.style.cssText="display:flex;gap:2px;align-items:center";
+  const navL=document.createElement("div");navL.style.cssText="display:flex;gap:2px;align-items:center;flex-wrap:wrap";
+  const navR=document.createElement("div");navR.style.cssText="display:flex;gap:2px;align-items:center;flex-wrap:wrap";
   NAV_L.forEach(n=>{
     const b=document.createElement("button");
-    b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
+    b.className="nav-btn"+(n.brand?" nav-brand":"");b.dataset.p=n.k;b.textContent=n.l;
     b.onclick=()=>go(n.k);navL.appendChild(b);
   });
   NAV_R.forEach(n=>{
@@ -547,58 +488,27 @@ document.addEventListener("DOMContentLoaded",()=>{
   const fb=document.getElementById("fb");
   EM.sort(()=>Math.random()-.5).slice(0,10).forEach(e=>{
     const s=document.createElement("span");s.className="fl";s.textContent=e;
-    s.style.left=`${40+Math.random()*55}%`;
+    s.style.left=`${5+Math.random()*90}%`;
     s.style.animationDelay=`${Math.random()*16}s`;
     s.style.animationDuration=`${10+Math.random()*8}s`;
     fb.appendChild(s);
   });
 
-  // schedule
-  const sl=document.getElementById("sched-list");
-  sl.innerHTML=SCHED.map(s=>{
-    const isLive=s.s.includes('live')||s.s.includes('built');
-    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:${isLive?'#2B8A3E':'var(--muted)'};background:${isLive?'#E6F9ED':'var(--baby-light)'};border:1px solid ${isLive?'#8FD5A6':'var(--border)'}">${s.s}</span></div><div class="sched-note">${s.note}</div></div>`;
-  }).join("");
+  // projects
+  renderProjects();
 
-  // in development
-  const idl=document.getElementById("indev-list");
-  idl.innerHTML=INDEV.map(s=>{
-    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:var(--muted);background:var(--baby-light);border:1px solid var(--border)">${s.s}</span></div><div class="sched-note">${s.note}</div>${s.url?`<a href="${s.url}" target="_blank" rel="noopener" style="font-size:11px;color:var(--sky);text-decoration:none;margin-top:6px;display:inline-block">→ landing page</a>`:""}</div>`;
-  }).join("");
-
-  // projects — hepsi tek listede, sayfalama yok (ziyaretci kaydirarak gorur)
-  function renderProjects(){
-    const list=document.getElementById("proj-list");
-    document.getElementById("proj-pager").innerHTML="";
-    list.innerHTML=P.map((p,i)=>{
-      const isGreen=p.s.includes('Live')||p.s.includes('Built')||p.s.includes('MVP');
-      return `<div class="proj-entry" style="animation-delay:${Math.min(i*.05,.45)}s">
-        <div class="proj-head">
-          <span class="proj-icon">${p.e}</span>
-          <span class="proj-name">${p.n}</span>
-          <span class="proj-status" style="color:${isGreen?'#2B8A3E':p.co};background:${isGreen?'#E6F9ED':p.co+'15'};border:1px solid ${isGreen?'#8FD5A6':p.co+'30'}">${p.s}</span>
-        </div>
-        <div class="proj-tagline">${p.tg}</div>
-        <div class="proj-desc">${p.d}</div>
-        <div class="proj-stack">${p.t.map(mkTag).join("")}</div>
-        <div class="proj-links">
-          ${p.g?`<a href="${p.g}" target="_blank" rel="noopener" class="proj-link">→ github</a>`:""}
-          ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live">${p.ll||"✨ live demo !"}</a>`:""}
-        </div>
-      </div>`;
-    }).join("");
-  }
-  window.renderProjects=renderProjects;
+  // overlay close: backdrop click + ESC
+  document.getElementById("note-overlay").addEventListener("click",e=>{
+    if(e.target.id==="note-overlay")closeNote();
+  });
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"&&document.getElementById("note-overlay").classList.contains("on"))closeNote();
+  });
 
   // technical
   const techPages=[
-    {label:"experience",render:()=>EX.map(e=>`<div class="exp-entry"><div class="exp-role">${e.r}</div><div class="exp-desc">${e.d}</div><div class="exp-period">${e.p}</div></div>`).join("")},
-    {label:"education",render:()=>[
-      {r:"Bilkent University",d:"B.Sc. in Computer Science",p:"2023 – present"},
-      {r:"Medipol University",d:"Medicine — 91/100",p:"2020 – 2023"},
-      {r:"Damla Fen Lisesi (Open High School)",d:"Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life — learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
-      {r:"Nesibe Aydın Fen Lisesi (Science High School)",d:"GPA: 96.68/100 — Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.",p:"2016 – 2019"},
-    ].map(e=>`<div class="exp-entry"><div class="exp-role">${e.r}</div><div class="exp-desc">${e.d}</div><div class="exp-period">${e.p}</div></div>`).join("")},
+    {label:"experience",render:()=>EX.map(e=>`<div class="exp-entry"><div class="exp-top"><span class="exp-role">${e.r}</span><span class="exp-period">${e.p}</span></div><div class="exp-desc">${e.d}</div></div>`).join("")},
+    {label:"education",render:()=>EDU.map(e=>`<div class="exp-entry"><div class="exp-top"><span class="exp-role">${e.r}</span><span class="exp-period">${e.p}</span></div><div class="exp-desc">${e.d}</div></div>`).join("")},
     {label:"skills",render:()=>`<div class="skills-grid">${Object.entries(SK).map(([k,v])=>`<div class="skill-col"><div class="skill-col-title">${k}</div>${v.map(i=>`<div class="skill-item">${i}</div>`).join("")}</div>`).join("")}</div>`}
   ];
   function renderTech(page){
@@ -611,13 +521,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
   window.renderTech=renderTech;
+  renderTech(0);
 
   // email
   const ea="su.bilge@ug.bilkent.edu.tr";
   const el=document.getElementById("email-link"),et=document.getElementById("email-text");
   if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
-  const mi=document.getElementById("mail-ideas");
-  if(mi)mi.href="mailto:"+ea+"?subject=Project Idea";
 
   // simple markdown to HTML
   function md2html(md){
@@ -637,26 +546,21 @@ document.addEventListener("DOMContentLoaded",()=>{
       .join('\n');
   }
 
-  // load markdown content
-  function loadMd(file,targetId,firstBlockStyle){
+  function loadMd(file,targetId){
     fetch('content/'+file)
       .then(r=>r.text())
-      .then(md=>{
-        let html=md2html(md);
-        if(firstBlockStyle){
-          html=html.replace(/<p class="md-p">/,`<p class="md-p" style="${firstBlockStyle}">`);
-        }
-        document.getElementById(targetId).innerHTML=html;
-      })
+      .then(md=>{ document.getElementById(targetId).innerHTML=md2html(md); })
       .catch(()=>{});
   }
-  loadMd('about-me.md','about-content','font-size:11px;color:var(--text);line-height:1.5;margin-bottom:16px');
+  loadMd('about-me.md','about-content');
   loadMd('life-plan.md','lifeplan-content');
 
-  // init
+  // init — supports #projects/slug deep links
   const hash=location.hash.replace("#","");
+  const [page,slug]=hash.split("/");
   const allPages=NAV.map(n=>n.k);
-  go(allPages.includes(hash)?hash:"home");
+  go(allPages.includes(page)?page:"home");
+  if(page==="projects"&&slug)openNote(slug);
 });
 </script>
 </body>
