@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="3uR4g3QlHITT4L8DIbdkroCGgpMHfmGOQZ2Oye3Yjb4" />
-<title>Damla Su Bilge - CS Student at Bilkent | Last AI Bender</title>
+<title>Damla Su Bilge — CS Student at Bilkent</title>
 <meta name="description" content="Damla Su Bilge — computer science student at Bilkent University building iOS apps, full-stack web platforms and AI experiments. SwiftUI, Next.js, React, Java, Python. 30+ projects, many of them live.">
 <link rel="canonical" href="https://damlahelloworld.github.io/">
 <meta property="og:title" content="Damla Su Bilge — CS Student at Bilkent">
@@ -178,8 +178,22 @@ body {
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 .pcard-tech {
-  font-style: italic; font-size: 13px; color: var(--light);
+  font-style: italic; font-weight: 700; font-size: 13.5px; color: var(--muted);
   line-height: 1.4; margin-top: 9px;
+}
+
+/* FILTERS */
+.filters { display: flex; flex-wrap: wrap; gap: 3px 2px; align-items: center; margin: 0 0 22px; }
+.fsep { width: 1px; height: 18px; background: var(--ink-line); margin: 0 10px; }
+.fchip {
+  font: italic 500 14.5px/1 var(--ft); color: var(--muted);
+  background: none; border: none; padding: 6px 11px;
+  cursor: pointer; transition: color .15s;
+}
+.fchip:hover { color: var(--text); }
+.fchip.on {
+  color: var(--text); background: rgba(255,112,166,.32);
+  border-radius: 38% 42% 40% 44% / 62% 55% 60% 50%;
 }
 .pcard-status {
   font-style: italic; font-size: 13.5px; margin-top: auto; padding-top: 10px;
@@ -350,6 +364,7 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
   <div class="page page-wide" id="p-projects">
     <h1 class="md-h1">💐 projects</h1>
     <p class="md-sub" id="proj-count"></p>
+    <div id="proj-filters" class="filters"></div>
     <div id="proj-list" class="pgrid"></div>
   </div>
 
@@ -410,7 +425,6 @@ const P=[
   {sl:"damla-log",img:"https://damlahelloworld.github.io/damla-log/app_icon.png",e:"🦋",n:"damla.log",tg:"developer companion iOS app — tasks, ideas, bugs, versions",d:"A native iOS app for managing all my coding projects from my phone. <strong>4 tabs</strong> — tasks, ideas, issues, versions — each with its own stats page (contribution grid, weekly breakdown, project bars). <strong>Tag-based organization</strong> across projects, swipe gestures for status changes, vertical paging between content and analytics. Syncs via <strong>iCloud Documents</strong> with real-time conflict resolution. Connects to <strong>GitHub OAuth</strong> for repo tagging. Integrates with <strong>Claude Code via URL schemes</strong> — tasks created in terminal appear on phone instantly. Built entirely in SwiftUI with JSON Codable persistence and backward-compatible decoding.",t:["SwiftUI","iCloud Documents","GitHub OAuth","Keychain","URL Schemes","JSON Codable","NSMetadataQuery"],s:"built",g:"https://github.com/damlahelloworld/damla.log",l:"https://damlahelloworld.github.io/damla-log/",ll:"🌸 landing page"},
   {sl:"braindot",e:"🧠",n:"Braindot",tg:"a content production pipeline",d:"A content production pipeline — actively being built.",t:["Swift"],s:"in dev",g:"https://github.com/damlahelloworld/braindot"},
   {sl:"gymgyme",e:"🏋🏻‍♀️",n:"gymgyme",tg:"workout tracker on iOS — modern card UI",d:"A workout tracker on iOS with a modern card UI.",t:["SwiftUI"],s:"in dev",g:"https://github.com/damlahelloworld/gymgyme"},
-  {sl:"mbti-tester",e:"🎭",n:"MBTI Tester",tg:"a little mbti personality tester on the web",d:"A little MBTI personality tester on the web.",t:["JavaScript"],s:"built",g:"https://github.com/damlahelloworld/mbti-tester",l:"https://damlahelloworld.github.io/mbti-tester/"},
   {sl:"sunflower",e:"🌻",n:"Sunflower",tg:"simple pomodoro, timer, study app",d:"A simple pomodoro, timer & study app on iOS.",t:["Swift"],s:"in dev",g:"https://github.com/damlahelloworld/sunflower"},
   {sl:"insta-analyzer",e:"📸",n:"Insta Analyzer",tg:"analyze who follows you but never likes your photos",d:"A Python script that analyzes who follows you but never likes your photos.",t:["Python"],s:"built",g:"https://github.com/damlahelloworld/insta-analyzer"},
   {sl:"vibematch",e:"🫧",n:"VibeMatch",tg:"community app for bilkent students — find communities that match your vibe",d:"A community app for Bilkent students — find communities that match your vibe. Built with Java Swing.",t:["Java","Java Swing"],s:"built",g:"https://github.com/damlahelloworld/vibematch",l:"https://damlahelloworld.github.io/vibematch/"},
@@ -420,9 +434,7 @@ const P=[
   {sl:"kitschat",e:"🍬",n:"kitschat",tg:"english twin of kısa lafın uzunu — whimsy pastel, live on vercel",d:"The <strong>English twin</strong> of Kısa Lafın Uzunu with a whimsy pastel redesign: <strong>2,272 sourced English topics</strong>, the best of the Turkish pool translated with <strong>verified published quote wording</strong> (misattributed quotes caught and dropped) plus fresh topics harvested from Reddit, Hacker News, YouTube and X discourse by <strong>parallel AI research agents</strong>. Hand-drawn wobble cards, candy buttons, a living animated topic deck, and <strong>programmatic SEO</strong>: 2,272 static topic pages + 15 category pages + 13 keyword landing pages.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Programmatic SEO","Vercel"],s:"live",g:"https://github.com/damlahelloworld/kitschat",l:"https://kitschat.vercel.app"},
   {sl:"lingolingo",e:"🌱",n:"lingolingo",tg:"english speaking practice — real topics, honest AI voice analysis",d:"English speaking practice on iOS: real topics, speaking stays free forever, and <strong>honest voice reports</strong> with credits — fluency, pace, fillers & long pauses, and vocabulary richness word by word. <strong>No signup, no account</strong> — recordings are deleted right after analysis. Just you & the air 🍃",t:["SwiftUI"],s:"in dev",g:"https://github.com/damlahelloworld/lingolingo",l:"https://damlahelloworld.github.io/lingolingo/",ll:"landing page"},
   {sl:"stitchu",e:"🪡",n:"Stitchu",tg:"sewing patterns from a photo — deterministic formulas, print-ready A4 PDFs",d:"An iOS sewing app: take a photo, add a few measurements, and get a real <strong>sewing pattern</strong> as a calibrated, print-ready <strong>A4 PDF</strong>. Patterns are drafted with <strong>deterministic formulas</strong> — every line explainable, no ML guessing. Skirt, dress and top blocks with a verified formula database, hand-drawn doodle style.",t:["SwiftUI"],s:"in dev",g:null},
-  {sl:"dewdrop",e:"🌊",n:"Dewdrop",tg:"events platform — communities are an ocean, we are the drops",d:"An events platform. My name is damla su — in english: drop, dewdrop. The inspiration: communities are like an ocean, nevertheless we are all individual drops.",t:[],s:"idea",g:null},
   {sl:"ladybug",e:"🐞",n:"LadyBug",tg:"learn programming by debugging, not by writing",d:"While working as a TA for CS115, I found out that people were not really learning by writing code. The real teaching happened when they were trying to find and correct a logical error — silent, but more destructive for the code.",t:[],s:"idea",g:null},
-  {sl:"damlacik",e:"🌷",n:"Damlacık",tg:"a personal community platform",d:"A personal community platform for the youtube journey — still in planning, the database must be properly secured before anything else.",t:["Supabase (PostgreSQL + Auth + Realtime)","JavaScript"],s:"idea",g:null},
   {sl:"medical-case-generator",e:"🏥",n:"Medical Case Generator",tg:"problem-based learning case generator for med students",d:"A platform that generates medical cases for problem-based learning — born from my medical school years, for schools that don't see a big range of real cases.",t:[],s:"idea",g:null},
 ];
 
@@ -498,9 +510,35 @@ function closeNote(){
   if(lastFocus)lastFocus.focus();
 }
 
+// --- FILTERS ---
+let fStatus="all", fTech="all";
+const TECH_F=[
+  ["all",()=>true],
+  ["swift",t=>/swift/i.test(t)],
+  ["next.js",t=>/next\.js/i.test(t)],
+  ["react",t=>/react/i.test(t)],
+  ["typescript",t=>/typescript/i.test(t)],
+  ["javascript",t=>/javascript/i.test(t)],
+  ["java",t=>/^java(?!script)/i.test(t)],
+  ["python",t=>/python|dlib|face_recognition/i.test(t)],
+  ["supabase",t=>/supabase/i.test(t)],
+  ["html/css",t=>/html|css|tailwind/i.test(t)],
+];
+function renderFilters(){
+  const el=document.getElementById("proj-filters");
+  const st=["all","live","built","in dev","idea"].map(s=>
+    `<button class="fchip${fStatus===s?" on":""}" onclick="setF('s','${s}')">${s}</button>`).join("");
+  const te=TECH_F.map(x=>
+    `<button class="fchip${fTech===x[0]?" on":""}" onclick="setF('t','${x[0]}')">${x[0]}</button>`).join("");
+  el.innerHTML=st+'<span class="fsep"></span>'+te;
+}
+function setF(k,v){ if(k==='s')fStatus=v; else fTech=v; renderFilters(); renderProjects(); }
+
 function renderProjects(){
   const list=document.getElementById("proj-list");
-  list.innerHTML=P.map(p=>{
+  const techPred=(TECH_F.find(x=>x[0]===fTech)||TECH_F[0])[1];
+  const shown=P.filter(p=>(fStatus==="all"||p.s===fStatus)&&(fTech==="all"||p.t.some(techPred)));
+  list.innerHTML=shown.map(p=>{
     const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
     return `<div class="pcard" role="button" tabindex="0" onclick="openNote('${p.sl}')"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
