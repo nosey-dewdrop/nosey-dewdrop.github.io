@@ -74,21 +74,25 @@ body {
   gap: 56px; pointer-events: none;
 }
 .nav-card {
-  display: flex; align-items: center; gap: 2px; flex-wrap: wrap;
-  padding: 5px 12px; pointer-events: auto;
-  background: rgba(255,254,251,.88);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 1px 2px rgba(34,51,63,.08), 0 10px 28px rgba(34,51,63,.1);
+  display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+  pointer-events: auto;
 }
+/* her buton ayri bir tus */
 .nav-btn {
   font: 500 15.5px/1 var(--ft); font-variant: small-caps; letter-spacing: .07em;
-  color: var(--muted); background: none; border: none;
-  padding: 10px 15px;
-  cursor: pointer; transition: all .2s;
+  color: var(--muted); border: none;
+  padding: 11px 16px;
+  background: rgba(255,254,251,.94);
+  box-shadow: 0 2.5px 0 rgba(34,51,63,.22), 0 7px 16px rgba(34,51,63,.09);
+  cursor: pointer; transition: all .12s;
   white-space: nowrap;
 }
-.nav-btn:hover { color: var(--text); }
-.nav-btn.on { color: var(--text); position: relative; }
+.nav-btn:hover { color: var(--text); transform: translateY(-1px); box-shadow: 0 3.5px 0 rgba(34,51,63,.22), 0 9px 18px rgba(34,51,63,.11); }
+.nav-btn.on {
+  color: var(--text); position: relative;
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(34,51,63,.25), 0 3px 8px rgba(34,51,63,.08);
+}
 .nav-btn.on::after {
   content: ''; position: absolute; left: 13px; right: 13px; bottom: 4px; height: 5px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='6' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 3.6 C 20 1.4, 40 4.8, 58 3.2 S 88 2.4, 98 3.4' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
@@ -100,12 +104,10 @@ body {
 .nav-drop { position: relative; }
 .nav-drop .nav-menu {
   display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-  flex-direction: column; min-width: 132px; padding: 4px;
-  background: rgba(255,254,251,.97);
-  box-shadow: 0 1px 2px rgba(34,51,63,.08), 0 10px 28px rgba(34,51,63,.14);
+  flex-direction: column; min-width: 128px; gap: 7px; padding-top: 9px;
 }
 .nav-drop:hover .nav-menu, .nav-drop:focus-within .nav-menu { display: flex; }
-.nav-menu .nav-btn { padding: 9px 12px; font-size: 14px; text-align: center; }
+.nav-menu .nav-btn { padding: 10px 12px; font-size: 14px; text-align: center; }
 
 /* PAGES */
 .pages { margin-top: 92px; position: relative; }
@@ -307,9 +309,9 @@ body.note-open { overflow: hidden; }
 .footer { text-align: center; padding: 30px; font-size: 13px; color: var(--light); letter-spacing: .12em; position: relative; z-index: 1; }
 
 @media (max-width: 640px) {
-  .nav { top: 8px; left: 8px; right: 8px; gap: 6px; justify-content: center; }
-  .nav-card { padding: 3px 6px; justify-content: center; }
-  .nav-btn { font-size: 13.5px; padding: 9px 9px; }
+  .nav { top: 8px; left: 8px; right: 8px; gap: 10px; justify-content: center; }
+  .nav-card { gap: 6px; justify-content: center; }
+  .nav-btn { font-size: 13.5px; padding: 9px 10px; }
   .nav-brand { font-size: 15px; }
   .pages { margin-top: 112px; }
   .page { padding: 30px 16px 80px; }
