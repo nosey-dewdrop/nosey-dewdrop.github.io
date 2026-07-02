@@ -195,9 +195,13 @@ body {
   line-height: 1.4; margin-top: 9px;
 }
 
-/* FILTERS */
-.filters { display: flex; flex-wrap: wrap; gap: 3px 2px; align-items: center; margin: 0 0 22px; }
-.fsep { width: 1px; height: 18px; background: var(--ink-line); margin: 0 10px; }
+/* FILTERS, iki ayri beyaz kart */
+.filters { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; margin: 0 0 24px; }
+.fcard {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 2px;
+  background: var(--paper); padding: 6px 14px;
+  box-shadow: 0 2px 0 rgba(34,51,63,.16), 0 6px 16px rgba(34,51,63,.08);
+}
 .flabel { font-style: italic; font-weight: 700; font-size: 13.5px; color: var(--light); margin-right: 4px; }
 .fchip {
   font: italic 500 14.5px/1 var(--ft); color: var(--muted);
@@ -365,11 +369,13 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
   <!-- ABOUT, loaded from content/about-me.md -->
   <div class="page" id="p-about">
     <h1 class="md-h1">🦋 about me</h1>
-    <div id="about-content" style="margin-top:14px"></div>
-    <div class="md-links" style="margin-top:16px">
-      <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
-      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">LinkedIn</a>
-      <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">GitHub</a>
+    <div class="paper-sheet" style="margin-top:14px">
+      <div id="about-content"></div>
+      <div class="md-links" style="margin-top:16px">
+        <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
+        <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">LinkedIn</a>
+        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">GitHub</a>
+      </div>
     </div>
   </div>
 
@@ -382,8 +388,8 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
   <!-- PROJECTS -->
   <div class="page page-wide" id="p-projects">
-    <h1 class="md-h1">💐 projects</h1>
-    <p class="md-sub" id="proj-count"></p>
+    <h1 class="md-h1">💐 projects <span id="proj-count"></span></h1>
+    <p class="md-sub">tap a card to pick up the note 🌷</p>
     <div id="proj-filters" class="filters"></div>
     <div id="proj-list" class="pgrid"></div>
   </div>
@@ -563,7 +569,7 @@ function renderFilters(){
     `<button class="fchip${fStatus===s?" on":""}" onclick="setF('s','${s}')">${s}</button>`).join("");
   const te=TECH_F.map(x=>
     `<button class="fchip${fTech===x[0]?" on":""}" onclick="setF('t','${x[0]}')">${x[0]}</button>`).join("");
-  el.innerHTML='<span class="flabel">filter:</span>'+st+'<span class="fsep"></span><span class="flabel">tech:</span>'+te;
+  el.innerHTML='<div class="fcard"><span class="flabel">filter:</span>'+st+'</div><div class="fcard"><span class="flabel">tech:</span>'+te+'</div>';
 }
 function setF(k,v){ if(k==='s')fStatus=v; else fTech=v; renderFilters(); renderProjects(); }
 
@@ -583,7 +589,7 @@ function renderProjects(){
     </div>`;
   }).join("");
   const live=P.filter(p=>p.s==="live").length;
-  document.getElementById("proj-count").textContent=`${P.length} projects · ${live} live on the internet, tap a card to pick up the note 🌷`;
+  document.getElementById("proj-count").textContent=`· ${P.length} projects · ${live} live`;
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -626,20 +632,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   // projects
   renderFilters();
   renderProjects();
-
-  // home, en guclu isler vitrinde
-  const FEATURED=["kisalafinuzunu","lingolingo","forget-me-not","league-of-bilkent"];
-  document.getElementById("featured-list").innerHTML=FEATURED.map(sl=>{
-    const p=P.find(x=>x.sl===sl); if(!p)return "";
-    const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
-    return `<div class="pcard" role="button" tabindex="0" onclick="go('projects');openNote('${p.sl}')"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('projects');openNote('${p.sl}')}">
-      <span class="pcard-emoji">${emoji}</span>
-      <div class="pcard-name">${p.n}</div>
-      <div class="pcard-line">${p.tg}</div>
-      <div class="pcard-status ${stCls(p.s)}"><span>${p.s}</span></div>
-    </div>`;
-  }).join("");
 
   // overlay close: backdrop click + ESC
   document.getElementById("note-overlay").addEventListener("click",e=>{
