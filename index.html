@@ -29,188 +29,248 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Gochi+Hand&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f0f8ff;
-  --text: #1a3a4a;
-  --muted: #4a7a8a;
-  --light: #6a9aaa;
-  --faint: #b8d8e8;
-  --sky: #87ceeb;
-  --border: #c4dfe8;
-  --cream: #f7fbfe;
-  --baby-light: #ddf0fa;
-  --pink: #D6336C;
-  --glow: rgba(135,206,235,.12);
-  --fm: 'JetBrains Mono', monospace;
+  --sky: #eaf5fc;
+  --sky-deep: #dceef9;
+  --paper: #fffdf9;
+  --ink: #35506b;
+  --ink-soft: #5f7f96;
+  --ink-faint: #9dbccb;
+  --line: #d5e7f1;
+  --blue: #7cc3e8;
+  --blue-deep: #4a9fd0;
+  --pink: #f5a8c5;
+  --pink-deep: #e0679a;
+  --mint: #a8dcc4;
+  --butter: #f8df9a;
+  --lilac: #cdb9ec;
+  --fh: 'Gochi Hand', cursive;
+  --fb: 'Quicksand', sans-serif;
+  --shadow: 0 2px 0 rgba(122,170,199,.14), 0 10px 24px rgba(122,170,199,.16);
+  --shadow-up: 0 4px 0 rgba(122,170,199,.14), 0 18px 34px rgba(122,170,199,.22);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--fm);
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.35;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(248,223,154,.18), transparent 34%),
+    radial-gradient(circle at 88% 16%, rgba(245,168,197,.14), transparent 30%),
+    radial-gradient(circle at 78% 88%, rgba(168,220,196,.16), transparent 36%),
+    linear-gradient(var(--sky), var(--sky-deep));
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--fb);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-::selection { background: var(--sky); color: #fff; }
-::-webkit-scrollbar { width: 4px; }
+/* soft paper grain over everything */
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 200;
+  opacity: .05; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection { background: var(--blue); color: #fff; }
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
 
 /* floating emojis */
 .float-box { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.fl { position: absolute; top: -30px; font-size: 28px; opacity: 0; animation: floatD 8s linear infinite; pointer-events: none; }
-@keyframes floatD { 0% { transform: translateY(0) rotate(0); opacity: 0; } 5% { opacity: .25; } 70% { opacity: .1; } 100% { transform: translateY(100vh) rotate(60deg); opacity: 0; } }
+.fl { position: absolute; top: -34px; font-size: 26px; opacity: 0; animation: floatD 9s linear infinite; pointer-events: none; }
+@keyframes floatD { 0% { transform: translateY(0) rotate(0); opacity: 0; } 5% { opacity: .3; } 70% { opacity: .12; } 100% { transform: translateY(105vh) rotate(50deg); opacity: 0; } }
 
-/* cursor blink */
-@keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
-.cursor { display: inline-block; width: 2px; height: .85em; background: var(--sky); margin-left: 3px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
-
-/* NAV — single centered row */
+/* NAV */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  gap: 2px; padding: 8px 48px;
-  background: rgba(240,248,255,.88);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(196,223,232,.5);
+  gap: 6px; padding: 14px 40px;
+  background: rgba(255,253,249,.86);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 2px dashed var(--line);
 }
 .nav-btn {
-  font: 400 12px/1 var(--fm);
-  color: var(--muted); background: none; border: none;
-  padding: 8px 12px; border-radius: 6px;
+  font: 600 15px/1 var(--fb);
+  color: var(--ink-soft); background: none; border: none;
+  padding: 12px 15px; border-radius: 14px;
   cursor: pointer; transition: all .2s;
-  letter-spacing: .02em; white-space: nowrap;
+  white-space: nowrap;
 }
-.nav-btn:hover { color: var(--text); }
-.nav-btn.on { color: var(--text); font-weight: 500; background: var(--baby-light); }
+.nav-btn:hover { color: var(--ink); background: var(--sky); transform: rotate(-1.2deg); }
+.nav-btn.on { color: var(--ink); background: var(--sky-deep); position: relative; }
+.nav-btn.on::after {
+  content: ''; position: absolute; left: 12px; right: 12px; bottom: 5px; height: 5px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='6' viewBox='0 0 60 6'%3E%3Cpath d='M1 4 Q 8 1 15 4 T 29 4 T 43 4 T 59 4' fill='none' stroke='%237cc3e8' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: auto 100%;
+}
+.nav-brand { font: 400 21px/1 var(--fh); padding: 10px 14px; }
+.nav-brand.on::after { display: none; }
 
 /* PAGE CONTAINER */
-.pages { margin-top: 64px; position: relative; }
+.pages { margin-top: 84px; position: relative; }
 .page {
-  display: none; min-height: calc(100vh - 48px);
-  max-width: 900px; margin: 0 auto;
-  padding: 48px 24px 120px;
+  display: none; min-height: calc(100vh - 84px);
+  max-width: 1080px; margin: 0 auto;
+  padding: 48px 28px 120px;
   position: relative; z-index: 1;
 }
 .page.on { display: block; animation: fadeUp .4s ease; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-/* MARKDOWN-STYLE TYPOGRAPHY — Bear-inspired */
+/* headings — handwritten */
 .md-h1 {
-  font-size: 28px; font-weight: 500; color: var(--text);
-  margin-bottom: 6px; line-height: 1.3;
-  letter-spacing: -.02em;
+  font-family: var(--fh); font-weight: 400;
+  font-size: 40px; color: var(--ink);
+  margin-bottom: 6px; line-height: 1.15;
 }
-.md-h1::before { content: '> '; color: var(--faint); font-weight: 300; }
-
+.squiggle {
+  display: block; width: 150px; height: 10px; margin: 2px 0 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10' viewBox='0 0 60 10'%3E%3Cpath d='M1 6 Q 8 1 15 6 T 29 6 T 43 6 T 59 6' fill='none' stroke='%23f5a8c5' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: auto 100%;
+}
 .md-h2 {
-  font-size: 16px; font-weight: 500; color: var(--text);
-  margin: 36px 0 12px; line-height: 1.4;
-  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  font-family: var(--fh); font-weight: 400;
+  font-size: 24px; color: var(--ink);
+  margin: 36px 0 12px; line-height: 1.3;
+  padding-bottom: 8px; border-bottom: 2px dashed var(--line);
 }
-.md-h2::before { content: '> '; color: var(--faint); font-weight: 300; }
+.md-h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin: 24px 0 8px; }
 
-.md-h3 {
-  font-size: 13px; font-weight: 500; color: var(--text);
-  margin: 24px 0 8px;
-}
-.md-h3::before { content: '### '; color: var(--faint); font-weight: 300; }
+.md-sub { font-size: 14px; color: var(--ink-soft); font-weight: 500; margin-bottom: 24px; line-height: 1.7; }
 
-.md-sub {
-  font-size: 12px; color: var(--muted); font-weight: 300;
-  margin-bottom: 24px; line-height: 1.7;
-}
+.md-p { font-size: 15px; color: var(--ink); font-weight: 500; line-height: 1.65; margin-bottom: 10px; }
+.md-p strong { font-weight: 700; }
+.md-p em { font-style: italic; color: var(--ink-soft); }
+.md-p a { color: var(--blue-deep); text-decoration: none; border-bottom: 2px solid rgba(124,195,232,.4); }
+.md-p a:hover { border-bottom-color: var(--blue-deep); }
 
-.md-p {
-  font-size: 13px; color: var(--text); font-weight: 300;
-  line-height: 1.5; margin-bottom: 8px;
-}
-.md-p strong { font-weight: 500; }
-.md-p em { font-style: italic; color: var(--muted); }
-.md-p a { color: var(--sky); text-decoration: none; border-bottom: 1px solid rgba(135,206,235,.3); }
-.md-p a:hover { border-bottom-color: var(--sky); }
+.md-hr { border: none; border-top: 2px dashed var(--line); margin: 24px 0; }
 
-.md-hr {
-  border: none; border-top: 1px solid var(--border);
-  margin: 24px 0;
-}
-
-.md-tags {
-  font-size: 11px; color: var(--muted); line-height: 2;
-  margin-bottom: 16px;
-}
-.md-tag {
-  display: inline; padding: 2px 0;
-  color: var(--sky); font-weight: 400;
-}
-.md-tag::before { content: '#'; opacity: .5; }
-
-.md-links {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;
-}
+.md-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 .md-link {
-  font-size: 11px; color: var(--muted); text-decoration: none;
-  padding: 3px 10px; border: 1px solid var(--border); border-radius: 6px;
-  transition: all .2s; font-weight: 300;
+  font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none;
+  padding: 8px 16px; background: var(--paper); border: 2px solid var(--line); border-radius: 999px;
+  transition: all .2s; box-shadow: 0 2px 0 rgba(122,170,199,.12);
 }
-.md-link:hover { border-color: var(--text); color: var(--text); }
+.md-link:hover { border-color: var(--blue); color: var(--ink); transform: translateY(-2px) rotate(-1deg); }
 
-/* PROJECT LIST — Bear-style, no cards, just clean entries */
-.proj-entry {
-  padding: 14px 10px; margin: 0 -10px;
-  border-bottom: 1px solid rgba(196,223,232,.4); border-radius: 10px;
-  opacity: 0; transform: translateY(8px);
-  animation: fadeUp .4s ease forwards;
-  transition: background .25s ease;
+/* ============ PROJECT CARD GRID ============ */
+.pgrid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 26px; margin-top: 20px; align-items: start;
 }
-.proj-entry:hover { background: rgba(221,240,250,.45); }
-.proj-entry:last-child { border-bottom: none; }
+.pcard {
+  background: var(--paper);
+  border-radius: 20px;
+  border: 2px solid var(--line);
+  box-shadow: var(--shadow);
+  padding: 0 18px 18px;
+  cursor: pointer;
+  position: relative;
+  opacity: 0; transform: translateY(10px);
+  animation: fadeUp .45s ease forwards;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.pcard:nth-child(4n+1) { rotate: -1deg; }
+.pcard:nth-child(4n+2) { rotate: .7deg; }
+.pcard:nth-child(4n+3) { rotate: -.5deg; }
+.pcard:nth-child(4n+4) { rotate: 1.1deg; }
+.pcard:hover { transform: translateY(-5px); box-shadow: var(--shadow-up); border-color: var(--blue); rotate: 0deg; }
+.pcard:hover .tape { transform: translateX(-50%) rotate(-4deg) scale(1.06); }
 
-.proj-head {
-  display: flex; align-items: baseline; gap: 8px;
-  margin-bottom: 4px; flex-wrap: wrap;
+/* washi tape on top */
+.tape {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg);
+  width: 86px; height: 24px; border-radius: 3px;
+  opacity: .82; transition: transform .25s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.35) 0 6px, transparent 6px 12px);
 }
-.proj-icon { font-size: 18px; line-height: 1; }
-.proj-name {
-  font-size: 14px; font-weight: 500; color: var(--text);
-  letter-spacing: .02em; text-transform: uppercase;
-}
-.proj-status {
-  font-size: 9px; padding: 2px 8px; border-radius: 6px;
-  font-weight: 400; white-space: nowrap;
-}
+.tape-0 { background-color: var(--pink); }
+.tape-1 { background-color: var(--butter); }
+.tape-2 { background-color: var(--mint); }
+.tape-3 { background-color: var(--lilac); }
+.tape-4 { background-color: var(--blue); }
 
-.proj-tagline {
-  font-size: 12px; color: var(--muted); font-weight: 300;
-  margin-bottom: 8px; line-height: 1.5;
+/* doodle window — Damla's drawings live here */
+.doodle {
+  height: 132px; margin: 26px 0 12px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 16px;
+  background: radial-gradient(circle at 50% 60%, var(--dc, rgba(124,195,232,.16)), transparent 75%);
 }
-.proj-tagline::before { content: '> '; color: var(--faint); }
+.doodle img.dimg { max-height: 116px; max-width: 82%; object-fit: contain; }
+.doodle .demoji { font-size: 54px; line-height: 1; filter: saturate(.95); }
+.doodle.hasimg .demoji { display: none; }
+.doodle img.dicon { width: 72px; height: 72px; border-radius: 18px; box-shadow: var(--shadow); }
+.doodle.hasimg img.dicon { display: none; }
 
-.proj-desc {
-  font-size: 13px; line-height: 1.45; color: var(--text);
-  font-weight: 300; margin-bottom: 10px;
+.pcard-name {
+  font-family: var(--fh); font-weight: 400; font-size: 23px;
+  color: var(--ink); line-height: 1.2; margin-bottom: 6px; text-align: center;
 }
-.proj-desc strong { font-weight: 500; }
-.proj-desc em { font-style: italic; color: var(--muted); }
+.pcard-line {
+  font-size: 13.5px; color: var(--ink-soft); font-weight: 500;
+  line-height: 1.5; text-align: center; margin-bottom: 12px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.pcard-tags { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+.pcard-status {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+}
+.pcard-more {
+  text-align: center; margin-top: 12px;
+  font-family: var(--fh); font-size: 15px; color: var(--ink-faint);
+  transition: color .2s;
+}
+.pcard:hover .pcard-more { color: var(--pink-deep); }
 
-.proj-stack {
-  display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;
+/* expanded card */
+.pcard.open {
+  grid-column: 1 / -1; cursor: default; rotate: 0deg;
+  padding: 0 30px 26px;
 }
-.t { font-size: 10px; font-weight: 400; padding: 2px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
-.ti { font-size: 9px; line-height: 1; }
+.pcard.open:hover { transform: none; }
+.pcard.open .doodle { height: 150px; }
+.pcard.open .pcard-line { -webkit-line-clamp: unset; }
+.pdetail { display: none; }
+.pcard.open .pdetail { display: block; animation: fadeUp .3s ease; }
+.pdetail-desc {
+  font-size: 15px; line-height: 1.7; color: var(--ink); font-weight: 500;
+  max-width: 760px; margin: 14px auto 0; text-align: left;
+}
+.pdetail-desc strong { font-weight: 700; }
+.pdetail-desc em { font-style: italic; color: var(--ink-soft); }
+.pdetail-label {
+  font-family: var(--fh); font-size: 17px; color: var(--pink-deep);
+  margin: 18px auto 6px; max-width: 760px; text-align: left;
+}
+.pdetail-tags { display: flex; flex-wrap: wrap; gap: 6px; max-width: 760px; margin: 0 auto; }
+.pdetail-links { display: flex; gap: 10px; flex-wrap: wrap; max-width: 760px; margin: 18px auto 0; }
+.pclose {
+  position: absolute; top: 10px; left: 12px;
+  font: 400 17px/1 var(--fh); color: var(--ink-faint);
+  background: none; border: none; cursor: pointer; padding: 6px 10px;
+  border-radius: 10px; transition: all .2s;
+}
+.pclose:hover { color: var(--ink); background: var(--sky); }
+
+/* tech chips */
+.t { font-family: var(--fb); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.ti { font-size: 10px; line-height: 1; }
 .t-nxt{background:#ddf0fa;color:#1a5a7a;border:1px solid #b8dced}.t-rct{background:#daf0fb;color:#0a6a9a;border:1px solid #b0d8f0}
 .t-ts{background:#d8eaf8;color:#1a4a7a;border:1px solid #b0cce8}.t-sup{background:#d5f0e5;color:#1a6a4a;border:1px solid #a0d8c0}
 .t-tw{background:#d8f0fb;color:#0a5a8a;border:1px solid #a8d8f0}.t-cla{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}
-.t-ver{background:#e8e8e8;color:#333;border:1px solid #ccc}.t-js{background:#fdf6d8;color:#6a5a00;border:1px solid #e8dda0}
+.t-ver{background:#eeeae2;color:#4a4a44;border:1px solid #d5d0c4}.t-js{background:#fdf6d8;color:#6a5a00;border:1px solid #e8dda0}
 .t-hc{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}.t-py{background:#dae4f8;color:#2a4a8a;border:1px solid #b0c8e8}
 .t-fl{background:#d8f0f0;color:#1a5a5a;border:1px solid #a8d8d8}.t-wau{background:#eadaf8;color:#5a2a7a;border:1px solid #d0b8e8}
 .t-spo{background:#d5f0d8;color:#0a6a2a;border:1px solid #a0d8a8}.t-ls{background:#f0f0d8;color:#5a5a1a;border:1px solid #d8d8a0}
@@ -220,109 +280,115 @@ body {
 .t-git{background:#f8e0d8;color:#8a2a1a;border:1px solid #e8b0a0}.t-def{background:#ddf0fa;color:#1a4a6a;border:1px solid #b8d8e8}
 .t-fal{background:#f0d8f0;color:#6a1a6a;border:1px solid #d8a8d8}.t-web{background:#f8f0d8;color:#6a5a00;border:1px solid #e8d8a0}
 .t-swu{background:#dae0f8;color:#2a3a7a;border:1px solid #b0c0e8}
+.t-plus{background:var(--sky);color:var(--ink-soft);border:1px dashed var(--ink-faint)}
 
-.proj-links {
-  display: flex; gap: 6px;
+/* candy buttons */
+.btn-candy {
+  font: 700 14px/1 var(--fb); padding: 13px 26px;
+  background: var(--blue-deep); color: #fff; border: none; border-radius: 999px;
+  cursor: pointer; text-decoration: none; display: inline-block;
+  box-shadow: 0 4px 0 rgba(58,127,166,.5);
+  transition: all .15s;
 }
+.btn-candy:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 6px 0 rgba(58,127,166,.5); }
+.btn-candy:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(58,127,166,.5); }
+.btn-candy.pink { background: var(--pink-deep); box-shadow: 0 4px 0 rgba(176,68,116,.45); }
+.btn-candy.pink:hover { box-shadow: 0 6px 0 rgba(176,68,116,.45); }
+
 .proj-link {
-  font-size: 10px; color: var(--muted); text-decoration: none;
-  padding: 2px 8px; border: 1px solid var(--border); border-radius: 6px;
-  transition: all .2s; font-weight: 300;
+  font-size: 13px; font-weight: 700; color: var(--ink-soft); text-decoration: none;
+  padding: 9px 18px; background: var(--paper); border: 2px solid var(--line); border-radius: 999px;
+  transition: all .2s;
 }
-.proj-link:hover { border-color: var(--text); color: var(--text); }
-.proj-link-live {
-  color: #fff; background: var(--pink); border-color: var(--pink); font-weight: 400;
-}
-.proj-link-live:hover { background: #C2255C; }
+.proj-link:hover { border-color: var(--ink); color: var(--ink); transform: translateY(-2px); }
+.proj-link-live { color: #fff; background: var(--pink-deep); border-color: var(--pink-deep); }
+.proj-link-live:hover { background: #c74d84; border-color: #c74d84; color: #fff; }
 
-/* PAGINATION */
-.pager {
-  display: flex; justify-content: center; gap: 6px; margin: 20px 0 8px;
-}
+/* PAGINATION (technical tabs) */
+.pager { display: flex; justify-content: flex-start; gap: 8px; margin: 20px 0 8px; flex-wrap: wrap; }
 .pager-btn {
-  font: 300 11px/1 var(--fm); padding: 5px 12px; border-radius: 6px;
-  border: 1px solid var(--border); background: none; color: var(--muted);
+  font: 600 14px/1 var(--fb); padding: 9px 20px; border-radius: 999px;
+  border: 2px solid var(--line); background: var(--paper); color: var(--ink-soft);
   cursor: pointer; transition: all .2s;
 }
-.pager-btn:hover, .pager-btn.on { background: var(--sky); color: #fff; border-color: var(--sky); }
+.pager-btn:hover, .pager-btn.on { background: var(--blue); color: #fff; border-color: var(--blue); }
 
-/* SKILLS — 4 column, Bear-style clean list */
-.skills-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; margin-top: 12px;
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 16px; }
+.skill-col {
+  background: var(--paper); border: 2px solid var(--line); border-radius: 18px;
+  padding: 18px; box-shadow: var(--shadow);
 }
-.skill-col { padding: 0 16px 16px 0; }
-.skill-col:last-child { padding-right: 0; }
+.skill-col:nth-child(odd) { rotate: -.6deg; }
+.skill-col:nth-child(even) { rotate: .5deg; }
 .skill-col-title {
-  font-size: 10px; font-weight: 500; color: var(--muted);
-  text-transform: lowercase; letter-spacing: .08em;
-  margin-bottom: 8px; padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
+  font-family: var(--fh); font-size: 18px; color: var(--pink-deep);
+  margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px dashed var(--line);
 }
-.skill-col-title::before { content: '## '; color: var(--faint); font-weight: 300; }
-.skill-item {
-  font-size: 13px; color: var(--text); font-weight: 300;
-  padding: 3px 0; line-height: 1.45;
-}
-.skill-item::before { content: '- '; color: var(--faint); }
+.skill-item { font-size: 14px; color: var(--ink); font-weight: 500; padding: 3px 0; line-height: 1.5; }
+.skill-item::before { content: '✿ '; color: var(--ink-faint); font-size: 11px; }
 
-/* EXPERIENCE — clean list */
+/* EXPERIENCE */
 .exp-entry {
-  padding: 12px 0; border-bottom: 1px solid rgba(196,223,232,.3);
+  background: var(--paper); border: 2px solid var(--line); border-radius: 18px;
+  padding: 20px 22px; margin-bottom: 16px; box-shadow: var(--shadow);
 }
-.exp-entry:last-child { border-bottom: none; }
-.exp-role { font-size: 14px; font-weight: 500; color: var(--text); text-transform: uppercase; letter-spacing: .02em; line-height: 1.45; }
-.exp-desc { font-size: 13px; color: var(--text); line-height: 1.45; margin-top: 3px; font-weight: 300; }
-.exp-desc strong { font-weight: 500; }
-.exp-desc em { font-style: italic; color: var(--muted); }
-.exp-period { font-size: 10px; color: var(--light); margin-top: 3px; font-weight: 300; line-height: 1.45; }
+.exp-entry:nth-child(odd) { rotate: -.4deg; }
+.exp-entry:nth-child(even) { rotate: .4deg; }
+.exp-role { font-family: var(--fh); font-size: 21px; color: var(--ink); line-height: 1.3; }
+.exp-desc { font-size: 14.5px; color: var(--ink); line-height: 1.65; margin-top: 6px; font-weight: 500; }
+.exp-desc strong { font-weight: 700; }
+.exp-desc em { font-style: italic; color: var(--ink-soft); }
+.exp-period { font-size: 12px; font-weight: 700; color: var(--ink-faint); margin-top: 8px; }
 
 /* SCHEDULE */
 .sched-entry {
-  padding: 12px 10px; margin: 0 -10px;
-  border-bottom: 1px solid rgba(196,223,232,.3); border-radius: 10px;
-  transition: background .25s ease;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 18px;
+  padding: 16px 20px; margin-bottom: 14px; box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.sched-entry:hover { background: rgba(221,240,250,.35); }
-.sched-entry:last-child { border-bottom: none; }
-.sched-head { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
-.sched-name { font-size: 12px; font-weight: 500; color: var(--text); }
-.sched-note { font-size: 11px; color: var(--muted); line-height: 1.7; font-weight: 300; }
-.sched-note strong { font-weight: 500; color: var(--text); }
+.sched-entry:nth-child(odd) { rotate: -.35deg; }
+.sched-entry:nth-child(even) { rotate: .35deg; }
+.sched-entry:hover { transform: translateY(-2px); box-shadow: var(--shadow-up); }
+.sched-head { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; flex-wrap: wrap; }
+.sched-head > span:first-child { font-size: 20px; }
+.sched-name { font-family: var(--fh); font-size: 19px; color: var(--ink); }
+.sched-note { font-size: 14px; color: var(--ink-soft); line-height: 1.65; font-weight: 500; }
+.sched-note strong { font-weight: 700; color: var(--ink); }
+.proj-status { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
 
 /* BLOG */
-.blog-entry { margin-bottom: 28px; }
-.blog-date {
-  font-size: 10px; color: var(--light); letter-spacing: .06em;
-  margin-bottom: 8px; font-weight: 300;
-}
-.blog-date::before { content: '// '; color: var(--faint); }
+.blog-date { font-family: var(--fh); font-size: 15px; color: var(--pink-deep); margin: 18px 0 6px; }
 
 /* FOOTER */
 .footer {
-  text-align: center; padding: 32px; font-size: 8px;
-  color: var(--faint); letter-spacing: .06em;
+  text-align: center; padding: 36px; font-size: 15px;
+  color: var(--ink-faint); letter-spacing: .2em;
   position: relative; z-index: 1;
 }
 
-@media (max-width: 640px) {
-  .nav { padding: 4px 8px; gap: 2px; flex-wrap: wrap; justify-content: center; }
-  .nav-btn { font-size: 10px; padding: 9px 8px; }
-  .page { padding: 32px 16px 80px; }
-  .md-h1 { font-size: 22px; }
+@media (max-width: 900px) {
+  .pgrid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
-  .proj-link, .md-link { padding: 6px 12px; }
+}
+@media (max-width: 640px) {
+  .nav { padding: 8px 10px; gap: 2px; flex-wrap: wrap; justify-content: center; }
+  .nav-btn { font-size: 13px; padding: 10px 10px; }
+  .nav-brand { font-size: 18px; }
+  .pages { margin-top: 108px; }
+  .page { padding: 32px 16px 80px; }
+  .md-h1 { font-size: 32px; }
+  .pgrid { grid-template-columns: 1fr; }
+  .pcard.open { padding: 0 18px 18px; }
 }
 @media (max-width: 400px) {
   .skills-grid { grid-template-columns: 1fr; }
 }
 
-/* klavye ile gezenler icin gorunur odak */
-button:focus-visible, a:focus-visible {
-  outline: 2px solid var(--sky); outline-offset: 2px; border-radius: 6px;
+button:focus-visible, a:focus-visible, .pcard:focus-visible {
+  outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 14px;
 }
 
-/* hareket azaltma tercihine saygi */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -330,7 +396,7 @@ button:focus-visible, a:focus-visible {
     transition-duration: .01ms !important;
   }
   html { scroll-behavior: auto; }
-  .proj-entry, .page.on { opacity: 1; transform: none; }
+  .pcard, .page.on { opacity: 1; transform: none; }
 }
 </style>
 </head>
@@ -343,15 +409,15 @@ button:focus-visible, a:focus-visible {
 <div class="pages">
   <!-- HOME -->
   <div class="page" id="p-home">
-    <div style="min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;max-width:620px;margin:0 auto">
-      <div style="font-size:48px;margin-bottom:14px">🦋🐞🌞🍃💐</div>
-      <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:16px">// bilkent university · computer science</div>
-      <h1 class="md-h1" style="font-size:clamp(28px,5vw,44px);margin-bottom:16px">hi, i'm <span style="border-bottom:2px solid var(--sky)">damla</span> 👩🏻‍💻<span class="cursor"></span></h1>
-      <p class="md-p" style="font-size:13px;max-width:560px;margin-bottom:24px">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-        <button onclick="go('projects')" style="font:400 11px/1 var(--fm);padding:10px 22px;background:var(--sky);color:#fff;border:none;border-radius:6px;cursor:pointer">explore projects 🌷</button>
-        <a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener" class="md-link" style="padding:10px 22px;font-size:11px">github →</a>
-        <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" rel="noopener" class="md-link" style="padding:10px 22px;font-size:11px">sponsor 💖</a>
+    <div style="min-height:calc(100vh - 130px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;max-width:640px;margin:0 auto">
+      <div style="font-size:46px;margin-bottom:18px">🦋🐞🌞🍃💐</div>
+      <div style="font-size:14px;font-weight:700;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:14px">bilkent university · computer science</div>
+      <h1 class="md-h1" style="font-size:clamp(40px,6vw,58px);margin-bottom:14px">hi, i'm <span style="color:var(--pink-deep)">damla</span> 👩🏻‍💻</h1>
+      <p class="md-p" style="font-size:16px;max-width:560px;margin-bottom:28px">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button onclick="go('projects')" class="btn-candy">explore projects 🌷</button>
+        <a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener" class="md-link" style="padding:12px 22px;font-size:14px">github →</a>
+        <a href="https://github.com/sponsors/nosey-dewdrop" target="_blank" rel="noopener" class="md-link" style="padding:12px 22px;font-size:14px">sponsor 💖</a>
       </div>
     </div>
   </div>
@@ -359,6 +425,7 @@ button:focus-visible, a:focus-visible {
   <!-- ABOUT — loaded from content/about-me.md -->
   <div class="page" id="p-about">
     <h1 class="md-h1">🦋 about me</h1>
+    <span class="squiggle"></span>
     <div id="about-content"></div>
     <div class="md-links" style="margin-top:16px">
       <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
@@ -371,38 +438,39 @@ button:focus-visible, a:focus-visible {
   <!-- SCHEDULE -->
   <div class="page" id="p-schedule">
     <h1 class="md-h1">📋 schedule</h1>
-    <p class="md-sub">what i'm working on, what's next, and the stories behind each project · <a id="mail-ideas" href="#" style="color:var(--pink);font-weight:400;text-decoration:underline">✨ mail me for ideas !</a></p>
-    <hr class="md-hr">
+    <span class="squiggle"></span>
+    <p class="md-sub">what i'm working on, what's next, and the stories behind each project · <a id="mail-ideas" href="#" style="color:var(--pink-deep);font-weight:700;text-decoration:underline">✨ mail me for ideas !</a></p>
     <div id="sched-list"></div>
   </div>
 
   <!-- IN DEVELOPMENT -->
   <div class="page" id="p-indev">
     <h1 class="md-h1">🐝 in development</h1>
+    <span class="squiggle"></span>
     <p class="md-sub">repos that are actively being built</p>
-    <hr class="md-hr">
     <div id="indev-list"></div>
   </div>
 
   <!-- LIFE PLAN — loaded from content/life-plan.md -->
   <div class="page" id="p-lifeplan">
     <h1 class="md-h1">🌸 life plan & dreams</h1>
+    <span class="squiggle"></span>
     <p class="md-sub">thoughts, reflections, and the road ahead</p>
-    <hr class="md-hr">
     <div id="lifeplan-content"></div>
   </div>
 
   <!-- PROJECTS -->
   <div class="page" id="p-projects">
     <h1 class="md-h1">💐 projects</h1>
-    <p class="md-sub">march – september 2026 pipeline & deployed work</p>
-    <div id="proj-pager" class="pager"></div>
-    <div id="proj-list"></div>
+    <span class="squiggle"></span>
+    <p class="md-sub">march – september 2026 pipeline & deployed work · tap a card to open it 🍓</p>
+    <div id="proj-list" class="pgrid"></div>
   </div>
 
   <!-- TECHNICAL -->
   <div class="page" id="p-technical">
     <h1 class="md-h1">👾 technical details</h1>
+    <span class="squiggle"></span>
     <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing — it's about evaluating knowledge.</p>
     <div id="tech-pager" class="pager"></div>
     <div id="tech-content"></div>
@@ -413,7 +481,7 @@ button:focus-visible, a:focus-visible {
 
 <script>
 const NAV_L=[
-  {k:"home",l:"✨damla.log🐝"},{k:"schedule",l:"📋 schedule"},
+  {k:"home",l:"✨damla.log🐝",brand:true},{k:"schedule",l:"📋 schedule"},
   {k:"lifeplan",l:"🌷 life plan"},{k:"about",l:"💃🏽 about me"}
 ];
 const NAV_R=[
@@ -427,7 +495,7 @@ const T={
   "Next.js 16":{i:"▲",c:"nxt"},"Next.js 15":{i:"▲",c:"nxt"},"Next.js (App Router)":{i:"▲",c:"nxt"},
   "React 19":{i:"⚛",c:"rct"},"React":{i:"⚛",c:"rct"},
   "TypeScript":{i:"TS",c:"ts"},"JavaScript":{i:"JS",c:"js"},
-  "Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},
+  "Supabase (PostgreSQL + Auth)":{i:"⚡",c:"sup"},"Supabase (PostgreSQL + RLS)":{i:"⚡",c:"sup"},
   "Tailwind CSS 4":{i:"🌊",c:"tw"},"Anthropic Claude API":{i:"✦",c:"cla"},
   "Vercel (Serverless)":{i:"▲",c:"ver"},"Vercel":{i:"▲",c:"ver"},
   "HTML/CSS":{i:"🎨",c:"hc"},"Music Theory Algorithms":{i:"🎵",c:"mu"},
@@ -444,25 +512,32 @@ const T={
   "Git/GitHub":{i:"🐙",c:"git"},"CSS":{i:"🎨",c:"hc"},"JavaFX":{i:"🖼",c:"sw"},
   "SwiftUI":{i:"🍎",c:"swu"},"SwiftData":{i:"💾",c:"swu"},"CoreLocation":{i:"📍",c:"swu"},
   "WeatherAPI":{i:"🌤",c:"web"},"UserNotifications":{i:"🔔",c:"swu"},
+  "framer-motion":{i:"🎞",c:"wau"},"Programmatic SEO":{i:"🔎",c:"web"},
+  "face_recognition":{i:"👤",c:"py"},"dlib":{i:"🧠",c:"py"},
+  "iCloud Documents":{i:"☁️",c:"swu"},"GitHub OAuth":{i:"🔑",c:"sec"},
+  "Keychain":{i:"🔐",c:"sec"},"URL Schemes":{i:"🔗",c:"swu"},
+  "JSON Codable":{i:"📦",c:"swu"},"NSMetadataQuery":{i:"🔍",c:"swu"},
 };
 function mkTag(n){const m=T[n]||{i:"•",c:"def"};return `<span class="t t-${m.c}"><span class="ti">${m.i}</span>${n}</span>`;}
 
+// sl: doodle filename → doodles/<sl>.png (Damla's hand-drawn art)
+// img: app icon fallback · e: emoji fallback
 const P=[
-  {e:"🌷",n:"Kısa Lafın Uzunu",tg:"impromptu speaking practice — 2,900+ real topics, live on custom domain",d:"A Turkish <strong>impromptu speaking practice</strong> web app: draw a random topic from <strong>2,908 real, sourced topics</strong> (philosophy, psychology, literature, science...), set a 5–30 min timer, and speak. Every topic comes from a real source — books, academic concepts, ekşi sözlük threads, Reddit debates — harvested by <strong>parallel AI research agents</strong>, never AI-invented. Features: swipeable topic deck, <strong>draggable liquid-glass post-it notes board</strong>, spoken-topics box, save-for-later hearts, and a <strong>Supabase waitlist</strong> (insert-only RLS, email enumeration protected). <strong>Programmatic SEO</strong>: 2,908 static topic pages + 16 category pages + 13 keyword landing pages, sitemap submitted to Search Console.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Supabase (PostgreSQL + RLS)","Programmatic SEO","Vercel"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/kisalafinuzunu",l:"https://www.kisalafinuzunu.com",co:"#7059BD"},
-  {e:"🍬",n:"kitschat",tg:"english twin of kısa lafın uzunu — whimsy pastel, live on vercel",d:"The <strong>English twin</strong> of Kısa Lafın Uzunu with a whimsy pastel redesign: <strong>2,272 sourced English topics</strong>, the best of the Turkish pool translated with <strong>verified published quote wording</strong> (misattributed quotes caught and dropped) plus fresh topics harvested from Reddit, Hacker News, YouTube and X discourse by <strong>parallel AI research agents</strong>. Hand-drawn wobble cards, candy buttons, a living animated topic deck, and <strong>programmatic SEO</strong>: 2,272 static topic pages + 15 category pages + 13 keyword landing pages.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Programmatic SEO","Vercel"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/kitschat",l:"https://kitschat.vercel.app",co:"#8A70D6"},
-  {e:"<img src='https://nosey-dewdrop.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:22px;height:22px;border-radius:5px;vertical-align:middle'>",n:"Scrapp",tg:"digital scrapbook app — frame photos, collect memories, sticker packs",d:"A native iOS scrapbook app. Create <strong>themed notebooks</strong>, frame your photos with <strong>decorative borders</strong> (polaroid, flower wreath, cloud, heart), add short notes, and collect memories. Features <strong>camera & gallery</strong> photo picking, <strong>hand-drawn sticker packs</strong> (butterflies, kawaii animals, fairy garden, vintage), free-form canvas with drag/pinch/rotate, haptic feedback, and smooth animations. No third-party dependencies — pure SwiftUI + SwiftData.",t:["SwiftUI","SwiftData"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/scrapp",l:"https://nosey-dewdrop.github.io/scrapp/",ll:"📒 landing page",co:"#F8B4C8"},
-  {e:"🥦",n:"Butterfry",tg:"food allergen detective — find what's messing with your stomach",d:"A food ingredient cross-reference tool. When multiple foods cause reactions (bloating, nausea, heartburn...), add them and <strong>find common ingredients</strong> — the culprit. Features: <strong>24 curated products</strong> + Open Food Facts API for unlimited search, OCR label scanning via <strong>Tesseract.js</strong>, personal reaction tracking, suspect ingredient watchlist, and cross-reference analysis engine. Mint green health-themed UI. All data stays in your browser via localStorage — no accounts, no servers, no tracking.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","LocalStorage API"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/butterfry",co:"#34d399"},
-  {e:"☀️",n:"Sunny",tg:"iOS weather app with hand-drawn backgrounds & sunscreen reminders",d:"A native iOS weather app that shows <strong>current conditions with illustrated backgrounds</strong> that change based on weather (sunny, cloudy, rainy, hot). Uses <strong>CoreLocation</strong> for GPS + reverse geocoding, fetches real-time data from <strong>WeatherAPI</strong>, and sends <strong>sunscreen reminder notifications</strong> when temperature exceeds your threshold. Features 8 unique hand-drawn weather illustrations, doodle-style typography, staggered entrance animations, and a baby blue settings screen. Built entirely in <strong>SwiftUI</strong> — my first iOS app.",t:["SwiftUI","CoreLocation","WeatherAPI","UserNotifications"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/sunny",l:"https://nosey-dewdrop.github.io/sunny/",ll:"☀️ documentation",co:"#F39C12"},
-  {e:"💌",n:"Forget-Me-Not",tg:"slow letter platform — letters travel based on real distance",d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong>. Features: <strong>Google OAuth</strong> via Supabase, bottle mail with random matching, memory box for unsent letters, <strong>user matching with conversation starters</strong>, XP/leveling gamification with collectible stamps, seasonal themes, and <em>a mythology blog about historical love stories</em>. No instant messaging, no read receipts, no pressure — intentionally slow.",t:["Next.js (App Router)","React","TypeScript","Supabase (PostgreSQL + Auth)","Google OAuth","CSS","Vercel"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/forget-me-not",l:"https://myosotis-sylvatica.vercel.app",co:"#9B59B6"},
-  {e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media criticism simulator",d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental toughness trainer. Write anything you'd post online → <strong>Claude API generates brutally realistic toxic comments</strong> from different troll personas → you practice handling harsh criticism to build resilience. Features a curated library of quotes and book recommendations. <strong>Python</strong> for the API backend, <strong>React</strong> for the frontend, deployed on <strong>Vercel</strong>.",t:["Python","Flask + CORS","Anthropic Claude API","React","Vercel","JavaScript"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/linc-matik",l:"https://lincmatik.vercel.app",co:"#8e35b8"},
-  {e:"🎵",n:"Musical Improvisation Tool",tg:"scale identifier & composition aid with Web Audio API",d:"Play or input a few notes → get every possible <strong>scale, mode, chord, and progression</strong> instantly. Built with a <strong>custom music theory algorithm</strong> (Circle of Fifths, 7 diatonic modes, enharmonic mapping). Features <strong>Web Audio API</strong> synthesis for piano & guitar, interactive <strong>piano + guitar fretboard</strong>, QWERTY keyboard mapping, <strong>Spotify</strong> song suggestions per key, and a <strong>chord progression planner</strong>.",t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/musical-improvisation-tool",l:"https://nosey-dewdrop.github.io/musical-improvisation-tool/",co:"#00B894"},
-  {e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",d:"Draw cards from a full <strong>78-card Rider-Waite tarot deck</strong> and watch AI bring them to life as <strong>cinematic video</strong>. Hand-crafted prompts for each card describe the illustration animating. Three fal.ai video models to choose from. Architecture: browser → <strong>4 serverless API routes</strong> → fal.ai Queue API.",t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/lady-fantasy.ai",l:"https://lady-fantasy.vercel.app",co:"#6C5CE7"},
-  {e:"👾",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em> <strong>Interactive UML class diagram</strong> with method descriptions and dependency mapping is deployed on GitHub Pages.",t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],s:"💐 Built & Deployed",g:"https://github.com/nosey-dewdrop/league-of-bilkent",l:"https://nosey-dewdrop.github.io/league-of-bilkent/",ll:"✨ live uml website!",co:"#E67E22"},
-  {e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",t:["Java","Java Swing","Database","SQL"],s:"💐 Built",g:null,co:"#27AE60"},
-  {e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",t:["JavaScript","HTML/CSS"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
-  {e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",t:["Java","Java Swing","JavaFX"],s:"💐 Early build",g:null,co:"#FD79A8"},
-  {e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",t:["Python","face_recognition","dlib"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/age-wiz",co:"#8E44AD"},
-  {e:"<img src='https://nosey-dewdrop.github.io/damla-log/app_icon.png' style='width:22px;height:22px;border-radius:5px;vertical-align:middle'>",n:"damla.log",tg:"developer companion iOS app — tasks, ideas, bugs, versions",d:"A native iOS app for managing all my coding projects from my phone. <strong>4 tabs</strong> — tasks, ideas, issues, versions — each with its own stats page (contribution grid, weekly breakdown, project bars). <strong>Tag-based organization</strong> across projects, swipe gestures for status changes, vertical paging between content and analytics. Syncs via <strong>iCloud Documents</strong> with real-time conflict resolution. Connects to <strong>GitHub OAuth</strong> for repo tagging. Integrates with <strong>Claude Code via URL schemes</strong> — tasks created in terminal appear on phone instantly. Built entirely in SwiftUI with JSON Codable persistence and backward-compatible decoding.",t:["SwiftUI","iCloud Documents","GitHub OAuth","Keychain","URL Schemes","JSON Codable","NSMetadataQuery"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/damla.log",l:"https://nosey-dewdrop.github.io/damla-log/",ll:"🌸 landing page",co:"#D4A5C7"},
+  {sl:"kisalafinuzunu",e:"🌷",n:"Kısa Lafın Uzunu",tg:"impromptu speaking practice — 2,900+ real topics, live on custom domain",d:"A Turkish <strong>impromptu speaking practice</strong> web app: draw a random topic from <strong>2,908 real, sourced topics</strong> (philosophy, psychology, literature, science...), set a 5–30 min timer, and speak. Every topic comes from a real source — books, academic concepts, ekşi sözlük threads, Reddit debates — harvested by <strong>parallel AI research agents</strong>, never AI-invented. Features: swipeable topic deck, <strong>draggable liquid-glass post-it notes board</strong>, spoken-topics box, save-for-later hearts, and a <strong>Supabase waitlist</strong> (insert-only RLS, email enumeration protected). <strong>Programmatic SEO</strong>: 2,908 static topic pages + 16 category pages + 13 keyword landing pages, sitemap submitted to Search Console.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Supabase (PostgreSQL + RLS)","Programmatic SEO","Vercel"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/kisalafinuzunu",l:"https://www.kisalafinuzunu.com",co:"#7059BD"},
+  {sl:"kitschat",e:"🍬",n:"kitschat",tg:"english twin of kısa lafın uzunu — whimsy pastel, live on vercel",d:"The <strong>English twin</strong> of Kısa Lafın Uzunu with a whimsy pastel redesign: <strong>2,272 sourced English topics</strong>, the best of the Turkish pool translated with <strong>verified published quote wording</strong> (misattributed quotes caught and dropped) plus fresh topics harvested from Reddit, Hacker News, YouTube and X discourse by <strong>parallel AI research agents</strong>. Hand-drawn wobble cards, candy buttons, a living animated topic deck, and <strong>programmatic SEO</strong>: 2,272 static topic pages + 15 category pages + 13 keyword landing pages.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Programmatic SEO","Vercel"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/kitschat",l:"https://kitschat.vercel.app",co:"#8A70D6"},
+  {sl:"scrapp",e:"📒",img:"https://nosey-dewdrop.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png",n:"Scrapp",tg:"digital scrapbook app — frame photos, collect memories, sticker packs",d:"A native iOS scrapbook app. Create <strong>themed notebooks</strong>, frame your photos with <strong>decorative borders</strong> (polaroid, flower wreath, cloud, heart), add short notes, and collect memories. Features <strong>camera & gallery</strong> photo picking, <strong>hand-drawn sticker packs</strong> (butterflies, kawaii animals, fairy garden, vintage), free-form canvas with drag/pinch/rotate, haptic feedback, and smooth animations. No third-party dependencies — pure SwiftUI + SwiftData.",t:["SwiftUI","SwiftData"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/scrapp",l:"https://nosey-dewdrop.github.io/scrapp/",ll:"📒 landing page",co:"#F8B4C8"},
+  {sl:"butterfry",e:"🥦",n:"Butterfry",tg:"food allergen detective — find what's messing with your stomach",d:"A food ingredient cross-reference tool. When multiple foods cause reactions (bloating, nausea, heartburn...), add them and <strong>find common ingredients</strong> — the culprit. Features: <strong>24 curated products</strong> + Open Food Facts API for unlimited search, OCR label scanning via <strong>Tesseract.js</strong>, personal reaction tracking, suspect ingredient watchlist, and cross-reference analysis engine. Mint green health-themed UI. All data stays in your browser via localStorage — no accounts, no servers, no tracking.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","LocalStorage API"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/butterfry",co:"#34d399"},
+  {sl:"sunny",e:"☀️",n:"Sunny",tg:"iOS weather app with hand-drawn backgrounds & sunscreen reminders",d:"A native iOS weather app that shows <strong>current conditions with illustrated backgrounds</strong> that change based on weather (sunny, cloudy, rainy, hot). Uses <strong>CoreLocation</strong> for GPS + reverse geocoding, fetches real-time data from <strong>WeatherAPI</strong>, and sends <strong>sunscreen reminder notifications</strong> when temperature exceeds your threshold. Features 8 unique hand-drawn weather illustrations, doodle-style typography, staggered entrance animations, and a baby blue settings screen. Built entirely in <strong>SwiftUI</strong> — my first iOS app.",t:["SwiftUI","CoreLocation","WeatherAPI","UserNotifications"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/sunny",l:"https://nosey-dewdrop.github.io/sunny/",ll:"☀️ documentation",co:"#F39C12"},
+  {sl:"forget-me-not",e:"💌",n:"Forget-Me-Not",tg:"slow letter platform — letters travel based on real distance",d:"A slow letter platform where <strong>letters travel based on real geographic distance</strong> (Istanbul→Tokyo = 3.5 days). Built as my <strong>FAB Fellowship final project</strong>. Features: <strong>Google OAuth</strong> via Supabase, bottle mail with random matching, memory box for unsent letters, <strong>user matching with conversation starters</strong>, XP/leveling gamification with collectible stamps, seasonal themes, and <em>a mythology blog about historical love stories</em>. No instant messaging, no read receipts, no pressure — intentionally slow.",t:["Next.js (App Router)","React","TypeScript","Supabase (PostgreSQL + Auth)","Google OAuth","CSS","Vercel"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/forget-me-not",l:"https://myosotis-sylvatica.vercel.app",co:"#9B59B6"},
+  {sl:"lincmatik",e:"🎀",n:"Linçmatik",tg:"mental toughness trainer — social media criticism simulator",d:"A full-stack <strong>social media criticism simulator</strong> designed as a mental toughness trainer. Write anything you'd post online → <strong>Claude API generates brutally realistic toxic comments</strong> from different troll personas → you practice handling harsh criticism to build resilience. Features a curated library of quotes and book recommendations. <strong>Python</strong> for the API backend, <strong>React</strong> for the frontend, deployed on <strong>Vercel</strong>.",t:["Python","Flask + CORS","Anthropic Claude API","React","Vercel","JavaScript"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/linc-matik",l:"https://lincmatik.vercel.app",co:"#8e35b8"},
+  {sl:"musical-improvisation",e:"🎵",n:"Musical Improvisation Tool",tg:"scale identifier & composition aid with Web Audio API",d:"Play or input a few notes → get every possible <strong>scale, mode, chord, and progression</strong> instantly. Built with a <strong>custom music theory algorithm</strong> (Circle of Fifths, 7 diatonic modes, enharmonic mapping). Features <strong>Web Audio API</strong> synthesis for piano & guitar, interactive <strong>piano + guitar fretboard</strong>, QWERTY keyboard mapping, <strong>Spotify</strong> song suggestions per key, and a <strong>chord progression planner</strong>.",t:["JavaScript","HTML/CSS","Web Audio API","Spotify Embed API","LocalStorage API","Music Theory Algorithms"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/musical-improvisation-tool",l:"https://nosey-dewdrop.github.io/musical-improvisation-tool/",co:"#00B894"},
+  {sl:"lady-fantasy",e:"💫",n:"Lady Fantasy",tg:"AI-powered tarot video experience — live on Vercel",d:"Draw cards from a full <strong>78-card Rider-Waite tarot deck</strong> and watch AI bring them to life as <strong>cinematic video</strong>. Hand-crafted prompts for each card describe the illustration animating. Three fal.ai video models to choose from. Architecture: browser → <strong>4 serverless API routes</strong> → fal.ai Queue API.",t:["Next.js 15","React 19","Next.js Serverless API Routes","fal.ai Queue API","Minimax Video-01","Hailuo-02 Text-to-Video","FLUX Schnell (Image Gen)","Vercel (Serverless)"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/lady-fantasy.ai",l:"https://lady-fantasy.vercel.app",co:"#6C5CE7"},
+  {sl:"league-of-bilkent",e:"👾",n:"League of Bilkent",tg:"campus event social platform — CS102 final project, 30 Java files",d:"A full-stack campus event management platform built as the <strong>CS102 final project</strong>. <strong>30 Java classes</strong> across MVC architecture: 4 screens, 13 panel components, 8 data models with MySQL integration, and 4 tool utilities. Features <strong>SHA-256 + salt password hashing</strong>, Bilkent email verification via JavaMail API, a complete <strong>XP/tier gamification system</strong> (Seedling → Cosmos), RSVP with calendar conflict detection, threaded comments, follow system, DMs, smart recommendations. UI prototyped in Figma, inspired by <em>Strava's community feed, X's timeline, Instagram's discover page, and Ekşi Sözlük's threaded discussions.</em> <strong>Interactive UML class diagram</strong> with method descriptions and dependency mapping is deployed on GitHub Pages.",t:["Java 17+","Java Swing","MySQL 8.0","SQL","MVC Architecture","SHA-256 + Salt (Password Hashing)","JavaMail API (Email Verification)","Figma (UI Prototyping)","Git/GitHub"],s:"💐 Built & Deployed",g:"https://github.com/nosey-dewdrop/league-of-bilkent",l:"https://nosey-dewdrop.github.io/league-of-bilkent/",ll:"✨ live uml website!",co:"#E67E22"},
+  {sl:"bilmart",e:"🛒",n:"BilMart",tg:"secondhand marketplace for Bilkent students",d:"A desktop marketplace application for buying and selling secondhand items within Bilkent University. Full database-backed user management and item catalog with Bilkent student ID verification for privacy and trust. Built with Java Swing GUI and a relational database for persistent storage.",t:["Java","Java Swing","Database","SQL"],s:"💐 Built",g:null,co:"#27AE60"},
+  {sl:"coffee-menu",e:"☕",n:"Interactive Coffee Menu",tg:"third wave coffee education — full brewing knowledge",d:"Built while working as a barista at Hound Coffee Group, a third wave specialty shop where taste is everything. I learned every brewing method hands-on — Chemex, V60, French press, aeropress, cold brew, siphon — and understand extraction science, grind size, water temperature, and how each variable affects flavor. This interactive menu teaches customers the real differences: americano vs filter, cappuccino vs latte vs flat white vs cortado, with visual breakdowns of milk ratios, extraction methods, and flavor profiles. Because third wave coffee isn't about speed — it's about understanding what you're drinking.",t:["JavaScript","HTML/CSS"],s:"💐 Live",g:"https://github.com/nosey-dewdrop/coffee-menu",l:"https://nosey-dewdrop.github.io/coffee-menu/",co:"#6F4E37"},
+  {sl:"flower-timer",e:"🌸",n:"Flower Timer",tg:"fairy garden timer in Java Swing",d:"A whimsical productivity timer with fairy garden aesthetics — animated butterflies, flowers, and leaves. Learning Java Swing GUI programming by building something beautiful instead of boring.",t:["Java","Java Swing","JavaFX"],s:"💐 Early build",g:null,co:"#FD79A8"},
+  {sl:"age-wiz",e:"🔮",n:"Age Wiz",tg:"face recognition AI model — trained on personal photos to identify faces",d:"A Python-based <strong>face recognition system</strong> trained on personal photos. Uses <strong>face_recognition</strong> (dlib) to encode faces from a training set, then identifies people in new images using <strong>face distance</strong> for best-match accuracy. Supports HOG (fast) and CNN (accurate) models. Simple CLI: <code>--train</code> to encode, <code>--test</code> to recognize, <code>--validate</code> to batch test. <em>A real AI model — small but fully functional.</em>",t:["Python","face_recognition","dlib"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/age-wiz",co:"#8E44AD"},
+  {sl:"damla-log",e:"🦋",img:"https://nosey-dewdrop.github.io/damla-log/app_icon.png",n:"damla.log",tg:"developer companion iOS app — tasks, ideas, bugs, versions",d:"A native iOS app for managing all my coding projects from my phone. <strong>4 tabs</strong> — tasks, ideas, issues, versions — each with its own stats page (contribution grid, weekly breakdown, project bars). <strong>Tag-based organization</strong> across projects, swipe gestures for status changes, vertical paging between content and analytics. Syncs via <strong>iCloud Documents</strong> with real-time conflict resolution. Connects to <strong>GitHub OAuth</strong> for repo tagging. Integrates with <strong>Claude Code via URL schemes</strong> — tasks created in terminal appear on phone instantly. Built entirely in SwiftUI with JSON Codable persistence and backward-compatible decoding.",t:["SwiftUI","iCloud Documents","GitHub OAuth","Keychain","URL Schemes","JSON Codable","NSMetadataQuery"],s:"💐 Built",g:"https://github.com/nosey-dewdrop/damla.log",l:"https://nosey-dewdrop.github.io/damla-log/",ll:"🌸 landing page",co:"#D4A5C7"},
 ];
 
 const SCHED=[
@@ -477,7 +552,7 @@ const SCHED=[
   {e:"🥦",n:"Butterfry",note:"food allergen detective! cross-reference foods that mess with you to find the common ingredient culprit. 24 curated products + Open Food Facts API. OCR scanning. mint themed. it's built!",s:"💐 built"},
   {e:"🔮",n:"Age Wiz",note:"a real ai model! face recognition trained on my own photos. uses face_recognition + dlib. small and sweet.",s:"💐 built"},
   {e:"☕",n:"Interactive Coffee Menu",note:"i have done implementing it before i was a vibecoder but a barista!!!! doesn't sound incredible now but i want to finish it. i have one more programming idea for my future coffee shop. but i don't have money to open it only at this moment! hahhaaha",s:"💐 live"},
-  {e:"<img src='https://nosey-dewdrop.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:16px;height:16px;border-radius:3px;vertical-align:middle'>",n:"Scrapp",note:"digital scrapbook app. frame photos, collect memories, hand-drawn sticker packs. pure SwiftUI + SwiftData, no third-party dependencies.",s:"💐 built"},
+  {e:"<img src='https://nosey-dewdrop.github.io/scrapp/Scrapp/Assets.xcassets/AppIcon.appiconset/AppIcon.png' style='width:18px;height:18px;border-radius:4px;vertical-align:middle'>",n:"Scrapp",note:"digital scrapbook app. frame photos, collect memories, hand-drawn sticker packs. pure SwiftUI + SwiftData, no third-party dependencies.",s:"💐 built"},
   {e:"☀️",n:"Sunny",note:"my first iOS app! weather app with hand-drawn backgrounds and sunscreen reminders. CoreLocation + WeatherAPI.",s:"💐 built"},
   {e:"👾",n:"League of Bilkent",note:"CS102 final project. 30 Java classes, MVC architecture, MySQL, gamification, SHA-256 hashing. interactive UML deployed on GitHub Pages.",s:"💐 built"},
   {e:"🛒",n:"BilMart",note:"secondhand marketplace for Bilkent students. Java Swing + relational database. student ID verification.",s:"💐 built"},
@@ -521,19 +596,67 @@ function go(p){
   if(pg)pg.classList.add("on");
   const btn=document.querySelector(`[data-p="${p}"]`);
   if(btn)btn.classList.add("on");
-  if(p==="projects")renderProjects(0);
-  if(p==="technical")renderTech(0);
   window.scrollTo(0,0);
+}
+
+let openCard=-1;
+function toggleCard(i){
+  const prev=openCard;
+  openCard=(openCard===i)?-1:i;
+  renderProjects();
+  if(openCard>-1){
+    const el=document.querySelector(`.pcard[data-i="${openCard}"]`);
+    if(el)requestAnimationFrame(()=>el.scrollIntoView({behavior:"smooth",block:"nearest"}));
+  }
+}
+
+function renderProjects(){
+  const list=document.getElementById("proj-list");
+  const MAXTAGS=4;
+  list.innerHTML=P.map((p,i)=>{
+    const isGreen=p.s.includes('Live')||p.s.includes('Built');
+    const open=openCard===i;
+    const status=`<span class="pcard-status" style="color:${isGreen?'#2B8A3E':p.co};background:${isGreen?'#E6F9ED':p.co+'18'};border:1px solid ${isGreen?'#8FD5A6':p.co+'40'}">${p.s}</span>`;
+    const doodle=`<div class="doodle" style="--dc:${p.co}22">
+      <img class="dimg" src="doodles/${p.sl}.png" alt="" onload="this.parentElement.classList.add('hasimg')" onerror="this.remove()">
+      ${p.img?`<img class="dicon" src="${p.img}" alt="">`:`<span class="demoji">${p.e}</span>`}
+    </div>`;
+    const frontTags=p.t.slice(0,MAXTAGS).map(mkTag).join("")+(p.t.length>MAXTAGS?`<span class="t t-plus">+${p.t.length-MAXTAGS}</span>`:"");
+    const links=`<div class="pdetail-links">
+      ${p.g?`<a href="${p.g}" target="_blank" rel="noopener" class="proj-link" onclick="event.stopPropagation()">→ github</a>`:""}
+      ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live" onclick="event.stopPropagation()">${p.ll||"✨ live demo !"}</a>`:""}
+    </div>`;
+    return `<div class="pcard${open?" open":""}" data-i="${i}" role="button" tabindex="0" aria-expanded="${open}"
+      style="animation-delay:${Math.min(i*.04,.4)}s" onclick="toggleCard(${i})"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCard(${i})}">
+      <span class="tape tape-${i%5}"></span>
+      ${status}
+      ${open?`<button class="pclose" onclick="event.stopPropagation();toggleCard(${i})" aria-label="close">✕ close</button>`:""}
+      ${doodle}
+      <div class="pcard-name">${p.n}</div>
+      <div class="pcard-line">${p.tg}</div>
+      ${open
+        ?`<div class="pdetail">
+            <div class="pdetail-label">how it's made ↓</div>
+            <div class="pdetail-desc">${p.d}</div>
+            <div class="pdetail-label">full stack</div>
+            <div class="pdetail-tags">${p.t.map(mkTag).join("")}</div>
+            ${links}
+          </div>`
+        :`<div class="pcard-tags">${frontTags}</div>
+          <div class="pcard-more">open me ✿</div>`}
+    </div>`;
+  }).join("");
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
   // nav — left + right groups
   const nav=document.getElementById("nav-bar");
-  const navL=document.createElement("div");navL.style.cssText="display:flex;gap:2px;align-items:center";
-  const navR=document.createElement("div");navR.style.cssText="display:flex;gap:2px;align-items:center";
+  const navL=document.createElement("div");navL.style.cssText="display:flex;gap:4px;align-items:center;flex-wrap:wrap";
+  const navR=document.createElement("div");navR.style.cssText="display:flex;gap:4px;align-items:center;flex-wrap:wrap";
   NAV_L.forEach(n=>{
     const b=document.createElement("button");
-    b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
+    b.className="nav-btn"+(n.brand?" nav-brand":"");b.dataset.p=n.k;b.textContent=n.l;
     b.onclick=()=>go(n.k);navL.appendChild(b);
   });
   NAV_R.forEach(n=>{
@@ -547,7 +670,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   const fb=document.getElementById("fb");
   EM.sort(()=>Math.random()-.5).slice(0,10).forEach(e=>{
     const s=document.createElement("span");s.className="fl";s.textContent=e;
-    s.style.left=`${40+Math.random()*55}%`;
+    s.style.left=`${5+Math.random()*90}%`;
     s.style.animationDelay=`${Math.random()*16}s`;
     s.style.animationDuration=`${10+Math.random()*8}s`;
     fb.appendChild(s);
@@ -557,38 +680,17 @@ document.addEventListener("DOMContentLoaded",()=>{
   const sl=document.getElementById("sched-list");
   sl.innerHTML=SCHED.map(s=>{
     const isLive=s.s.includes('live')||s.s.includes('built');
-    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:${isLive?'#2B8A3E':'var(--muted)'};background:${isLive?'#E6F9ED':'var(--baby-light)'};border:1px solid ${isLive?'#8FD5A6':'var(--border)'}">${s.s}</span></div><div class="sched-note">${s.note}</div></div>`;
+    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:${isLive?'#2B8A3E':'var(--ink-soft)'};background:${isLive?'#E6F9ED':'var(--sky)'};border:1px solid ${isLive?'#8FD5A6':'var(--line)'}">${s.s}</span></div><div class="sched-note">${s.note}</div></div>`;
   }).join("");
 
   // in development
   const idl=document.getElementById("indev-list");
   idl.innerHTML=INDEV.map(s=>{
-    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:var(--muted);background:var(--baby-light);border:1px solid var(--border)">${s.s}</span></div><div class="sched-note">${s.note}</div>${s.url?`<a href="${s.url}" target="_blank" rel="noopener" style="font-size:11px;color:var(--sky);text-decoration:none;margin-top:6px;display:inline-block">→ landing page</a>`:""}</div>`;
+    return `<div class="sched-entry"><div class="sched-head"><span>${s.e}</span><span class="sched-name">${s.n}</span><span class="proj-status" style="color:var(--ink-soft);background:var(--sky);border:1px solid var(--line)">${s.s}</span></div><div class="sched-note">${s.note}</div></div>`;
   }).join("");
 
-  // projects — hepsi tek listede, sayfalama yok (ziyaretci kaydirarak gorur)
-  function renderProjects(){
-    const list=document.getElementById("proj-list");
-    document.getElementById("proj-pager").innerHTML="";
-    list.innerHTML=P.map((p,i)=>{
-      const isGreen=p.s.includes('Live')||p.s.includes('Built')||p.s.includes('MVP');
-      return `<div class="proj-entry" style="animation-delay:${Math.min(i*.05,.45)}s">
-        <div class="proj-head">
-          <span class="proj-icon">${p.e}</span>
-          <span class="proj-name">${p.n}</span>
-          <span class="proj-status" style="color:${isGreen?'#2B8A3E':p.co};background:${isGreen?'#E6F9ED':p.co+'15'};border:1px solid ${isGreen?'#8FD5A6':p.co+'30'}">${p.s}</span>
-        </div>
-        <div class="proj-tagline">${p.tg}</div>
-        <div class="proj-desc">${p.d}</div>
-        <div class="proj-stack">${p.t.map(mkTag).join("")}</div>
-        <div class="proj-links">
-          ${p.g?`<a href="${p.g}" target="_blank" rel="noopener" class="proj-link">→ github</a>`:""}
-          ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live">${p.ll||"✨ live demo !"}</a>`:""}
-        </div>
-      </div>`;
-    }).join("");
-  }
-  window.renderProjects=renderProjects;
+  // projects
+  renderProjects();
 
   // technical
   const techPages=[
@@ -611,6 +713,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
   window.renderTech=renderTech;
+  renderTech(0);
 
   // email
   const ea="su.bilge@ug.bilkent.edu.tr";
@@ -638,19 +741,15 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
 
   // load markdown content
-  function loadMd(file,targetId,firstBlockStyle){
+  function loadMd(file,targetId){
     fetch('content/'+file)
       .then(r=>r.text())
       .then(md=>{
-        let html=md2html(md);
-        if(firstBlockStyle){
-          html=html.replace(/<p class="md-p">/,`<p class="md-p" style="${firstBlockStyle}">`);
-        }
-        document.getElementById(targetId).innerHTML=html;
+        document.getElementById(targetId).innerHTML=md2html(md);
       })
       .catch(()=>{});
   }
-  loadMd('about-me.md','about-content','font-size:11px;color:var(--text);line-height:1.5;margin-bottom:16px');
+  loadMd('about-me.md','about-content');
   loadMd('life-plan.md','lifeplan-content');
 
   // init
