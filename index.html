@@ -419,12 +419,12 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 <script>
 const NAV_L=[
   {k:"home",l:"damla.log 🐝",brand:true},
-  {k:"lifeplan",l:"life plan"},{k:"about",l:"about me"}
-];
-const NAV_R=[
   {k:"projects",l:"projects"},
   {k:"technical",l:"technical",sub:[{k:"experience",l:"experience"},{k:"skills",l:"skills"}]},
   {k:"education",l:"education"}
+];
+const NAV_R=[
+  {k:"lifeplan",l:"life plan"},{k:"about",l:"about me"}
 ];
 const NAV=[...NAV_L,...NAV_R];
 const ALL_PAGES=NAV.flatMap(n=>n.sub?n.sub.map(s=>s.k):[n.k]);
@@ -588,28 +588,26 @@ document.addEventListener("DOMContentLoaded",()=>{
   const nav=document.getElementById("nav-bar");
   const navL=document.createElement("div");navL.className="nav-card";
   const navR=document.createElement("div");navR.className="nav-card";
-  NAV_L.forEach(n=>{
-    const b=document.createElement("button");
-    b.className="nav-btn"+(n.brand?" nav-brand":"");b.dataset.p=n.k;b.textContent=n.l;
-    b.onclick=()=>go(n.k);navL.appendChild(b);
-  });
-  NAV_R.forEach(n=>{
-    const b=document.createElement("button");
-    b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
-    if(n.sub){
-      const wrap=document.createElement("div");wrap.className="nav-drop";
-      const menu=document.createElement("div");menu.className="nav-menu";
-      n.sub.forEach(s=>{
-        const sb=document.createElement("button");
-        sb.className="nav-btn";sb.dataset.p=s.k;sb.textContent=s.l;
-        sb.onclick=()=>go(s.k);menu.appendChild(sb);
-      });
-      b.onclick=()=>go(n.sub[0].k);
-      wrap.appendChild(b);wrap.appendChild(menu);navR.appendChild(wrap);
-    }else{
-      b.onclick=()=>go(n.k);navR.appendChild(b);
-    }
-  });
+  function buildNav(items,target){
+    items.forEach(n=>{
+      const b=document.createElement("button");
+      b.className="nav-btn"+(n.brand?" nav-brand":"");b.dataset.p=n.k;b.textContent=n.l;
+      if(n.sub){
+        const wrap=document.createElement("div");wrap.className="nav-drop";
+        const menu=document.createElement("div");menu.className="nav-menu";
+        n.sub.forEach(s=>{
+          const sb=document.createElement("button");
+          sb.className="nav-btn";sb.dataset.p=s.k;sb.textContent=s.l;
+          sb.onclick=()=>go(s.k);menu.appendChild(sb);
+        });
+        b.onclick=()=>go(n.sub[0].k);
+        wrap.appendChild(b);wrap.appendChild(menu);target.appendChild(wrap);
+      }else{
+        b.onclick=()=>go(n.k);target.appendChild(b);
+      }
+    });
+  }
+  buildNav(NAV_L,navL);buildNav(NAV_R,navR);
   nav.appendChild(navL);nav.appendChild(navR);
 
   // floating emojis
