@@ -50,8 +50,8 @@ body {
   background: linear-gradient(180deg, #d8ecf8 0%, #e9f3fa 42%, #f5edf1 78%, #f8e9ef 100%) fixed;
   color: var(--text);
   font-family: var(--ft);
-  font-size: 16.5px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.42;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -84,9 +84,11 @@ body {
   white-space: nowrap;
 }
 .nav-btn:hover { color: var(--text); }
-.nav-btn.on {
-  color: var(--text); background: rgba(255,112,166,.35);
-  border-radius: 38% 42% 40% 44% / 62% 55% 60% 50%;
+.nav-btn.on { color: var(--text); position: relative; }
+.nav-btn.on::after {
+  content: ''; position: absolute; left: 12px; right: 12px; bottom: 3px; height: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='7' viewBox='0 0 56 7'%3E%3Cpath d='M2 4.5 Q 9 1.5 16 4.2 T 29 4 T 42 4.6 T 54 3.8' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: auto 100%;
 }
 .nav-brand { font-style: italic; font-variant: normal; font-size: 17px; font-weight: 700; }
 
@@ -94,8 +96,8 @@ body {
 .pages { margin-top: 92px; position: relative; }
 .page {
   display: none; min-height: calc(100vh - 72px);
-  max-width: 720px; margin: 0 auto;
-  padding: 44px 24px 110px;
+  max-width: 900px; margin: 0 auto;
+  padding: 40px 24px 100px;
   position: relative; z-index: 1;
 }
 .page.on { display: block; animation: fadeUp .35s ease; }
@@ -114,17 +116,20 @@ body {
 }
 .md-h3 { font-style: italic; font-size: 19px; font-weight: 700; color: var(--text); margin: 22px 0 6px; }
 
-.md-sub { font-style: italic; font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+.md-sub { font-style: italic; font-size: 15px; color: var(--muted); margin-bottom: 14px; line-height: 1.4; }
 
-.md-p { font-size: 16.5px; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
+.md-p { font-size: 16px; color: var(--text); line-height: 1.42; margin-bottom: 6px; }
 .md-p strong { font-weight: 700; }
 .md-p em { font-style: italic; }
 .md-p a { color: var(--sky-deep); text-decoration: none; border-bottom: 1px solid rgba(135,206,235,.5); }
 .md-p a:hover { border-bottom-color: var(--sky-deep); }
 
-.md-hr { border: none; border-top: 1px solid var(--ink-line); margin: 22px 0; }
+.md-hr { border: none; border-top: 1px solid var(--ink-line); margin: 14px 0; }
 
-.blog-date { font-style: italic; font-size: 14px; color: var(--light); letter-spacing: .04em; margin: 16px 0 6px; }
+.blog-date { font-style: italic; font-size: 13.5px; color: var(--light); letter-spacing: .04em; margin: 12px 0 3px; }
+
+/* about'un ilk tag satiri kucuk dursun */
+#about-content > p:first-child { font-size: 13.5px; font-style: italic; color: var(--light); line-height: 1.5; }
 
 .md-links { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
 .md-link {
