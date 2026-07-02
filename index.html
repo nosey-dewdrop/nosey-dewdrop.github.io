@@ -29,16 +29,17 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
 <style>
 :root {
-  --text: #22333f;
-  --muted: #55707e;
-  --light: #7c96a3;
-  --faint: #b8d8e8;
-  --sky: #87ceeb;
-  --sky-deep: #4d9fc7;
-  --border: #c9dfe9;
-  --paper: #fffefb;
+  --text: #2b3560;
+  --muted: #525d8f;
+  --light: #7b85b0;
+  --faint: #b9c6ee;
+  --sky: #8ea5e4;
+  --sky-deep: #4a5da8;
+  --border: #c3d0f0;
+  --paper: #fffdf6;
   --pink: #D6336C;
-  --ink-line: rgba(34,51,63,.22);
+  --star: #f6d96b;
+  --ink-line: rgba(43,53,96,.22);
   --ft: 'Times New Roman', Times, serif;
 }
 
@@ -46,8 +47,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* ombre: baby blue → soft pink */
-  background: linear-gradient(180deg, #d8ecf8 0%, #e9f3fa 42%, #f5edf1 78%, #f8e9ef 100%) fixed;
+  /* gece degil masal gunbatimi: periwinkle gokyuzu */
+  background: linear-gradient(180deg, #7c95da 0%, #8ea5e4 45%, #a7baec 100%) fixed;
   color: var(--text);
   font-family: var(--ft);
   font-size: 16px;
@@ -56,15 +57,20 @@ body {
   overflow-x: hidden;
 }
 
-::selection { background: var(--sky); color: #fff; }
+::selection { background: var(--star); color: var(--text); }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(255,253,246,.5); border-radius: 6px; }
 
-/* floating emojis */
-.float-box { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.fl { position: absolute; top: -30px; font-size: 26px; opacity: 0; animation: floatD 9s linear infinite; pointer-events: none; }
-@keyframes floatD { 0% { transform: translateY(0) rotate(0); opacity: 0; } 5% { opacity: .22; } 70% { opacity: .1; } 100% { transform: translateY(100vh) rotate(50deg); opacity: 0; } }
+/* ============ SKY, suluboya yildizli fon ============ */
+.sky { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.sky .tw1, .sky .tw2, .sky .tw3 { animation: twinkle 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.sky .tw2 { animation-delay: 1.7s; animation-duration: 6s; }
+.sky .tw3 { animation-delay: 3.2s; animation-duration: 7s; }
+@keyframes twinkle { 0%,100% { opacity: .85; transform: scale(1); } 50% { opacity: .35; transform: scale(.86); } }
+.sky .wisp { animation: wispdrift 90s linear infinite alternate; }
+.sky .wisp.w2 { animation-duration: 120s; animation-delay: -40s; }
+@keyframes wispdrift { from { transform: translateX(-40px); } to { transform: translateX(60px); } }
 
 /* NAV, solda ve sagda iki ayri kagit kart, ortasi bos */
 .nav {
@@ -347,7 +353,59 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 </head>
 <body>
 
-<div class="float-box" id="fb"></div>
+<!-- suluboya gokyuzu: yildizlar, ay, saturn, bulut tutamlari -->
+<svg class="sky" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <filter id="wc" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
+    </filter>
+    <path id="sparkle" d="M0,-14 C1.3,-5 5,-1.3 14,0 C5,1.3 1.3,5 0,14 C-1.3,5 -5,1.3 -14,0 C-5,-1.3 -1.3,-5 0,-14 Z"/>
+  </defs>
+  <g filter="url(#wc)">
+    <!-- wispy clouds -->
+    <g class="wisp" fill="#ffffff" opacity=".32">
+      <ellipse cx="220" cy="150" rx="120" ry="34"/><ellipse cx="300" cy="128" rx="70" ry="26"/><ellipse cx="150" cy="132" rx="55" ry="22"/>
+    </g>
+    <g class="wisp w2" fill="#ffffff" opacity=".26">
+      <ellipse cx="1150" cy="620" rx="150" ry="40"/><ellipse cx="1250" cy="592" rx="80" ry="28"/><ellipse cx="1060" cy="600" rx="60" ry="24"/>
+    </g>
+    <!-- crescent moon -->
+    <g class="tw2" transform="translate(1210,140) rotate(-18)" fill="#fce9a0" opacity=".95">
+      <path d="M8,-22 A22,22 0 1,0 8,22 A27,27 0 0,1 8,-22 Z"/>
+    </g>
+    <!-- saturn doodle -->
+    <g class="tw3" transform="translate(310,640) rotate(-12)" opacity=".8">
+      <circle r="13" fill="#f6d96b"/>
+      <ellipse rx="24" ry="7" fill="none" stroke="#fce9a0" stroke-width="3"/>
+    </g>
+    <!-- sparkle stars -->
+    <g fill="#f6d96b">
+      <use href="#sparkle" class="tw1" transform="translate(180,420) scale(1.1) rotate(10)"/>
+      <use href="#sparkle" class="tw2" transform="translate(480,110) scale(1.5) rotate(-8)"/>
+      <use href="#sparkle" class="tw3" transform="translate(760,300) scale(.8) rotate(20)"/>
+      <use href="#sparkle" class="tw1" transform="translate(1010,180) scale(1.2) rotate(-15)"/>
+      <use href="#sparkle" class="tw2" transform="translate(1330,420) scale(.9) rotate(5)"/>
+      <use href="#sparkle" class="tw3" transform="translate(90,760) scale(1.3) rotate(-20)"/>
+      <use href="#sparkle" class="tw1" transform="translate(620,780) scale(.9) rotate(12)"/>
+      <use href="#sparkle" class="tw2" transform="translate(1240,800) scale(1.1) rotate(-6)"/>
+      <use href="#sparkle" class="tw3" transform="translate(900,520) scale(.7) rotate(25)"/>
+      <use href="#sparkle" class="tw1" transform="translate(60,260) scale(.8) rotate(-30)"/>
+    </g>
+    <!-- tiny white stars & plus twinkles -->
+    <g fill="#ffffff" opacity=".85">
+      <circle cx="400" cy="330" r="3" class="tw2"/><circle cx="680" cy="120" r="2.5" class="tw1"/>
+      <circle cx="960" cy="700" r="3" class="tw3"/><circle cx="1380" cy="240" r="2.5" class="tw2"/>
+      <circle cx="240" cy="560" r="2.5" class="tw1"/><circle cx="1100" cy="380" r="3" class="tw3"/>
+    </g>
+    <g stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity=".8">
+      <path d="M540,540 h14 M547,533 v14" class="tw1"/>
+      <path d="M1290,110 h12 M1296,104 v12" class="tw3"/>
+      <path d="M120,90 h12 M126,84 v12" class="tw2"/>
+      <path d="M840,860 h12 M846,854 v12" class="tw1"/>
+    </g>
+  </g>
+</svg>
 
 <nav class="nav" id="nav-bar"></nav>
 
@@ -436,8 +494,6 @@ const NAV_R=[
 ];
 const NAV=[...NAV_L,...NAV_R];
 const ALL_PAGES=NAV.flatMap(n=>n.sub?n.sub.map(s=>s.k):[n.k]);
-
-const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖"];
 
 // sl: doodle filename → doodles/<sl>.png (Damla'nın çizimleri; dosya varsa notta görünür)
 const P=[
@@ -618,16 +674,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
   buildNav(NAV_L,navL);buildNav(NAV_R,navR);
   nav.appendChild(navL);nav.appendChild(navR);
-
-  // floating emojis
-  const fb=document.getElementById("fb");
-  EM.sort(()=>Math.random()-.5).slice(0,6).forEach(e=>{
-    const s=document.createElement("span");s.className="fl";s.textContent=e;
-    s.style.left=`${5+Math.random()*90}%`;
-    s.style.animationDelay=`${Math.random()*16}s`;
-    s.style.animationDuration=`${10+Math.random()*8}s`;
-    fb.appendChild(s);
-  });
 
   // projects
   renderFilters();
