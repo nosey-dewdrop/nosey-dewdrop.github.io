@@ -66,13 +66,17 @@ body {
 .fl { position: absolute; top: -30px; font-size: 26px; opacity: 0; animation: floatD 9s linear infinite; pointer-events: none; }
 @keyframes floatD { 0% { transform: translateY(0) rotate(0); opacity: 0; } 5% { opacity: .22; } 70% { opacity: .1; } 100% { transform: translateY(100vh) rotate(50deg); opacity: 0; } }
 
-/* NAV — floating paper strip */
+/* NAV — solda ve sagda iki ayri kagit kart, ortasi bos */
 .nav {
   position: fixed; top: 14px; left: 22px; right: 22px;
   z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 2px; padding: 6px 18px; flex-wrap: wrap;
-  background: rgba(255,254,251,.85);
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; pointer-events: none;
+}
+.nav-card {
+  display: flex; align-items: center; gap: 2px; flex-wrap: wrap;
+  padding: 5px 12px; pointer-events: auto;
+  background: rgba(255,254,251,.88);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1px 2px rgba(34,51,63,.08), 0 10px 28px rgba(34,51,63,.1);
 }
@@ -278,7 +282,8 @@ body.note-open { overflow: hidden; }
 .footer { text-align: center; padding: 30px; font-size: 13px; color: var(--light); letter-spacing: .12em; position: relative; z-index: 1; }
 
 @media (max-width: 640px) {
-  .nav { top: 8px; left: 8px; right: 8px; padding: 4px 8px; gap: 0; justify-content: center; }
+  .nav { top: 8px; left: 8px; right: 8px; gap: 6px; justify-content: center; }
+  .nav-card { padding: 3px 6px; justify-content: center; }
   .nav-btn { font-size: 13.5px; padding: 9px 9px; }
   .nav-brand { font-size: 15px; }
   .pages { margin-top: 112px; }
@@ -513,8 +518,8 @@ function renderProjects(){
 document.addEventListener("DOMContentLoaded",()=>{
   // nav
   const nav=document.getElementById("nav-bar");
-  const navL=document.createElement("div");navL.style.cssText="display:flex;gap:2px;align-items:center;flex-wrap:wrap";
-  const navR=document.createElement("div");navR.style.cssText="display:flex;gap:2px;align-items:center;flex-wrap:wrap";
+  const navL=document.createElement("div");navL.className="nav-card";
+  const navR=document.createElement("div");navR.className="nav-card";
   NAV_L.forEach(n=>{
     const b=document.createElement("button");
     b.className="nav-btn"+(n.brand?" nav-brand":"");b.dataset.p=n.k;b.textContent=n.l;
