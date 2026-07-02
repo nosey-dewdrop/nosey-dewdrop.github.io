@@ -168,6 +168,10 @@ body {
   font-size: 14.5px; color: var(--muted); line-height: 1.4;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
+.pcard-tech {
+  font-style: italic; font-size: 13px; color: var(--light);
+  line-height: 1.4; margin-top: 9px;
+}
 .pcard-status {
   font-style: italic; font-size: 13.5px; margin-top: auto; padding-top: 10px;
   text-align: right;
@@ -476,6 +480,7 @@ function renderProjects(){
       <span class="pcard-emoji">${emoji}</span>
       <div class="pcard-name">${p.n}</div>
       <div class="pcard-line">${p.tg}</div>
+      ${p.t.length?`<div class="pcard-tech">${p.t.slice(0,3).join(" · ")}${p.t.length>3?` +${p.t.length-3}`:""}</div>`:""}
       <div class="pcard-status ${stCls(p.s)}"><span>${p.s}</span></div>
     </div>`;
   }).join("");
