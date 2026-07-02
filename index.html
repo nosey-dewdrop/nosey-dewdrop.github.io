@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="3uR4g3QlHITT4L8DIbdkroCGgpMHfmGOQZ2Oye3Yjb4" />
-<title>Damla Su Bilge — CS Student at Bilkent</title>
+<title>Damla Su Bilge - CS Student at Bilkent | Last AI Bender</title>
 <meta name="description" content="Damla Su Bilge — computer science student at Bilkent University building iOS apps, full-stack web platforms and AI experiments. SwiftUI, Next.js, React, Java, Python. 30+ projects, many of them live.">
 <link rel="canonical" href="https://damlahelloworld.github.io/">
 <meta property="og:title" content="Damla Su Bilge — CS Student at Bilkent">
@@ -68,10 +68,10 @@ body {
 
 /* NAV — solda ve sagda iki ayri kagit kart, ortasi bos */
 .nav {
-  position: fixed; top: 14px; left: 22px; right: 22px;
+  position: fixed; top: 14px; left: 0; right: 0;
   z-index: 100;
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: 12px; pointer-events: none;
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: 56px; pointer-events: none;
 }
 .nav-card {
   display: flex; align-items: center; gap: 2px; flex-wrap: wrap;
@@ -90,11 +90,22 @@ body {
 .nav-btn:hover { color: var(--text); }
 .nav-btn.on { color: var(--text); position: relative; }
 .nav-btn.on::after {
-  content: ''; position: absolute; left: 12px; right: 12px; bottom: 3px; height: 6px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='7' viewBox='0 0 56 7'%3E%3Cpath d='M2 4.5 Q 9 1.5 16 4.2 T 29 4 T 42 4.6 T 54 3.8' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
-  background-size: auto 100%;
+  content: ''; position: absolute; left: 13px; right: 13px; bottom: 4px; height: 5px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='6' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 3.6 C 20 1.4, 40 4.8, 58 3.2 S 88 2.4, 98 3.4' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
 }
 .nav-brand { font-style: italic; font-variant: normal; font-size: 17px; font-weight: 700; }
+
+/* technical hover menu */
+.nav-drop { position: relative; }
+.nav-drop .nav-menu {
+  display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  flex-direction: column; min-width: 132px; padding: 4px;
+  background: rgba(255,254,251,.97);
+  box-shadow: 0 1px 2px rgba(34,51,63,.08), 0 10px 28px rgba(34,51,63,.14);
+}
+.nav-drop:hover .nav-menu, .nav-drop:focus-within .nav-menu { display: flex; }
+.nav-menu .nav-btn { padding: 9px 12px; font-size: 14px; text-align: center; }
 
 /* PAGES */
 .pages { margin-top: 92px; position: relative; }
@@ -354,10 +365,10 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
   </div>
 
   <!-- LIFE PLAN — loaded from content/life-plan.md -->
-  <div class="page" id="p-lifeplan">
+  <div class="page page-wide" id="p-lifeplan">
     <h1 class="md-h1">🌸 life plan & dreams</h1>
-    <p class="md-sub">thoughts, reflections, and the road ahead</p>
-    <div id="lifeplan-content"></div>
+    <p class="md-sub">thoughts, reflections, and the road ahead — tap a note to read</p>
+    <div id="lifeplan-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
   </div>
 
   <!-- PROJECTS -->
@@ -375,12 +386,17 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
     <div id="edu-content"></div>
   </div>
 
-  <!-- TECHNICAL -->
-  <div class="page page-wide" id="p-technical">
-    <h1 class="md-h1">👾 technical details</h1>
+  <!-- EXPERIENCE -->
+  <div class="page" id="p-experience">
+    <h1 class="md-h1">🐝 experience</h1>
+    <div id="exp-content" style="margin-top:10px"></div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="page page-wide" id="p-skills">
+    <h1 class="md-h1">👾 skills</h1>
     <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing — it's about evaluating knowledge.</p>
-    <div id="tech-pager" class="pager"></div>
-    <div id="tech-content"></div>
+    <div id="skills-content"></div>
   </div>
 </div>
 
@@ -397,9 +413,12 @@ const NAV_L=[
   {k:"lifeplan",l:"life plan"},{k:"about",l:"about me"}
 ];
 const NAV_R=[
-  {k:"projects",l:"projects"},{k:"technical",l:"technical"},{k:"education",l:"education"}
+  {k:"projects",l:"projects"},
+  {k:"technical",l:"technical",sub:[{k:"experience",l:"experience"},{k:"skills",l:"skills"}]},
+  {k:"education",l:"education"}
 ];
 const NAV=[...NAV_L,...NAV_R];
+const ALL_PAGES=NAV.flatMap(n=>n.sub?n.sub.map(s=>s.k):[n.k]);
 
 const EM=["🌼","💫","🌙","✨","🌻","💐","🌞","🌷","🌈","👾","🌸","💞","☀️","🎀","🍃","🐞","🦋","🐝","🌺","💖"];
 
@@ -473,6 +492,10 @@ function go(p){
   if(pg)pg.classList.add("on");
   const btn=document.querySelector(`[data-p="${p}"]`);
   if(btn)btn.classList.add("on");
+  if(p==="experience"||p==="skills"){
+    const t=document.querySelector('[data-p="technical"]');
+    if(t)t.classList.add("on");
+  }
   window.scrollTo(0,0);
 }
 
@@ -504,7 +527,7 @@ function openNote(sl){
 function closeNote(){
   document.getElementById("note-overlay").classList.remove("on");
   document.body.classList.remove("note-open");
-  history.replaceState(null,null,"#projects");
+  history.replaceState(null,null,"#"+cur);
   if(lastFocus)lastFocus.focus();
 }
 
@@ -564,7 +587,19 @@ document.addEventListener("DOMContentLoaded",()=>{
   NAV_R.forEach(n=>{
     const b=document.createElement("button");
     b.className="nav-btn";b.dataset.p=n.k;b.textContent=n.l;
-    b.onclick=()=>go(n.k);navR.appendChild(b);
+    if(n.sub){
+      const wrap=document.createElement("div");wrap.className="nav-drop";
+      const menu=document.createElement("div");menu.className="nav-menu";
+      n.sub.forEach(s=>{
+        const sb=document.createElement("button");
+        sb.className="nav-btn";sb.dataset.p=s.k;sb.textContent=s.l;
+        sb.onclick=()=>go(s.k);menu.appendChild(sb);
+      });
+      b.onclick=()=>go(n.sub[0].k);
+      wrap.appendChild(b);wrap.appendChild(menu);navR.appendChild(wrap);
+    }else{
+      b.onclick=()=>go(n.k);navR.appendChild(b);
+    }
   });
   nav.appendChild(navL);nav.appendChild(navR);
 
@@ -589,24 +624,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(e.key==="Escape"&&document.getElementById("note-overlay").classList.contains("on"))closeNote();
   });
 
-  // technical
+  // experience, education, skills
   const expRow=e=>`<div class="exp-entry"><div class="exp-top"><span class="exp-role">${e.r}</span><span class="exp-period">${e.p}</span></div><div class="exp-desc">${e.d}</div></div>`;
   document.getElementById("edu-content").innerHTML=EDU.map(expRow).join("");
-  const techPages=[
-    {label:"experience",render:()=>EX.map(expRow).join("")},
-    {label:"skills",render:()=>`<div class="skills-grid">${Object.entries(SK).map(([k,v])=>`<div class="skill-col"><div class="skill-col-title">${k}</div>${v.map(i=>`<div class="skill-item">${i}</div>`).join("")}</div>`).join("")}</div>`}
-  ];
-  function renderTech(page){
-    document.getElementById("tech-content").innerHTML=techPages[page].render();
-    const pager=document.getElementById("tech-pager");pager.innerHTML="";
-    techPages.forEach((tp,i)=>{
-      const b=document.createElement("button");
-      b.className="pager-btn"+(i===page?" on":"");b.textContent=tp.label;
-      b.onclick=()=>renderTech(i);pager.appendChild(b);
-    });
-  }
-  window.renderTech=renderTech;
-  renderTech(0);
+  document.getElementById("exp-content").innerHTML=EX.map(expRow).join("");
+  document.getElementById("skills-content").innerHTML=`<div class="skills-grid">${Object.entries(SK).map(([k,v])=>`<div class="skill-col"><div class="skill-col-title">${k}</div>${v.map(i=>`<div class="skill-item">${i}</div>`).join("")}</div>`).join("")}</div>`;
 
   // email
   const ea="su.bilge@ug.bilkent.edu.tr";
@@ -638,13 +660,46 @@ document.addEventListener("DOMContentLoaded",()=>{
       .catch(()=>{});
   }
   loadMd('about-me.md','about-content');
-  loadMd('life-plan.md','lifeplan-content');
+
+  // life plan — projelerdeki kart sistemi: her log bir kagit kart
+  let LP=[];
+  window.openLifeNote=i=>{
+    const e=LP[i]; if(!e)return;
+    lastFocus=document.activeElement;
+    const box=document.getElementById("note-box");
+    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">✕ close</button>
+      <div class="blog-date" style="margin:0 0 2px">${e.label}</div>
+      <hr class="note-line" style="margin-top:8px">
+      <div class="note-desc">${e.html}</div>`;
+    document.getElementById("note-overlay").classList.add("on");
+    document.body.classList.add("note-open");
+    box.querySelector(".note-close").focus();
+  };
+  fetch('content/life-plan.md')
+    .then(r=>r.text())
+    .then(md=>{
+      LP=md.split(/^---$/m).map(b=>b.trim()).filter(Boolean).map(b=>{
+        const m=b.match(/^\/\/ (.+)$/m);
+        const label=m?m[1].trim():"";
+        const body=b.replace(/^\/\/ .+$/m,"").trim();
+        return {label, title:(label.split("·")[1]||label).trim(), html:md2html(body)};
+      });
+      document.getElementById("lifeplan-content").innerHTML=LP.map((e,i)=>{
+        const plain=e.html.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
+        return `<div class="pcard" role="button" tabindex="0" onclick="openLifeNote(${i})"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLifeNote(${i})}">
+          <div class="blog-date" style="margin:0 0 6px">${e.label.split("·")[0].trim()}</div>
+          <div class="pcard-name">${e.title}</div>
+          <div class="pcard-line" style="-webkit-line-clamp:5">${plain}</div>
+        </div>`;
+      }).join("");
+    })
+    .catch(()=>{});
 
   // init — supports #projects/slug deep links
   const hash=location.hash.replace("#","");
   const [page,slug]=hash.split("/");
-  const allPages=NAV.map(n=>n.k);
-  go(allPages.includes(page)?page:"home");
+  go(ALL_PAGES.includes(page)?page:"home");
   if(page==="projects"&&slug)openNote(slug);
 });
 </script>
