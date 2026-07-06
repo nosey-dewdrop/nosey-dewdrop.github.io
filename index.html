@@ -28,403 +28,178 @@
 </script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
 <style>
-:root {
-  --text: #2b3560;
-  --muted: #525d8f;
-  --light: #7b85b0;
-  --faint: #b9c6ee;
-  --sky: #8ea5e4;
-  --sky-deep: #4a5da8;
-  --border: #c3d0f0;
-  --paper: #fffdf6;
-  --pink: #D6336C;
-  --star: #f6d96b;
-  --ink-line: rgba(43,53,96,.22);
-  --ft: 'Times New Roman', Times, serif;
+:root{
+  --bg:#12102a; --fg:#e9e6ff; --dim:#8a83b8; --faint:#5b5488;
+  --pink:#ff8fbb; --purple:#b892ff; --pistachio:#bce6a0; --amber:#f6cf6e;
+  --line:rgba(184,146,255,.16);
+  --ft:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--ft);font-size:14.5px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(255,143,187,.3);color:#fff}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:rgba(184,146,255,.25);border-radius:6px}
+a{color:var(--pink)}
+.butterfly-mark{display:none}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* starfield */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+#stars span{position:absolute;color:var(--faint);user-select:none}
+.tw{animation:tw 3.5s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.9}50%{opacity:.25}}
 
-body {
-  background: #ffffff;
-  color: var(--text);
-  font-family: var(--ft);
-  font-size: 16px;
-  line-height: 1.42;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+/* nav = bracket links */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 10px;
+ background:rgba(18,16,42,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.nav-card{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.nav-btn{font:14px/1 var(--ft);color:var(--purple);background:none;border:none;cursor:pointer;padding:6px 2px;position:relative;white-space:nowrap;transition:color .14s,text-shadow .14s}
+.nav-btn::before{content:'[';color:var(--faint)}
+.nav-btn::after{content:']';color:var(--faint)}
+.nav-btn:hover{color:#fff;text-shadow:0 0 12px rgba(184,146,255,.6)}
+.nav-btn.on{color:var(--pink)}
+.nav-btn.on::before,.nav-btn.on::after{color:var(--pink)}
+.nav-brand{color:var(--fg);font-weight:600}
+.nav-drop{position:relative}
+.nav-drop .nav-menu{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);flex-direction:column;min-width:130px;gap:2px;padding:7px;background:#1a1636;border:1px solid var(--line);box-shadow:0 8px 22px rgba(0,0,0,.45)}
+.nav-drop:hover .nav-menu,.nav-drop:focus-within .nav-menu{display:flex}
+.nav-menu .nav-btn{padding:6px 10px;text-align:center}
+.nav-menu .nav-btn:hover{background:rgba(255,143,187,.1)}
 
-::selection { background: rgba(255,112,166,.28); color: var(--text); }
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(43,53,96,.18); border-radius: 6px; }
+/* pages */
+.pages{margin-top:58px;position:relative;z-index:1}
+.page{display:none;min-height:calc(100vh - 58px);max-width:900px;margin:0 auto;padding:42px 24px 90px;position:relative}
+.page-wide{max-width:960px}
+.page.on{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* ============ tek kelebek imzasi, sag alt ============ */
-.butterfly-mark {
-  position: fixed; right: 46px; bottom: 30px; z-index: 3;
-  pointer-events: none; opacity: .92;
-  animation: markbob 6s ease-in-out infinite alternate;
-}
-@keyframes markbob { from { transform: translateY(0) rotate(-1.5deg); } to { transform: translateY(-7px) rotate(1.5deg); } }
-.butterfly-mark .p-wing1 { transform-box: fill-box; transform-origin: 90% 90%; animation: flap1 2.4s ease-in-out infinite alternate; }
-.butterfly-mark .p-wing2 { transform-box: fill-box; transform-origin: 10% 90%; animation: flap2 2.4s ease-in-out infinite alternate; }
-@keyframes flap1 { from { transform: rotate(0); } to { transform: rotate(-7deg); } }
-@keyframes flap2 { from { transform: rotate(0); } to { transform: rotate(7deg); } }
+/* headings as $ commands */
+.md-h1{font:600 20px/1.4 var(--ft);color:var(--fg);margin-bottom:8px;letter-spacing:.01em}
+.md-h1::before{content:'$ ';color:var(--pistachio)}
+.md-h1 #proj-count{color:var(--faint);font-weight:400}
+.md-h2{font:600 16px/1.4 var(--ft);color:var(--pink);margin:26px 0 8px}
+.md-h2::before{content:'## ';color:var(--faint)}
+.md-h3{font:600 15px/1.4 var(--ft);color:var(--purple);margin:18px 0 6px}
+.md-sub{color:var(--dim);margin:0 0 18px}
+.md-sub::before{content:'# ';color:var(--faint)}
+.md-p{color:var(--dim);line-height:1.75;margin-bottom:10px}
+.md-p strong{color:var(--fg);font-weight:600}
+.md-p em{color:var(--purple);font-style:normal}
+.md-p a{color:var(--pink);text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5)}
+.md-hr{border:none;border-top:1px solid var(--line);margin:14px 0}
+.blog-date{color:var(--faint);font-size:13px;margin:10px 0 3px}
+#about-content > p:first-child{color:var(--purple);font-size:13.5px}
+.md-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px}
+.md-link{color:var(--pink);text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5);padding-bottom:2px}
+.md-link:hover{color:#fff}
+.link-pink{font:14.5px/1 var(--ft);color:var(--pink);background:none;border:none;cursor:pointer;padding:0;text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5)}
+.link-pink:hover{color:#fff}
 
-/* NAV, solda ve sagda iki ayri kagit kart, ortasi bos */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex; align-items: center; justify-content: center;
-  gap: 20px; padding: 13px 0;
-  background: rgba(255,255,255,.86);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(43,53,96,.08);
-  pointer-events: auto;
-}
-.nav-card {
-  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-  pointer-events: auto;
-}
-/* duz, hafif metin navigasyonu, aktifte el cizimi pembe alti cizgi */
-.nav-btn {
-  font: italic 600 15.5px/1 var(--ft);
-  color: var(--light); border: none;
-  padding: 8px 11px;
-  background: none; box-shadow: none;
-  cursor: pointer; transition: color .14s;
-  white-space: nowrap; position: relative;
-}
-.nav-btn:hover { color: var(--text); }
-.nav-btn.on { color: var(--text); }
-.nav-btn.on::after {
-  content: ''; position: absolute; left: 9px; right: 9px; bottom: 1px; height: 5px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='6' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 3.6 C 20 1.4, 40 4.8, 58 3.2 S 88 2.4, 98 3.4' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-  background-size: 100% 100%;
-}
-.nav-brand { font-size: 16.5px; font-weight: 700; color: var(--text); }
+/* terminal session bits (home + notes) */
+.row{margin-bottom:2px}
+.pr{color:var(--pistachio)}.pth{color:var(--purple)}.dl{color:var(--pink)}.cmd{color:var(--fg)}.cm{color:var(--faint)}
+.out{color:var(--dim);margin:2px 0 20px}
+.out .hl{color:var(--fg)}.out .pk{color:var(--pink)}.out .pu{color:var(--purple)}
+.hh{color:var(--pink);font-weight:600}
+.kao{color:var(--purple)}
+.cur{color:var(--pink);animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.list{margin:2px 0 10px}
+.item{display:block;color:var(--dim);text-decoration:none;white-space:pre;padding:2px 0;cursor:pointer}
+.item .id{color:var(--faint)}
+.item .nm{color:var(--fg)}
+.item:hover .nm{color:var(--pink)}
+.item:hover{text-shadow:0 0 14px rgba(255,143,187,.25)}
+.item .dot{color:var(--faint)}
+.item .live{color:var(--pistachio)}.item .dev{color:var(--amber)}.item .built{color:var(--purple)}.item .idea{color:var(--faint)}
+.signoff{text-align:center;color:var(--pink);opacity:.85;margin-top:34px;font-size:16px;letter-spacing:.28em}
+.sparkle{color:var(--purple);opacity:.7;letter-spacing:.15em;font-size:13px;margin:8px 0 22px}
+.ascii{position:absolute;top:34px;right:0;color:var(--faint);font-size:11px;line-height:1.05;white-space:pre;opacity:.55;z-index:0;pointer-events:none}
+@media(max-width:860px){.ascii{display:none}}
+.home-photo{width:150px;height:186px;object-fit:cover;border:1px solid var(--line);margin:6px 0 4px;filter:saturate(.9)}
+.hero-stats{color:var(--dim);margin-top:6px}
+.hero-stats b{color:var(--pistachio);font-weight:600}
 
-/* technical hover menu */
-.nav-drop { position: relative; }
-.nav-drop .nav-menu {
-  display: none; position: absolute; top: calc(100% + 9px); left: 50%; transform: translateX(-50%);
-  flex-direction: column; min-width: 132px; gap: 2px; padding: 7px;
-  background: #fff; border: 1px solid rgba(43,53,96,.09);
-  box-shadow: 0 8px 22px rgba(43,53,96,.13);
-}
-.nav-drop:hover .nav-menu, .nav-drop:focus-within .nav-menu { display: flex; }
-.nav-menu .nav-btn { padding: 8px 12px; font-size: 14px; text-align: center; }
-.nav-menu .nav-btn:hover { background: rgba(255,112,166,.1); }
+/* project / exp / skill / lifeplan cards => terminal blocks */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;align-items:stretch}
+.pcard{position:relative;background:rgba(184,146,255,.035);border:1px solid var(--line);border-radius:4px;padding:16px 16px 12px;cursor:pointer;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s,transform .15s}
+.pcard:hover{border-color:rgba(255,143,187,.5);box-shadow:0 0 20px rgba(255,143,187,.12);transform:translateY(-2px)}
+.pcard.static{cursor:default}
+.pcard.static:hover{transform:none;border-color:var(--line);box-shadow:none}
+.pcard-emoji{display:none}
+.pcard-name{color:var(--fg);font-weight:600;font-size:15px;line-height:1.3;padding-bottom:8px;margin-bottom:8px;border-bottom:1px dashed var(--line)}
+.pcard-name::before{content:'* ';color:var(--pink)}
+.pcard.static .pcard-name::before{content:'~/';color:var(--purple)}
+.pcard-line{color:var(--dim);font-size:13.5px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pcard-tech{color:var(--purple);font-size:12.5px;line-height:1.5;margin-top:9px;opacity:.85}
+.pcard-status{font-size:13px;margin-top:auto;padding-top:10px;text-align:right}
+.pcard-status span,.note-st span{padding:0}
+.st-live span{color:var(--pistachio)}.st-live span::before{content:'* '}
+.st-built span{color:var(--purple)}.st-built span::before{content:'+ '}
+.st-dev span{color:var(--amber)}.st-dev span::before{content:'~ '}
+.st-idea span{color:var(--faint)}.st-idea span::before{content:'. '}
+.skill-item{color:var(--dim);font-size:13.5px;padding:2px 0}
+.skill-item::before{content:'- ';color:var(--faint)}
+.exp-entry{padding:14px 0;border-bottom:1px solid var(--line)}
+.exp-entry:last-child{border-bottom:none}
+.exp-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.exp-role{color:var(--fg);font-weight:600;font-size:15px}
+.exp-role::before{content:'> ';color:var(--pistachio)}
+.exp-period{margin-left:auto;color:var(--faint);font-size:13px;white-space:nowrap}
+.exp-desc{color:var(--dim);font-size:14px;line-height:1.6;margin-top:5px}
+.exp-desc strong{color:var(--fg)}.exp-desc em{color:var(--purple);font-style:normal}
 
-/* PAGES */
-.pages { margin-top: 64px; position: relative; }
-.page {
-  display: none; min-height: calc(100vh - 72px);
-  max-width: 900px; margin: 0 auto;
-  padding: 40px 24px 100px;
-  position: relative; z-index: 1;
-}
-.page.on { display: block; animation: fadeUp .35s ease; }
-.page-wide { max-width: 980px; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:baseline;margin:2px 0 22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.fcard{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px;background:none;padding:0}
+.flabel{color:var(--faint);font-size:13px;margin-right:4px}
+.flabel::before{content:'--'}
+.fchip{font:13.5px/1 var(--ft);color:var(--dim);background:none;border:none;padding:4px 5px;cursor:pointer;transition:color .14s}
+.fchip:hover{color:#fff}
+.fchip.on{color:var(--pink)}
+.fchip.on::before{content:'[';color:var(--faint)}
+.fchip.on::after{content:']';color:var(--faint)}
 
-/* TYPOGRAPHY, italic Times elegance */
-.md-h1 {
-  font-style: italic; font-size: 40px; font-weight: 700; color: var(--text);
-  margin-bottom: 6px; line-height: 1.2;
-}
-.md-h2 {
-  font-style: italic; font-size: 24px; font-weight: 700; color: var(--text);
-  margin: 32px 0 10px; line-height: 1.3;
-  padding-bottom: 6px; border-bottom: 1px solid var(--ink-line);
-}
-.md-h3 { font-style: italic; font-size: 19px; font-weight: 700; color: var(--text); margin: 22px 0 6px; }
+/* paper-sheet => terminal panel */
+.paper-sheet{background:rgba(184,146,255,.035);border:1px solid var(--line);border-radius:4px;padding:24px 26px;margin-top:16px}
 
-.md-sub { font-style: italic; font-size: 15px; color: var(--light); margin-bottom: 14px; line-height: 1.4; }
+/* note overlay => terminal window */
+.note-overlay{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(8,6,20,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.note-overlay.on{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.note{background:#181334;border:1px solid var(--line);border-radius:8px;max-width:640px;width:100%;max-height:84vh;overflow-y:auto;padding:26px 30px 26px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.note-doodle{text-align:center;margin-bottom:12px;display:none}
+.note-doodle.hasimg{display:block}
+.note-doodle img{max-height:140px;max-width:78%;object-fit:contain}
+.note-head{color:var(--fg);font-size:17px;font-weight:600;line-height:1.35}
+.note-head::before{content:'$ cat ';color:var(--pistachio);font-weight:400}
+.note-head .note-emoji{display:none}
+.note-head .note-st{color:var(--dim);font-size:14px;font-weight:400}
+.note-line{border:none;border-top:1px solid var(--line);margin:14px 0}
+.note-desc{color:var(--dim);font-size:14px;line-height:1.65}
+.note-desc strong{color:var(--fg)}.note-desc em{color:var(--purple);font-style:normal}
+.note-desc code{color:var(--pistachio);background:rgba(188,230,160,.08);padding:1px 5px;border-radius:3px}
+.note-stack{color:var(--purple);font-size:13px;line-height:1.7;opacity:.9}
+.note-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
+.note-close{position:absolute;top:12px;right:14px;font:14px/1 var(--ft);color:var(--faint);background:none;border:none;cursor:pointer;padding:6px 8px}
+.note-close:hover{color:var(--pink)}
+.proj-link{color:var(--pink);text-decoration:none;font-size:14px;border-bottom:1px dotted rgba(255,143,187,.5);padding-bottom:2px}
+.proj-link:hover{color:#fff}
+.proj-link-live{color:var(--pistachio);border-bottom-color:rgba(188,230,160,.5)}
+body.note-open{overflow:hidden}
 
-.md-p { font-size: 16px; color: var(--text); line-height: 1.42; margin-bottom: 6px; }
-.md-p strong { font-weight: 700; }
-.md-p em { font-style: italic; }
-.md-p a { color: var(--sky-deep); text-decoration: none; border-bottom: 1px solid rgba(142,165,228,.7); }
-.md-p a:hover { border-bottom-color: var(--sky-deep); }
+.footer{text-align:center;padding:28px;font-size:12.5px;color:var(--faint);position:relative;z-index:1}
 
-.md-hr { border: none; border-top: 1px solid var(--ink-line); margin: 14px 0; }
-
-.blog-date { font-style: italic; font-size: 13.5px; color: var(--light); letter-spacing: .04em; margin: 12px 0 3px; }
-
-/* about'un ilk tag satiri kucuk dursun */
-#about-content > p:first-child { font-size: 13.5px; font-style: italic; color: var(--light); line-height: 1.5; }
-
-.md-links { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
-.md-link {
-  font-style: italic; font-size: 15px; color: var(--text); text-decoration: none;
-  padding: 7px 16px; border: 1.5px solid rgba(43,53,96,.6);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* el cizimi */
-  transition: all .2s; background: rgba(255,253,246,.6);
+@media (max-width:640px){
+  .nav{gap:10px;padding:10px 6px}
+  .nav-card{gap:10px}
+  .pages{margin-top:52px}
+  .page{padding:32px 16px 70px}
+  .pgrid{grid-template-columns:1fr;gap:12px}
+  .exp-period{margin-left:0;width:100%}
+  .note{padding:22px 18px}
 }
-.md-link:hover { border-color: var(--text); background: rgba(255,112,166,.16); }
-
-/* tek tutarli baglanti tonu: pembe, alti cizili (github / read more / explore for more) */
-.link-pink {
-  font: italic 600 15.5px/1 var(--ft); color: var(--pink);
-  background: none; border: none; cursor: pointer; padding: 0;
-  text-decoration: underline; text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px; text-decoration-color: rgba(214,51,108,.45);
-  transition: text-decoration-color .16s, opacity .16s;
-}
-.link-pink:hover { text-decoration-color: var(--pink); opacity: .85; }
-
-/* ============ HOME: sol about + alt yatay carousel ============ */
-.home-top {
-  min-height: 58vh; display: flex; align-items: center;
-  justify-content: space-between; gap: 56px;
-  padding: 24px 0 30px;
-}
-.home-intro { flex: 1 1 auto; max-width: 580px; }
-.home-about {
-  flex: 0 0 auto; width: 300px; display: flex; flex-direction: column; align-items: flex-start;
-}
-.home-photo {
-  width: 148px; height: 186px; object-fit: cover; margin-bottom: 18px;
-  border-radius: 3px; box-shadow: 0 1px 2px rgba(43,53,96,.1), 0 12px 30px rgba(43,53,96,.16);
-  transform: rotate(-1.5deg);
-}
-.home-about-p {
-  font-size: 14.5px; line-height: 1.6; color: var(--muted); margin: 10px 0 12px;
-}
-.home-about .link-pink { margin-top: 2px; }
-.hero-stats {
-  display: flex; flex-wrap: wrap; gap: 6px 24px;
-  font-style: italic; font-size: 14px; color: var(--light);
-}
-.hero-stats b { font-weight: 700; font-style: normal; color: var(--text); font-size: 20px; margin-right: 6px; vertical-align: -1px; }
-.hero-stats span { display: inline-flex; align-items: baseline; }
-
-.carousel-head { display: flex; align-items: baseline; justify-content: space-between; margin: 8px 0 14px; }
-.feat-kicker {
-  font-style: italic; font-weight: 700; font-size: 14px; letter-spacing: .01em;
-  text-transform: none; color: var(--light);
-}
-
-/* yatay kayan carousel, sagda solup "devami var" hissi */
-.carousel-wrap { position: relative; margin: 0 -24px; }
-.carousel-wrap::after {
-  content: ''; position: absolute; top: 0; right: 0; bottom: 14px; width: 60px;
-  background: linear-gradient(90deg, transparent, #fff); pointer-events: none;
-}
-.carousel {
-  display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x proximity;
-  padding: 8px 24px 20px; cursor: grab;
-  scrollbar-width: thin;
-}
-.carousel.drag { cursor: grabbing; scroll-snap-type: none; }
-.carousel::-webkit-scrollbar { height: 5px; }
-.carousel::-webkit-scrollbar-thumb { background: rgba(43,53,96,.16); border-radius: 6px; }
-.carousel .pcard {
-  flex: 0 0 auto; width: 230px; scroll-snap-align: start;
-  animation: cardin .5s ease both;
-}
-@keyframes cardin { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
-
-/* ============ INDEX CARDS, keskin koseli, hafif golge ============ */
-.pgrid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 20px; align-items: stretch;
-}
-.pcard {
-  position: relative;
-  background: #fff;
-  border-radius: 3px;
-  padding: 20px 20px 14px;
-  cursor: pointer;
-  display: flex; flex-direction: column;
-  box-shadow: 0 1px 2px rgba(43,53,96,.09), 0 8px 20px rgba(43,53,96,.12);
-  transition: transform .16s ease, box-shadow .2s ease;
-}
-.pcard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 2px 4px rgba(43,53,96,.1), 0 16px 30px rgba(43,53,96,.16);
-}
-
-.pcard-emoji { font-size: 24px; line-height: 1; margin-bottom: 8px; }
-.pcard-emoji img { width: 26px; height: 26px; border-radius: 6px; display: block; }
-.pcard-name {
-  font-style: italic; font-size: 18.5px; font-weight: 700; color: var(--text);
-  line-height: 1.2; padding-bottom: 7px; margin-bottom: 8px;
-  border-bottom: 1px solid var(--ink-line);
-}
-.pcard-line {
-  font-size: 14.5px; color: var(--muted); line-height: 1.4;
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-}
-.pcard-tech {
-  font-style: italic; font-weight: 700; font-size: 13.5px; color: var(--muted);
-  line-height: 1.4; margin-top: 9px;
-}
-
-/* FILTERS, iki ayri beyaz kart */
-/* baloncuk kutu yok: ince cizgi ustunde duz filtre satiri (keskin dille uyumlu) */
-.filters {
-  display: flex; flex-wrap: wrap; gap: 8px 30px; align-items: baseline;
-  margin: 4px 0 26px; padding-bottom: 16px; border-bottom: 1px solid var(--ink-line);
-}
-.fcard {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px;
-  background: none; padding: 0; border-radius: 0; box-shadow: none;
-}
-.flabel { font-style: italic; font-weight: 700; font-size: 13px; color: var(--light); margin-right: 6px; }
-.fchip {
-  font: italic 500 14px/1 var(--ft); color: var(--muted);
-  background: none; border: none; padding: 5px 7px;
-  cursor: pointer; transition: color .15s;
-}
-.fchip:hover { color: var(--text); }
-/* aktif filtre = navbar'daki ayni pembe el cizimi alti cizgi (tutarli dil) */
-.fchip.on { color: var(--text); position: relative; }
-.fchip.on::after {
-  content: ''; position: absolute; left: 7px; right: 7px; bottom: 0; height: 5px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='6' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 3.6 C 20 1.4, 40 4.8, 58 3.2 S 88 2.4, 98 3.4' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-  background-size: 100% 100%;
-}
-.pcard-status {
-  font-style: italic; font-size: 13.5px; margin-top: auto; padding-top: 10px;
-  text-align: right;
-}
-/* statu etiketi: keskin koseli kartlarla uyumlu, kucuk noktali sade rozet */
-.pcard-status span, .note-st span {
-  padding: 2px 9px 3px; border-radius: 2px;
-  -webkit-box-decoration-break: clone; box-decoration-break: clone;
-}
-.st-live span { background: rgba(214,51,108,.12); color: var(--pink); }
-.st-built span { background: rgba(43,53,96,.08); color: var(--muted); }
-.st-dev span { background: rgba(214,51,108,.06); color: var(--muted); }
-.st-idea span { background: rgba(43,53,96,.05); color: var(--light); }
-
-/* ============ ZOOM NOTE (overlay) ============ */
-.note-overlay {
-  position: fixed; inset: 0; z-index: 200;
-  display: none; align-items: center; justify-content: center;
-  padding: 24px;
-  background: rgba(30,39,74,.45);
-  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
-}
-.note-overlay.on { display: flex; animation: fadeIn .2s ease; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.note {
-  background: #fff;
-  border-radius: 3px;
-  max-width: 620px; width: 100%; max-height: 84vh;
-  overflow-y: auto;
-  padding: 34px 38px 30px;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(43,53,96,.18), 0 26px 60px rgba(43,53,96,.28);
-  animation: noteUp .25s ease;
-}
-@keyframes noteUp { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
-.note-doodle { text-align: center; margin-bottom: 14px; display: none; }
-.note-doodle.hasimg { display: block; }
-.note-doodle img { max-height: 150px; max-width: 80%; object-fit: contain; }
-.note-head { font-style: italic; font-size: 27px; font-weight: 700; color: var(--text); line-height: 1.25; }
-.note-head .note-emoji { font-style: normal; margin-right: 6px; }
-.note-head .note-emoji img { width: 30px; height: 30px; border-radius: 7px; display: inline-block; vertical-align: -4px; }
-.note-head .note-st { font-size: 16px; font-weight: 400; }
-.note-line { border: none; border-top: 1px solid var(--ink-line); margin: 14px 0; }
-.note-desc { font-size: 16px; line-height: 1.55; color: var(--text); }
-.note-desc strong { font-weight: 700; }
-.note-desc em { font-style: italic; }
-.note-desc code { font-style: italic; background: rgba(142,165,228,.2); padding: 1px 5px; border-radius: 4px; }
-.note-stack { font-style: italic; font-size: 15px; line-height: 1.7; color: var(--muted); }
-.note-links { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
-.note-close {
-  position: absolute; top: 12px; right: 14px;
-  font: italic 700 15px/1 var(--ft); color: var(--light);
-  background: none; border: none; cursor: pointer; padding: 8px 10px; border-radius: 8px;
-}
-.note-close:hover { color: var(--text); background: rgba(222,231,250,.8); }
-.proj-link {
-  font-style: italic; font-size: 15px; color: var(--text); text-decoration: none;
-  padding: 7px 17px; border: 1.5px solid rgba(43,53,96,.6);
-  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
-  transition: all .2s;
-}
-.proj-link:hover { border-color: var(--text); background: rgba(210,221,247,.7); }
-.proj-link-live { background: rgba(255,112,166,.38); border-color: var(--pink); color: var(--text); }
-.proj-link-live:hover { background: rgba(255,112,166,.55); border-color: #C2255C; color: var(--text); }
-body.note-open { overflow: hidden; }
-
-/* PAGER (technical tabs) */
-.pager { display: flex; gap: 8px; margin: 18px 0 8px; flex-wrap: wrap; }
-.pager-btn {
-  font: italic 500 15px/1 var(--ft); padding: 7px 17px;
-  border: 1.5px solid rgba(43,53,96,.5);
-  border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px;
-  background: rgba(255,253,246,.6); color: var(--muted);
-  cursor: pointer; transition: all .2s;
-}
-.pager-btn:hover { color: var(--text); border-color: var(--text); }
-.pager-btn.on { background: rgba(255,112,166,.35); color: var(--text); border-color: var(--text); }
-
-/* SKILLS */
-.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 22px; margin-top: 10px; }
-.skill-col { padding-bottom: 14px; }
-.skill-col-title {
-  font-style: italic; font-size: 17px; font-weight: 700; color: var(--text);
-  margin-bottom: 7px; padding-bottom: 5px; border-bottom: 1px solid var(--ink-line);
-}
-.skill-item { font-size: 15px; color: var(--text); padding: 2.5px 0; line-height: 1.4; }
-
-/* EXPERIENCE / EDUCATION */
-.exp-entry { padding: 14px 0; border-bottom: 1px solid var(--ink-line); }
-.exp-entry:last-child { border-bottom: none; }
-.exp-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.exp-role { font-style: italic; font-size: 19px; font-weight: 700; color: var(--text); line-height: 1.3; }
-.exp-period { margin-left: auto; font-style: italic; font-size: 14px; color: var(--light); white-space: nowrap; }
-.exp-desc { font-size: 15.5px; color: var(--text); line-height: 1.5; margin-top: 4px; }
-.exp-desc strong { font-weight: 700; }
-.exp-desc em { font-style: italic; color: var(--muted); }
-
-/* buyuk beyaz kart, icerik sayfalari */
-.paper-sheet {
-  position: relative;
-  background: #fff;
-  border-radius: 3px;
-  padding: 34px 40px;
-  margin-top: 20px;
-  box-shadow: 0 1px 2px rgba(43,53,96,.09), 0 10px 26px rgba(43,53,96,.12);
-}
-.pcard.static { cursor: default; }
-
-/* FOOTER */
-.footer { text-align: center; padding: 30px; font-size: 12.5px; color: var(--light); letter-spacing: .12em; position: relative; z-index: 1; }
-
-@media (max-width: 640px) {
-  .nav { gap: 6px; padding: 10px 4px; flex-wrap: wrap; }
-  .nav-card { gap: 2px; justify-content: center; }
-  .nav-btn { font-size: 12.5px; padding: 6px 6px; }
-  .nav-brand { font-size: 13.5px; }
-  .pages { margin-top: 96px; }
-  .page { padding: 30px 16px 80px; }
-  .md-h1 { font-size: 32px; }
-  .pgrid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
-  .skills-grid { grid-template-columns: 1fr 1fr; }
-  .note { padding: 26px 22px 22px; max-height: 88vh; }
-  .exp-period { margin-left: 0; width: 100%; }
-  .butterfly-mark { right: 16px; bottom: 16px; scale: .8; }
-  .home-top { flex-direction: column; align-items: flex-start; gap: 30px; min-height: 0; padding-top: 10px; }
-  .home-about { width: 100%; }
-  .carousel .pcard { width: 200px; }
-}
-@media (max-width: 380px) { .skills-grid { grid-template-columns: 1fr; } }
-
-button:focus-visible, a:focus-visible, .pcard:focus-visible {
-  outline: 2px solid var(--sky-deep); outline-offset: 2px; border-radius: 8px;
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-  html { scroll-behavior: auto; }
-}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important}}
 </style>
 </head>
 <body>
@@ -434,36 +209,56 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 <div class="pages">
   <!-- HOME -->
   <div class="page page-wide" id="p-home">
-    <div class="home-top">
-      <div class="home-intro">
-        <div style="font-style:italic;font-weight:700;font-size:14.5px;letter-spacing:.02em;color:var(--light);margin-bottom:16px">damla su bilge · bilkent cs</div>
-        <h1 class="md-h1" style="font-size:clamp(38px,5.5vw,54px);margin-bottom:16px">hi, i'm damla 👩🏻‍💻</h1>
-        <p class="md-p" style="font-size:17px;margin-bottom:22px;font-style:italic;color:var(--muted);line-height:1.55">cs student, ieee board member &amp; pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter.</p>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-bottom:24px">
-          <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="link-pink">github →</a>
-        </div>
-        <div class="hero-stats" id="hero-stats"></div>
-      </div>
-      <aside class="home-about">
-        <img class="home-photo" src="me.jpg" alt="Damla Su Bilge" onerror="this.style.display='none'">
-        <span class="feat-kicker">about me</span>
-        <p class="home-about-p">i build for connection and beauty — a slow letter platform because i love slow bonds, speaking practice apps because words deserve courage, a sewing app because craft should be accessible. every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty 🦋</p>
-        <button class="link-pink" onclick="go('about')">read more →</button>
-      </aside>
-    </div>
+<pre class="ascii">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢔⣶⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠗⡿⣾⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠓⡞⢩⣯⡀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠰⡹⠁⢰⠃⣩⣿⡇⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣿⠿⣉⣩⠛⠲⢶⡠⢄⠐⣣⠃⣰⠗⠋⢀⣯⠁⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣯⣠⠬⠦⢤⣀⠈⠓⢽⣾⢔⣡⡴⠞⠻⠙⢳⡄
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣵⣳⠖⠉⠉⢉⣩⣵⣿⣿⣒⢤⣴⠤⠽⣬⡇
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢻⣟⠟⠋⢡⡎⢿⢿⠳⡕⢤⡉⡷⡽⠁
+⣧⢮⢭⠛⢲⣦⣀⠀⠀⠀⠠⡀⠀⠀⠀⡾⣥⣏⣖⡟⠸⢺⠀⠀⠈⠙⠋⠁⠀⠀
+⠈⠻⣶⡛⠲⣄⠀⠙⠢⣀⠀⢇⠀⠀⠀⠘⠿⣯⣮⢦⠶⠃⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢻⣿⣥⡬⠽⠶⠤⣌⣣⣼⡔⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣿⣧⣤⡴⢤⡴⣶⣿⣟⢯⡙⠒⠤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠘⣗⣞⣢⡟⢋⢜⣿⠛⡿⡄⢻⡮⣄⠈⠳⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠈⠻⠮⠴⠵⢋⣇⡇⣷⢳⡀⢱⡈⢋⠛⣄⣹⣲⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣱⡇⣦⢾⣾⠿⠟⠿⠷⠷⣻⠧⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠽⠞⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
 
-    <div class="carousel-head">
-      <span class="feat-kicker">selected work</span>
-      <button class="link-pink" onclick="go('projects')">explore for more →</button>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel" id="carousel"></div>
-    </div>
+    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">whoami</span></div>
+    <div class="out"><span class="hl">damla su bilge</span> — music enthusiast, crocheter, third-wave barista, infp, future youtuber <span class="kao">꒰ she builds soft things ꒱</span></div>
+
+    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat about.txt</span></div>
+    <div class="out">i build for connection &amp; beauty <span class="hh">&lt;3</span> a slow letter platform because i love slow bonds,<br>
+    speaking practice apps because words deserve courage, a sewing app because craft should be<br>
+    for everyone. coding is fun, but imagination is what makes it matter. <span class="pu">*</span></div>
+
+    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">ls projects/</span> <span class="cm">--sort=recent</span></div>
+    <div class="list" id="home-ls"></div>
+    <div class="out"><span class="cm"># <span id="proj-stats"></span> ·</span> <button class="link-pink" onclick="go('projects')">explore for more →</button></div>
+
+    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
+
+    <div class="out" style="margin-top:26px"><span class="pk">*</span> tip: pick a star to explore <span class="hh">&lt;3</span> <span class="kao">(｡•ᴗ•｡)</span> ·&nbsp; <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github</a> &nbsp; <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener">linkedin</a></div>
+    <div class="signoff">~ ʚɞ ~</div>
   </div>
 
   <!-- ABOUT, loaded from content/about-me.md -->
   <div class="page" id="p-about">
-    <h1 class="md-h1">🦋 about me</h1>
+    <pre class="ascii">⠀⠀⠀⢸⣦⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⢸⣏⠻⣶⣤⡶⢾⡿⠁⠀⢠⣄⡀⢀⣴
+⠀⠀⣀⣼⠷⠀⠀⠁⢀⣿⠃⠀⠀⢀⣿⣿⣿⣇
+⠴⣾⣯⣅⣀⠀⠀⠀⠈⢻⣦⡀⠒⠻⠿⣿⡿⠿⠓⠂⠀⠀⢀⡇
+⠀⠀⠀⠉⢻⡇⣤⣾⣿⣷⣿⣿⣤⠀⠀⣿⠁⠀⠀⠀⢀⣴⣿⣿
+⠀⠀⠀⠀⠸⣿⡿⠏⠀⢀⠀⠀⠿⣶⣤⣤⣤⣄⣀⣴⣿⡿⢻⣿⡆
+⠀⠀⠀⠀⠀⠟⠁⠀⢀⣼⠀⠀⠀⠹⣿⣟⠿⠿⠿⡿⠋⠀⠘⣿⣇
+⠀⠀⠀⠀⠀⢳⣶⣶⣿⣿⣇⣀⠀⠀⠙⣿⣆⠀⠀⠀⠀⠀⠀⠛⠿⣿⣦⣤⣀
+⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⠿⠋⠁⠀⣹⣿⠳⠀⠀⠀⠀⠀⠀⢀⣠⣽⣿⡿⠟⠃
+⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇</pre>
+    <h1 class="md-h1">about me</h1>
     <div class="paper-sheet">
       <div id="about-content"></div>
       <div class="md-links" style="margin-top:16px">
@@ -476,36 +271,36 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
   <!-- LIFE PLAN, loaded from content/life-plan.md -->
   <div class="page page-wide" id="p-lifeplan">
-    <h1 class="md-h1">🌸 life plan & dreams</h1>
+    <h1 class="md-h1">life plan & dreams</h1>
     <p class="md-sub">thoughts, reflections, and the road ahead, tap a note to read</p>
     <div id="lifeplan-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
   </div>
 
   <!-- PROJECTS -->
   <div class="page page-wide" id="p-projects">
-    <h1 class="md-h1">💐 projects <span id="proj-count"></span></h1>
-    <p class="md-sub">tap a card to pick up the note 🌷</p>
+    <h1 class="md-h1">projects <span id="proj-count"></span></h1>
+    <p class="md-sub">tap a card to pick up the note</p>
     <div id="proj-filters" class="filters"></div>
     <div id="proj-list" class="pgrid"></div>
   </div>
 
   <!-- EDUCATION, bembeyaz kagit, one cikar -->
   <div class="page" id="p-education">
-    <h1 class="md-h1">🎓 education</h1>
-    <p class="md-sub">i am so honoured to have an opportunity to get an education. thank you mom and dad for always supporting me 💗</p>
+    <h1 class="md-h1">education</h1>
+    <p class="md-sub">i am so honoured to have an opportunity to get an education. thank you mom and dad for always supporting me</p>
     <div class="paper-sheet"><div id="edu-content"></div></div>
   </div>
 
   <!-- EXPERIENCE -->
   <div class="page page-wide" id="p-experience">
-    <h1 class="md-h1">🐝 experience</h1>
+    <h1 class="md-h1">experience</h1>
     <p class="md-sub">tap a note to read the full story</p>
     <div id="exp-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))"></div>
   </div>
 
   <!-- SKILLS -->
   <div class="page page-wide" id="p-skills">
-    <h1 class="md-h1">👾 skills</h1>
+    <h1 class="md-h1">skills</h1>
     <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing, it's about evaluating knowledge.</p>
     <div id="skills-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
   </div>
@@ -540,7 +335,7 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
 <script>
 const NAV_L=[
-  {k:"home",l:"damla.log 🐝",brand:true},
+  {k:"home",l:"damla.log",brand:true},
   {k:"about",l:"about me"}
 ];
 const NAV_R=[
@@ -736,30 +531,17 @@ document.addEventListener("DOMContentLoaded",()=>{
   renderFilters();
   renderProjects();
 
-  // home: stats + kayan proje carousel
+  // home: terminal ls listesi + stats
   const liveN=P.filter(p=>p.s==="live").length;
-  document.getElementById("hero-stats").innerHTML=
-    `<span><b>${P.length}</b> projects</span><span><b>${liveN}</b> live</span><span>iOS · web · AI</span>`;
-  // carousel: projeler dizideki kronolojik sirayla (en yeni onde), kendi kafamiza gore siralamayiz
-  const car=document.getElementById("carousel");
-  car.innerHTML=P.map((p,i)=>{
-    const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
-    return `<div class="pcard" role="button" tabindex="0" style="animation-delay:${Math.min(i,8)*60}ms"
-      onclick="openNote('${p.sl}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
-      <span class="pcard-emoji">${emoji}</span>
-      <div class="pcard-name">${p.n}</div>
-      <div class="pcard-line">${p.tg}</div>
-      <div class="pcard-status ${stCls(p.s)}"><span>${p.s}</span></div>
-    </div>`;
+  document.getElementById("proj-stats").textContent=`${P.length} projects · ${liveN} live · iOS · web · AI`;
+  const MARK={live:"* live","in dev":"~ in dev",built:"+ built",idea:". idea"};
+  const MCLS={live:"live","in dev":"dev",built:"built",idea:"idea"};
+  document.getElementById("home-ls").innerHTML=P.slice(0,8).map((p,i)=>{
+    const id=String(i+1).padStart(4,"0");
+    const nm=p.n.toLowerCase();
+    const dots=" "+"·".repeat(Math.max(3,32-nm.length))+" ";
+    return `<a class="item" role="button" tabindex="0" onclick="openNote('${p.sl}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}"><span class="id">${id}</span>  <span class="nm">${nm}</span><span class="dot">${dots}</span><span class="${MCLS[p.s]}">${MARK[p.s]}</span></a>`;
   }).join("");
-  // suruklenerek kaydir
-  let down=false,sx=0,sl=0,moved=0;
-  car.addEventListener("pointerdown",e=>{down=true;moved=0;sx=e.clientX;sl=car.scrollLeft;car.classList.add("drag");car.setPointerCapture(e.pointerId);});
-  car.addEventListener("pointermove",e=>{if(!down)return;const d=e.clientX-sx;moved+=Math.abs(d);car.scrollLeft=sl-d;});
-  const endDrag=()=>{down=false;car.classList.remove("drag");};
-  car.addEventListener("pointerup",endDrag);car.addEventListener("pointercancel",endDrag);
-  // suruklerken tiklamayi yut
-  car.addEventListener("click",e=>{if(moved>6){e.stopPropagation();e.preventDefault();}},true);
 
   // overlay close: backdrop click + ESC
   document.getElementById("note-overlay").addEventListener("click",e=>{
@@ -874,6 +656,14 @@ document.addEventListener("DOMContentLoaded",()=>{
   go(ALL_PAGES.includes(page)?page:"home");
   if(page==="projects"&&slug)openNote(slug);
 });
+</script>
+<script>
+(function(){var S=document.createElement('div');S.id='stars';document.body.insertBefore(S,document.body.firstChild);
+var cols=['#5b5488','#5b5488','#6a5f9a','#ff8fbb','#b892ff','#bce6a0','#f6cf6e'],gly=['*','+','·','.'];
+for(var i=0;i<70;i++){var s=document.createElement('span');s.textContent=gly[Math.floor(Math.random()*gly.length)];
+s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';s.style.fontSize=(8+Math.random()*12)+'px';
+s.style.color=cols[Math.floor(Math.random()*cols.length)];
+if(Math.random()<.55){s.className='tw';s.style.animationDelay=(Math.random()*3.5)+'s';}S.appendChild(s);}})();
 </script>
 </body>
 </html>
