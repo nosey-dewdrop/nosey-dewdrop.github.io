@@ -47,8 +47,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* gece degil masal gunbatimi: periwinkle gokyuzu */
-  background: linear-gradient(180deg, #7c95da 0%, #8ea5e4 45%, #a7baec 100%) fixed;
+  background: #ffffff;
   color: var(--text);
   font-family: var(--ft);
   font-size: 16px;
@@ -57,68 +56,70 @@ body {
   overflow-x: hidden;
 }
 
-::selection { background: var(--star); color: var(--text); }
+::selection { background: rgba(255,112,166,.28); color: var(--text); }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,253,246,.5); border-radius: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(43,53,96,.18); border-radius: 6px; }
 
-/* ============ SKY, suluboya yildizli fon ============ */
-.sky { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-/* sadece opacity: transform attribute'lari bozulmasin */
-.tw1, .tw2, .tw3 { animation: twinkle 5s ease-in-out infinite; }
-.tw2 { animation-delay: 1.7s; animation-duration: 6s; }
-.tw3 { animation-delay: 3.2s; animation-duration: 7s; }
-@keyframes twinkle { 0%,100% { opacity: .9; } 50% { opacity: .3; } }
-.sky .wisp { animation: wispdrift 90s linear infinite alternate; }
-.sky .wisp.w2 { animation-duration: 120s; animation-delay: -40s; }
-@keyframes wispdrift { from { transform: translateX(-40px); } to { transform: translateX(60px); } }
+/* ============ tek kelebek imzasi, sag alt ============ */
+.butterfly-mark {
+  position: fixed; right: 46px; bottom: 30px; z-index: 3;
+  pointer-events: none; opacity: .92;
+  animation: markbob 6s ease-in-out infinite alternate;
+}
+@keyframes markbob { from { transform: translateY(0) rotate(-1.5deg); } to { transform: translateY(-7px) rotate(1.5deg); } }
+.butterfly-mark .p-wing1 { transform-box: fill-box; transform-origin: 90% 90%; animation: flap1 2.4s ease-in-out infinite alternate; }
+.butterfly-mark .p-wing2 { transform-box: fill-box; transform-origin: 10% 90%; animation: flap2 2.4s ease-in-out infinite alternate; }
+@keyframes flap1 { from { transform: rotate(0); } to { transform: rotate(-7deg); } }
+@keyframes flap2 { from { transform: rotate(0); } to { transform: rotate(7deg); } }
 
 /* NAV, solda ve sagda iki ayri kagit kart, ortasi bos */
 .nav {
-  position: fixed; top: 14px; left: 0; right: 0;
+  position: fixed; top: 0; left: 0; right: 0;
   z-index: 100;
-  display: flex; align-items: flex-start; justify-content: center;
-  gap: 56px; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
+  gap: 44px; padding: 13px 0;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  border-bottom: 1px solid rgba(43,53,96,.07);
+  pointer-events: auto;
 }
 .nav-card {
   display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
   pointer-events: auto;
 }
-/* her buton ayri bir tus */
+/* duz, hafif metin navigasyonu, aktifte el cizimi pembe alti cizgi */
 .nav-btn {
-  font: italic 700 15.5px/1 var(--ft);
-  color: var(--muted); border: none;
-  padding: 11px 17px;
-  border-radius: 999px;
-  background: rgba(255,253,246,.95);
-  box-shadow: 0 2.5px 0 rgba(43,53,96,.25), 0 7px 16px rgba(43,53,96,.18);
-  cursor: pointer; transition: all .12s;
-  white-space: nowrap;
+  font: italic 600 15.5px/1 var(--ft);
+  color: var(--light); border: none;
+  padding: 8px 11px;
+  background: none; box-shadow: none;
+  cursor: pointer; transition: color .14s;
+  white-space: nowrap; position: relative;
 }
-.nav-btn:hover { color: var(--text); transform: translateY(-1px); box-shadow: 0 3.5px 0 rgba(43,53,96,.22), 0 9px 18px rgba(43,53,96,.11); }
-.nav-btn.on {
-  color: var(--text); position: relative;
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 rgba(43,53,96,.25), 0 3px 8px rgba(43,53,96,.08);
-}
+.nav-btn:hover { color: var(--text); }
+.nav-btn.on { color: var(--text); }
 .nav-btn.on::after {
-  content: ''; position: absolute; left: 13px; right: 13px; bottom: 4px; height: 5px;
+  content: ''; position: absolute; left: 9px; right: 9px; bottom: 1px; height: 5px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='6' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 3.6 C 20 1.4, 40 4.8, 58 3.2 S 88 2.4, 98 3.4' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
   background-size: 100% 100%;
 }
-.nav-brand { font-size: 17px; }
+.nav-brand { font-size: 16.5px; font-weight: 700; color: var(--text); }
 
 /* technical hover menu */
 .nav-drop { position: relative; }
 .nav-drop .nav-menu {
-  display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-  flex-direction: column; min-width: 128px; gap: 7px; padding-top: 9px;
+  display: none; position: absolute; top: calc(100% + 9px); left: 50%; transform: translateX(-50%);
+  flex-direction: column; min-width: 132px; gap: 2px; padding: 7px;
+  background: #fff; border: 1px solid rgba(43,53,96,.09);
+  box-shadow: 0 8px 22px rgba(43,53,96,.13);
 }
 .nav-drop:hover .nav-menu, .nav-drop:focus-within .nav-menu { display: flex; }
-.nav-menu .nav-btn { padding: 10px 12px; font-size: 14px; text-align: center; }
+.nav-menu .nav-btn { padding: 8px 12px; font-size: 14px; text-align: center; }
+.nav-menu .nav-btn:hover { background: rgba(255,112,166,.1); }
 
 /* PAGES */
-.pages { margin-top: 92px; position: relative; }
+.pages { margin-top: 64px; position: relative; }
 .page {
   display: none; min-height: calc(100vh - 72px);
   max-width: 900px; margin: 0 auto;
@@ -130,10 +131,8 @@ body {
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* TYPOGRAPHY, italic Times elegance */
-/* h1 ve alt yazi dogrudan gokyuzunun ustunde durur, krem olsun */
 .md-h1 {
-  font-style: italic; font-size: 40px; font-weight: 700; color: var(--paper);
-  text-shadow: 0 2px 12px rgba(43,53,96,.3);
+  font-style: italic; font-size: 40px; font-weight: 700; color: var(--text);
   margin-bottom: 6px; line-height: 1.2;
 }
 .md-h2 {
@@ -143,7 +142,7 @@ body {
 }
 .md-h3 { font-style: italic; font-size: 19px; font-weight: 700; color: var(--text); margin: 22px 0 6px; }
 
-.md-sub { font-style: italic; font-size: 15px; color: #e9eefc; text-shadow: 0 1px 8px rgba(43,53,96,.25); margin-bottom: 14px; line-height: 1.4; }
+.md-sub { font-style: italic; font-size: 15px; color: var(--light); margin-bottom: 14px; line-height: 1.4; }
 
 .md-p { font-size: 16px; color: var(--text); line-height: 1.42; margin-bottom: 6px; }
 .md-p strong { font-weight: 700; }
@@ -167,38 +166,38 @@ body {
 }
 .md-link:hover { border-color: var(--text); background: rgba(255,112,166,.16); }
 
-/* ============ CLOUD CARDS ============ */
+/* hero cagri butonlari, temiz ama sicak */
+.cta-btn {
+  font: italic 700 16px/1 var(--ft);
+  padding: 13px 30px; border-radius: 3px; cursor: pointer;
+  color: #fff; background: var(--pink); border: none;
+  box-shadow: 0 2px 6px rgba(214,51,108,.28); transition: all .16s;
+}
+.cta-btn:hover { background: #c02a5f; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(214,51,108,.32); }
+.cta-ghost {
+  font: italic 600 16px/1 var(--ft); color: var(--muted);
+  text-decoration: none; padding: 13px 14px; transition: color .16s;
+}
+.cta-ghost:hover { color: var(--text); }
+
+/* ============ INDEX CARDS, keskin koseli, hafif golge ============ */
 .pgrid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 30px 20px; align-items: stretch;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 20px; align-items: stretch;
 }
 .pcard {
   position: relative;
-  background: var(--paper);
-  border-radius: 26px;
-  padding: 22px 20px 14px;
-  margin-top: 12px;
+  background: #fff;
+  border-radius: 3px;
+  padding: 20px 20px 14px;
   cursor: pointer;
   display: flex; flex-direction: column;
-  filter: drop-shadow(0 3px 2px rgba(43,53,96,.1)) drop-shadow(0 14px 22px rgba(43,53,96,.22));
-  transition: transform .2s ease, filter .25s ease;
-  animation: bob 6.5s ease-in-out infinite alternate;
+  box-shadow: 0 1px 2px rgba(43,53,96,.09), 0 8px 20px rgba(43,53,96,.12);
+  transition: transform .16s ease, box-shadow .2s ease;
 }
-/* bulut tutamlari */
-.pcard::before, .pcard::after { content: ''; position: absolute; background: var(--paper); border-radius: 50%; }
-.pcard::before { width: 52px; height: 52px; top: -20px; left: 16px; box-shadow: 88px 8px 0 -14px var(--paper); }
-.pcard::after { width: 34px; height: 34px; top: -13px; left: 58px; }
-@keyframes bob { from { translate: 0 -3px; } to { translate: 0 5px; } }
-/* her bulut kendi ritminde suzulsun */
-.pcard:nth-child(5n+1) { rotate: -1.1deg; animation-delay: -1.2s; }
-.pcard:nth-child(5n+2) { rotate: .8deg; animation-delay: -3.4s; animation-duration: 7.5s; }
-.pcard:nth-child(5n+3) { rotate: -.5deg; animation-delay: -5.1s; }
-.pcard:nth-child(5n+4) { rotate: 1.2deg; animation-delay: -2.3s; animation-duration: 8s; }
-.pcard:nth-child(5n+5) { rotate: -.8deg; animation-delay: -4.2s; animation-duration: 7s; }
-/* hover: arkadan gunes vurmus gibi */
 .pcard:hover {
-  transform: scale(1.035);
-  filter: drop-shadow(0 3px 2px rgba(43,53,96,.08)) drop-shadow(0 10px 18px rgba(43,53,96,.16)) drop-shadow(0 0 26px rgba(246,217,107,.8));
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(43,53,96,.1), 0 16px 30px rgba(43,53,96,.16);
 }
 
 .pcard-emoji { font-size: 24px; line-height: 1; margin-bottom: 8px; }
@@ -261,8 +260,8 @@ body {
 .note-overlay.on { display: flex; animation: fadeIn .2s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .note {
-  background: var(--paper);
-  border-radius: 32px;
+  background: #fff;
+  border-radius: 3px;
   max-width: 620px; width: 100%; max-height: 84vh;
   overflow-y: auto;
   padding: 34px 38px 30px;
@@ -333,77 +332,33 @@ body.note-open { overflow: hidden; }
 .exp-desc strong { font-weight: 700; }
 .exp-desc em { font-style: italic; color: var(--muted); }
 
-/* buyuk beyaz bulut, icerik sayfalari */
+/* buyuk beyaz kart, icerik sayfalari */
 .paper-sheet {
   position: relative;
-  background: var(--paper);
-  border-radius: 32px;
-  padding: 36px 40px;
-  margin-top: 34px;
-  filter: drop-shadow(0 3px 2px rgba(43,53,96,.1)) drop-shadow(0 18px 30px rgba(43,53,96,.24));
+  background: #fff;
+  border-radius: 3px;
+  padding: 34px 40px;
+  margin-top: 20px;
+  box-shadow: 0 1px 2px rgba(43,53,96,.09), 0 10px 26px rgba(43,53,96,.12);
 }
-.paper-sheet::before, .paper-sheet::after { content: ''; position: absolute; background: var(--paper); border-radius: 50%; }
-.paper-sheet::before { width: 84px; height: 84px; top: -32px; left: 34px; box-shadow: 150px 12px 0 -22px var(--paper); }
-.paper-sheet::after { width: 54px; height: 54px; top: -20px; left: 102px; }
 .pcard.static { cursor: default; }
 
-/* ============ CRITTERS, sayfalara gizlenmis suluboya dostlar ============ */
-.critter { position: absolute; z-index: 2; pointer-events: auto; }
-.critter svg { display: block; overflow: visible; }
-.critter [class^="p-"], .critter [class*=" p-"] { transform-box: fill-box; }
-.p-beewings, .p-eyes { transform-origin: center; }
-.c-bob { animation: cbob 5s ease-in-out infinite alternate; }
-@keyframes cbob { from { translate: 0 0; } to { translate: 0 5px; } }
-.critter:hover { animation: cwiggle .7s ease-in-out; }
-@keyframes cwiggle { 0%,100% { rotate: 0deg; } 25% { rotate: -6deg; } 60% { rotate: 5deg; } }
-/* kelebek yerinde durur, kanat cirpar; hover'da hizlanir */
-.p-wing1 { transform-origin: 90% 90%; animation: flap1 1.9s ease-in-out infinite alternate; }
-.p-wing2 { transform-origin: 10% 90%; animation: flap2 1.9s ease-in-out infinite alternate; }
-@keyframes flap1 { from { transform: rotate(0); } to { transform: rotate(-9deg); } }
-@keyframes flap2 { from { transform: rotate(0); } to { transform: rotate(9deg); } }
-.critter:hover .p-wing1, .critter:hover .p-wing2 { animation-duration: .35s; }
-/* kus kanadi */
-.p-birdwing { transform-origin: 30% 100%; animation: birdflap 2.4s ease-in-out infinite alternate; }
-@keyframes birdflap { from { transform: rotate(0); } to { transform: rotate(-8deg); } }
-/* salyangoz gozleri hover'da saskin bakar */
-.critter:hover .p-eyes { animation: peek .8s ease-in-out; }
-@keyframes peek { 0%,100% { transform: rotate(0); } 40% { transform: rotate(-10deg); } 70% { transform: rotate(6deg); } }
-/* kurbaganin mantar semsiyesi salinir */
-.p-umbrella { transform-origin: 50% 96%; animation: sway 4.5s ease-in-out infinite alternate; }
-@keyframes sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
-/* ari yerinde vizildar */
-.p-beewings { animation: buzz .25s linear infinite alternate; }
-@keyframes buzz { from { transform: scaleY(1); } to { transform: scaleY(.72); } }
-/* yerlesimler */
-.cr-butterfly { top: 110px; right: 9%; }
-.cr-bird { top: 4px; right: 7%; }
-.cr-ladybug { top: 46px; right: 38px; }
-.cr-snail { bottom: 24px; right: 26px; }
-.cr-caterpillar { bottom: 26px; left: 26px; }
-.cr-bee { top: 42px; right: 9%; }
-.cr-stars { top: 40px; right: 9%; }
-.cr-frog { bottom: 12px; right: 30px; }
-
 /* FOOTER */
-.footer { text-align: center; padding: 30px; font-size: 13px; color: #dfe6fa; letter-spacing: .12em; position: relative; z-index: 1; }
+.footer { text-align: center; padding: 30px; font-size: 12.5px; color: var(--light); letter-spacing: .12em; position: relative; z-index: 1; }
 
 @media (max-width: 640px) {
-  .nav { top: 6px; left: 6px; right: 6px; gap: 8px; justify-content: center; }
-  .nav-card { gap: 4px; justify-content: center; }
-  .nav-btn { font-size: 12px; padding: 7px 7px; letter-spacing: .04em; }
+  .nav { gap: 6px; padding: 10px 4px; flex-wrap: wrap; }
+  .nav-card { gap: 2px; justify-content: center; }
+  .nav-btn { font-size: 12.5px; padding: 6px 6px; }
   .nav-brand { font-size: 13.5px; }
-  .pages { margin-top: 104px; }
+  .pages { margin-top: 96px; }
   .page { padding: 30px 16px 80px; }
   .md-h1 { font-size: 32px; }
-  .pgrid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .pgrid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
   .skills-grid { grid-template-columns: 1fr 1fr; }
   .note { padding: 26px 22px 22px; max-height: 88vh; }
   .exp-period { margin-left: 0; width: 100%; }
-  .critter { scale: .72; }
-  .cr-butterfly { top: 44px; right: 2px; }
-  .cr-bird { right: 8px; }
-  .cr-bee, .cr-stars { right: 12px; }
-  .cr-ladybug { top: 30px; right: 14px; }
+  .butterfly-mark { right: 16px; bottom: 16px; scale: .8; }
 }
 @media (max-width: 380px) { .skills-grid { grid-template-columns: 1fr; } }
 
@@ -418,130 +373,26 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 </head>
 <body>
 
-<!-- suluboya gokyuzu: yildizlar, ay, saturn, bulut tutamlari -->
-<svg class="sky" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <defs>
-    <filter id="wc" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="7" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
-    </filter>
-    <path id="sparkle" d="M0,-14 C1.3,-5 5,-1.3 14,0 C5,1.3 1.3,5 0,14 C-1.3,5 -5,1.3 -14,0 C-5,-1.3 -1.3,-5 0,-14 Z"/>
-  </defs>
-  <g filter="url(#wc)">
-    <!-- wispy clouds -->
-    <g class="wisp" fill="#ffffff" opacity=".32">
-      <ellipse cx="220" cy="150" rx="120" ry="34"/><ellipse cx="300" cy="128" rx="70" ry="26"/><ellipse cx="150" cy="132" rx="55" ry="22"/>
-    </g>
-    <g class="wisp w2" fill="#ffffff" opacity=".26">
-      <ellipse cx="1150" cy="620" rx="150" ry="40"/><ellipse cx="1250" cy="592" rx="80" ry="28"/><ellipse cx="1060" cy="600" rx="60" ry="24"/>
-    </g>
-    <!-- crescent moon -->
-    <g class="tw2" transform="translate(1210,140) rotate(-18)" fill="#fce9a0" opacity=".95">
-      <path d="M8,-22 A22,22 0 1,0 8,22 A27,27 0 0,1 8,-22 Z"/>
-    </g>
-    <!-- saturn doodle -->
-    <g class="tw3" transform="translate(310,640) rotate(-12)" opacity=".8">
-      <circle r="13" fill="#f6d96b"/>
-      <ellipse rx="24" ry="7" fill="none" stroke="#fce9a0" stroke-width="3"/>
-    </g>
-    <!-- sparkle stars -->
-    <g fill="#f6d96b">
-      <use href="#sparkle" class="tw1" transform="translate(180,420) scale(1.1) rotate(10)"/>
-      <use href="#sparkle" class="tw2" transform="translate(480,110) scale(1.5) rotate(-8)"/>
-      <use href="#sparkle" class="tw3" transform="translate(760,300) scale(.8) rotate(20)"/>
-      <use href="#sparkle" class="tw1" transform="translate(1010,180) scale(1.2) rotate(-15)"/>
-      <use href="#sparkle" class="tw2" transform="translate(1330,420) scale(.9) rotate(5)"/>
-      <use href="#sparkle" class="tw3" transform="translate(90,760) scale(1.3) rotate(-20)"/>
-      <use href="#sparkle" class="tw1" transform="translate(620,780) scale(.9) rotate(12)"/>
-      <use href="#sparkle" class="tw2" transform="translate(1240,800) scale(1.1) rotate(-6)"/>
-      <use href="#sparkle" class="tw3" transform="translate(900,520) scale(.7) rotate(25)"/>
-      <use href="#sparkle" class="tw1" transform="translate(60,260) scale(.8) rotate(-30)"/>
-    </g>
-    <!-- tiny white stars & plus twinkles -->
-    <g fill="#ffffff" opacity=".85">
-      <circle cx="400" cy="330" r="3" class="tw2"/><circle cx="680" cy="120" r="2.5" class="tw1"/>
-      <circle cx="960" cy="700" r="3" class="tw3"/><circle cx="1380" cy="240" r="2.5" class="tw2"/>
-      <circle cx="240" cy="560" r="2.5" class="tw1"/><circle cx="1100" cy="380" r="3" class="tw3"/>
-    </g>
-    <g stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity=".8">
-      <path d="M540,540 h14 M547,533 v14" class="tw1"/>
-      <path d="M1290,110 h12 M1296,104 v12" class="tw3"/>
-      <path d="M120,90 h12 M126,84 v12" class="tw2"/>
-      <path d="M840,860 h12 M846,854 v12" class="tw1"/>
-    </g>
-  </g>
-</svg>
-
 <nav class="nav" id="nav-bar"></nav>
 
 <div class="pages">
   <!-- HOME -->
   <div class="page" id="p-home">
-    <!-- kelebek: yerinde durur, kanat cirpar -->
-    <div class="critter cr-butterfly c-bob" aria-hidden="true">
-      <svg width="92" height="92" viewBox="0 0 100 100" filter="url(#wc)">
-        <g class="p-wing1">
-          <path d="M45,55 C20,60 6,42 13,20 C32,12 49,28 51,50 Z" fill="#f2a0ae"/>
-          <path d="M22,44 C18,36 18,28 22,22" fill="none" stroke="#c96a7a" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="33" cy="32" r="5" fill="#a35b66" opacity=".8"/><circle cx="27" cy="45" r="3.4" fill="#a35b66" opacity=".7"/>
-        </g>
-        <g class="p-wing2">
-          <path d="M52,52 C48,25 61,7 79,11 C87,30 72,50 55,56 Z" fill="#ee8f9f"/>
-          <path d="M74,34 C75,26 73,20 69,15" fill="none" stroke="#c96a7a" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="64" cy="28" r="4.4" fill="#a35b66" opacity=".8"/>
-        </g>
-        <path d="M36,90 C44,76 51,65 54,54" fill="none" stroke="#7a5a4c" stroke-width="4.4" stroke-linecap="round"/>
-        <circle cx="55" cy="52" r="4.6" fill="#7a5a4c"/>
-        <path d="M57,49 C61,42 67,38 73,36 M58,51 C64,46 71,44 76,44" fill="none" stroke="#7a5a4c" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="74" cy="35" r="2" fill="#7a5a4c"/><circle cx="77" cy="44" r="2" fill="#7a5a4c"/>
-      </svg>
-    </div>
-    <div style="min-height:calc(100vh - 170px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center">
-      <!-- suluboya gokkusagi -->
-      <svg width="175" height="105" viewBox="0 0 170 100" aria-hidden="true" style="margin-bottom:10px" filter="url(#wc)">
-        <g fill="none" stroke-linecap="round" opacity=".92">
-          <path d="M15,95 A70,70 0 0 1 155,95" stroke="#e88aa0" stroke-width="9"/>
-          <path d="M24,95 A61,61 0 0 1 146,95" stroke="#eeb27c" stroke-width="9"/>
-          <path d="M33,95 A52,52 0 0 1 137,95" stroke="#f2d477" stroke-width="9"/>
-          <path d="M42,95 A43,43 0 0 1 128,95" stroke="#a5c98a" stroke-width="9"/>
-          <path d="M51,95 A34,34 0 0 1 119,95" stroke="#8fb3dd" stroke-width="9"/>
-          <path d="M60,95 A25,25 0 0 1 110,95" stroke="#af9cd4" stroke-width="9"/>
-        </g>
-        <g fill="#fdfdf6">
-          <circle cx="14" cy="88" r="13"/><circle cx="27" cy="93" r="10"/><circle cx="4" cy="93" r="8"/><circle cx="18" cy="97" r="9"/>
-        </g>
-      </svg>
-      <div style="font-style:italic;font-weight:700;font-size:16px;letter-spacing:.04em;color:#eef2ff;text-shadow:0 1px 8px rgba(43,53,96,.25);margin-bottom:12px">damla su bilge · bilkent university · computer science</div>
-      <h1 class="md-h1" style="font-size:clamp(36px,5.5vw,50px);margin-bottom:10px">hi, i'm damla 👩🏻‍💻</h1>
-      <p class="md-p" style="font-size:17.5px;max-width:580px;margin-bottom:22px;font-style:italic;color:#f2f5ff;text-shadow:0 1px 8px rgba(43,53,96,.25)">cs student, ieee board member & pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter. ✨</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button onclick="go('projects')" style="font:italic 700 16px/1 var(--ft);padding:11px 26px;background:rgba(255,186,212,.95);color:var(--text);border:1.6px solid var(--text);border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;cursor:pointer">explore projects 🌷</button>
-        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link" style="padding:11px 22px">github →</a>
+    <div style="min-height:calc(100vh - 200px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center">
+      <div style="font-style:italic;font-weight:700;font-size:15px;letter-spacing:.05em;color:var(--light);margin-bottom:14px">damla su bilge · bilkent university · computer science</div>
+      <h1 class="md-h1" style="font-size:clamp(38px,6vw,58px);margin-bottom:14px">hi, i'm damla</h1>
+      <p class="md-p" style="font-size:18px;max-width:560px;margin-bottom:26px;font-style:italic;color:var(--muted);line-height:1.5">cs student, ieee board member &amp; pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button onclick="go('projects')" class="cta-btn">explore projects</button>
+        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="cta-ghost">github →</a>
       </div>
     </div>
   </div>
 
   <!-- ABOUT, loaded from content/about-me.md -->
   <div class="page" id="p-about">
-    <!-- mavi kus -->
-    <div class="critter cr-bird c-bob" aria-hidden="true">
-      <svg width="78" height="70" viewBox="0 0 100 90" filter="url(#wc)">
-        <path d="M8,52 L32,44 L29,60 Z" fill="#7a99d6"/>
-        <path d="M14,44 L34,42 L30,52 Z" fill="#8aa6e2"/>
-        <ellipse cx="55" cy="50" rx="28" ry="19" fill="#8aa6e2"/>
-        <ellipse cx="61" cy="58" rx="17" ry="11" fill="#f6d8c8"/>
-        <g class="p-birdwing">
-          <path d="M48,46 C39,22 54,5 72,9 C77,26 68,41 52,49 Z" fill="#7292d6"/>
-          <path d="M58,36 C60,28 64,22 69,18" fill="none" stroke="#5f7fc4" stroke-width="2.6" stroke-linecap="round"/>
-        </g>
-        <circle cx="80" cy="42" r="13" fill="#8aa6e2"/>
-        <circle cx="85" cy="39" r="2.6" fill="#2e3350"/>
-        <path d="M92,42 l10,3 -10,5 z" fill="#f0b48f"/>
-        <circle cx="80" cy="47" r="3" fill="#f0a9b6" opacity=".55"/>
-      </svg>
-    </div>
     <h1 class="md-h1">🦋 about me</h1>
-    <div class="paper-sheet" style="margin-top:44px">
+    <div class="paper-sheet">
       <div id="about-content"></div>
       <div class="md-links" style="margin-top:16px">
         <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
@@ -553,27 +404,6 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
   <!-- LIFE PLAN, loaded from content/life-plan.md -->
   <div class="page page-wide" id="p-lifeplan">
-    <!-- mantar semsiyeli kurbaga -->
-    <div class="critter cr-frog" aria-hidden="true">
-      <svg width="94" height="112" viewBox="0 0 110 130" filter="url(#wc)">
-        <ellipse cx="55" cy="119" rx="42" ry="9" fill="#5f7d4f"/>
-        <g class="p-umbrella">
-          <path d="M28,102 L29,34" stroke="#7c9fd4" stroke-width="6" stroke-linecap="round"/>
-          <path d="M4,38 Q29,-6 54,38 Q46,32 37,37 Q29,31 21,37 Q12,32 4,38 Z" fill="#6f94d0"/>
-          <path d="M12,30 Q20,16 29,12" fill="none" stroke="#94b2e0" stroke-width="3" stroke-linecap="round"/>
-        </g>
-        <rect x="42" y="100" width="13" height="16" rx="5.5" fill="#c94f4f"/>
-        <rect x="59" y="100" width="13" height="16" rx="5.5" fill="#c94f4f"/>
-        <ellipse cx="57" cy="80" rx="26" ry="27" fill="#8fb56b"/>
-        <ellipse cx="57" cy="88" rx="15" ry="16" fill="#f6f3e4"/>
-        <circle cx="46" cy="54" r="7.4" fill="#8fb56b"/><circle cx="68" cy="54" r="7.4" fill="#8fb56b"/>
-        <circle cx="46" cy="54" r="2.4" fill="#2e2e2e"/><circle cx="68" cy="54" r="2.4" fill="#2e2e2e"/>
-        <ellipse cx="41" cy="64" rx="4.4" ry="3" fill="#e8c15c" opacity=".8"/><ellipse cx="73" cy="64" rx="4.4" ry="3" fill="#e8c15c" opacity=".8"/>
-        <path d="M50,64 q7,4.4 14,0" fill="none" stroke="#4f6b3a" stroke-width="2" stroke-linecap="round"/>
-        <path d="M38,74 C30,66 27,54 30,44" fill="none" stroke="#7ba158" stroke-width="6.4" stroke-linecap="round"/>
-        <path d="M76,74 C82,80 84,88 82,96" fill="none" stroke="#7ba158" stroke-width="6.4" stroke-linecap="round"/>
-      </svg>
-    </div>
     <h1 class="md-h1">🌸 life plan & dreams</h1>
     <p class="md-sub">thoughts, reflections, and the road ahead, tap a note to read</p>
     <div id="lifeplan-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
@@ -581,36 +411,6 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
   <!-- PROJECTS -->
   <div class="page page-wide" id="p-projects">
-    <!-- ugur bocegi bir bulutun kenarina konmus -->
-    <div class="critter cr-ladybug" aria-hidden="true">
-      <svg width="46" height="46" viewBox="0 0 60 60" filter="url(#wc)">
-        <path d="M22,10 C19,6 15,4 11,4 M38,10 C41,6 45,4 49,4" fill="none" stroke="#3b3b3b" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="11" cy="4" r="2.2" fill="#3b3b3b"/><circle cx="49" cy="4" r="2.2" fill="#3b3b3b"/>
-        <circle cx="30" cy="15" r="9" fill="#3b3b3b"/>
-        <ellipse cx="30" cy="34" rx="24" ry="21" fill="#d24646"/>
-        <path d="M30,13 V55" stroke="#7e2a2a" stroke-width="2.4"/>
-        <circle cx="19" cy="27" r="3.6" fill="#3b3b3b"/><circle cx="41" cy="27" r="3.6" fill="#3b3b3b"/>
-        <circle cx="14" cy="40" r="3.2" fill="#3b3b3b"/><circle cx="46" cy="40" r="3.2" fill="#3b3b3b"/>
-        <circle cx="24" cy="47" r="2.8" fill="#3b3b3b"/><circle cx="36" cy="47" r="2.8" fill="#3b3b3b"/>
-        <ellipse cx="20" cy="22" rx="6" ry="3.6" fill="#ffffff" opacity=".3" transform="rotate(-24 20 22)"/>
-      </svg>
-    </div>
-    <!-- salyangoz kosede oturur (snailmail'e selam) -->
-    <div class="critter cr-snail" aria-hidden="true">
-      <svg width="88" height="76" viewBox="0 0 110 92" filter="url(#wc)">
-        <path d="M14,82 C14,73 23,68 33,70 L58,70 C64,70 68,64 68,55 C68,44 72,34 80,30 C87,33 88,42 86,50 C84,59 78,66 70,70 L88,70 C96,70 100,74 99,79 C98,84 90,86 78,86 L30,86 C20,86 14,85 14,82 Z" fill="#cfc3ab"/>
-        <g class="p-eyes">
-          <path d="M76,26 C74,19 72,13 70,8 M84,25 C85,18 87,12 89,7" fill="none" stroke="#b8ab90" stroke-width="3.4" stroke-linecap="round"/>
-          <circle cx="70" cy="7" r="5.4" fill="#fffdf6"/><circle cx="89" cy="6" r="5.4" fill="#fffdf6"/>
-          <circle cx="71" cy="7" r="2.2" fill="#2e2e2e"/><circle cx="88" cy="6" r="2.2" fill="#2e2e2e"/>
-        </g>
-        <path d="M79,38 q4,3 7,0" fill="none" stroke="#8f8268" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="76" cy="41" r="2.6" fill="#e8a5a5" opacity=".6"/>
-        <circle cx="40" cy="48" r="27" fill="#5d6b96"/>
-        <path d="M40,48 m0,-19 a19,19 0 1,1 -19,19 a13,13 0 1,0 13,-13 a7,7 0 1,1 -7,7" fill="none" stroke="#8b97c4" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="30" cy="36" r="1.8" fill="#c3cbe8" opacity=".8"/><circle cx="52" cy="58" r="1.8" fill="#c3cbe8" opacity=".8"/><circle cx="50" cy="34" r="1.5" fill="#c3cbe8" opacity=".7"/>
-      </svg>
-    </div>
     <h1 class="md-h1">💐 projects <span id="proj-count"></span></h1>
     <p class="md-sub">tap a card to pick up the note 🌷</p>
     <div id="proj-filters" class="filters"></div>
@@ -619,25 +419,6 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
   <!-- EDUCATION, bembeyaz kagit, one cikar -->
   <div class="page" id="p-education">
-    <!-- tirtil sayfanin dibinde -->
-    <div class="critter cr-caterpillar" aria-hidden="true">
-      <svg width="104" height="54" viewBox="0 0 140 70" filter="url(#wc)">
-        <g>
-          <circle cx="34" cy="48" r="14" fill="#a9c274"/>
-          <circle cx="49" cy="44" r="14" fill="#93b060"/>
-          <circle cx="64" cy="48" r="14" fill="#b5c97a"/>
-          <circle cx="79" cy="44" r="14" fill="#93b060"/>
-          <circle cx="94" cy="48" r="14" fill="#a9c274"/>
-          <path d="M46,32 L52,56 M76,32 L82,56 M61,36 L67,60" stroke="#7286c7" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="38" cy="62" r="3" fill="#7f9a52"/><circle cx="56" cy="60" r="3" fill="#7f9a52"/><circle cx="74" cy="60" r="3" fill="#7f9a52"/><circle cx="92" cy="62" r="3" fill="#7f9a52"/>
-        </g>
-        <circle cx="112" cy="42" r="15" fill="#9cb968"/>
-        <path d="M106,29 C104,24 103,20 102,16 M118,28 C120,23 121,19 122,15" fill="none" stroke="#5f7840" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="102" cy="15" r="1.8" fill="#5f7840"/><circle cx="122" cy="14" r="1.8" fill="#5f7840"/>
-        <circle cx="108" cy="40" r="2" fill="#2e2e2e"/><circle cx="117" cy="40" r="2" fill="#2e2e2e"/>
-        <path d="M108,47 q5,3 9,0" fill="none" stroke="#5f7840" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </div>
     <h1 class="md-h1">🎓 education</h1>
     <p class="md-sub">i am so honoured to have an opportunity to get an education. thank you mom and dad for always supporting me 💗</p>
     <div class="paper-sheet"><div id="edu-content"></div></div>
@@ -645,22 +426,6 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
   <!-- EXPERIENCE -->
   <div class="page page-wide" id="p-experience">
-    <!-- ari yerinde vizildar -->
-    <div class="critter cr-bee c-bob" aria-hidden="true">
-      <svg width="58" height="52" viewBox="0 0 70 60" filter="url(#wc)">
-        <g class="p-beewings">
-          <ellipse cx="26" cy="14" rx="10" ry="7" fill="#ffffff" opacity=".78"/>
-          <ellipse cx="43" cy="12" rx="10" ry="7" fill="#ffffff" opacity=".78"/>
-        </g>
-        <ellipse cx="35" cy="37" rx="20" ry="15" fill="#f2ce5a"/>
-        <path d="M27,24 C25,32 25,42 27,50 M40,23 C38,32 38,43 40,51" fill="none" stroke="#4a4a4a" stroke-width="5.4" stroke-linecap="round"/>
-        <path d="M55,37 l8,2 -7,4 z" fill="#4a4a4a"/>
-        <circle cx="22" cy="33" r="2" fill="#2e2e2e"/>
-        <path d="M20,39 q3,2.4 6,0" fill="none" stroke="#4a4a4a" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M20,26 C18,22 16,19 13,17" fill="none" stroke="#4a4a4a" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="13" cy="17" r="1.8" fill="#4a4a4a"/>
-      </svg>
-    </div>
     <h1 class="md-h1">🐝 experience</h1>
     <p class="md-sub">tap a note to read the full story</p>
     <div id="exp-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))"></div>
@@ -668,17 +433,6 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
 
   <!-- SKILLS -->
   <div class="page page-wide" id="p-skills">
-    <!-- kucuk yildiz demeti -->
-    <div class="critter cr-stars" aria-hidden="true">
-      <svg width="70" height="60" viewBox="0 0 90 76" filter="url(#wc)">
-        <g fill="#f6d96b">
-          <use href="#sparkle" class="tw1" transform="translate(30,34) scale(1.3)"/>
-          <use href="#sparkle" class="tw2" transform="translate(64,18) scale(.8) rotate(15)"/>
-          <use href="#sparkle" class="tw3" transform="translate(66,56) scale(.6) rotate(-12)"/>
-        </g>
-        <path d="M10,12 h10 M15,7 v10" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity=".85" class="tw2"/>
-      </svg>
-    </div>
     <h1 class="md-h1">👾 skills</h1>
     <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing, it's about evaluating knowledge.</p>
     <div id="skills-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
@@ -690,7 +444,27 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
   <div class="note" id="note-box"></div>
 </div>
 
-<div class="footer">🌼 💫 🌙 ✨ 🦋 💐 🌞 🌷 🌈 👾<br><span style="font-style:italic;letter-spacing:.06em">damla su bilge · 2026</span></div>
+<!-- tek kelebek imzasi, sag alt kose -->
+<div class="butterfly-mark" aria-hidden="true">
+  <svg width="66" height="66" viewBox="0 0 100 100">
+    <g class="p-wing1">
+      <path d="M45,55 C20,60 6,42 13,20 C32,12 49,28 51,50 Z" fill="#f2a0ae"/>
+      <path d="M22,44 C18,36 18,28 22,22" fill="none" stroke="#c96a7a" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="33" cy="32" r="5" fill="#a35b66" opacity=".8"/><circle cx="27" cy="45" r="3.4" fill="#a35b66" opacity=".7"/>
+    </g>
+    <g class="p-wing2">
+      <path d="M52,52 C48,25 61,7 79,11 C87,30 72,50 55,56 Z" fill="#ee8f9f"/>
+      <path d="M74,34 C75,26 73,20 69,15" fill="none" stroke="#c96a7a" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="64" cy="28" r="4.4" fill="#a35b66" opacity=".8"/>
+    </g>
+    <path d="M36,90 C44,76 51,65 54,54" fill="none" stroke="#7a5a4c" stroke-width="4.4" stroke-linecap="round"/>
+    <circle cx="55" cy="52" r="4.6" fill="#7a5a4c"/>
+    <path d="M57,49 C61,42 67,38 73,36 M58,51 C64,46 71,44 76,44" fill="none" stroke="#7a5a4c" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="74" cy="35" r="2" fill="#7a5a4c"/><circle cx="77" cy="44" r="2" fill="#7a5a4c"/>
+  </svg>
+</div>
+
+<div class="footer"><span style="font-style:italic;letter-spacing:.06em">damla su bilge · 2026</span></div>
 
 <script>
 const NAV_L=[
