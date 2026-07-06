@@ -78,14 +78,14 @@ body {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex; align-items: center; justify-content: center;
-  gap: 44px; padding: 13px 0;
+  gap: 20px; padding: 13px 0;
   background: rgba(255,255,255,.86);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(43,53,96,.08);
   pointer-events: auto;
 }
 .nav-card {
-  display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
   pointer-events: auto;
 }
 /* duz, hafif metin navigasyonu, aktifte el cizimi pembe alti cizgi */
@@ -166,19 +166,15 @@ body {
 }
 .md-link:hover { border-color: var(--text); background: rgba(255,112,166,.16); }
 
-/* hero cagri butonlari, temiz ama sicak */
-.cta-btn {
-  font: italic 700 16px/1 var(--ft);
-  padding: 13px 30px; border-radius: 3px; cursor: pointer;
-  color: #fff; background: var(--pink); border: none;
-  box-shadow: 0 2px 6px rgba(214,51,108,.28); transition: all .16s;
+/* tek tutarli baglanti tonu: pembe, alti cizili (github / read more / explore for more) */
+.link-pink {
+  font: italic 600 15.5px/1 var(--ft); color: var(--pink);
+  background: none; border: none; cursor: pointer; padding: 0;
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px; text-decoration-color: rgba(214,51,108,.45);
+  transition: text-decoration-color .16s, opacity .16s;
 }
-.cta-btn:hover { background: #c02a5f; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(214,51,108,.32); }
-.cta-ghost {
-  font: italic 600 16px/1 var(--ft); color: var(--muted);
-  text-decoration: none; padding: 13px 14px; transition: color .16s;
-}
-.cta-ghost:hover { color: var(--text); }
+.link-pink:hover { text-decoration-color: var(--pink); opacity: .85; }
 
 /* ============ HOME: sol about + alt yatay carousel ============ */
 .home-top {
@@ -198,11 +194,7 @@ body {
 .home-about-p {
   font-size: 14.5px; line-height: 1.6; color: var(--muted); margin: 10px 0 12px;
 }
-.about-more {
-  font: italic 600 14.5px/1 var(--ft); color: var(--pink);
-  background: none; border: none; cursor: pointer; padding: 0; transition: opacity .15s;
-}
-.about-more:hover { opacity: .7; }
+.home-about .link-pink { margin-top: 2px; }
 .hero-stats {
   display: flex; flex-wrap: wrap; gap: 6px 24px;
   font-style: italic; font-size: 14px; color: var(--light);
@@ -212,14 +204,9 @@ body {
 
 .carousel-head { display: flex; align-items: baseline; justify-content: space-between; margin: 8px 0 14px; }
 .feat-kicker {
-  font-style: normal; font-weight: 700; font-size: 12px; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--light);
+  font-style: italic; font-weight: 700; font-size: 14px; letter-spacing: .01em;
+  text-transform: none; color: var(--light);
 }
-.feat-all {
-  font: italic 600 15px/1 var(--ft); color: var(--muted);
-  background: none; border: none; cursor: pointer; transition: color .15s;
-}
-.feat-all:hover { color: var(--pink); }
 
 /* yatay kayan carousel, sagda solup "devami var" hissi */
 .carousel-wrap { position: relative; margin: 0 -24px; }
@@ -292,23 +279,26 @@ body {
   cursor: pointer; transition: color .15s;
 }
 .fchip:hover { color: var(--text); }
-.fchip.on {
-  color: var(--text); background: rgba(255,112,166,.32);
-  border-radius: 38% 42% 40% 44% / 62% 55% 60% 50%;
+/* aktif filtre = navbar'daki ayni pembe el cizimi alti cizgi (tutarli dil) */
+.fchip.on { color: var(--text); position: relative; }
+.fchip.on::after {
+  content: ''; position: absolute; left: 7px; right: 7px; bottom: 0; height: 5px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='6' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 3.6 C 20 1.4, 40 4.8, 58 3.2 S 88 2.4, 98 3.4' fill='none' stroke='%23f76fa4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
 }
 .pcard-status {
   font-style: italic; font-size: 13.5px; margin-top: auto; padding-top: 10px;
   text-align: right;
 }
+/* statu etiketi: keskin koseli kartlarla uyumlu, kucuk noktali sade rozet */
 .pcard-status span, .note-st span {
-  padding: 1px 8px 2px;
-  border-radius: 38% 42% 40% 44% / 62% 55% 60% 50%; /* fosforlu kalem izi */
+  padding: 2px 9px 3px; border-radius: 2px;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
-.st-live span { background: rgba(255,112,166,.38); }
-.st-built span { background: rgba(120,205,140,.42); }
-.st-dev span { background: rgba(246,205,110,.4); }
-.st-idea span { background: rgba(178,198,212,.35); }
+.st-live span { background: rgba(214,51,108,.12); color: var(--pink); }
+.st-built span { background: rgba(43,53,96,.08); color: var(--muted); }
+.st-dev span { background: rgba(214,51,108,.06); color: var(--muted); }
+.st-idea span { background: rgba(43,53,96,.05); color: var(--light); }
 
 /* ============ ZOOM NOTE (overlay) ============ */
 .note-overlay {
@@ -444,26 +434,25 @@ button:focus-visible, a:focus-visible, .pcard:focus-visible {
   <div class="page page-wide" id="p-home">
     <div class="home-top">
       <div class="home-intro">
-        <div style="font-style:normal;font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--light);margin-bottom:16px">damla su bilge · bilkent cs</div>
-        <h1 class="md-h1" style="font-size:clamp(38px,5.5vw,54px);margin-bottom:16px">hi, i'm damla</h1>
+        <div style="font-style:italic;font-weight:700;font-size:14.5px;letter-spacing:.02em;color:var(--light);margin-bottom:16px">damla su bilge · bilkent cs</div>
+        <h1 class="md-h1" style="font-size:clamp(38px,5.5vw,54px);margin-bottom:16px">hi, i'm damla 👩🏻‍💻</h1>
         <p class="md-p" style="font-size:17px;margin-bottom:22px;font-style:italic;color:var(--muted);line-height:1.55">cs student, ieee board member &amp; pr coordinator, builder of things that come from the heart. coding is fun, but imagination is what makes it matter.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:22px">
-          <button onclick="go('projects')" class="cta-btn">explore projects</button>
-          <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="cta-ghost">github →</a>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-bottom:24px">
+          <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="link-pink">github →</a>
         </div>
         <div class="hero-stats" id="hero-stats"></div>
       </div>
       <aside class="home-about">
         <img class="home-photo" src="me.jpg" alt="Damla Su Bilge" onerror="this.style.display='none'">
         <span class="feat-kicker">about me</span>
-        <p class="home-about-p">i started in medicine, then found my way to computer science. today i'm a cs student at bilkent, an ieee board member and a fab fellow. i build iOS apps, web platforms and ai experiments, 30+ of them, many of them live. i care about products that feel human.</p>
-        <button class="about-more" onclick="go('about')">read more →</button>
+        <p class="home-about-p">i build for connection and beauty — a slow letter platform because i love slow bonds, speaking practice apps because words deserve courage, a sewing app because craft should be accessible. every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty 🦋</p>
+        <button class="link-pink" onclick="go('about')">read more →</button>
       </aside>
     </div>
 
     <div class="carousel-head">
       <span class="feat-kicker">selected work</span>
-      <button class="feat-all" onclick="go('projects')">explore for more →</button>
+      <button class="link-pink" onclick="go('projects')">explore for more →</button>
     </div>
     <div class="carousel-wrap">
       <div class="carousel" id="carousel"></div>
