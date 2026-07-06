@@ -68,7 +68,7 @@ a{color:var(--pink)}
 
 /* pages */
 .pages{margin-top:58px;position:relative;z-index:1}
-.page{display:none;min-height:calc(100vh - 58px);max-width:900px;margin:0 auto;padding:42px 24px 90px;position:relative}
+.page{display:none;min-height:calc(100vh - 58px);max-width:960px;margin:0 auto;padding:46px 36px 90px;position:relative}
 .page-wide{max-width:960px}
 .page.on{display:block;animation:fadeUp .35s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -83,7 +83,7 @@ a{color:var(--pink)}
 .md-sub{color:var(--dim);margin:0 0 18px}
 .md-sub::before{content:'# ';color:var(--faint)}
 .md-p{color:var(--dim);line-height:1.75;margin-bottom:10px}
-.md-p strong{color:var(--fg);font-weight:600}
+.md-p strong{color:var(--fg);font-weight:700}
 .md-p em{color:var(--purple);font-style:normal}
 .md-p a{color:var(--pink);text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5)}
 .md-hr{border:none;border-top:1px solid var(--line);margin:14px 0}
@@ -99,6 +99,7 @@ a{color:var(--pink)}
 .row{margin-bottom:2px}
 .pr{color:var(--pistachio)}.pth{color:var(--purple)}.dl{color:var(--pink)}.cmd{color:var(--fg)}.cm{color:var(--faint)}
 .out{color:var(--dim);margin:2px 0 20px}
+.out.big{font-size:16.5px;line-height:1.7}
 .out .hl{color:var(--fg)}.out .pk{color:var(--pink)}.out .pu{color:var(--purple)}
 .hh{color:var(--pink);font-weight:600}
 .kao{color:var(--purple)}
@@ -120,9 +121,24 @@ a{color:var(--pink)}
 .hero-stats{color:var(--dim);margin-top:6px}
 .hero-stats b{color:var(--pistachio);font-weight:600}
 
-/* project / exp / skill / lifeplan cards => terminal blocks */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;align-items:stretch}
-.pcard{position:relative;background:rgba(184,146,255,.035);border:1px solid var(--line);border-radius:4px;padding:16px 16px 12px;cursor:pointer;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s,transform .15s}
+/* projects => terminal list (girisdeki ls gibi) */
+.plist{border-top:1px solid var(--line)}
+.pitem{display:block;text-decoration:none;color:var(--dim);padding:16px 6px;border-bottom:1px solid var(--line);cursor:pointer;transition:padding-left .18s ease,background .18s ease}
+.pitem:hover{padding-left:16px;background:linear-gradient(90deg,rgba(255,143,187,.05),transparent 70%)}
+.pitem .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.pitem .nm{color:var(--fg);font-weight:600;font-size:15.5px}
+.pitem .nm::before{content:'* ';color:var(--pink)}
+.pitem:hover .nm{color:var(--pink)}
+.pitem .st{white-space:nowrap;font-size:13.5px}
+.pitem .st.live{color:var(--pistachio)}.pitem .st.dev{color:var(--amber)}.pitem .st.built{color:var(--purple)}.pitem .st.idea{color:var(--faint)}
+.pitem .d{color:var(--dim);font-size:13.5px;line-height:1.55;margin-top:7px}
+.pitem .d::before{content:'> ';color:var(--faint)}
+.pitem .tech{color:var(--pistachio);font-weight:600;font-size:13px;margin-top:4px}
+.pitem .tech::before{content:'> ';color:var(--faint)}
+
+/* exp / skill / lifeplan cards => terminal blocks */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;align-items:stretch}
+.pcard{position:relative;background:rgba(184,146,255,.035);border:1px solid var(--line);border-radius:4px;padding:22px 22px 16px;cursor:pointer;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s,transform .15s}
 .pcard:hover{border-color:rgba(255,143,187,.5);box-shadow:0 0 20px rgba(255,143,187,.12);transform:translateY(-2px)}
 .pcard.static{cursor:default}
 .pcard.static:hover{transform:none;border-color:var(--line);box-shadow:none}
@@ -131,7 +147,7 @@ a{color:var(--pink)}
 .pcard-name::before{content:'* ';color:var(--pink)}
 .pcard.static .pcard-name::before{content:'~/';color:var(--purple)}
 .pcard-line{color:var(--dim);font-size:13.5px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.pcard-tech{color:var(--purple);font-size:12.5px;line-height:1.5;margin-top:9px;opacity:.85}
+.pcard-tech{color:var(--pistachio);font-size:13px;line-height:1.6;margin-top:12px;opacity:1;font-weight:600}
 .pcard-status{font-size:13px;margin-top:auto;padding-top:10px;text-align:right}
 .pcard-status span,.note-st span{padding:0}
 .st-live span{color:var(--pistachio)}.st-live span::before{content:'* '}
@@ -147,7 +163,7 @@ a{color:var(--pink)}
 .exp-role::before{content:'> ';color:var(--pistachio)}
 .exp-period{margin-left:auto;color:var(--faint);font-size:13px;white-space:nowrap}
 .exp-desc{color:var(--dim);font-size:14px;line-height:1.6;margin-top:5px}
-.exp-desc strong{color:var(--fg)}.exp-desc em{color:var(--purple);font-style:normal}
+.exp-desc strong{color:var(--fg);font-weight:700}.exp-desc em{color:var(--purple);font-style:normal}
 
 /* filters */
 .filters{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:baseline;margin:2px 0 22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
@@ -177,7 +193,7 @@ a{color:var(--pink)}
 .note-head .note-st{color:var(--dim);font-size:14px;font-weight:400}
 .note-line{border:none;border-top:1px solid var(--line);margin:14px 0}
 .note-desc{color:var(--dim);font-size:14px;line-height:1.65}
-.note-desc strong{color:var(--fg)}.note-desc em{color:var(--purple);font-style:normal}
+.note-desc strong{color:var(--fg);font-weight:700}.note-desc em{color:var(--purple);font-style:normal}
 .note-desc code{color:var(--pistachio);background:rgba(188,230,160,.08);padding:1px 5px;border-radius:3px}
 .note-stack{color:var(--purple);font-size:13px;line-height:1.7;opacity:.9}
 .note-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
@@ -227,7 +243,7 @@ body.note-open{overflow:hidden}
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠽⠞⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
 
     <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">whoami</span></div>
-    <div class="out"><span class="hl">damla su bilge</span> — music enthusiast, crocheter, third-wave barista, infp, future youtuber <span class="kao">꒰ she builds soft things ꒱</span></div>
+    <div class="out big"><span class="hl">damla su bilge</span> — music enthusiast, crocheter, third-wave barista, infp, future youtuber <span class="kao">꒰ she builds soft things ꒱</span></div>
 
     <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat about.txt</span></div>
     <div class="out">i build for connection &amp; beauty <span class="hh">&lt;3</span> a slow letter platform because i love slow bonds,<br>
@@ -281,7 +297,7 @@ body.note-open{overflow:hidden}
     <h1 class="md-h1">projects <span id="proj-count"></span></h1>
     <p class="md-sub">tap a card to pick up the note</p>
     <div id="proj-filters" class="filters"></div>
-    <div id="proj-list" class="pgrid"></div>
+    <div id="proj-list" class="plist"></div>
   </div>
 
   <!-- EDUCATION, bembeyaz kagit, one cikar -->
@@ -340,7 +356,8 @@ const NAV_L=[
 ];
 const NAV_R=[
   {k:"projects",l:"projects"},
-  {k:"technical",l:"technical",sub:[{k:"experience",l:"experience"},{k:"skills",l:"skills"}]},
+  {k:"experience",l:"experience"},
+  {k:"skills",l:"skills"},
   {k:"education",l:"education"},
   {k:"lifeplan",l:"life plan"}
 ];
@@ -485,16 +502,15 @@ function renderProjects(){
   const list=document.getElementById("proj-list");
   const techPred=(TECH_F.find(x=>x[0]===fTech)||TECH_F[0])[1];
   const shown=P.filter(p=>(fStatus==="all"||p.s===fStatus)&&(fTech==="all"||p.t.some(techPred)));
+  const MARK={live:"* live","in dev":"~ in dev",built:"+ built",idea:". idea"};
+  const MCLS={live:"live","in dev":"dev",built:"built",idea:"idea"};
   list.innerHTML=shown.map(p=>{
-    const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
-    return `<div class="pcard" role="button" tabindex="0" onclick="openNote('${p.sl}')"
+    const tech=p.t.length?`<div class="tech">${p.t.join(" · ")}</div>`:"";
+    return `<a class="pitem" role="button" tabindex="0" onclick="openNote('${p.sl}')"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
-      <span class="pcard-emoji">${emoji}</span>
-      <div class="pcard-name">${p.n}</div>
-      <div class="pcard-line">${p.tg}</div>
-      ${p.t.length?`<div class="pcard-tech">${p.t.slice(0,3).join(" · ")}${p.t.length>3?` +${p.t.length-3}`:""}</div>`:""}
-      <div class="pcard-status ${stCls(p.s)}"><span>${p.s}</span></div>
-    </div>`;
+      <div class="top"><span class="nm">${p.n.toLowerCase()}</span><span class="st ${MCLS[p.s]}">${MARK[p.s]}</span></div>
+      <div class="d">${p.tg}</div>${tech}
+    </a>`;
   }).join("");
   const live=P.filter(p=>p.s==="live").length;
   document.getElementById("proj-count").textContent=`· ${P.length} projects · ${live} live`;
