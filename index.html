@@ -86,7 +86,9 @@ a{color:var(--pink)}
 .md-h3{font:600 15px/1.4 var(--ft);color:var(--purple);margin:18px 0 6px}
 .md-sub{color:var(--dim);margin:0 0 18px}
 .md-sub::before{content:'# ';color:var(--faint)}
-.md-p{color:var(--dim);line-height:1.75;margin-bottom:10px}
+.md-p{color:var(--dim);line-height:1.5;margin-bottom:11px}
+#about-content{max-width:640px;line-height:1.5}
+#about-content .md-p{line-height:1.5;margin-bottom:11px}
 .md-p strong{color:var(--fg);font-weight:700}
 .md-p em{color:var(--purple);font-style:normal}
 .md-p a{color:var(--pink);text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5)}
@@ -155,6 +157,17 @@ a{color:var(--pink)}
 .skitems .sk{color:var(--dim);font-size:13.5px;white-space:nowrap;transition:color .14s;cursor:default}
 .skitems .sk::before{content:'- ';color:var(--faint)}
 .skitems .sk:hover{color:var(--pink)}
+/* experience / education => same directory listing, clickable */
+.dirblk{display:block;text-decoration:none;padding:13px 8px;cursor:pointer;animation:rowIn .5s ease backwards}
+.dirblk .dtop{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.dirblk .dcat{color:var(--purple);font-weight:600;font-size:15px}
+.dirblk .dcat::before{content:'~/';color:var(--faint)}
+.dirblk .dcat::after{content:'/';color:var(--faint)}
+.dirblk:hover .dcat{color:var(--pink)}
+.dirblk .dper{color:var(--faint);font-size:13px;white-space:nowrap;flex:none}
+.dirblk .ditems{margin-top:7px}
+.dirblk .di{color:var(--dim);font-size:13.5px;line-height:1.6}
+.dirblk .di::before{content:'- ';color:var(--faint)}
 
 /* exp / skill / lifeplan cards => terminal blocks */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;align-items:stretch}
@@ -607,7 +620,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(e.key==="Escape"&&document.getElementById("note-overlay").classList.contains("on"))closeNote();
   });
 
-  // education, ayni ls satiri; tiklayinca tam metin acilir
+  // experience + education => skills gibi ~/dizin/ listesi, tiklayinca tam metin acilir
+  const dirSlug=s=>s.toLowerCase().replace(/[,&()]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-");
   window.openEduNote=i=>{
     const e=EDU[i]; if(!e)return;
     lastFocus=document.activeElement;
@@ -622,11 +636,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     box.querySelector(".note-close").focus();
   };
   document.getElementById("edu-content").innerHTML=EDU.map((e,i)=>{
-    const id=String(i+1).padStart(4,"0");
     const dly=(i*0.05).toFixed(2);
-    return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openEduNote(${i})"
+    const per=e.p.replace(/\s*[–—]\s*/g,' - ');
+    return `<a class="dirblk" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openEduNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openEduNote(${i})}">
-      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p.replace(/\s*[–—]\s*/g,' - ')}</span>
+      <div class="dtop"><span class="dcat">${dirSlug(e.r)}</span><span class="dper">${per}</span></div>
+      <div class="ditems"><span class="di">${e.tg}</span></div>
     </a>`;
   }).join("");
 
@@ -645,11 +660,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     box.querySelector(".note-close").focus();
   };
   document.getElementById("exp-content").innerHTML=EX.map((e,i)=>{
-    const id=String(i+1).padStart(4,"0");
-    const dly=Math.min(i*0.04,0.45).toFixed(2);
-    return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
+    const dly=Math.min(i*0.05,0.5).toFixed(2);
+    const per=e.p.replace(/\s*[–—]\s*/g,' - ');
+    return `<a class="dirblk" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openExpNote(${i})}">
-      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p.replace(/\s*[–—]\s*/g,' - ')}</span>
+      <div class="dtop"><span class="dcat">${dirSlug(e.r)}</span><span class="dper">${per}</span></div>
+      <div class="ditems"><span class="di">${e.tg}</span></div>
     </a>`;
   }).join("");
 
