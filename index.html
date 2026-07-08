@@ -135,7 +135,7 @@ a{color:var(--pink)}
 .trow:hover .nm{color:var(--pink)}
 .trow .dsc{color:var(--dim);font-size:13px;flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .trow .mid{flex:1 1 auto;min-width:12px;text-align:right;color:var(--pistachio);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 14px;opacity:.85}
-.trow .dots{flex:1 1 0;min-width:0;overflow:hidden;white-space:nowrap;color:var(--faint);opacity:.5;margin:0 8px;font-size:12px}
+.trow .dots{flex:1 1 0;min-width:0;overflow:hidden;white-space:nowrap;color:var(--faint);margin:0 10px;font-size:14.5px;letter-spacing:1px}
 .pager{display:flex;gap:22px;align-items:baseline;margin-top:22px;padding-top:4px}
 .pgbtn{font:13.5px/1 var(--ft);color:var(--purple);background:none;border:none;cursor:pointer;padding:4px 2px}
 .pgbtn::before{content:'[';color:var(--faint)}.pgbtn::after{content:']';color:var(--faint)}
@@ -298,15 +298,13 @@ body.note-open{overflow:hidden}
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇</pre>
     <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat about.txt</span></div>
-    <div class="paper-sheet">
-      <div id="about-content"></div>
-      <div class="md-links" style="margin-top:16px">
-        <a id="email-link" href="#" class="md-link"><span class="cm">~</span> <span id="email-text"></span></a>
-        <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">linkedin</a>
-        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">github</a>
-      </div>
+    <div id="about-content" style="margin-top:6px"></div>
+    <div class="md-links" style="margin-top:18px">
+      <a id="email-link" href="#" class="md-link"><span class="cm">~</span> <span id="email-text"></span></a>
+      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">linkedin</a>
+      <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">github</a>
     </div>
-    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
+    <div class="prompt-end" style="margin-top:26px"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
   <!-- LIFE PLAN, loaded from content/life-plan.md -->
@@ -628,7 +626,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const dly=(i*0.05).toFixed(2);
     return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openEduNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openEduNote(${i})}">
-      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p}</span>
+      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p.replace(/\s*[–—]\s*/g,' - ')}</span>
     </a>`;
   }).join("");
 
@@ -651,7 +649,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const dly=Math.min(i*0.04,0.45).toFixed(2);
     return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openExpNote(${i})}">
-      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p}</span>
+      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p.replace(/\s*[–—]\s*/g,' - ')}</span>
     </a>`;
   }).join("");
 
