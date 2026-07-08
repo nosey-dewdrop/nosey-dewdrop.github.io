@@ -77,6 +77,10 @@ a{color:var(--pink)}
 .md-h1{font:600 20px/1.4 var(--ft);color:var(--fg);margin-bottom:8px;letter-spacing:.01em}
 .md-h1::before{content:'$ ';color:var(--pistachio)}
 .md-h1 #proj-count{color:var(--faint);font-weight:400}
+/* every inner page = a shell session: opening command row + closing cursor */
+.cmd-row{margin-bottom:2px}
+.cmd-row .flag{color:var(--faint)}
+.prompt-end{margin-top:28px;margin-bottom:2px;opacity:.85}
 .md-h2{font:600 16px/1.4 var(--ft);color:var(--pink);margin:26px 0 8px}
 .md-h2::before{content:'## ';color:var(--faint)}
 .md-h3{font:600 15px/1.4 var(--ft);color:var(--purple);margin:18px 0 6px}
@@ -277,51 +281,57 @@ body.note-open{overflow:hidden}
 ⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇</pre>
-    <h1 class="md-h1">about me</h1>
+    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat about.txt</span></div>
     <div class="paper-sheet">
       <div id="about-content"></div>
       <div class="md-links" style="margin-top:16px">
-        <a id="email-link" href="#" class="md-link">📧 <span id="email-text"></span></a>
-        <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">LinkedIn</a>
-        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">GitHub</a>
+        <a id="email-link" href="#" class="md-link"><span class="cm">~</span> <span id="email-text"></span></a>
+        <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">linkedin</a>
+        <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">github</a>
       </div>
     </div>
+    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
   <!-- LIFE PLAN, loaded from content/life-plan.md -->
   <div class="page page-wide" id="p-lifeplan">
-    <h1 class="md-h1">life plan & dreams</h1>
-    <p class="md-sub">thoughts, reflections, and the road ahead, tap a note to read</p>
+    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat life-plan.md</span></div>
+    <div class="out"><span class="cm"># thoughts, reflections & the road ahead · tap a note to read</span></div>
     <div id="lifeplan-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
+    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
   <!-- PROJECTS -->
   <div class="page page-wide" id="p-projects">
-    <h1 class="md-h1">projects <span id="proj-count"></span></h1>
-    <p class="md-sub">tap a card to pick up the note</p>
+    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">ls projects/</span> <span class="flag">--all</span></div>
+    <div class="out"><span class="cm"># <span id="proj-count"></span> · tap a card to pick up the note</span></div>
     <div id="proj-filters" class="filters"></div>
     <div id="proj-list" class="pgrid"></div>
+    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
   <!-- EDUCATION, bembeyaz kagit, one cikar -->
   <div class="page" id="p-education">
-    <h1 class="md-h1">education</h1>
-    <p class="md-sub">i am so honoured to have an opportunity to get an education. thank you mom and dad for always supporting me</p>
+    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat education.txt</span></div>
+    <div class="out"><span class="cm"># i am so honoured to get an education. thank you mom and dad for always supporting me</span></div>
     <div class="paper-sheet"><div id="edu-content"></div></div>
+    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
   <!-- EXPERIENCE -->
   <div class="page page-wide" id="p-experience">
-    <h1 class="md-h1">experience</h1>
-    <p class="md-sub">tap a note to read the full story</p>
+    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat experience.log</span></div>
+    <div class="out"><span class="cm"># tap a note to read the full story</span></div>
     <div id="exp-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))"></div>
+    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
   <!-- SKILLS -->
   <div class="page page-wide" id="p-skills">
-    <h1 class="md-h1">skills</h1>
-    <p class="md-sub">i only listed tools i actually used in my projects. it's not about knowing, it's about evaluating knowledge.</p>
+    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat skills.txt</span></div>
+    <div class="out"><span class="cm"># only tools i actually used in my projects. not about knowing, about evaluating knowledge</span></div>
     <div id="skills-content" class="pgrid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
+    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 </div>
 
@@ -455,12 +465,12 @@ function openNote(sl){
   const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
   const box=document.getElementById("note-box");
   box.innerHTML=`
-    <button class="note-close" onclick="closeNote()" aria-label="close">✕ close</button>
+    <button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
     <div class="note-doodle"><img src="doodles/${p.sl}.png" alt="" onload="this.parentElement.classList.add('hasimg')" onerror="this.parentElement.remove()"></div>
     <div class="note-head"><span class="note-emoji">${emoji}</span>${p.n} <span class="note-st ${stCls(p.s)}" style="font-style:italic">· <span>${p.s}</span></span></div>
     ${(p.g||p.l)?`<div class="note-links" style="margin-top:12px">
       ${p.g?`<a href="${p.g}" target="_blank" rel="noopener" class="proj-link">→ github</a>`:""}
-      ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live">${p.ll||"✨ live demo !"}</a>`:""}
+      ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live">${p.ll||"-> live demo"}</a>`:""}
     </div>`:""}
     <hr class="note-line">
     <div class="note-desc">${p.d}</div>
@@ -515,7 +525,7 @@ function renderProjects(){
     </div>`;
   }).join("");
   const live=P.filter(p=>p.s==="live").length;
-  document.getElementById("proj-count").textContent=`· ${P.length} projects · ${live} live`;
+  document.getElementById("proj-count").textContent=`${P.length} projects · ${live} live`;
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -578,7 +588,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const e=EX[i]; if(!e)return;
     lastFocus=document.activeElement;
     const box=document.getElementById("note-box");
-    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">✕ close</button>
+    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
       <div class="note-head">${e.r}</div>
       <div class="blog-date" style="margin:2px 0 0">${e.p}</div>
       <hr class="note-line">
@@ -639,7 +649,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const e=LP[i]; if(!e)return;
     lastFocus=document.activeElement;
     const box=document.getElementById("note-box");
-    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">✕ close</button>
+    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
       <div class="blog-date" style="margin:0 0 2px">${e.label}</div>
       <hr class="note-line" style="margin-top:8px">
       <div class="note-desc">${e.html}</div>`;
