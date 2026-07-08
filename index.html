@@ -133,10 +133,15 @@ a{color:var(--pink)}
 .trow .idx{color:var(--faint);font-size:12px;flex:none}
 .trow .nm{color:var(--fg);font-weight:600;font-size:14.5px;flex:none;white-space:nowrap}
 .trow:hover .nm{color:var(--pink)}
-.trow .dsh{color:var(--faint);flex:none}
 .trow .dsc{color:var(--dim);font-size:13px;flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .trow .mid{flex:1 1 auto;min-width:12px;text-align:right;color:var(--pistachio);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 14px;opacity:.85}
-.trow .dots{flex:1 1 24px;min-width:22px;border-bottom:1px dotted var(--faint);opacity:.5;margin:0 4px;transform:translateY(-4px)}
+.trow .dots{flex:1 1 0;min-width:0;overflow:hidden;white-space:nowrap;color:var(--faint);opacity:.5;margin:0 8px;font-size:12px}
+.pager{display:flex;gap:22px;align-items:baseline;margin-top:22px;padding-top:4px}
+.pgbtn{font:13.5px/1 var(--ft);color:var(--purple);background:none;border:none;cursor:pointer;padding:4px 2px}
+.pgbtn::before{content:'[';color:var(--faint)}.pgbtn::after{content:']';color:var(--faint)}
+.pgbtn:hover{color:#fff;text-shadow:0 0 12px rgba(184,146,255,.6)}
+.pgbtn:disabled{color:var(--faint);cursor:default;opacity:.4;text-shadow:none}
+.pgnum{color:var(--dim);font-size:13px}.pgnum b{color:var(--pink);font-weight:600}
 .trow .st,.trow .per{flex:none;font-size:12.5px;white-space:nowrap}
 .trow .per{color:var(--faint)}
 .trow .st.live{color:var(--pistachio)}.trow .st.dev{color:var(--amber)}.trow .st.built{color:var(--purple)}.trow .st.idea{color:var(--faint)}
@@ -261,7 +266,7 @@ body.note-open{overflow:hidden}
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠽⠞⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
 
     <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">whoami</span></div>
-    <div class="out big"><span class="hl">damla su bilge</span> — music enthusiast, crocheter, third-wave barista, infp, future youtuber <span class="kao">꒰ she builds soft things ꒱</span></div>
+    <div class="out big"><span class="hl">damla su bilge</span> <span class="pu">·</span> music enthusiast, crocheter, third-wave barista, infp, future youtuber <span class="kao">꒰ she builds soft things ꒱</span></div>
 
     <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat about.txt</span></div>
     <div class="out">i build for connection &amp; beauty <span class="hh">&lt;3</span> a slow letter platform because i love slow bonds,<br>
@@ -315,16 +320,17 @@ body.note-open{overflow:hidden}
   <!-- PROJECTS -->
   <div class="page page-wide" id="p-projects">
     <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">ls projects/</span> <span class="flag">--all</span></div>
-    <div class="out"><span class="cm"># <span id="proj-count"></span> · tap a card to pick up the note</span></div>
+    <div class="out"><span class="cm"># <span id="proj-count"></span> · tap a line to open the note</span></div>
     <div id="proj-filters" class="filters"></div>
     <div id="proj-list" class="plist"></div>
+    <div id="proj-pager" class="pager"></div>
     <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
   <!-- EDUCATION, bembeyaz kagit, one cikar -->
   <div class="page" id="p-education">
     <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat education.txt</span></div>
-    <div class="out"><span class="cm"># i am so honoured to get an education. thank you mom and dad for always supporting me</span></div>
+    <div class="out"><span class="cm"># in a world where so many are denied the right to an education, i know the worth of what i've been given. above all, thank you mom and dad.</span></div>
     <div id="edu-content" class="plist"></div>
     <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
@@ -498,8 +504,9 @@ function closeNote(){
   if(lastFocus)lastFocus.focus();
 }
 
-// --- FILTERS ---
-let fStatus="all", fTech="all";
+// --- FILTERS + PAGINATION ---
+let fStatus="all", fTech="all", pPage=1;
+const PAGE_SIZE=8;
 const TECH_F=[
   ["all",()=>true],
   ["swift",t=>/swift/i.test(t)],
@@ -520,7 +527,8 @@ function renderFilters(){
     `<button class="fchip${fTech===x[0]?" on":""}" onclick="setF('t','${x[0]}')">${x[0]}</button>`).join("");
   el.innerHTML='<div class="fcard"><span class="flabel">filter:</span>'+st+'</div><div class="fcard"><span class="flabel">tech:</span>'+te+'</div>';
 }
-function setF(k,v){ if(k==='s')fStatus=v; else fTech=v; renderFilters(); renderProjects(); }
+function setF(k,v){ if(k==='s')fStatus=v; else fTech=v; pPage=1; renderFilters(); renderProjects(); }
+function goPage(n){ pPage=n; renderProjects(); window.scrollTo(0,0); }
 
 function renderProjects(){
   const list=document.getElementById("proj-list");
@@ -528,16 +536,24 @@ function renderProjects(){
   const shown=P.filter(p=>(fStatus==="all"||p.s===fStatus)&&(fTech==="all"||p.t.some(techPred)));
   const MK={live:"* live","in dev":"~ dev",built:"+ built",idea:". idea"};
   const MC={live:"live","in dev":"dev",built:"built",idea:"idea"};
-  list.innerHTML=shown.map((p,i)=>{
-    const id=String(i+1).padStart(4,"0");
+  const pages=Math.max(1,Math.ceil(shown.length/PAGE_SIZE));
+  if(pPage>pages)pPage=pages; if(pPage<1)pPage=1;
+  const start=(pPage-1)*PAGE_SIZE;
+  const pageItems=shown.slice(start,start+PAGE_SIZE);
+  list.innerHTML=pageItems.map((p,i)=>{
+    const id=String(start+i+1).padStart(4,"0");
     const dsc=p.tg.split(",")[0].trim();
     const tech=p.t.slice(0,3).map(x=>x.toLowerCase()).join(" · ");
-    const dly=Math.min(i*0.03,0.45).toFixed(2);
+    const dly=Math.min(i*0.03,0.28).toFixed(2);
     return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openNote('${p.sl}')"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
-      <span class="idx">${id}</span><span class="nm">${p.n.toLowerCase()}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="mid">${tech}</span><span class="st ${MC[p.s]}">${MK[p.s]}</span>
+      <span class="idx">${id}</span><span class="nm">${p.n.toLowerCase()}</span><span class="dsc">${dsc}</span><span class="mid">${tech}</span><span class="st ${MC[p.s]}">${MK[p.s]}</span>
     </a>`;
   }).join("");
+  const pager=document.getElementById("proj-pager");
+  pager.innerHTML=pages>1?`<button class="pgbtn" onclick="goPage(${pPage-1})" ${pPage<=1?"disabled":""}>← prev</button>`+
+    `<span class="pgnum">page <b>${pPage}</b> / ${pages}</span>`+
+    `<button class="pgbtn" onclick="goPage(${pPage+1})" ${pPage>=pages?"disabled":""}>next →</button>`:"";
   const live=P.filter(p=>p.s==="live").length;
   document.getElementById("proj-count").textContent=`${P.length} projects · ${live} live`;
 }
@@ -612,7 +628,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const dly=(i*0.05).toFixed(2);
     return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openEduNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openEduNote(${i})}">
-      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsh">—</span><span class="dsc">${e.tg}</span><span class="dots"></span><span class="per">${e.p}</span>
+      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p}</span>
     </a>`;
   }).join("");
 
@@ -635,7 +651,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const dly=Math.min(i*0.04,0.45).toFixed(2);
     return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openExpNote(${i})}">
-      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsh">—</span><span class="dsc">${e.tg}</span><span class="dots"></span><span class="per">${e.p}</span>
+      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsc">${e.tg}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.p}</span>
     </a>`;
   }).join("");
 
@@ -704,7 +720,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         const dly=Math.min(i*0.04,0.45).toFixed(2);
         return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openLifeNote(${i})"
           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLifeNote(${i})}">
-          <span class="idx">${id}</span><span class="nm">${e.title}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="dots"></span><span class="per">${e.label.split("·")[0].trim()}</span>
+          <span class="idx">${id}</span><span class="nm">${e.title}</span><span class="dsc">${dsc}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.label.split("·")[0].trim()}</span>
         </a>`;
       }).join("");
     })
