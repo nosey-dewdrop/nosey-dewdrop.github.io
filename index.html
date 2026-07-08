@@ -146,8 +146,8 @@ a{color:var(--pink)}
 .skcat{color:var(--purple);font-weight:600;font-size:15px}
 .skcat::before{content:'~/';color:var(--faint)}
 .skcat::after{content:'/';color:var(--faint)}
-.skitems{margin-top:7px;line-height:2}
-.skitems .sk{color:var(--dim);font-size:13.5px;white-space:nowrap;margin-right:16px;transition:color .14s;cursor:default}
+.skitems{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:8px}
+.skitems .sk{color:var(--dim);font-size:13.5px;white-space:nowrap;transition:color .14s;cursor:default}
 .skitems .sk::before{content:'- ';color:var(--faint)}
 .skitems .sk:hover{color:var(--pink)}
 
