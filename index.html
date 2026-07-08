@@ -127,31 +127,29 @@ a{color:var(--pink)}
 
 /* every list = the home ls session: flat rows, click opens the note */
 @keyframes rowIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-.plist{border-top:1px solid var(--line)}
-/* one tight aligned row: 0001  name — five words ····· status */
-.trow{display:flex;align-items:baseline;gap:8px;text-decoration:none;padding:6px 8px;border-bottom:1px solid var(--line);cursor:pointer;position:relative;animation:rowIn .45s ease backwards;transition:padding-left .16s ease,background .16s ease}
-.trow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--pink);transform:scaleY(0);transform-origin:top;transition:transform .16s ease}
-.trow:hover::before{transform:scaleY(1)}
-.trow:hover{padding-left:16px;background:linear-gradient(90deg,rgba(255,143,187,.06),transparent 72%)}
+.plist{margin-top:4px}
+/* one tight aligned row: 0001  name — five words   tech / date   status */
+.trow{display:flex;align-items:baseline;gap:9px;text-decoration:none;padding:8px 8px;cursor:pointer;animation:rowIn .45s ease backwards}
 .trow .idx{color:var(--faint);font-size:12px;flex:none}
 .trow .nm{color:var(--fg);font-weight:600;font-size:14.5px;flex:none;white-space:nowrap}
-.trow:hover .nm{color:var(--pink);text-shadow:0 0 14px rgba(255,143,187,.3)}
+.trow:hover .nm{color:var(--pink)}
 .trow .dsh{color:var(--faint);flex:none}
 .trow .dsc{color:var(--dim);font-size:13px;flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trow .mid{flex:1 1 auto;min-width:12px;text-align:right;color:var(--pistachio);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 14px;opacity:.85}
 .trow .dots{flex:1 1 24px;min-width:22px;border-bottom:1px dotted var(--faint);opacity:.5;margin:0 4px;transform:translateY(-4px)}
 .trow .st,.trow .per{flex:none;font-size:12.5px;white-space:nowrap}
 .trow .per{color:var(--faint)}
 .trow .st.live{color:var(--pistachio)}.trow .st.dev{color:var(--amber)}.trow .st.built{color:var(--purple)}.trow .st.idea{color:var(--faint)}
-@media(max-width:640px){.trow{gap:6px}.trow .dsh{display:none}.trow .dsc{font-size:12px}}
+@media(max-width:640px){.trow{gap:6px}.trow .dsh,.trow .mid{display:none}.trow .dsc{font-size:12px}}
 /* skills => terminal directory listing */
-.skblock{padding:14px 8px;border-bottom:1px solid var(--line);animation:rowIn .5s ease backwards}
+.skblock{padding:12px 8px;animation:rowIn .5s ease backwards}
 .skcat{color:var(--purple);font-weight:600;font-size:15px}
 .skcat::before{content:'~/';color:var(--faint)}
 .skcat::after{content:'/';color:var(--faint)}
 .skitems{margin-top:7px;line-height:2}
-.skitems .sk{color:var(--dim);font-size:13.5px;white-space:nowrap;margin-right:16px;transition:color .14s,text-shadow .14s;cursor:default}
+.skitems .sk{color:var(--dim);font-size:13.5px;white-space:nowrap;margin-right:16px;transition:color .14s;cursor:default}
 .skitems .sk::before{content:'- ';color:var(--faint)}
-.skitems .sk:hover{color:var(--pink);text-shadow:0 0 12px rgba(255,143,187,.3)}
+.skitems .sk:hover{color:var(--pink)}
 
 /* exp / skill / lifeplan cards => terminal blocks */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;align-items:stretch}
@@ -327,7 +325,7 @@ body.note-open{overflow:hidden}
   <div class="page" id="p-education">
     <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat education.txt</span></div>
     <div class="out"><span class="cm"># i am so honoured to get an education. thank you mom and dad for always supporting me</span></div>
-    <div class="paper-sheet"><div id="edu-content"></div></div>
+    <div id="edu-content" class="plist"></div>
     <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
   </div>
 
@@ -432,21 +430,21 @@ const SK={
 };
 
 const EX=[
-  {r:"FAB Fellowship",d:"My window into the <strong>startup world</strong>, and it changed how I think about building things. Designed community-building projects from scratch, conducted <strong>client interviews with 5 participants</strong> across completely different tech literacy levels (from my doctor parents who barely use AI agents to CS students who critique API architecture), and learned to evaluate products from <strong>a real user's perspective, not a developer's</strong>. Built <strong>Lady Fantasy</strong> (AI tarot video experience) with fal.ai during this period. <em>Startups aren't about code, they're about solving real problems for real people.</em> This fellowship shaped every project I've built since.",p:"2026 – present"},
-  {r:"IEEE Bilkent",d:"<strong>Board Member & Public Relations Coordinator</strong>, one of Bilkent's most active student communities, organizing events, coordinating outreach",p:"2024 – present"},
-  {r:"CS115 Teaching Assistant",d:"Introduction to Programming with Python at Bilkent, guided <strong>100+ students through 10 labs</strong>, discovered that <em>debugging teaches algorithmic thinking better than writing code from scratch</em>",p:"2025"},
-  {r:"Software Persona (Internship)",d:"A program that gives everyone a chance, <em>and at first I didn't find that impressive enough. But that's exactly what makes it beautiful: life is what you make it, and the important thing isn't being chosen, it's what you do with the opportunity.</em> Learned <strong>UI/UX fundamentals, Figma prototyping, HTML/CSS/JS from scratch, React basics, database design</strong>, open source concepts, and frameworks vs libraries. Built real projects including the <strong>Interactive Coffee Menu</strong>. Went from someone who only wrote backend logic to someone who understands the full product, <em>design thinking to deployment.</em>",p:"2026"},
-  {r:"Hound Coffee Group",d:"<strong>Third wave barista & developer</strong>, built the interactive coffee menu in JavaScript while learning the art of <em>specialty coffee</em>",p:"2024 – 2025"},
-  {r:"Bilkent Sociology Society",d:"<strong>Audit Board President</strong> (Denetim Kurulu Başkanı), exploring how society, culture, power, and norms shape every interaction. Also took <strong>PSYC102</strong> (Social Psychology). Skills: <em>professional writing, philosophy, critical analysis.</em>",p:"Mar 2024 – Sep 2025"},
-  {r:"Bilkent Music, Crochet & TEMA Clubs",d:"<strong>Former Board Member</strong> across three communities, music theory & performance (Music Club), textile arts (Knitting & Crocheting Society), environmental volunteering (TEMA)",p:"2023 – 2024"},
-  {r:"Joyport One Tower",d:"<strong>Game Warden</strong>, <em>I love spending time with children. They're kind, bright, and innocent in a way the world desperately needs more of.</em> Getting the chance to be around them, play with them, and watch them figure things out was genuinely precious to me.",p:"Aug – Sep 2023"},
+  {r:"FAB Fellowship",tg:"my window into the startup world",d:"My window into the <strong>startup world</strong>, and it changed how I think about building things. Designed community-building projects from scratch, conducted <strong>client interviews with 5 participants</strong> across completely different tech literacy levels (from my doctor parents who barely use AI agents to CS students who critique API architecture), and learned to evaluate products from <strong>a real user's perspective, not a developer's</strong>. Built <strong>Lady Fantasy</strong> (AI tarot video experience) with fal.ai during this period. <em>Startups aren't about code, they're about solving real problems for real people.</em> This fellowship shaped every project I've built since.",p:"2026 – present"},
+  {r:"IEEE Bilkent",tg:"board member & pr coordinator",d:"<strong>Board Member & Public Relations Coordinator</strong>, one of Bilkent's most active student communities, organizing events, coordinating outreach",p:"2024 – present"},
+  {r:"CS115 Teaching Assistant",tg:"guided 100+ students through 10 labs",d:"Introduction to Programming with Python at Bilkent, guided <strong>100+ students through 10 labs</strong>, discovered that <em>debugging teaches algorithmic thinking better than writing code from scratch</em>",p:"2025"},
+  {r:"Software Persona (Internship)",tg:"ui/ux, figma & react from scratch",d:"A program that gives everyone a chance, <em>and at first I didn't find that impressive enough. But that's exactly what makes it beautiful: life is what you make it, and the important thing isn't being chosen, it's what you do with the opportunity.</em> Learned <strong>UI/UX fundamentals, Figma prototyping, HTML/CSS/JS from scratch, React basics, database design</strong>, open source concepts, and frameworks vs libraries. Built real projects including the <strong>Interactive Coffee Menu</strong>. Went from someone who only wrote backend logic to someone who understands the full product, <em>design thinking to deployment.</em>",p:"2026"},
+  {r:"Hound Coffee Group",tg:"third wave barista & developer",d:"<strong>Third wave barista & developer</strong>, built the interactive coffee menu in JavaScript while learning the art of <em>specialty coffee</em>",p:"2024 – 2025"},
+  {r:"Bilkent Sociology Society",tg:"audit board president",d:"<strong>Audit Board President</strong> (Denetim Kurulu Başkanı), exploring how society, culture, power, and norms shape every interaction. Also took <strong>PSYC102</strong> (Social Psychology). Skills: <em>professional writing, philosophy, critical analysis.</em>",p:"Mar 2024 – Sep 2025"},
+  {r:"Bilkent Music, Crochet & TEMA Clubs",tg:"former board member across three clubs",d:"<strong>Former Board Member</strong> across three communities, music theory & performance (Music Club), textile arts (Knitting & Crocheting Society), environmental volunteering (TEMA)",p:"2023 – 2024"},
+  {r:"Joyport One Tower",tg:"game warden, loved being with the kids",d:"<strong>Game Warden</strong>, <em>I love spending time with children. They're kind, bright, and innocent in a way the world desperately needs more of.</em> Getting the chance to be around them, play with them, and watch them figure things out was genuinely precious to me.",p:"Aug – Sep 2023"},
 ];
 
 const EDU=[
-  {r:"Bilkent University",d:"B.Sc. in Computer Science",p:"2023 – present"},
-  {r:"Medipol University",d:"Medicine, 91/100",p:"2020 – 2023"},
-  {r:"Damla Fen Lisesi (Homeschooling)",d:"Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life, learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
-  {r:"Nesibe Aydın Fen Lisesi (Science High School)",d:"GPA: 96.68/100, Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.",p:"2016 – 2019"},
+  {r:"Bilkent University",tg:"b.sc. computer science",d:"B.Sc. in Computer Science",p:"2023 – present"},
+  {r:"Medipol University",tg:"medicine, 91/100",d:"Medicine, 91/100",p:"2020 – 2023"},
+  {r:"Damla Fen Lisesi (Homeschooling)",tg:"homeschooled through cancer treatment",d:"Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life, learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
+  {r:"Nesibe Aydın Fen Lisesi (Science High School)",tg:"gpa 96.68, mun delegate",d:"GPA: 96.68/100, Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.",p:"2016 – 2019"},
 ];
 
 // --- NAVIGATION ---
@@ -533,10 +531,11 @@ function renderProjects(){
   list.innerHTML=shown.map((p,i)=>{
     const id=String(i+1).padStart(4,"0");
     const dsc=p.tg.split(",")[0].trim();
+    const tech=p.t.slice(0,3).map(x=>x.toLowerCase()).join(" · ");
     const dly=Math.min(i*0.03,0.45).toFixed(2);
     return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openNote('${p.sl}')"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
-      <span class="idx">${id}</span><span class="nm">${p.n.toLowerCase()}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="dots"></span><span class="st ${MC[p.s]}">${MK[p.s]}</span>
+      <span class="idx">${id}</span><span class="nm">${p.n.toLowerCase()}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="mid">${tech}</span><span class="st ${MC[p.s]}">${MK[p.s]}</span>
     </a>`;
   }).join("");
   const live=P.filter(p=>p.s==="live").length;
@@ -594,9 +593,28 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(e.key==="Escape"&&document.getElementById("note-overlay").classList.contains("on"))closeNote();
   });
 
-  // education, beyaz kagit uzerinde liste
-  const expRow=e=>`<div class="exp-entry"><div class="exp-top"><span class="exp-role">${e.r}</span><span class="exp-period">${e.p}</span></div><div class="exp-desc">${e.d}</div></div>`;
-  document.getElementById("edu-content").innerHTML=EDU.map(expRow).join("");
+  // education, ayni ls satiri; tiklayinca tam metin acilir
+  window.openEduNote=i=>{
+    const e=EDU[i]; if(!e)return;
+    lastFocus=document.activeElement;
+    const box=document.getElementById("note-box");
+    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
+      <div class="note-head">${e.r}</div>
+      <div class="blog-date" style="margin:2px 0 0">${e.p}</div>
+      <hr class="note-line">
+      <div class="note-desc">${e.d}</div>`;
+    document.getElementById("note-overlay").classList.add("on");
+    document.body.classList.add("note-open");
+    box.querySelector(".note-close").focus();
+  };
+  document.getElementById("edu-content").innerHTML=EDU.map((e,i)=>{
+    const id=String(i+1).padStart(4,"0");
+    const dly=(i*0.05).toFixed(2);
+    return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openEduNote(${i})"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openEduNote(${i})}">
+      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsh">—</span><span class="dsc">${e.tg}</span><span class="dots"></span><span class="per">${e.p}</span>
+    </a>`;
+  }).join("");
 
   // experience, kart sistemi
   window.openExpNote=i=>{
@@ -613,13 +631,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     box.querySelector(".note-close").focus();
   };
   document.getElementById("exp-content").innerHTML=EX.map((e,i)=>{
-    const plain=e.d.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
-    const dsc=plain.split(/\s+/).slice(0,6).join(" ");
     const id=String(i+1).padStart(4,"0");
     const dly=Math.min(i*0.04,0.45).toFixed(2);
     return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openExpNote(${i})}">
-      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="dots"></span><span class="per">${e.p}</span>
+      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsh">—</span><span class="dsc">${e.tg}</span><span class="dots"></span><span class="per">${e.p}</span>
     </a>`;
   }).join("");
 
@@ -683,8 +699,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         return {label, title:(label.split("·")[1]||label).trim(), html:md2html(body)};
       });
       document.getElementById("lifeplan-content").innerHTML=LP.map((e,i)=>{
-        const plain=e.html.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
-        const dsc=plain.split(/\s+/).slice(0,6).join(" ");
+        const dsc=e.html.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
         const id=String(i+1).padStart(4,"0");
         const dly=Math.min(i*0.04,0.45).toFixed(2);
         return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openLifeNote(${i})"
