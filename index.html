@@ -128,23 +128,21 @@ a{color:var(--pink)}
 /* every list = the home ls session: flat rows, click opens the note */
 @keyframes rowIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 .plist{border-top:1px solid var(--line)}
-.pitem{display:block;text-decoration:none;color:var(--dim);padding:15px 8px;border-bottom:1px solid var(--line);cursor:pointer;position:relative;animation:rowIn .5s ease backwards;transition:padding-left .18s ease,background .18s ease}
-.pitem::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--pink);transform:scaleY(0);transform-origin:top;transition:transform .18s ease}
-.pitem:hover::before{transform:scaleY(1)}
-.pitem:hover{padding-left:18px;background:linear-gradient(90deg,rgba(255,143,187,.06),transparent 72%)}
-.pitem .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
-.pitem .lead{display:flex;align-items:baseline;gap:9px;min-width:0}
-.pitem .idx{color:var(--faint);font-size:12.5px;flex:none}
-.pitem .nm{color:var(--fg);font-weight:600;font-size:15.5px}
-.pitem .nm::before{content:'* ';color:var(--pink)}
-.pitem:hover .nm{color:var(--pink);text-shadow:0 0 14px rgba(255,143,187,.3)}
-.pitem .st,.pitem .per{white-space:nowrap;font-size:13px;flex:none}
-.pitem .per{color:var(--faint)}
-.pitem .st.live{color:var(--pistachio)}.pitem .st.dev{color:var(--amber)}.pitem .st.built{color:var(--purple)}.pitem .st.idea{color:var(--faint)}
-.pitem .d{color:var(--dim);font-size:13.5px;line-height:1.55;margin-top:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.pitem .d::before{content:'> ';color:var(--faint)}
-.pitem .tech{color:var(--pistachio);font-weight:600;font-size:12.5px;margin-top:5px;opacity:.9}
-.pitem .tech::before{content:'> ';color:var(--faint)}
+/* one tight aligned row: 0001  name — five words ····· status */
+.trow{display:flex;align-items:baseline;gap:8px;text-decoration:none;padding:6px 8px;border-bottom:1px solid var(--line);cursor:pointer;position:relative;animation:rowIn .45s ease backwards;transition:padding-left .16s ease,background .16s ease}
+.trow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--pink);transform:scaleY(0);transform-origin:top;transition:transform .16s ease}
+.trow:hover::before{transform:scaleY(1)}
+.trow:hover{padding-left:16px;background:linear-gradient(90deg,rgba(255,143,187,.06),transparent 72%)}
+.trow .idx{color:var(--faint);font-size:12px;flex:none}
+.trow .nm{color:var(--fg);font-weight:600;font-size:14.5px;flex:none;white-space:nowrap}
+.trow:hover .nm{color:var(--pink);text-shadow:0 0 14px rgba(255,143,187,.3)}
+.trow .dsh{color:var(--faint);flex:none}
+.trow .dsc{color:var(--dim);font-size:13px;flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trow .dots{flex:1 1 24px;min-width:22px;border-bottom:1px dotted var(--faint);opacity:.5;margin:0 4px;transform:translateY(-4px)}
+.trow .st,.trow .per{flex:none;font-size:12.5px;white-space:nowrap}
+.trow .per{color:var(--faint)}
+.trow .st.live{color:var(--pistachio)}.trow .st.dev{color:var(--amber)}.trow .st.built{color:var(--purple)}.trow .st.idea{color:var(--faint)}
+@media(max-width:640px){.trow{gap:6px}.trow .dsh{display:none}.trow .dsc{font-size:12px}}
 /* skills => terminal directory listing */
 .skblock{padding:14px 8px;border-bottom:1px solid var(--line);animation:rowIn .5s ease backwards}
 .skcat{color:var(--purple);font-weight:600;font-size:15px}
@@ -530,17 +528,15 @@ function renderProjects(){
   const list=document.getElementById("proj-list");
   const techPred=(TECH_F.find(x=>x[0]===fTech)||TECH_F[0])[1];
   const shown=P.filter(p=>(fStatus==="all"||p.s===fStatus)&&(fTech==="all"||p.t.some(techPred)));
-  const MK={live:"* live","in dev":"~ in dev",built:"+ built",idea:". idea"};
+  const MK={live:"* live","in dev":"~ dev",built:"+ built",idea:". idea"};
   const MC={live:"live","in dev":"dev",built:"built",idea:"idea"};
   list.innerHTML=shown.map((p,i)=>{
     const id=String(i+1).padStart(4,"0");
-    const plain=p.d.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
-    const dly=Math.min(i*0.04,0.5).toFixed(2);
-    return `<a class="pitem" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openNote('${p.sl}')"
+    const dsc=p.tg.split(",")[0].trim();
+    const dly=Math.min(i*0.03,0.45).toFixed(2);
+    return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openNote('${p.sl}')"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
-      <div class="top"><span class="lead"><span class="idx">${id}</span><span class="nm">${p.n}</span></span><span class="st ${MC[p.s]}">${MK[p.s]}</span></div>
-      <div class="d">${plain}</div>
-      ${p.t.length?`<div class="tech">${p.t.slice(0,4).join(" · ")}${p.t.length>4?` +${p.t.length-4}`:""}</div>`:""}
+      <span class="idx">${id}</span><span class="nm">${p.n.toLowerCase()}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="dots"></span><span class="st ${MC[p.s]}">${MK[p.s]}</span>
     </a>`;
   }).join("");
   const live=P.filter(p=>p.s==="live").length;
@@ -618,12 +614,12 @@ document.addEventListener("DOMContentLoaded",()=>{
   };
   document.getElementById("exp-content").innerHTML=EX.map((e,i)=>{
     const plain=e.d.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
+    const dsc=plain.split(/\s+/).slice(0,6).join(" ");
     const id=String(i+1).padStart(4,"0");
-    const dly=Math.min(i*0.04,0.5).toFixed(2);
-    return `<a class="pitem" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
+    const dly=Math.min(i*0.04,0.45).toFixed(2);
+    return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openExpNote(${i})}">
-      <div class="top"><span class="lead"><span class="idx">${id}</span><span class="nm">${e.r}</span></span><span class="per">${e.p}</span></div>
-      <div class="d">${plain}</div>
+      <span class="idx">${id}</span><span class="nm">${e.r}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="dots"></span><span class="per">${e.p}</span>
     </a>`;
   }).join("");
 
@@ -688,12 +684,12 @@ document.addEventListener("DOMContentLoaded",()=>{
       });
       document.getElementById("lifeplan-content").innerHTML=LP.map((e,i)=>{
         const plain=e.html.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
+        const dsc=plain.split(/\s+/).slice(0,6).join(" ");
         const id=String(i+1).padStart(4,"0");
-        const dly=Math.min(i*0.04,0.5).toFixed(2);
-        return `<a class="pitem" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openLifeNote(${i})"
+        const dly=Math.min(i*0.04,0.45).toFixed(2);
+        return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openLifeNote(${i})"
           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLifeNote(${i})}">
-          <div class="top"><span class="lead"><span class="idx">${id}</span><span class="nm">${e.title}</span></span><span class="per">${e.label.split("·")[0].trim()}</span></div>
-          <div class="d">${plain}</div>
+          <span class="idx">${id}</span><span class="nm">${e.title}</span><span class="dsh">—</span><span class="dsc">${dsc}</span><span class="dots"></span><span class="per">${e.label.split("·")[0].trim()}</span>
         </a>`;
       }).join("");
     })
