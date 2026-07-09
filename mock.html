@@ -52,8 +52,7 @@ main,header.site,#marquees{position:relative;z-index:1}
 /* ---------- HR layer ---------- */
 header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
 .wordmark{font-weight:400;text-decoration:none;color:var(--purple)}
-.wordmark:hover span{display:none}
-.wordmark:hover::after{content:'linkedin!'}
+#tip{position:fixed;display:none;pointer-events:none;z-index:99;font-size:13px;color:var(--pink)}
 .hero{padding:56px 0 28px;position:relative;min-height:220px}
 .hero-text{max-width:720px}
 .hero .hi{color:var(--ink-dim);margin-bottom:8px}
@@ -135,7 +134,9 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .doc .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 .doc .tags span{background:var(--bg);padding:2px 12px;border-radius:2px}
 
-.about{padding:28px 0}
+.about{padding:28px 0;position:relative}
+.about .mascot{position:absolute;right:4%;bottom:0;opacity:.35;z-index:0;animation:none}
+.about-text{position:relative;z-index:1}
 .about-row{display:flex;gap:28px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
 .about-row p{margin:0 0 6px}
 .about-text{font-size:15px;line-height:1.7;column-count:2;column-gap:44px}
@@ -160,7 +161,8 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 </div>
 
 <header class="site">
-  <a class="wordmark" href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener"><span>damlahelloworld *</span></a>
+  <a class="wordmark" href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener"><span>damlahelloworld</span></a>
+<div id="tip">linkedin!</div>
   <nav class="dim">[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>]</nav>
 </header>
 
@@ -496,7 +498,12 @@ function piece(x,y,vx){
 addEventListener("mousemove",e=>{const t=Date.now();if(t-last>45){last=t;piece(e.clientX,e.clientY,0)}});
 function burst(x,y){for(let i=0;i<24;i++)piece(x,y,(Math.random()-.5)*160)}
 
-/* palette switcher: buttons or keys 1/2/3 (light mode = white per damla) */
+/* wordmark: linkedin tooltip follows the mouse */
+const wm=document.querySelector(".wordmark"),tip=document.getElementById("tip");
+wm.addEventListener("mousemove",e=>{tip.style.display="block";tip.style.left=(e.clientX+16)+"px";tip.style.top=(e.clientY+8)+"px"});
+wm.addEventListener("mouseleave",()=>tip.style.display="none");
+
+/* palette switcher: buttons or keys 1/2/3 (white light mode; ALL THREE ship as user themes) */
 const pals=["pal-a","pal-b","pal-c"];
 function setPal(p){document.body.className=p;document.querySelectorAll("#pal button").forEach(b=>b.classList.toggle("on",b.dataset.p===p))}
 document.querySelectorAll("#pal button").forEach(b=>b.onclick=()=>setPal(b.dataset.p));

@@ -45,7 +45,7 @@ Overlay layout order: header (nr, name, status, one-liner) → tags → what →
 - Confetti: mouse trail + click bursts (port the vibecodedflopware feel)
 - Everything visible within 10 seconds of landing; no giant paddings
 - Density formula: little content + airy = HR layer; lots of content + tight = nerd layers
-- Colors: current palette rejected. Build 2-3 palette variants switchable in dev; DAMLA PICKS. Do not choose for her.
+- Colors: DECIDED 2026-07-10 — all THREE palettes (gece / beyaz / menekşe) ship as a user-facing theme switcher, menekşe default. Damla loves the transition between them.
 - Copy: top sentence + HR-layer wording drafted by me from real facts only, Damla rewrites (sozel metin Damla'nin)
 
 ## Data model
