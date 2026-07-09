@@ -3,267 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="3uR4g3QlHITT4L8DIbdkroCGgpMHfmGOQZ2Oye3Yjb4" />
-<title>Damla Su Bilge - CS Student at Bilkent | Last AI Bender</title>
-<meta name="description" content="Damla Su Bilge, computer science student at Bilkent University building iOS apps, full-stack web platforms and AI experiments. SwiftUI, Next.js, React, Java, Python. 30+ projects, many of them live.">
-<link rel="canonical" href="https://damlahelloworld.github.io/">
-<meta property="og:title" content="Damla Su Bilge, CS Student at Bilkent">
-<meta property="og:description" content="iOS apps, full-stack web platforms and AI experiments. 30+ projects, many of them live: Kısa Lafın Uzunu, lingolingo, Forget-Me-Not, Lady Fantasy and more.">
+<title>Damla Su Bilge — CS student at Bilkent, founder of damlahelloworld</title>
+<meta name="description" content="Damla Su Bilge, computer science student at Bilkent University shipping real products on iOS and web. 40 projects: lingolingo, sunflower, msducky, snailmail and more.">
+<meta property="og:title" content="Damla Su Bilge — damlahelloworld">
+<meta property="og:description" content="3rd-year CS student at Bilkent who ships real products. 40 projects on iOS and web.">
 <meta property="og:url" content="https://damlahelloworld.github.io/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="damla.log">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Damla Su Bilge",
-  "url": "https://damlahelloworld.github.io/",
-  "sameAs": ["https://github.com/damlahelloworld"],
-  "jobTitle": "Computer Science Student",
-  "affiliation": {"@type": "CollegeOrUniversity", "name": "Bilkent University"},
-  "email": "mailto:su.bilge@ug.bilkent.edu.tr",
-  "knowsAbout": ["SwiftUI", "Next.js", "React", "TypeScript", "Java", "Python", "Supabase"]
-}
-</script>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦋</text></svg>">
+<meta property="og:site_name" content="damlahelloworld">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⟡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#12102a; --fg:#e9e6ff; --dim:#8a83b8; --faint:#5b5488;
-  --pink:#ff8fbb; --purple:#b892ff; --pistachio:#bce6a0; --amber:#f6cf6e;
-  --line:rgba(184,146,255,.16);
-  --ft:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
+/* ---------- palettes: body.pal-a (gece) / pal-b (krem) / pal-c (menekse) ---------- */
+body.pal-a{
+  --bg:#171221; --bg-soft:#1f1930; --ink:#efe8f7; --ink-dim:#9d92b5;
+  --pink:#ff8fb3; --purple:#c9a6ff; --green:#b8e39a; --yellow:#ffd479; --blue:#8fc7ff;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--fg);font-family:var(--ft);font-size:14.5px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:rgba(255,143,187,.3);color:#fff}
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-thumb{background:rgba(184,146,255,.25);border-radius:6px}
-a{color:var(--pink)}
-.butterfly-mark{display:none}
+body.pal-b{
+  --bg:#ffffff; --bg-soft:#f5f5f5; --ink:#141414; --ink-dim:#6b6b6b;
+  --pink:#c23a70; --purple:#5f35a8; --green:#357422; --yellow:#8a5f00; --blue:#1f5c9e;
+}
+body.pal-c{
+  --bg:#101623; --bg-soft:#182032; --ink:#e6eef6; --ink-dim:#8b98ad;
+  --pink:#ffa3c2; --purple:#b0b6ff; --green:#9fe8c3; --yellow:#ffe08a; --blue:#93d6f2;
+}
+/* ---------- base: one type scale (16 / 20 / 34), one spacing rhythm (28px), zero borders ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'IBM Plex Mono',monospace; background:var(--bg); color:var(--ink);
+  font-size:16px; line-height:1.75; overflow-x:hidden; cursor:default;
+  transition:background .35s,color .35s;
+}
+a{color:var(--pink);text-decoration:underline dotted;display:inline-block;transition:transform .15s}
+a:hover{text-decoration:underline;transform:translateY(-3px)}
+header.site nav,#pal,footer{font-size:14px}
+main{max-width:1060px;margin:0 auto;padding:28px}
+h1{font-size:34px;line-height:1.35;font-weight:400}
+h2{font-size:20px;font-weight:400}
+.dim{color:var(--ink-dim)}
+::selection{background:var(--pink);color:var(--bg)}
 
-/* starfield */
+/* star field */
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0}
-#stars span{position:absolute;color:var(--faint);user-select:none}
-.tw{animation:tw 3.5s ease-in-out infinite}
-@keyframes tw{0%,100%{opacity:.9}50%{opacity:.25}}
+.star{position:absolute;font-size:11px;color:var(--ink-dim);opacity:.32;animation:tw 3.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.65}}
+main,header.site,#marquees{position:relative;z-index:1}
 
-/* nav = bracket links */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 10px;
- background:rgba(18,16,42,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);flex-wrap:wrap}
-.nav-card{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.nav-btn{font:14px/1 var(--ft);color:var(--purple);background:none;border:none;cursor:pointer;padding:6px 2px;position:relative;white-space:nowrap;transition:color .14s,text-shadow .14s}
-.nav-btn::before{content:'[';color:var(--faint)}
-.nav-btn::after{content:']';color:var(--faint)}
-.nav-btn:hover{color:#fff;text-shadow:0 0 12px rgba(184,146,255,.6)}
-.nav-btn.on{color:var(--pink)}
-.nav-btn.on::before,.nav-btn.on::after{color:var(--pink)}
-.nav-brand{color:var(--fg);font-weight:600}
-.nav-drop{position:relative}
-.nav-drop .nav-menu{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);flex-direction:column;min-width:130px;gap:2px;padding:7px;background:#1a1636;border:1px solid var(--line);box-shadow:0 8px 22px rgba(0,0,0,.45)}
-.nav-drop:hover .nav-menu,.nav-drop:focus-within .nav-menu{display:flex}
-.nav-menu .nav-btn{padding:6px 10px;text-align:center}
-.nav-menu .nav-btn:hover{background:rgba(255,143,187,.1)}
+/* palette switcher (dev control) */
+.site-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+#pal{display:flex;gap:8px}
+#pal button{font:inherit;background:none;color:var(--ink-dim);cursor:pointer;border:none}
+#pal button::before{content:'['}#pal button::after{content:']'}
+#pal button.on{color:var(--ink);text-decoration:underline}
 
-/* pages */
-.pages{margin-top:58px;position:relative;z-index:1}
-.page{display:none;min-height:calc(100vh - 58px);max-width:960px;margin:0 auto;padding:46px 36px 90px;position:relative}
-.page-wide{max-width:960px}
-.page.on{display:block;animation:fadeUp .35s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-/* headings as $ commands */
-.md-h1{font:600 20px/1.4 var(--ft);color:var(--fg);margin-bottom:8px;letter-spacing:.01em}
-.md-h1::before{content:'$ ';color:var(--pistachio)}
-.md-h1 #proj-count{color:var(--faint);font-weight:400}
-/* every inner page = a shell session: opening command row + closing cursor */
-.cmd-row{margin-bottom:2px}
-.cmd-row .flag{color:var(--faint)}
-.prompt-end{margin-top:28px;margin-bottom:2px;opacity:.85}
-.md-h2{font:600 16px/1.4 var(--ft);color:var(--pink);margin:26px 0 8px}
-.md-h2::before{content:'## ';color:var(--faint)}
-.md-h3{font:600 15px/1.4 var(--ft);color:var(--purple);margin:18px 0 6px}
-.md-sub{color:var(--dim);margin:0 0 18px}
-.md-sub::before{content:'# ';color:var(--faint)}
-.md-p{color:var(--dim);line-height:1.5;margin-bottom:11px}
-#about-content{column-count:2;column-gap:44px;line-height:1.5;font-size:13px}
-#about-content .md-p{font-size:13px;line-height:1.5;margin-bottom:12px;break-inside:avoid}
-#about-content .md-hr{column-span:all}
-@media(max-width:680px){#about-content{column-count:1}}
-.md-p strong{color:var(--fg);font-weight:700}
-.md-p em{color:var(--purple);font-style:normal}
-.md-p a{color:var(--pink);text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5)}
-.md-hr{border:none;border-top:1px solid var(--line);margin:14px 0}
-.blog-date{color:var(--faint);font-size:13px;margin:10px 0 3px}
-#about-content > p:first-child{color:var(--purple);font-size:13.5px;column-span:all;margin-bottom:16px}
-.md-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px}
-.md-link{color:var(--pink);text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5);padding-bottom:2px}
-.md-link:hover{color:#fff}
-.link-pink{font:14.5px/1 var(--ft);color:var(--pink);background:none;border:none;cursor:pointer;padding:0;text-decoration:none;border-bottom:1px dotted rgba(255,143,187,.5)}
-.link-pink:hover{color:#fff}
-
-/* terminal session bits (home + notes) */
-.row{margin-bottom:2px}
-.pr{color:var(--pistachio)}.pth{color:var(--purple)}.dl{color:var(--pink)}.cmd{color:var(--fg)}.cm{color:var(--faint)}
-.out{color:var(--dim);margin:2px 0 20px}
-.out.big{font-size:16.5px;line-height:1.7}
-.out .hl{color:var(--fg)}.out .pk{color:var(--pink)}.out .pu{color:var(--purple)}
-.hh{color:var(--pink);font-weight:600}
-.kao{color:var(--purple)}
-.cur{color:var(--pink);animation:blink 1.05s steps(1) infinite}
+/* ---------- HR layer ---------- */
+header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
+.wordmark{font-weight:400;text-decoration:none;color:var(--purple)}
+#tip{position:fixed;display:none;pointer-events:none;z-index:99;font-size:13px;color:var(--pink)}
+.hero{padding:56px 0 28px;position:relative;min-height:220px}
+.hero-text{max-width:720px}
+.hero .hi{color:var(--ink-dim);margin-bottom:8px}
+.hl-p{color:var(--pink)} .hl-m{color:var(--purple)} .hl-g{color:var(--green)} .hl-y{color:var(--yellow)} .hl-b{color:var(--blue)}
+.mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--purple);user-select:none;animation:bob 4s ease-in-out infinite}
+.hero .mascot{font-size:15px;line-height:1.1;position:absolute;right:0;top:28px}
+@media(max-width:1000px){.hero .mascot{display:none}}
+.cur{animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.list{margin:2px 0 10px}
-.item{display:block;color:var(--dim);text-decoration:none;white-space:pre;padding:2px 0;cursor:pointer}
-.item .id{color:var(--faint)}
-.item .nm{color:var(--fg)}
-.item:hover .nm{color:var(--pink)}
-.item:hover{text-shadow:0 0 14px rgba(255,143,187,.25)}
-.item .dot{color:var(--faint)}
-.item .live{color:var(--pistachio)}.item .dev{color:var(--amber)}.item .built{color:var(--purple)}.item .idea{color:var(--faint)}
-.signoff{text-align:center;color:var(--pink);opacity:.85;margin-top:34px;font-size:16px;letter-spacing:.28em}
-.sparkle{color:var(--purple);opacity:.7;letter-spacing:.15em;font-size:13px;margin:8px 0 22px}
-.ascii{position:absolute;top:34px;right:0;color:var(--faint);font-size:11px;line-height:1.05;white-space:pre;opacity:.55;z-index:0;pointer-events:none}
-@media(max-width:860px){.ascii{display:none}}
-.home-photo{width:150px;height:186px;object-fit:cover;border:1px solid var(--line);margin:6px 0 4px;filter:saturate(.9)}
-.hero-stats{color:var(--dim);margin-top:6px}
-.hero-stats b{color:var(--pistachio);font-weight:600}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
-/* every list = the home ls session: flat rows, click opens the note */
-@keyframes rowIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-.plist{margin-top:4px}
-/* one tight aligned row: 0001  name — five words   tech / date   status */
-.trow{display:flex;align-items:baseline;gap:9px;text-decoration:none;padding:8px 8px;cursor:pointer;animation:rowIn .45s ease backwards}
-.trow .idx{color:var(--faint);font-size:12px;flex:none}
-.trow .nm{color:var(--fg);font-weight:600;font-size:14.5px;flex:none;white-space:nowrap}
-.trow:hover .nm{color:var(--pink)}
-.trow .dsc{color:var(--dim);font-size:13px;flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.trow .mid{flex:1 1 auto;min-width:12px;text-align:right;color:var(--pistachio);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 14px;opacity:.85}
-.trow .dots{flex:1 1 0;min-width:0;overflow:hidden;white-space:nowrap;color:var(--faint);margin:0 10px;font-size:14.5px;letter-spacing:1px}
-.pager{display:flex;gap:22px;align-items:baseline;margin-top:22px;padding-top:4px}
-.pgbtn{font:13.5px/1 var(--ft);color:var(--purple);background:none;border:none;cursor:pointer;padding:4px 2px}
-.pgbtn::before{content:'[';color:var(--faint)}.pgbtn::after{content:']';color:var(--faint)}
-.pgbtn:hover{color:#fff;text-shadow:0 0 12px rgba(184,146,255,.6)}
-.pgbtn:disabled{color:var(--faint);cursor:default;opacity:.4;text-shadow:none}
-.pgnum{color:var(--dim);font-size:13px}.pgnum b{color:var(--pink);font-weight:600}
-.trow .st,.trow .per{flex:none;font-size:12.5px;white-space:nowrap}
-.trow .per{color:var(--faint)}
-.trow .st.live{color:var(--pistachio)}.trow .st.dev{color:var(--amber)}.trow .st.built{color:var(--purple)}.trow .st.idea{color:var(--faint)}
-@media(max-width:640px){.trow{gap:6px}.trow .dsh,.trow .mid{display:none}.trow .dsc{font-size:12px}}
-/* skills => terminal directory listing */
-.skblock{padding:12px 8px;animation:rowIn .5s ease backwards}
-.skcat{color:var(--purple);font-weight:600;font-size:15px}
-.skcat::before{content:'~/';color:var(--faint)}
-.skcat::after{content:'/';color:var(--faint)}
-.skitems{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:8px}
-.skitems .sk{color:var(--dim);font-size:13.5px;white-space:nowrap;transition:color .14s;cursor:default}
-.skitems .sk::before{content:'- ';color:var(--faint)}
-.skitems .sk:hover{color:var(--pink)}
-/* experience / education => same directory listing, clickable */
-.dirblk{display:block;text-decoration:none;padding:13px 8px;cursor:pointer;animation:rowIn .5s ease backwards}
-.dirblk .dtop{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-.dirblk .dcat{color:var(--purple);font-weight:600;font-size:15px}
-.dirblk .dcat::before{content:'~/';color:var(--faint)}
-.dirblk .dcat::after{content:'/';color:var(--faint)}
-.dirblk:hover .dcat{color:var(--pink)}
-.dirblk .dper{color:var(--faint);font-size:13px;white-space:nowrap;flex:none}
-.dirblk .ditems{margin-top:7px}
-.dirblk .di{color:var(--dim);font-size:13.5px;line-height:1.6}
-.dirblk .di::before{content:'- ';color:var(--faint)}
+.stats{display:flex;gap:24px;row-gap:10px;flex-wrap:wrap;align-items:baseline;padding:28px 0 8px;font-size:20px}
+.stats>span{white-space:nowrap}
+.stats .cg{color:var(--green)}
+.stats .c1{color:var(--green)} .stats .c2{color:var(--purple)} .stats .c3{color:var(--yellow)} .stats .c4{color:var(--pink)}
+.pr{color:var(--ink-dim);user-select:none}
+.cols{display:grid;grid-template-columns:1.1fr 1.2fr 1.2fr;gap:28px;padding:24px 0 8px;font-size:14px;line-height:1.65}
+.cols>div:nth-of-type(2){font-size:13px;line-height:1.6}
+.cols>div>p{margin:0 0 8px}
+.cols>div:nth-of-type(3){font-size:12px;line-height:1.55}
+.cols>div:nth-of-type(3) p{break-inside:avoid}
+.cols>div:nth-of-type(3) .pr{column-span:all}
+.cols .pr{margin-bottom:6px}
+.edu-b{font-size:14px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
 
-/* exp / skill / lifeplan cards => terminal blocks */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;align-items:stretch}
-.pcard{position:relative;background:rgba(184,146,255,.035);border:1px solid var(--line);border-radius:4px;padding:22px 22px 16px;cursor:pointer;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s,transform .15s}
-.pcard:hover{border-color:rgba(255,143,187,.5);box-shadow:0 0 20px rgba(255,143,187,.12);transform:translateY(-2px)}
-.pcard.static{cursor:default}
-.pcard.static:hover{transform:none;border-color:var(--line);box-shadow:none}
-.pcard-emoji{display:none}
-.pcard-name{color:var(--fg);font-weight:600;font-size:15px;line-height:1.3;padding-bottom:8px;margin-bottom:8px;border-bottom:1px dashed var(--line)}
-.pcard-name::before{content:'* ';color:var(--pink)}
-.pcard.static .pcard-name::before{content:'~/';color:var(--purple)}
-.pcard-line{color:var(--dim);font-size:13.5px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.pcard-line strong{color:var(--pistachio);font-weight:700;text-decoration:underline;text-decoration-color:rgba(188,230,160,.55);text-underline-offset:2px}
-.pcard-line em{color:var(--purple);font-style:italic;font-weight:400}
-.pcard-line code{color:var(--pink)}
-.pcard-tech{color:var(--pistachio);font-size:13px;line-height:1.6;margin-top:12px;opacity:1;font-weight:600}
-.pcard-status{font-size:13px;margin-top:auto;padding-top:10px;text-align:right}
-.pcard-status span,.note-st span{padding:0}
-.st-live span{color:var(--pistachio)}.st-live span::before{content:'* '}
-.st-built span{color:var(--purple)}.st-built span::before{content:'+ '}
-.st-dev span{color:var(--amber)}.st-dev span::before{content:'~ '}
-.st-idea span{color:var(--faint)}.st-idea span::before{content:'. '}
-.skill-item{color:var(--dim);font-size:13.5px;padding:2px 0}
-.skill-item::before{content:'- ';color:var(--faint)}
-.exp-entry{padding:14px 0;border-bottom:1px solid var(--line)}
-.exp-entry:last-child{border-bottom:none}
-.exp-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.exp-role{color:var(--fg);font-weight:600;font-size:15px}
-.exp-role::before{content:'> ';color:var(--pistachio)}
-.exp-period{margin-left:auto;color:var(--faint);font-size:13px;white-space:nowrap}
-.exp-desc{color:var(--dim);font-size:14px;line-height:1.6;margin-top:5px}
-.exp-desc strong{color:var(--fg);font-weight:700}.exp-desc em{color:var(--purple);font-style:normal}
+/* ---------- marquees: two thin rows, opposite directions, decoration only ---------- */
+#marquees{padding:8px 0;overflow:hidden}
+.mq{display:flex;gap:44px;white-space:nowrap;width:max-content;color:var(--ink-dim)}
+.mq span b{font-weight:400}
+.mq .g{margin-right:10px}
+.mq1{animation:sl 60s linear infinite}
+.mq2{animation:sr 75s linear infinite;margin-top:14px}
+#marquees:hover .mq{animation-play-state:paused}
+@keyframes sl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sr{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
-/* filters */
-.filters{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:baseline;margin:2px 0 22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
-.fcard{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px;background:none;padding:0}
-.flabel{color:var(--faint);font-size:13px;margin-right:4px}
-.flabel::before{content:'--'}
-.fchip{font:13.5px/1 var(--ft);color:var(--dim);background:none;border:none;padding:4px 5px;cursor:pointer;transition:color .14s}
-.fchip:hover{color:#fff}
-.fchip.on{color:var(--pink)}
-.fchip.on::before{content:'[';color:var(--faint)}
-.fchip.on::after{content:']';color:var(--faint)}
-
-/* paper-sheet => terminal panel */
-.paper-sheet{background:rgba(184,146,255,.035);border:1px solid var(--line);border-radius:4px;padding:24px 26px;margin-top:16px}
-
-/* note overlay => terminal window */
-.note-overlay{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(8,6,20,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-.note-overlay.on{display:flex;animation:fadeIn .2s ease}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.note{background:#181334;border:1px solid var(--line);border-radius:8px;max-width:640px;width:100%;max-height:84vh;overflow-y:auto;padding:26px 30px 26px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.note-doodle{text-align:center;margin-bottom:12px;display:none}
-.note-doodle.hasimg{display:block}
-.note-doodle img{max-height:140px;max-width:78%;object-fit:contain}
-.note-head{color:var(--fg);font-size:17px;font-weight:600;line-height:1.35}
-.note-head::before{content:'$ cat ';color:var(--pistachio);font-weight:400}
-.note-head .note-emoji{display:none}
-.note-head .note-st{color:var(--dim);font-size:14px;font-weight:400}
-.note-line{border:none;border-top:1px solid var(--line);margin:14px 0}
-.note-desc{color:var(--dim);font-size:14px;line-height:1.65}
-.note-desc strong{color:var(--fg);font-weight:700}.note-desc em{color:var(--purple);font-style:normal}
-.note-desc code{color:var(--pistachio);background:rgba(188,230,160,.08);padding:1px 5px;border-radius:3px}
-.note-stack{color:var(--purple);font-size:13px;line-height:1.7;opacity:.9}
-.note-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
-.note-close{position:absolute;top:12px;right:14px;font:14px/1 var(--ft);color:var(--faint);background:none;border:none;cursor:pointer;padding:6px 8px}
-.note-close:hover{color:var(--pink)}
-.proj-link{color:var(--pink);text-decoration:none;font-size:14px;border-bottom:1px dotted rgba(255,143,187,.5);padding-bottom:2px}
-.proj-link:hover{color:#fff}
-.proj-link-live{color:var(--pistachio);border-bottom-color:rgba(188,230,160,.5)}
-body.note-open{overflow:hidden}
-
-.footer{text-align:center;padding:28px;font-size:12.5px;color:var(--faint);position:relative;z-index:1}
-
-@media (max-width:640px){
-  .nav{gap:10px;padding:10px 6px}
-  .nav-card{gap:10px}
-  .pages{margin-top:52px}
-  .page{padding:32px 16px 70px}
-  .pgrid{grid-template-columns:1fr;gap:12px}
-  .exp-period{margin-left:0;width:100%}
-  .note{padding:22px 18px}
+/* ---------- the wall: dense list, name — one sentence — tech ---------- */
+.wall-head{padding:8px 0 8px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px}
+.legend{display:flex;gap:20px;color:var(--ink-dim)}
+.legend i{font-style:normal}
+.d{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.d-live{background:var(--green)} .d-wip{background:var(--yellow)} .d-uni{background:var(--blue)} .d-arc{background:var(--ink-dim)}
+.filters{padding:0 0 10px;font-size:14px}
+.filters p{margin:0}
+.tok{cursor:pointer;color:var(--ink-dim);margin-right:10px}
+.tok::before{content:'['}.tok::after{content:']'}
+.tok:hover{color:var(--ink)}
+.tok.st.on[data-v="live"]{color:var(--green)}
+.tok.st.on[data-v="wip"]{color:var(--yellow)}
+.tok.st.on[data-v="uni"]{color:var(--blue)}
+.tok.st.on[data-v="arc"]{color:var(--ink)}
+.tok.on{text-decoration:underline}
+.tok.on[data-v=""]{color:var(--pink)}
+#q{font:inherit;background:none;border:none;outline:none;color:var(--pink);width:170px}
+.cmdline{color:var(--ink-dim);padding-top:4px}
+.cmdline b{color:var(--green);font-weight:400}
+.wall{list-style:none;font-size:13.5px;line-height:1.55}
+.wall li{display:grid;grid-template-columns:26px 185px 1fr 195px;gap:12px;padding:2px 8px;border-radius:2px;cursor:pointer;align-items:baseline}
+.wall li:hover{background:var(--bg-soft)}
+.wall .no{font-weight:400}
+.no.st-live{color:var(--green)} .no.st-wip{color:var(--yellow)} .no.st-uni{color:var(--blue)} .no.st-arc{color:var(--ink-dim)}
+.wall .nm{font-weight:400}
+.nm.st-live{color:var(--green)} .nm.st-wip{color:var(--yellow)} .nm.st-uni{color:var(--blue)} .nm.st-arc{color:var(--ink-dim)}
+.wall .one{color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wall .tech{color:var(--ink-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:860px){
+  .wall li{grid-template-columns:15px 1fr;grid-auto-rows:auto}
+  .wall .tech{text-align:left}
+  .stats{gap:20px} .facts{gap:28px}
 }
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important}}
+
+/* ---------- detail mock (overlay, template for per-project mini docs) ---------- */
+#detail{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(3px);display:none;z-index:20;overflow-y:auto}
+#detail.open{display:block}
+.doc{max-width:720px;margin:56px auto;background:var(--bg-soft);border-radius:3px;padding:44px}
+.doc .close{float:right;cursor:pointer;color:var(--ink-dim)}
+.doc h1{font-size:20px;margin-bottom:8px}
+#d-live{display:none;font-size:34px;color:var(--green);text-decoration:none;margin:4px 0}
+#d-live:hover{text-decoration:underline}
+.doc .sect{margin-top:28px}
+.doc .sect h2{font-size:16px;color:var(--purple);margin-bottom:8px}
+.doc pre{color:var(--ink-dim);line-height:1.6;overflow-x:auto}
+.doc strong{font-weight:400}
+.doc em{font-style:normal}
+.doc .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.doc .tags span{background:var(--bg);padding:2px 12px;border-radius:2px}
+
+.bg-art{position:absolute;z-index:0;opacity:.28;color:var(--purple);font-size:10px;line-height:1.05;white-space:pre;pointer-events:none;user-select:none}
+@media(max-width:1000px){.bg-art{display:none}}
+.wall-sect{position:relative}
+.art-wall{right:-30px;top:120px}
+.cols{position:relative}
+.art-cols{right:20px;top:58%}
+.about{padding:28px 0 0;position:relative}
+.about .mascot{position:absolute;right:6%;bottom:30px;opacity:.45;font-size:13px;z-index:0;animation:none}
+.about-text{position:relative;z-index:1}
+.about-row{display:flex;gap:28px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.about-row p{margin:0 0 6px}
+.about-text{font-size:13px;line-height:1.6;column-count:2;column-gap:44px}
+.about-text p{break-inside:avoid}
+.about-text>p:first-child{color:var(--purple);column-span:all}
+.about-end{column-span:all;text-align:center;margin-top:14px}
+.heart{color:var(--purple)}
+.about-text .dim{color:var(--purple)}
+.about-text p{margin:0 0 12px}
+footer{max-width:1060px;margin:0 auto;padding:32px 28px 40px;color:var(--ink-dim);text-align:center}
+footer p{margin:0 0 8px}
+.at-pink{color:var(--pink)}
+
+/* confetti */
+.cf{position:fixed;z-index:30;pointer-events:none;font-size:17px;animation:fall 1.1s ease-out forwards}
+@keyframes fall{to{transform:translateY(70px) rotate(220deg);opacity:0}}
 </style>
 </head>
-<body>
+<body class="pal-c">
+<div id="stars"></div>
+<header class="site">
+  <a class="wordmark" href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener"><span>damlahelloworld ⋆˙⟡</span></a>
+<div id="tip">linkedin!</div>
+  <div class="site-right">
+    <div id="pal">
+      <button data-p="pal-a">night</button>
+      <button data-p="pal-b">white</button>
+      <button data-p="pal-c" class="on">violet</button>
+    </div>
+    <nav class="dim">[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>]</nav>
+  </div>
+</header>
 
-<nav class="nav" id="nav-bar"></nav>
+<main>
 
-<div class="pages">
-  <!-- HOME -->
-  <div class="page page-wide" id="p-home">
-<pre class="ascii">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢔⣶⠀⠀
+<!-- ===== HR LAYER: the only airy zone. one sentence, numbers, education, skills ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hi">hi, i'm damla —</p>
+    <h1><span id="typer"></span><span class="cur">▊</span></h1>
+  </div>
+  <pre class="mascot" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢔⣶⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠗⡿⣾⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠓⡞⢩⣯⡀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠰⡹⠁⢰⠃⣩⣿⡇⠀
@@ -279,135 +215,173 @@ body.note-open{overflow:hidden}
 ⠀⠀⠀⠈⠻⠮⠴⠵⢋⣇⡇⣷⢳⡀⢱⡈⢋⠛⣄⣹⣲⡀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣱⡇⣦⢾⣾⠿⠟⠿⠷⠷⣻⠧⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠽⠞⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
+</section>
 
-    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">whoami</span></div>
-    <div class="out big"><span class="hl">damla su bilge</span> <span class="pu">·</span> music enthusiast, crocheter, third-wave barista, infp, future youtuber <span class="kao">꒰ she builds soft things ꒱</span></div>
+<section class="stats">
+  <span class="cg" id="pcount">40 projects</span> <span class="dim">-</span>
+  <span class="c2">IT Girl</span> <span class="dim">-</span>
+  <span class="c3">I am an idea machine</span> <span class="dim">-</span>
+  <span class="c4">{vibecoder}</span>
+</section>
 
-    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat about.txt</span></div>
-    <div class="out">i build for connection &amp; beauty <span class="hh">&lt;3</span> a slow letter platform because i love slow bonds,<br>
-    speaking practice apps because words deserve courage, a sewing app because craft should be<br>
-    for everyone. coding is fun, but imagination is what makes it matter. <span class="pu">*</span></div>
-
-    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">ls projects/</span> <span class="cm">--sort=recent</span></div>
-    <div class="list" id="home-ls"></div>
-    <div class="out"><span class="cm"># <span id="proj-stats"></span> ·</span> <button class="link-pink" onclick="go('projects')">explore for more →</button></div>
-
-    <div class="row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
-
-    <div class="out" style="margin-top:26px"><span class="pk">*</span> tip: pick a star to explore <span class="hh">&lt;3</span> <span class="kao">(｡•ᴗ•｡)</span> ·&nbsp; <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github</a> &nbsp; <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener">linkedin</a></div>
-    <div class="signoff">~ ʚɞ ~</div>
+<section class="cols">
+  <div>
+    <p class="pr">$ education</p>
+    <p class="edu-b">Bilkent University</p>
+    <p class="dim">b.sc. computer science · 2023 –</p>
+    <p>Medipol University <span class="dim">· 2020 – 2023</span><br><span class="dim">medicine, 91/100</span></p>
+    <p>Damla Fen Lisesi <span class="dim">· 2019 – 2020</span><br><span class="dim">homeschooling</span></p>
+    <p>Nesibe Aydın Fen Lisesi <span class="dim">· 2016 – 2019</span><br><span class="dim">gpa 96.68, mun delegate</span></p>
   </div>
+  <div>
+    <p class="pr">$ skills</p>
+    <p><span class="dim">languages ·</span> java · python · c++ · javascript · typescript · swift · html/css · sql · systemverilog</p>
+    <p><span class="dim">frameworks ·</span> next.js · react · swiftui · flask · tailwind · java swing · javafx · springboot · numpy · matplotlib</p>
+    <p><span class="dim">tools ·</span> git/github · vercel · supabase · mysql · fal.ai · mapbox gl · figma · maven · vivado · vs code · reaper</p>
+    <p><span class="dim">concepts ·</span> restful api design · serverless functions · queue-based async · postgresql schema · mvc · sha-256 · oauth flows · algorithm analysis · data structures</p>
+  </div>
+  <pre class="bg-art art-cols" aria-hidden="true">⠀⢀⠤⠤⢄⡀⠀⠀⠀⠀⠀⠀⢀⠤⠒⠒⢤
+⠀⠏⠀⠀⠀⠈⠳⡄⠀⠀⡠⠚⠁⠀⠀⠀⠘⡄
+⢸⠀⠀⠀⠤⣤⣤⡆⠀⠈⣱⣤⣴⡄⠀⠀⠀⡇
+⠘⡀⠀⠀⠀⠀⢈⣷⠤⠴⢺⣀⠀⠀⠀⠀⢀⡇
+⠀⠡⣀⣀⣤⠶⠻⡏⠀⠀⢸⡟⠙⣶⡤⠤⠼
+⠀⠀⢠⡾⠉⠀⢠⡆⠀⠀⢸⠃⠀⠈⢻⣆
+⠀⠀⣿⣠⢶⣄⠀⡇⠀⠀⠘⠃⣀⡤⢌⣈⡀⠀
+⠀⠀⠀⠀⠀⠙⠼⠀⠀⠀⠀⠿⠋</pre>
+  <div>
+    <p class="pr">$ experience</p>
+    <p>FAB Fellowship <span class="dim">· 2026 –</span><br><span class="dim">client interviews, community projects</span></p>
+    <p>IEEE Bilkent <span class="dim">· 2025 – 2026</span><br><span class="dim">board member &amp; pr coordinator</span></p>
+    <p>CS115 teaching assistant <span class="dim">· 2025</span><br><span class="dim">100+ students through 10 python labs</span></p>
+    <p>Software Persona internship <span class="dim">· 2026</span><br><span class="dim">ui/ux, figma, react from scratch</span></p>
+    <p>Hound Coffee Group <span class="dim">· 2024 – 2025</span><br><span class="dim">third wave barista &amp; developer</span></p>
+    <p>Bilkent Sociology Society <span class="dim">· 2024 – 2025</span><br><span class="dim">audit board president</span></p>
+    <p>Bilkent Music, Crochet &amp; TEMA clubs <span class="dim">· 2023 – 2024</span><br><span class="dim">former board member across three clubs</span></p>
+  </div>
+</section>
 
-  <!-- ABOUT, loaded from content/about-me.md -->
-  <div class="page" id="p-about">
-    <pre class="ascii">⠀⠀⠀⢸⣦⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀
-⠀⠀⠀⢸⣏⠻⣶⣤⡶⢾⡿⠁⠀⢠⣄⡀⢀⣴
-⠀⠀⣀⣼⠷⠀⠀⠁⢀⣿⠃⠀⠀⢀⣿⣿⣿⣇
-⠴⣾⣯⣅⣀⠀⠀⠀⠈⢻⣦⡀⠒⠻⠿⣿⡿⠿⠓⠂⠀⠀⢀⡇
-⠀⠀⠀⠉⢻⡇⣤⣾⣿⣷⣿⣿⣤⠀⠀⣿⠁⠀⠀⠀⢀⣴⣿⣿
-⠀⠀⠀⠀⠸⣿⡿⠏⠀⢀⠀⠀⠿⣶⣤⣤⣤⣄⣀⣴⣿⡿⢻⣿⡆
-⠀⠀⠀⠀⠀⠟⠁⠀⢀⣼⠀⠀⠀⠹⣿⣟⠿⠿⠿⡿⠋⠀⠘⣿⣇
-⠀⠀⠀⠀⠀⢳⣶⣶⣿⣿⣇⣀⠀⠀⠙⣿⣆⠀⠀⠀⠀⠀⠀⠛⠿⣿⣦⣤⣀
-⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⠿⠋⠁⠀⣹⣿⠳⠀⠀⠀⠀⠀⠀⢀⣠⣽⣿⡿⠟⠃
-⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇</pre>
-    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat about.txt</span></div>
-    <div id="about-content" style="margin-top:6px"></div>
-    <div class="md-links" style="margin-top:18px">
-      <a id="email-link" href="#" class="md-link"><span class="cm">~</span> <span id="email-text"></span></a>
-      <a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener" class="md-link">linkedin</a>
-      <a href="https://github.com/damlahelloworld" target="_blank" rel="noopener" class="md-link">github</a>
+</main>
+
+<!-- ===== MARQUEES: two rows, opposite directions, full-bleed, pure vibe ===== -->
+<div id="marquees" aria-hidden="true">
+  <div class="mq mq1"></div>
+  <div class="mq mq2"></div>
+</div>
+
+<main>
+
+<!-- ===== THE WALL: every product, one dense row each ===== -->
+<section>
+  <pre class="bg-art art-wall" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⠀⠀⣀⠤⣤⣤⣠⣀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⢢⣒⣃⡃⠓⢢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⡰⠒⡄⠀⡜⣠⠏⠁⠀⠀⠉⠙⠓⠦⣄⢀⣠⣴⠯⠚⠋⠉⠈⠈⢹⡆⠀⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠘⠒⠁⣰⢡⢯⢀⢀⢀⢀⣀⠤⠔⢔⣼⣿⡯⣄⡀⡀⠀⢀⢀⠔⢩⠇⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢸⠈⢧⣅⣁⣁⣁⡤⠦⣚⡽⢻⢽⡣⡙⠮⣬⣩⣁⣁⡤⠟⡀⡔⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠓⣄⣀⡁⣁⢁⡴⢼⠃⢠⠟⠀⣧⠙⢤⠀⠀⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢷⠀⠀⡀⡔⠊⢁⠔⢡⠼⠋⠀⠀⠘⢧⡀⠱⣄⡀⠀⠀⠀⠀⠀⠀⢢⡔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡠⠒⠁⣀⠖⢁⡼⠋⠀⠀⠀⠀⠀⠈⠳⣄⠱⡙⢤⠀⠀⠀⠀⠐⠁⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⠜⠀⢠⠊⠀⣠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣦⠱⡀⠳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⡜⠀⠀⡇⠀⣰⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣇⢱⠀⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⡇⠀⠀⡇⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⠀⡇⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⡄⠀⠀⠘⣄⠀⠱⣏⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡟⠀⢱⠀⡣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠒⡵⣊⠀⠀⠈⠑⣺⢅⡉⠦⡀⠀⠀⠀⠀⠀⠀⠀⣼⠂⠀⢸⠀⡎⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠊⢱⠈⠀⠀⠀⠀⡯⠀⠉⢢⡉⢦⠀⠀⠀⠀⠀⣰⠃⠀⠀⡰⡕⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⢱⠈⡆⠀⠀⠀⢠⠏⠀⢀⢴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⡀⠀⡸⢐⠇⠀⠀⠀⡾⠁⡠⢪⠊⠀⠀⠀⠀⠀⡄⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠄⠀⠈⢧⡰⢁⠎⠀⠀⠀⠀⢸⣅⠎⢠⠃⠀⠀⠀⠀⠀⠠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⠞⣧⠃⠀⠀⠀⠀⠀⠀⣸⡃⢠⠃⠀⠀⠀⠀⠀⠘⢔⡥⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡠⢃⠜⢹⠄⠀⠀⠀⠀⠀⢰⠹⣆⠇⠀⠀⠀⠀⠀⠀⢠⢚⠕⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡜⣠⠃⠀⢸⠅⠀⠀⠀⠀⠀⡇⠀⠽⡆⠀⠀⠀⠀⠀⠀⠀⢐⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣸⢠⠃⠀⠀⣼⠀⠀⠀⠀⠀⠀⡇⠀⢣⡙⣦⠀⠀⠀⠀⠀⠀⠰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠄⠀⠀⡆⢸⠀⣠⠜⠃⠀⠀⠀⠀⠀⢣⠀⠀⢣⠈⢳⡄⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⡀⠀⠀⢣⠸⡴⠃⠀⠀⠀⠀⠀⠀⠙⢢⡀⢇⠀⠹⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠐⡅⣈⠇⠀⠀⡿⡙⢄⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣄⠀⠈⠳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠈⠀⠀⢼⠁⠙⢌⠣⣄⠀⠀⠀⠀⠀⠀⠀⠸⡱⣀⠀⠙⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⡏⠀⠀⠀⠑⣄⠓⢤⠀⠀⠀⠀⠀⠀⠱⡘⡄⠀⢸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠐⠃⠀⠀⠀⠀⠈⠢⠀⠁⠀⠀⠀⠀⠀⠀⡇⢸⠀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⢱⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
+  <div class="wall-head">
+    <h2>everything i've imagined <span class="dim">— click any for the mini-docs</span></h2>
+  </div>
+  <div class="filters">
+    <p><span class="pr">filter:</span>
+      <span class="tok st on" data-v="">all</span><span class="tok st" data-v="live">live</span><span class="tok st" data-v="wip">in progress</span><span class="tok st" data-v="uni">university</span><span class="tok st" data-v="arc">archive</span>
+      <span class="pr">tech:</span>
+      <span class="tok te" data-v="swift">swift</span><span class="tok te" data-v="js">js</span><span class="tok te" data-v="python">python</span><span class="tok te" data-v="java">java</span><span class="tok te" data-v="supabase">supabase</span>
+      <span class="pr">search:</span> <input id="q" autocomplete="off" placeholder="type anything…">
+    </p>
+    <p class="cmdline" id="cmdline"></p>
+  </div>
+  <ul class="wall" id="wall"></ul>
+</section>
+
+<!-- ===== ABOUT: the human layer, bottom of the page ===== -->
+<section class="about">
+  <p class="pr">$ cat about.txt</p>
+  <div class="about-row">
+    <div class="about-text">
+      <p class="dim">music enthusiast · ex-med student · cs @ bilkent · ieee board member &amp; pr coordinator · python ta · fab fellow · third wave barista · crocheter · sociology club exec board · infp · future youtuber</p>
+      <p>I'm Damla Su Bilge. Computer science student at Bilkent, former teaching assistant for CS115, IEEE board member &amp; PR coordinator. Before engineering I studied medicine at Medipol with a 91/100 average, then chose building things over diagnosing them. Life tested me early: I survived cancer in high school, and it taught me that my time is mine, so I spend it only on what matters.</p>
+      <p><span class="dim">what I build, and why.</span> 30 projects, 7 of them live on the internet. I build for connection and beauty: a slow letter platform because I love slow bonds, speaking practice apps because words deserve courage, a sewing app because craft should be accessible to everyone. Coding is fun, but imagination is what makes it matter</p>
+      <p><span class="dim">music.</span> I play ukulele, harmonica, bass, guitar, electric guitar and piano, literally anything I can get my hands on. Pink Floyd, Radiohead and The Beatles shaped how I think about art, longing and beauty; psychedelic rock's bohemian nature inspires me endlessly I also served on the board of Bilkent's Music Club.</p>
+      <p><span class="dim">books &amp; ideas.</span> Dostoyevsky's The Idiot and Jack London's Martin Eden are my favorites!! I adore Kafka and Viktor Frankl too; the way they write about meaning, suffering and what it means to be human just... gets me every time. I was the audit board president of the Sociology Society, because people, culture and norms interest me as much as code does.</p>
+      <p><span class="dim">hands &amp; craft.</span> Former board member of the Knitting &amp; Crocheting Society, environmental volunteer at TEMA. I sew, I doodle, I brew coffee every way possible: chemex, V60, french press, aeropress, I know them all from my barista days at a third wave specialty shop</p>
+      <p><span class="dim">body &amp; mind.</span> Competitive swimmer from age 6 to 11, before my diagnosis changed everything. Three years at the gym and pilates regularly now, not for aesthetics, for my mind! Slow living, quiet walks, meditation, a good matcha and long afternoons with a book</p>
+      <p>this lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty!</p>
+      <p class="about-end heart">{i build things come from the heart!}</p>
+      <p class="about-end dim">~ ʚɞ ~</p>
     </div>
-    <div class="prompt-end" style="margin-top:26px"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
+    <pre class="mascot" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⣀⡄⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠐⢿⠓⠀⢀⡴⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠹⡒⠤⣀⡀⠀⢀⡴⠋⢠⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠱⡀⠀⠉⠑⠋⠀⠀⣸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢱⡄⠀⠀⠀⠀⠀⠉⠒⠤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣈⠵⠦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢀⡤⠋⣀⣀⣀⣤⠀⠀⠀⢰⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠈⠉⠁⠀⠀⠀⠀⢧⠀⠀⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢐⣶⣆⠀⠀⢠⠈⢇⢰⠃⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⣰⡄⠀⠀⠀⠀⠀⠀
+⠀⠈⠙⠀⠀⠀⣏⣧⠈⠟⠀⠀⠀⠀⠀⠀⠽⡿⠆⠀⠀⠀⢀⣿⣿⣦⣶⣶⠟⠀⠀
+⠀⠀⠀⠀⣀⣸⣿⣯⢧⠤⢤⣤⣴⠦⠀⠀⠀⠁⠀⠀⠛⠿⣿⣿⣿⣿⣿⡁⠀⠀⠀
+⠀⠙⠯⡻⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠰⣄⣠⡇⠀⠀⠀⠀⢸⣿⡿⠛⠛⠿⣆⠀⠀
+⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⠁⠀⠀⠀⣠⢿⣿⠟⠒⠀⠀⠀⠸⠊⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⡾⣿⠿⠺⢝⡯⢧⠀⠀⠀⠀⠀⠻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢼⠓⠁⠀⠀⠀⠉⠺⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠈⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢟⡒⠒⠛⠁⠀⠘⠒⠒⢲⡶⠂⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⡆⠀⠈⢢⠀⠀⠀⠀⡤⠚⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⠉⠀⢠⠇⢀⡤⣀⠀⢳⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⠊⠁⠀⠈⠳⣼⡄⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡄⠀⣀⠀⠀⢀⣄⡀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠶⢾⣿⣟⠁⠀⠀⠺⡟⠃
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⢉⠓⠀⠀⠀⠀⠀</pre>
   </div>
+</section>
 
-  <!-- LIFE PLAN, loaded from content/life-plan.md -->
-  <div class="page page-wide" id="p-lifeplan">
-    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat life-plan.md</span></div>
-    <div class="out"><span class="cm"># thoughts, reflections & the road ahead · tap a note to read</span></div>
-    <div id="lifeplan-content" class="plist"></div>
-    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
-  </div>
+</main>
 
-  <!-- PROJECTS -->
-  <div class="page page-wide" id="p-projects">
-    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">ls projects/</span> <span class="flag">--all</span></div>
-    <div class="out"><span class="cm"># <span id="proj-count"></span> · tap a line to open the note</span></div>
-    <div id="proj-filters" class="filters"></div>
-    <div id="proj-list" class="plist"></div>
-    <div id="proj-pager" class="pager"></div>
-    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
-  </div>
+<footer>
+  <p>[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>] [<a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener">linkedin ↗</a>]</p>
+  <p class="at-pink">@damlahelloworld</p>
+</footer>
 
-  <!-- EDUCATION, bembeyaz kagit, one cikar -->
-  <div class="page" id="p-education">
-    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat education.txt</span></div>
-    <div id="edu-content" class="plist"></div>
-    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
-  </div>
-
-  <!-- EXPERIENCE -->
-  <div class="page page-wide" id="p-experience">
-    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat experience.log</span></div>
-    <div class="out"><span class="cm"># tap a note to read the full story</span></div>
-    <div id="exp-content" class="plist"></div>
-    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
-  </div>
-
-  <!-- SKILLS -->
-  <div class="page page-wide" id="p-skills">
-    <div class="cmd-row"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cmd">cat skills.txt</span></div>
-    <div class="out"><span class="cm"># only tools i actually used in my projects. not about knowing, about evaluating knowledge</span></div>
-    <div id="skills-content" class="plist"></div>
-    <div class="prompt-end"><span class="pr">damla</span><span class="cm">@bilkent</span> <span class="pth">~/portfolio</span> <span class="dl">$</span> <span class="cur">▊</span></div>
+<!-- ===== DETAIL TEMPLATE (mock shows one example; real version reads products.json) ===== -->
+<div id="detail">
+  <div class="doc">
+    <span class="close" onclick="detail.classList.remove('open')">✕ close</span>
+    <p class="dim">damlahelloworld / <span id="d-name">lingolingo</span></p>
+    <a id="d-live" target="_blank" rel="noopener"></a>
+    <h1 id="d-title">english speaking practice with honest AI feedback</h1>
+    <div class="tags" id="d-tags"></div>
+    <div class="sect"><h2>+ what it is</h2><p id="d-what"></p></div>
+    <div class="sect" id="d-built-sect"><h2>+ how it's built</h2><pre id="d-arch"></pre></div>
+    <div class="sect"><h2>+ links</h2><p id="d-links"></p></div>
   </div>
 </div>
-
-<!-- ZOOM NOTE -->
-<div class="note-overlay" id="note-overlay" role="dialog" aria-modal="true" aria-label="project detail">
-  <div class="note" id="note-box"></div>
-</div>
-
-<!-- tek kelebek imzasi, sag alt kose -->
-<div class="butterfly-mark" aria-hidden="true">
-  <svg width="66" height="66" viewBox="0 0 100 100">
-    <g class="p-wing1">
-      <path d="M45,55 C20,60 6,42 13,20 C32,12 49,28 51,50 Z" fill="#f2a0ae"/>
-      <path d="M22,44 C18,36 18,28 22,22" fill="none" stroke="#c96a7a" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="33" cy="32" r="5" fill="#a35b66" opacity=".8"/><circle cx="27" cy="45" r="3.4" fill="#a35b66" opacity=".7"/>
-    </g>
-    <g class="p-wing2">
-      <path d="M52,52 C48,25 61,7 79,11 C87,30 72,50 55,56 Z" fill="#ee8f9f"/>
-      <path d="M74,34 C75,26 73,20 69,15" fill="none" stroke="#c96a7a" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="64" cy="28" r="4.4" fill="#a35b66" opacity=".8"/>
-    </g>
-    <path d="M36,90 C44,76 51,65 54,54" fill="none" stroke="#7a5a4c" stroke-width="4.4" stroke-linecap="round"/>
-    <circle cx="55" cy="52" r="4.6" fill="#7a5a4c"/>
-    <path d="M57,49 C61,42 67,38 73,36 M58,51 C64,46 71,44 76,44" fill="none" stroke="#7a5a4c" stroke-width="1.8" stroke-linecap="round"/>
-    <circle cx="74" cy="35" r="2" fill="#7a5a4c"/><circle cx="77" cy="44" r="2" fill="#7a5a4c"/>
-  </svg>
-</div>
-
-<div class="footer"><span style="font-style:italic;letter-spacing:.06em">damla su bilge · 2026</span></div>
 
 <script>
-const NAV_L=[
-  {k:"home",l:"damla.log",brand:true},
-  {k:"about",l:"about me"}
-];
-const NAV_R=[
-  {k:"projects",l:"projects"},
-  {k:"experience",l:"experience"},
-  {k:"skills",l:"skills"},
-  {k:"education",l:"education"},
-  {k:"lifeplan",l:"life plan"}
-];
-const NAV=[...NAV_L,...NAV_R];
-const ALL_PAGES=NAV.flatMap(n=>n.sub?n.sub.map(s=>s.k):[n.k]);
-
-// sl: doodle filename → doodles/<sl>.png (Damla'nın çizimleri; dosya varsa notta görünür)
-const P=[
+/* real project data from the live site (damla-approved copy) */
+const PJ=[
   {sl:"stitchu",e:"🪡",n:"Stitchu",tg:"sewing patterns from a photo, deterministic formulas, print-ready A4 PDFs",d:"An iOS sewing app: take a photo, add a few measurements, and get a real <strong>sewing pattern</strong> as a calibrated, print-ready <strong>A4 PDF</strong>. Patterns are drafted with <strong>deterministic formulas</strong>, every line explainable, no ML guessing. Skirt, dress and top blocks with a verified formula database, hand-drawn doodle style.",t:["SwiftUI"],s:"in dev",g:null},
   {sl:"lingolingo",e:"🌱",n:"lingolingo",tg:"english speaking practice, real topics, honest AI voice analysis",d:"English speaking practice on iOS: real topics, speaking stays free forever, and <strong>honest voice reports</strong> with credits, fluency, pace, fillers & long pauses, and vocabulary richness word by word. <strong>No signup, no account</strong>, recordings are deleted right after analysis. Just you & the air 🍃",t:["SwiftUI"],s:"in dev",g:"https://github.com/damlahelloworld/lingolingo",l:"https://damlahelloworld.github.io/lingolingo/",ll:"landing page"},
   {sl:"kitschat",e:"🍬",n:"kitschat",tg:"english twin of kısa lafın uzunu, whimsy pastel, live on vercel",d:"The <strong>English twin</strong> of Kısa Lafın Uzunu with a whimsy pastel redesign: <strong>2,272 sourced English topics</strong>, the best of the Turkish pool translated with <strong>verified published quote wording</strong> (misattributed quotes caught and dropped) plus fresh topics harvested from Reddit, Hacker News, YouTube and X discourse by <strong>parallel AI research agents</strong>. Hand-drawn wobble cards, candy buttons, a living animated topic deck, and <strong>programmatic SEO</strong>: 2,272 static topic pages + 15 category pages + 13 keyword landing pages.",t:["Next.js 16","React 19","TypeScript","Tailwind CSS 4","framer-motion","Programmatic SEO","Vercel"],s:"live",g:"https://github.com/damlahelloworld/kitschat",l:"https://kitschat.vercel.app"},
@@ -439,322 +413,169 @@ const P=[
   {sl:"dating-app",e:"💘",n:"a dating app",tg:"the idea exists, the name doesn't yet",d:"A dating app idea. It exists in my head, the name is still on its way.",t:[],s:"idea",g:null},
   {sl:"home-workout",e:"🤸🏻‍♀️",n:"home workouts",tg:"workout at home, name pending",d:"A home workouts app. The repo exists, the Swift files exist, the name doesn't, yet.",t:["Swift"],s:"idea",g:"https://github.com/damlahelloworld/home-workout"},
 ];
-
-const SK={
-  "programming languages":["Java","Python","C++","JavaScript","TypeScript","Swift","HTML/CSS","SQL","SystemVerilog"],
-  "frameworks & libraries":["Next.js (14–16)","React 19","SwiftUI","Flask","Tailwind CSS","Java Swing","JavaFX","SpringBoot","Numpy","Matplotlib"],
-  "platforms & tools":["Git/GitHub","Vercel","Supabase","MySQL","fal.ai","Mapbox GL","Figma","Maven","Vivado","VS Code","Reaper (DAW)"],
-  "architecture & concepts":["RESTful API Design","Serverless Functions","Queue-based Async","PostgreSQL Schema","MVC Pattern","SHA-256 Hashing","OAuth & Auth Flows","Algorithm Analysis","Data Structures"]
-};
-
-const EX=[
-  {r:"FAB Fellowship",tg:"my window into the startup world",d:"My window into the <strong>startup world</strong>, and it changed how I think about building things. Designed community-building projects from scratch, conducted <strong>client interviews with 5 participants</strong> across completely different tech literacy levels (from my doctor parents who barely use AI agents to CS students who critique API architecture), and learned to evaluate products from <strong>a real user's perspective, not a developer's</strong>. Built <strong>Lady Fantasy</strong> (AI tarot video experience) with fal.ai during this period. <em>Startups aren't about code, they're about solving real problems for real people.</em> This fellowship shaped every project I've built since.",p:"2026 – present"},
-  {r:"IEEE Bilkent",tg:"board member & pr coordinator",d:"<strong>Board Member & Public Relations Coordinator</strong>, one of Bilkent's most active student communities, organizing events, coordinating outreach",p:"2024 – present"},
-  {r:"CS115 Teaching Assistant",tg:"guided 100+ students through 10 labs",d:"Introduction to Programming with Python at Bilkent, guided <strong>100+ students through 10 labs</strong>, discovered that <em>debugging teaches algorithmic thinking better than writing code from scratch</em>",p:"2025"},
-  {r:"Software Persona (Internship)",tg:"ui/ux, figma & react from scratch",d:"A program that gives everyone a chance, <em>and at first I didn't find that impressive enough. But that's exactly what makes it beautiful: life is what you make it, and the important thing isn't being chosen, it's what you do with the opportunity.</em> Learned <strong>UI/UX fundamentals, Figma prototyping, HTML/CSS/JS from scratch, React basics, database design</strong>, open source concepts, and frameworks vs libraries. Built real projects including the <strong>Interactive Coffee Menu</strong>. Went from someone who only wrote backend logic to someone who understands the full product, <em>design thinking to deployment.</em>",p:"2026"},
-  {r:"Hound Coffee Group",tg:"third wave barista & developer",d:"<strong>Third wave barista & developer</strong>, built the interactive coffee menu in JavaScript while learning the art of <em>specialty coffee</em>",p:"2024 – 2025"},
-  {r:"Bilkent Sociology Society",tg:"audit board president",d:"<strong>Audit Board President</strong> (Denetim Kurulu Başkanı), exploring how society, culture, power, and norms shape every interaction. Also took <strong>PSYC102</strong> (Social Psychology). Skills: <em>professional writing, philosophy, critical analysis.</em>",p:"Mar 2024 – Sep 2025"},
-  {r:"Bilkent Music, Crochet & TEMA Clubs",tg:"former board member across three clubs",d:"<strong>Former Board Member</strong> across three communities, music theory & performance (Music Club), textile arts (Knitting & Crocheting Society), environmental volunteering (TEMA)",p:"2023 – 2024"},
-  {r:"Joyport One Tower",tg:"game warden, loved being with the kids",d:"<strong>Game Warden</strong>, <em>I love spending time with children. They're kind, bright, and innocent in a way the world desperately needs more of.</em> Getting the chance to be around them, play with them, and watch them figure things out was genuinely precious to me.",p:"Aug – Sep 2023"},
+const BUILT={"braindot": " ├─ Braindot/  (24 files)\n │   ├─ Views/ (8)\n │   ├─ Services/ (5)\n │   ├─ Assets.xcassets/ (3)\n ├─ docs/  (3 files)\n ├─ worker/  (2 files)\n ├─ Braindot.xcodeproj/  (1 files)\n ├─ landing/  (1 files)\n ├─ .gitignore\n ├─ README.md", "mbti-tester": " ├─ assets/  (20 files)\n │   ├─ types/ (16)\n ├─ js/  (2 files)\n ├─ css/  (1 files)\n ├─ README.md\n ├─ index.html", "wildflower.dev": " ├─ assets/  (145 files)\n │   ├─ garden/ (36)\n │   ├─ flowers/ (28)\n │   ├─ timer_scene/ (27)\n ├─ Wildflower/  (93 files)\n │   ├─ Assets.xcassets/ (67)\n │   ├─ Views/ (12)\n │   ├─ Models/ (5)\n ├─ docs/  (3 files)\n ├─ Wildflower.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md", "damla.log": " ├─ DamlaLog/  (26 files)\n │   ├─ DamlaLog/ (23)\n │   ├─ DamlaLog.xcodeproj/ (3)\n ├─ docs/  (3 files)\n ├─ scripts/  (1 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md", "gymgyme": " ├─ gymgyme/  (49 files)\n │   ├─ Views/ (19)\n │   ├─ Models/ (10)\n │   ├─ Assets.xcassets/ (8)\n ├─ docs/  (11 files)\n │   ├─ screens/ (7)\n ├─ gymgymeWidget/  (6 files)\n │   ├─ Assets.xcassets/ (1)\n ├─ workers/  (3 files)\n │   ├─ usda-proxy/ (3)\n ├─ Shared/  (2 files)\n ├─ gymgyme.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ .gitignore", "scrapp": " ├─ Scrapp/  (113 files)\n │   ├─ Assets.xcassets/ (52)\n │   ├─ Stickers/ (37)\n │   ├─ Screens/ (5)\n ├─ stickers-web/  (21 files)\n ├─ Scrapp.xcodeproj/  (3 files)\n │   ├─ project.xcworkspace/ (1)\n │   ├─ xcuserdata/ (1)\n ├─ plans/  (1 files)\n ├─ .gitignore\n ├─ CLAUDE.md\n ├─ LICENSE\n ├─ README.md\n └─ … 2 more files", "vibematch": " ├─ desktop/  (81 files)\n │   ├─ screens/ (21)\n │   ├─ server/ (13)\n │   ├─ model/ (10)\n ├─ docs/  (4 files)\n ├─ deploy/  (2 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ .gitignore\n ├─ BUILD_STAGES.md\n ├─ PROJECT.md\n ├─ RAPOR.md\n └─ … 4 more files", "shortstorylong": " ├─ src/  (31 files)\n │   ├─ app/ (14)\n │   ├─ components/ (9)\n │   ├─ lib/ (5)\n ├─ .github/  (2 files)\n │   ├─ scripts/ (1)\n │   ├─ workflows/ (1)\n ├─ public/  (1 files)\n ├─ supabase/  (1 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ README.md\n ├─ eslint.config.mjs\n └─ … 5 more files", "ladybug": " ├─ app/  (19 files)\n │   ├─ api/ (9)\n │   ├─ account/ (1)\n │   ├─ auth/ (1)\n ├─ src/  (13 files)\n │   ├─ lib/ (7)\n │   ├─ components/ (4)\n ├─ public/  (2 files)\n │   ├─ assets/ (1)\n ├─ .env.local.example\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md\n └─ … 9 more files", "mystic_queen": " ├─ MysticQueen/  (47 files)\n │   ├─ Assets.xcassets/ (28)\n │   ├─ Models/ (6)\n │   ├─ Views/ (6)\n ├─ MysticQueen.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ .gitignore\n ├─ LICENSE\n ├─ ideas.md\n ├─ project.yml\n └─ … 2 more files", "sunflower": " ├─ Sunflower/  (56 files)\n │   ├─ Assets.xcassets/ (31)\n │   ├─ Views/ (7)\n │   ├─ Extensions/ (6)\n ├─ landing/  (18 files)\n │   ├─ assets/ (13)\n │   ├─ shots/ (4)\n ├─ SunflowerWidget/  (4 files)\n ├─ docs/  (3 files)\n ├─ Sunflower.xcodeproj/  (1 files)\n ├─ .gitignore\n ├─ README.md\n ├─ Sunflower.storekit\n ├─ project.yml", "home-workout": " ├─ HomeWorkout.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ HomeWorkout/  (2 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ project.yml", "linc-matik": " ├─ frontend/  (18 files)\n │   ├─ src/ (8)\n │   ├─ public/ (6)\n ├─ .env.example\n ├─ .gitignore\n ├─ BRIEFING.md\n ├─ Procfile\n └─ … 7 more files", "moonlight": " ├─ Moonlight/  (307 files)\n │   ├─ Assets.xcassets/ (272)\n │   ├─ Views/ (11)\n │   ├─ Services/ (9)\n ├─ assets/  (132 files)\n │   ├─ animations/ (64)\n │   ├─ atmospheric/ (19)\n │   ├─ ui/ (14)\n ├─ docs/  (6 files)\n ├─ Moonlight.xcodeproj/  (4 files)\n │   ├─ project.xcworkspace/ (2)\n │   ├─ xcuserdata/ (1)\n ├─ app/  (4 files)\n ├─ backend/  (4 files)", "butterfry": " ├─ src/  (19 files)\n │   ├─ app/ (9)\n │   ├─ components/ (4)\n │   ├─ lib/ (3)\n ├─ public/  (5 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ documents/  (1 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md\n ├─ eslint.config.mjs\n └─ … 6 more files", "creator-books": " ├─ sources/  (36 files)\n │   ├─ kitap1/ (27)\n ├─ cekim-gunu.epub\n ├─ kanallar-nasil-buyur.epub\n ├─ neden-izliyorlar.epub\n ├─ superstar-medya-training.epub", "vibecodedflopware": " ├─ CLAUDE.md\n ├─ index.html\n ├─ script.js\n ├─ style.css", "iwantmymtv": " ├─ js/  (2 files)\n ├─ css/  (1 files)\n ├─ data/  (1 files)\n ├─ CLAUDE.md\n ├─ index.html\n ├─ yayinla.sh", "coffee-menu": " ├─ concepts-in-javascript/  (3 files)\n ├─ .vscode/  (1 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md\n ├─ ROADMAP.md\n └─ … 4 more files", "forget-me-not": " ├─ app/  (17 files)\n │   ├─ (auth)/ (2)\n │   ├─ blog/ (2)\n │   ├─ auth/ (1)\n ├─ supabase/  (8 files)\n │   ├─ .temp/ (8)\n ├─ public/  (6 files)\n ├─ components/  (3 files)\n ├─ config/  (3 files)\n ├─ lib/  (3 files)\n ├─ docs/  (1 files)\n ├─ … 3 more folders\n ├─ .gitignore\n ├─ LICENSE", "lingolingo": " ├─ Lingolingo/  (57 files)\n │   ├─ Assets.xcassets/ (27)\n │   ├─ Views/ (10)\n │   ├─ Models/ (4)\n ├─ mock/  (29 files)\n │   ├─ assets/ (28)\n ├─ docs/  (20 files)\n │   ├─ assets/ (17)\n ├─ Lingolingo.xcodeproj/  (3 files)\n │   ├─ project.xcworkspace/ (1)\n │   ├─ xcshareddata/ (1)\n ├─ .gitignore\n ├─ APP_STORE_SUBMISSION.md\n ├─ CLAUDE.md", "mergeconflict": " ├─ src/  (30 files)\n │   ├─ data/ (12)\n │   ├─ app/ (10)\n │   ├─ components/ (5)\n ├─ .github/  (2 files)\n │   ├─ scripts/ (1)\n │   ├─ workflows/ (1)\n ├─ scripts/  (1 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ eslint.config.mjs\n ├─ next.config.ts\n └─ … 4 more files", "damlahelloworld": " ├─ README.md", "youdecide": " ├─ README.md\n ├─ index.html\n ├─ script.js\n ├─ styles.css", "tamagotchi-hair-design": " ├─ .gitignore\n ├─ LAYOUT_GUIDE.md\n ├─ PROJECT.md\n ├─ README.md\n └─ … 3 more files", "hide-on-bush": " ├─ web/  (34 files)\n │   ├─ src/ (28)\n ├─ ios/  (33 files)\n │   ├─ LeagueOfBilkent/ (29)\n │   ├─ LeagueOfBilkent.xcodeproj/ (1)\n ├─ docs/  (3 files)\n ├─ supabase/  (2 files)\n │   ├─ migrations/ (2)\n ├─ .gitignore\n ├─ mock.html", "kisalafinuzunu": " ├─ src/  (30 files)\n │   ├─ app/ (13)\n │   ├─ components/ (8)\n │   ├─ lib/ (6)\n ├─ public/  (6 files)\n ├─ .github/  (2 files)\n │   ├─ scripts/ (1)\n │   ├─ workflows/ (1)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ README.md\n ├─ eslint.config.mjs\n └─ … 5 more files", "age-wiz": " ├─ .gitignore\n ├─ README.md\n ├─ detector.py\n ├─ requirements.txt", "daylight": " ├─ daylight/  (50 files)\n │   ├─ Views/ (25)\n │   ├─ Models/ (6)\n │   ├─ Fonts/ (5)\n ├─ supabase/  (10 files)\n │   ├─ .temp/ (8)\n │   ├─ migrations/ (1)\n ├─ .gitignore\n ├─ ideas.md\n ├─ project.yml\n ├─ roadmap.md\n └─ … 1 more files", "stitchu": " ├─ App/  (53 files)\n │   ├─ Stitchu/ (50)\n │   ├─ Stitchu.xcodeproj/ (2)\n ├─ assets-src/  (7 files)\n ├─ knowledge/  (6 files)\n ├─ backend/  (3 files)\n ├─ engine-check/  (2 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ asset-guide-tr.html\n ├─ asset-guide.html\n └─ … 3 more files", "fantaisie-impromptu": " ├─ excercism/  (64 files)\n │   ├─ java/ (41)\n │   ├─ python/ (10)\n │   ├─ javascript/ (1)\n ├─ cpp_lectures/  (61 files)\n │   ├─ weeks/ (25)\n │   ├─ build/ (11)\n │   ├─ week5/ (11)\n ├─ pythun-tutor-labs/  (48 files)\n │   ├─ labs/ (35)\n │   ├─ lab04/ (3)\n │   ├─ tutorial_rojects/ (3)\n ├─ homeworks/  (33 files)\n │   ├─ cs102/ (16)", "insta-analyzer": " ├─ .env.example\n ├─ .gitignore\n ├─ README.md\n ├─ analyze.py", "sunny": " ├─ sunny/  (44 files)\n │   ├─ sunny/ (37)\n │   ├─ sunny.xcodeproj/ (4)\n │   ├─ sunnyUITests/ (2)\n ├─ docs/  (10 files)\n │   ├─ images/ (9)\n ├─ .DS_Store\n ├─ .gitignore\n ├─ README.md", "musical-improvisation-tool": " ├─ extended-files-philosopy/  (2 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ PossibleFeatures.md\n ├─ README.md\n └─ … 5 more files", "msducky": " ├─ web/  (554 files)\n │   ├─ makale/ (547)\n ├─ data/  (54 files)\n │   ├─ mine/ (24)\n │   ├─ research-raw/ (7)\n ├─ icons/  (5 files)\n ├─ mocks/  (5 files)\n ├─ js/  (2 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ api/  (1 files)\n ├─ … 4 more folders\n ├─ .gitignore\n ├─ CLAUDE.md", "snailmail-web": " ├─ public/  (18 files)\n ├─ art/  (14 files)\n ├─ .gitignore\n ├─ RESEARCH.md\n ├─ clothesline.html\n ├─ deck.html\n └─ … 10 more files", "lady-fantasy.ai": " ├─ app/  (9 files)\n │   ├─ api/ (5)\n ├─ .DS_Store\n ├─ .gitignore\n ├─ README.md\n ├─ next.config.mjs\n └─ … 2 more files", "msducky-abone": " ├─ {\"message\":\"Git Repository is empty.\",\"documentation_url\":\"https:/  (1 files)\n │   ├─ / (1)", "league-of-bilkent": " ├─ LeagueOfBilkent_ReadyToPlay/  (30 files)\n │   ├─ bin/ (29)\n ├─ bin/  (28 files)\n │   ├─ META-INF/ (15)\n │   ├─ com/ (10)\n ├─ panels/  (14 files)\n ├─ model/  (9 files)\n ├─ tools/  (6 files)\n ├─ screens/  (5 files)\n ├─ lib/  (3 files)\n ├─ .DS_Store\n ├─ .gitignore\n ├─ .nojekyll\n ├─ LICENSE", "lala-retro": " ├─ LalaRetro/  (47 files)\n │   ├─ LalaRetro/ (42)\n │   ├─ LalaRetro.xcodeproj/ (4)\n ├─ docs/  (3 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md", "damlahelloworld.github.io": " ├─ damla-log/  (3 files)\n ├─ content/  (2 files)\n ├─ doodles/  (1 files)\n ├─ sunflower/  (1 files)\n ├─ .gitignore\n ├─ CLAUDE.md\n ├─ PROJECT.md\n ├─ README.md\n └─ … 5 more files", "prolotherapy-reference": " ├─ ProloGuide/  (32 files)\n │   ├─ Assets.xcassets/ (22)\n │   ├─ Data/ (2)\n ├─ design/  (10 files)\n │   ├─ region-bases/ (10)\n ├─ Guttik/  (7 files)\n │   ├─ Assets/ (2)\n ├─ research/  (7 files)\n │   ├─ raw/ (4)\n │   ├─ pubmed/ (2)\n ├─ ProloGuide.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ web/  (2 files)\n │   ├─ data/ (1)"};
+const ALIAS={"snailmail":"snailmail-web","gymgyme v2":"gymgyme"};
+/* wall list */
+const P=[
+ ["lingolingo","speak english, get honest voice analysis on a credit model","Swift · SwiftUI · AI","wip","2026-07-08T12:33:08Z"],
+ ["sunflower","pomodoro garden that grows while you focus, wilts when you don't","Swift · WidgetKit","wip","2026-07-08T12:19:16Z"],
+ ["msducky","duolingo-style case bank for prolotherapy, 1200+ sourced questions","JS · SRS engine","live","2026-07-09T21:31:34Z"],
+ ["snailmail","slow letter platform for university clubs","JS · GitHub Pages","wip","2026-07-08T11:20:00Z"],
+ ["stitchu","photo of you → sewing pattern → printable A4 PDF","Swift · geometry","wip","2026-07-08T11:32:48Z"],
+ ["kisalafinuzunu","turkish sayings, the sea keeps sand, i keep words","JS","live","2026-07-09T19:08:23Z"],
+ ["shortstorylong","impromptu speaking practice, pull a topic and talk","JS","live","2026-07-09T20:13:55Z"],
+ ["vibecodedflopware","leetcode but every question comes from your own repo","JS · AST","wip","2026-07-09T21:21:32Z"],
+ ["mergeconflict","the questions interviews actually ask, real sources only","Next","wip","2026-07-09T22:10:10Z"],
+ ["prolotherapy-reference","evidence-based 3D injection atlas for clinicians, B2B","Swift · 3D","wip","2026-07-07T19:16:48Z"],
+ ["yks-koc","exam coach that plans every study day for turkish students","JS · Supabase","wip","2026-07-09T23:33:19+03:00"],
+ ["scrapp","iOS scrapbook, glue things like it's paper","Swift","wip","2026-07-08T11:06:42Z"],
+ ["moonlight","moon phases, horary and astrology tracking","JS","live","2026-07-08T11:00:41Z"],
+ ["musical-improvisation-tool","play few notes, learn your scale, improvise better","JS · music theory","live","2026-07-09T22:15:36Z"],
+ ["age-wiz","age guessing from a photo, tiny model in the browser","Python · JS","live","2026-07-08T11:16:03Z"],
+ ["iwantmymtv","music television, but mine","JS","wip","2026-07-09T20:40:35Z"],
+ ["creator-books","two books on audience psychology and growth, EPUB pipeline","Python · EPUB","wip","2026-07-09T11:22:26Z"],
+ ["gymgyme v2","pink social home workouts + diet for women","Swift","wip","2026-07-01T22:47:34Z"],
+ ["ladybug","which class caused this? debugging for vibecoders","TS · Next","wip","2026-07-08T11:08:49Z"],
+ ["insta-analyzer","who follows you but never likes your photos","Python","live","2026-06-11T16:37:50Z"],
+ ["mbti-tester","quick personality test, zero pretension","JS","live","2026-07-08T11:05:30Z"],
+ ["coffee-menu","what espresso drinks actually are, from my barista summer","JS","live","2026-07-08T11:03:54Z"],
+ ["sunny","my first iOS app — weather-based sunscreen reminders","Swift","live","2026-03-24T13:42:46Z"],
+ ["vibematch","find bilkent communities that match your vibe","Java · Swing","uni","2026-07-01T22:41:08Z"],
+ ["league-of-bilkent","cs102 team project, campus league","Java","uni","2026-04-12T14:20:49Z"],
+ ["hide-on-bush","cs102 but on mobile","Java","uni","2026-03-31T14:22:29Z"],
+ ["fantaisie-impromptu","every exercise, leetcode and TA note i've written","C++ · Java","uni","2026-03-24T16:12:32Z"],
+ ["daylight","lettering platform on iOS","Swift","arc","2026-03-25T23:13:34Z"],
+ ["forget-me-not","letter platform for web, i respect slow bonds","JS · DB","arc","2026-03-22T00:17:10Z"],
+ ["wildflower.dev","focus timer gamified like stardew valley","JS","arc","2026-03-25T23:13:43Z"],
+ ["damla.log","personal assistant for my own project chaos","JS","arc","2026-03-27T12:53:28Z"],
+ ["braindot","a content production pipeline","Python","arc","2026-03-27T17:31:07Z"],
+ ["lala-retro","cosmetic ingredient comparison by barcode","Swift","arc","2026-03-31T14:28:05Z"],
+ ["butterfry","food ingredient comparison algorithm","JS","arc","2026-03-22T00:17:08Z"],
+ ["linc-matik","mental martial art practice with AI","JS","arc","2026-03-22T17:50:55Z"],
+ ["mystic_queen","d minor arpeggio worship, camel forever","JS","arc","2026-03-25T23:13:38Z"],
+ ["lady-fantasy.ai","pick a card, AI gives you a video","Next · fal.ai","arc","2026-03-19T22:00:58Z"],
+ ["youdecide","took 20 minutes, my brother is happy","JS","arc","2025-05-23T11:09:37Z"],
+ ["tamagotchi-hair-design","grow a little creature's hair","JS","arc","2026-07-01T11:31:07Z"],
+ ["home-workout","seed of gymgyme v2","Swift","arc","2026-07-02T08:36:37Z"],
 ];
-
-const EDU=[
-  {r:"Bilkent University",tg:"b.sc. computer science",d:"B.Sc. in Computer Science",p:"2023 – present"},
-  {r:"Medipol University",tg:"medicine, 91/100",d:"Medicine, 91/100",p:"2020 – 2023"},
-  {r:"Damla Fen Lisesi (Homeschooling)",tg:"homeschooled through cancer treatment",d:"Transferred in 12th grade for cancer treatment. What looked like darkness became the most transformative period of my life, learned 2 instruments, studied music theory, spent time with ideas and art. Learned to manage my own life on my own terms.",p:"2019 – 2020"},
-  {r:"Nesibe Aydın Fen Lisesi (Science High School)",tg:"gpa 96.68, mun delegate",d:"GPA: 96.68/100, Top class C, ranked 1–20. Active MUN delegate: BHMUN 2016, MUNBU 2017, MUNTR 2017, NAMUN 2018. Skills: Negotiation, public speaking, diplomacy.",p:"2016 – 2019"},
-];
-
-// --- NAVIGATION ---
-let cur="";
-function go(p){
-  if(p===cur)return;
-  document.querySelectorAll(".page").forEach(x=>x.classList.remove("on"));
-  document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("on"));
-  cur=p;
-  history.replaceState(null,null,"#"+p);
-  const pg=document.getElementById("p-"+p);
-  if(pg)pg.classList.add("on");
-  const btn=document.querySelector(`[data-p="${p}"]`);
-  if(btn)btn.classList.add("on");
-  if(p==="experience"||p==="skills"){
-    const t=document.querySelector('[data-p="technical"]');
-    if(t)t.classList.add("on");
-  }
-  window.scrollTo(0,0);
-}
-
-// --- ZOOM NOTE ---
-function stCls(s){ return s==="live"?"st-live":s==="built"?"st-built":s==="in dev"?"st-dev":"st-idea"; }
-let lastFocus=null;
-function openNote(sl){
-  const p=P.find(x=>x.sl===sl);
-  if(!p)return;
-  lastFocus=document.activeElement;
-  const emoji=p.img?`<img src="${p.img}" alt="">`:p.e;
-  const box=document.getElementById("note-box");
-  box.innerHTML=`
-    <button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
-    <div class="note-doodle"><img src="doodles/${p.sl}.png" alt="" onload="this.parentElement.classList.add('hasimg')" onerror="this.parentElement.remove()"></div>
-    <div class="note-head"><span class="note-emoji">${emoji}</span>${p.n} <span class="note-st ${stCls(p.s)}" style="font-style:italic">· <span>${p.s}</span></span></div>
-    ${(p.g||p.l)?`<div class="note-links" style="margin-top:12px">
-      ${p.g?`<a href="${p.g}" target="_blank" rel="noopener" class="proj-link">→ github</a>`:""}
-      ${p.l?`<a href="${p.l}" target="_blank" rel="noopener" class="proj-link proj-link-live">${p.ll||"-> live demo"}</a>`:""}
-    </div>`:""}
-    <hr class="note-line">
-    <div class="note-desc">${p.d}</div>
-    ${p.t.length?`<hr class="note-line"><div class="note-stack">${p.t.join(" · ")}</div>`:""}`;
-  document.getElementById("note-overlay").classList.add("on");
-  document.body.classList.add("note-open");
-  history.replaceState(null,null,"#projects/"+p.sl);
-  box.querySelector(".note-close").focus();
-}
-function closeNote(){
-  document.getElementById("note-overlay").classList.remove("on");
-  document.body.classList.remove("note-open");
-  history.replaceState(null,null,"#"+cur);
-  if(lastFocus)lastFocus.focus();
-}
-
-// --- FILTERS + PAGINATION ---
-let fStatus="all", fTech="all", pPage=1;
-const PAGE_SIZE=8;
-const TECH_F=[
-  ["all",()=>true],
-  ["swift",t=>/swift/i.test(t)],
-  ["next.js",t=>/next\.js/i.test(t)],
-  ["react",t=>/react/i.test(t)],
-  ["typescript",t=>/typescript/i.test(t)],
-  ["javascript",t=>/javascript/i.test(t)],
-  ["java",t=>/^java(?!script)/i.test(t)],
-  ["python",t=>/python|dlib|face_recognition/i.test(t)],
-  ["supabase",t=>/supabase/i.test(t)],
-  ["html/css",t=>/html|css|tailwind/i.test(t)],
-];
-function renderFilters(){
-  const el=document.getElementById("proj-filters");
-  const st=["all","live","built","in dev","idea"].map(s=>
-    `<button class="fchip${fStatus===s?" on":""}" onclick="setF('s','${s}')">${s}</button>`).join("");
-  const te=TECH_F.map(x=>
-    `<button class="fchip${fTech===x[0]?" on":""}" onclick="setF('t','${x[0]}')">${x[0]}</button>`).join("");
-  el.innerHTML='<div class="fcard"><span class="flabel">filter:</span>'+st+'</div><div class="fcard"><span class="flabel">tech:</span>'+te+'</div>';
-}
-function setF(k,v){ if(k==='s')fStatus=v; else fTech=v; pPage=1; renderFilters(); renderProjects(); }
-function goPage(n){ pPage=n; renderProjects(); window.scrollTo(0,0); }
-
-function renderProjects(){
-  const list=document.getElementById("proj-list");
-  const techPred=(TECH_F.find(x=>x[0]===fTech)||TECH_F[0])[1];
-  const shown=P.filter(p=>(fStatus==="all"||p.s===fStatus)&&(fTech==="all"||p.t.some(techPred)));
-  const MK={live:"* live","in dev":"~ dev",built:"+ built",idea:". idea"};
-  const MC={live:"live","in dev":"dev",built:"built",idea:"idea"};
-  const pages=Math.max(1,Math.ceil(shown.length/PAGE_SIZE));
-  if(pPage>pages)pPage=pages; if(pPage<1)pPage=1;
-  const start=(pPage-1)*PAGE_SIZE;
-  const pageItems=shown.slice(start,start+PAGE_SIZE);
-  list.innerHTML=pageItems.map((p,i)=>{
-    const id=String(start+i+1).padStart(4,"0");
-    const dsc=p.tg.split(",")[0].trim();
-    const tech=p.t.slice(0,3).map(x=>x.toLowerCase()).join(" · ");
-    const dly=Math.min(i*0.03,0.28).toFixed(2);
-    return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openNote('${p.sl}')"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}">
-      <span class="idx">${id}</span><span class="nm">${p.n.toLowerCase()}</span><span class="dsc">${dsc}</span><span class="mid">${tech}</span><span class="st ${MC[p.s]}">${MK[p.s]}</span>
-    </a>`;
-  }).join("");
-  const pager=document.getElementById("proj-pager");
-  pager.innerHTML=pages>1?`<button class="pgbtn" onclick="goPage(${pPage-1})" ${pPage<=1?"disabled":""}>← prev</button>`+
-    `<span class="pgnum">page <b>${pPage}</b> / ${pages}</span>`+
-    `<button class="pgbtn" onclick="goPage(${pPage+1})" ${pPage>=pages?"disabled":""}>next →</button>`:"";
-  const live=P.filter(p=>p.s==="live").length;
-  document.getElementById("proj-count").textContent=`${P.length} projects · ${live} live`;
-}
-
-document.addEventListener("DOMContentLoaded",()=>{
-  // nav
-  const nav=document.getElementById("nav-bar");
-  const navL=document.createElement("div");navL.className="nav-card";
-  const navR=document.createElement("div");navR.className="nav-card";
-  function buildNav(items,target){
-    items.forEach(n=>{
-      const b=document.createElement("button");
-      b.className="nav-btn"+(n.brand?" nav-brand":"");b.dataset.p=n.k;b.textContent=n.l;
-      if(n.sub){
-        const wrap=document.createElement("div");wrap.className="nav-drop";
-        const menu=document.createElement("div");menu.className="nav-menu";
-        n.sub.forEach(s=>{
-          const sb=document.createElement("button");
-          sb.className="nav-btn";sb.dataset.p=s.k;sb.textContent=s.l;
-          sb.onclick=()=>go(s.k);menu.appendChild(sb);
-        });
-        b.onclick=()=>go(n.sub[0].k);
-        wrap.appendChild(b);wrap.appendChild(menu);target.appendChild(wrap);
-      }else{
-        b.onclick=()=>go(n.k);target.appendChild(b);
-      }
-    });
-  }
-  buildNav(NAV_L,navL);buildNav(NAV_R,navR);
-  nav.appendChild(navL);nav.appendChild(navR);
-
-  // projects
-  renderFilters();
-  renderProjects();
-
-  // home: terminal ls listesi + stats
-  const liveN=P.filter(p=>p.s==="live").length;
-  document.getElementById("proj-stats").textContent=`${P.length} projects · ${liveN} live · iOS · web · AI`;
-  const MARK={live:"* live","in dev":"~ in dev",built:"+ built",idea:". idea"};
-  const MCLS={live:"live","in dev":"dev",built:"built",idea:"idea"};
-  document.getElementById("home-ls").innerHTML=P.slice(0,8).map((p,i)=>{
-    const id=String(i+1).padStart(4,"0");
-    const nm=p.n.toLowerCase();
-    const dots=" "+"·".repeat(Math.max(3,32-nm.length))+" ";
-    return `<a class="item" role="button" tabindex="0" onclick="openNote('${p.sl}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openNote('${p.sl}')}"><span class="id">${id}</span>  <span class="nm">${nm}</span><span class="dot">${dots}</span><span class="${MCLS[p.s]}">${MARK[p.s]}</span></a>`;
-  }).join("");
-
-  // overlay close: backdrop click + ESC
-  document.getElementById("note-overlay").addEventListener("click",e=>{
-    if(e.target.id==="note-overlay")closeNote();
+const DOT={live:"d-live",wip:"d-wip",uni:"d-uni",arc:"d-arc"};
+P.sort((a,b)=>(b[4]||"").localeCompare(a[4]||""));
+const wall=document.getElementById("wall");
+const F={st:"",te:new Set(),q:""};
+function renderWall(){
+  wall.innerHTML="";let shown=0;
+  P.forEach(([n,one,tech,st],i)=>{
+    if(F.st&&st!==F.st)return;
+    if(F.te.size&&![...F.te].some(t=>tech.toLowerCase().includes(t)))return;
+    if(F.q&&!(n+" "+one+" "+tech).toLowerCase().includes(F.q))return;
+    shown++;
+    const li=document.createElement("li");
+    li.innerHTML=`<span class="no st-${st}">${String(i+1).padStart(2,"0")}</span><span class="nm st-${st}">${n}</span><span class="one">${one}</span><span class="tech">${tech}</span>`;
+    li.onclick=e=>{openDetail(n,one,tech);burst(e.clientX,e.clientY)};
+    wall.appendChild(li);
   });
-  document.addEventListener("keydown",e=>{
-    if(e.key==="Escape"&&document.getElementById("note-overlay").classList.contains("on"))closeNote();
-  });
-
-  // experience + education => skills gibi ~/dizin/ listesi, tiklayinca tam metin acilir
-  const dirSlug=s=>s.toLowerCase().replace(/[,&()]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-");
-  window.openEduNote=i=>{
-    const e=EDU[i]; if(!e)return;
-    lastFocus=document.activeElement;
-    const box=document.getElementById("note-box");
-    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
-      <div class="note-head">${e.r}</div>
-      <div class="blog-date" style="margin:2px 0 0">${e.p}</div>
-      <hr class="note-line">
-      <div class="note-desc">${e.d}</div>`;
-    document.getElementById("note-overlay").classList.add("on");
-    document.body.classList.add("note-open");
-    box.querySelector(".note-close").focus();
-  };
-  document.getElementById("edu-content").innerHTML=EDU.map((e,i)=>{
-    const dly=(i*0.05).toFixed(2);
-    const per=e.p.replace(/\s*[–—]\s*/g,' - ');
-    return `<a class="dirblk" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openEduNote(${i})"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openEduNote(${i})}">
-      <div class="dtop"><span class="dcat">${dirSlug(e.r)}</span><span class="dper">${per}</span></div>
-      <div class="ditems"><span class="di">${e.tg}</span></div>
-    </a>`;
-  }).join("");
-
-  // experience, kart sistemi
-  window.openExpNote=i=>{
-    const e=EX[i]; if(!e)return;
-    lastFocus=document.activeElement;
-    const box=document.getElementById("note-box");
-    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
-      <div class="note-head">${e.r}</div>
-      <div class="blog-date" style="margin:2px 0 0">${e.p}</div>
-      <hr class="note-line">
-      <div class="note-desc">${e.d}</div>`;
-    document.getElementById("note-overlay").classList.add("on");
-    document.body.classList.add("note-open");
-    box.querySelector(".note-close").focus();
-  };
-  document.getElementById("exp-content").innerHTML=EX.map((e,i)=>{
-    const dly=Math.min(i*0.05,0.5).toFixed(2);
-    const per=e.p.replace(/\s*[–—]\s*/g,' - ');
-    return `<a class="dirblk" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openExpNote(${i})"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openExpNote(${i})}">
-      <div class="dtop"><span class="dcat">${dirSlug(e.r)}</span><span class="dper">${per}</span></div>
-      <div class="ditems"><span class="di">${e.tg}</span></div>
-    </a>`;
-  }).join("");
-
-  // skills, kategori kartlari
-  document.getElementById("skills-content").innerHTML=Object.entries(SK).map(([k,v],i)=>
-    `<div class="skblock" style="animation-delay:${(i*0.05).toFixed(2)}s"><div class="skcat">${k.replace(/ /g,"-")}</div><div class="skitems">${v.map(s=>`<span class="sk">${s}</span>`).join("")}</div></div>`
-  ).join("");
-
-  // email
-  const ea="su.bilge@ug.bilkent.edu.tr";
-  const el=document.getElementById("email-link"),et=document.getElementById("email-text");
-  if(el&&et){el.href="mailto:"+ea;et.textContent=ea;}
-
-  // simple markdown to HTML
-  function md2html(md){
-    return md
-      .replace(/^\/\/ (.+)$/gm,'<div class="blog-date">$1</div>')
-      .replace(/^---$/gm,'<hr class="md-hr">')
-      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-      .replace(/\*(.+?)\*/g,'<em>$1</em>')
-      .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank">$1</a>')
-      .split('\n\n')
-      .map(block=>{
-        block=block.trim();
-        if(!block)return '';
-        if(block.startsWith('<hr')||block.startsWith('<div class="blog-date"'))return block;
-        return `<p class="md-p">${block}</p>`;
-      })
-      .join('\n');
-  }
-
-  function loadMd(file,targetId){
-    fetch('content/'+file)
-      .then(r=>r.text())
-      .then(md=>{ document.getElementById(targetId).innerHTML=md2html(md); })
-      .catch(()=>{});
-  }
-  loadMd('about-me.md','about-content');
-
-  // life plan, projelerdeki kart sistemi: her log bir kagit kart
-  let LP=[];
-  window.openLifeNote=i=>{
-    const e=LP[i]; if(!e)return;
-    lastFocus=document.activeElement;
-    const box=document.getElementById("note-box");
-    box.innerHTML=`<button class="note-close" onclick="closeNote()" aria-label="close">[x] close</button>
-      <div class="blog-date" style="margin:0 0 2px">${e.label}</div>
-      <hr class="note-line" style="margin-top:8px">
-      <div class="note-desc">${e.html}</div>`;
-    document.getElementById("note-overlay").classList.add("on");
-    document.body.classList.add("note-open");
-    box.querySelector(".note-close").focus();
-  };
-  fetch('content/life-plan.md')
-    .then(r=>r.text())
-    .then(md=>{
-      LP=md.split(/^---$/m).map(b=>b.trim()).filter(Boolean).map(b=>{
-        const m=b.match(/^\/\/ (.+)$/m);
-        const label=m?m[1].trim():"";
-        const body=b.replace(/^\/\/ .+$/m,"").trim();
-        return {label, title:(label.split("·")[1]||label).trim(), html:md2html(body)};
-      });
-      document.getElementById("lifeplan-content").innerHTML=LP.map((e,i)=>{
-        const dsc=e.html.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();
-        const id=String(i+1).padStart(4,"0");
-        const dly=Math.min(i*0.04,0.45).toFixed(2);
-        return `<a class="trow" role="button" tabindex="0" style="animation-delay:${dly}s" onclick="openLifeNote(${i})"
-          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLifeNote(${i})}">
-          <span class="idx">${id}</span><span class="nm">${e.title}</span><span class="dsc">${dsc}</span><span class="dots">${'·'.repeat(140)}</span><span class="per">${e.label.split("·")[0].trim()}</span>
-        </a>`;
-      }).join("");
-    })
-    .catch(()=>{});
-
-  // init, supports #projects/slug deep links
-  const hash=location.hash.replace("#","");
-  const [page,slug]=hash.split("/");
-  go(ALL_PAGES.includes(page)?page:"home");
-  if(page==="projects"&&slug)openNote(slug);
+  const parts=[];
+  if(F.st)parts.push(document.querySelector(`.tok.st[data-v="${F.st}"]`).textContent.trim());
+  if(F.te.size)parts.push([...F.te].join(", "));
+  if(F.q)parts.push(`"${F.q}"`);
+  document.getElementById("cmdline").innerHTML=`showing <b>${shown}/${P.length}</b>`+(parts.length?` — ${parts.join(" · ")}`:"");
+}
+document.querySelectorAll(".tok.st").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tok.st").forEach(x=>x.classList.remove("on"));
+  t.classList.add("on");F.st=t.dataset.v;renderWall();
 });
-</script>
-<script>
-(function(){var S=document.createElement('div');S.id='stars';document.body.insertBefore(S,document.body.firstChild);
-var cols=['#5b5488','#5b5488','#6a5f9a','#ff8fbb','#b892ff','#bce6a0','#f6cf6e'],gly=['*','+','·','.'];
-for(var i=0;i<70;i++){var s=document.createElement('span');s.textContent=gly[Math.floor(Math.random()*gly.length)];
-s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';s.style.fontSize=(8+Math.random()*12)+'px';
-s.style.color=cols[Math.floor(Math.random()*cols.length)];
-if(Math.random()<.55){s.className='tw';s.style.animationDelay=(Math.random()*3.5)+'s';}S.appendChild(s);}})();
+document.querySelectorAll(".tok.te").forEach(t=>t.onclick=()=>{
+  t.classList.toggle("on");
+  t.classList.contains("on")?F.te.add(t.dataset.v):F.te.delete(t.dataset.v);
+  renderWall();
+});
+document.getElementById("q").oninput=e=>{F.q=e.target.value.toLowerCase();renderWall()};
+renderWall();
+
+/* marquees: same list, two rows, opposite directions (content doubled for seamless loop) */
+const G=["+","*","·"];const COL=["hl-p","hl-m","hl-g","hl-y","hl-b"];
+function fill(el,rev){
+  let items=P.map(([n],i)=>`<span class="${COL[i%5]}"><b>*</b> ${n}</span>`);
+  if(rev)items=items.reverse();
+  el.innerHTML=items.join("")+items.join("");
+}
+fill(document.querySelector(".mq1"),false);
+fill(document.querySelector(".mq2"),true);
+
+/* detail overlay (one worked example) */
+const detail=document.getElementById("detail");
+function openDetail(n,one,tech){
+  const key=n.toLowerCase().replace(/ v2$/,"");
+  const pj=PJ.find(x=>x.sl&&(key.includes(x.sl.toLowerCase())||x.sl.toLowerCase().includes(key)||x.n.toLowerCase()===key));
+  document.getElementById("d-name").textContent=n;
+  document.getElementById("d-title").textContent=pj?pj.tg:one;
+  document.getElementById("d-what").innerHTML=pj?pj.d:one;
+  const tags=pj&&pj.t&&pj.t.length?pj.t:tech.split("·");
+  document.getElementById("d-tags").innerHTML=tags.map(t=>`<span>${String(t).trim()}</span>`).join("");
+  const liveA=document.getElementById("d-live");
+  if(pj&&pj.l){
+    liveA.style.display="inline-block";liveA.href=pj.l;liveA.textContent="";
+    let li_=0;const LT="live! ↗";
+    (function tl(){if(li_<=LT.length&&detail.classList.contains("open")||li_===0){liveA.textContent=LT.slice(0,li_);if(li_<LT.length){li_++;setTimeout(tl,70)}}})();
+  }else liveA.style.display="none";
+  const L=[];
+  if(pj&&pj.g)L.push(`<a href="${pj.g}" target="_blank" rel="noopener">repo ↗</a>`);
+  document.getElementById("d-links").innerHTML=L.length?L.join(" &nbsp; "):'<span class="dim">docs on the way</span>';
+  const tree=BUILT[ALIAS[key]||key];
+  document.getElementById("d-built-sect").style.display=tree?"block":"none";
+  if(tree)document.getElementById("d-arch").textContent=key+"/\n"+tree;
+  detail.classList.add("open");
+}
+detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
+
+/* terminal typing for the hero line */
+const SEG=[["3rd-year CS student at ",""],["Bilkent","hl-b"],[" who ships ",""],["real products","hl-p"],[". Founder of ",""],["damlahelloworld","hl-m"],[".",""]];
+const typer=document.getElementById("typer");
+const TOTAL=SEG.reduce((a,[t])=>a+t.length,0);let ti=0;
+(function type(){
+  if(ti>TOTAL)return;
+  let left=ti,html="";
+  for(const [t,c] of SEG){
+    if(left<=0)break;
+    const part=t.slice(0,left);left-=t.length;
+    html+=c?`<span class="${c}">${part}</span>`:part;
+  }
+  typer.innerHTML=html;ti++;setTimeout(type,28);
+})();
+
+/* stars */
+const sf=document.getElementById("stars");
+for(let i=0;i<130;i++){
+  const SG=["*","+","·",".","-"];
+  const s=document.createElement("span");s.className="star";s.textContent=SG[i%5];
+  s.style.fontSize=(9+(i%3)*3)+"px";
+  if(i%4===0)s.style.color=`var(${["--pink","--purple","--green","--yellow","--blue"][i%5]})`;
+  s.style.left=Math.random()*100+"vw";s.style.top=Math.random()*100+"vh";
+  s.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(s);
+}
+
+/* confetti: mouse trail + click burst */
+const CFC=["--pink","--purple","--green","--yellow","--blue"];let last=0;
+function piece(x,y,vx){
+  const c=document.createElement("span");c.className="cf";c.textContent=G[Math.floor(Math.random()*3)];
+  c.style.left=x+vx+"px";c.style.top=y+"px";
+  c.style.color=`var(${CFC[Math.floor(Math.random()*5)]})`;
+  document.body.appendChild(c);setTimeout(()=>c.remove(),1100);
+}
+addEventListener("mousemove",e=>{const t=Date.now();if(t-last>45){last=t;piece(e.clientX,e.clientY,0)}});
+function burst(x,y){for(let i=0;i<24;i++)piece(x,y,(Math.random()-.5)*160)}
+
+/* wordmark: linkedin tooltip follows the mouse */
+const wm=document.querySelector(".wordmark"),tip=document.getElementById("tip");
+wm.addEventListener("mousemove",e=>{tip.style.display="block";tip.style.left=(e.clientX+16)+"px";tip.style.top=(e.clientY+8)+"px"});
+wm.addEventListener("mouseleave",()=>tip.style.display="none");
+
+/* palette switcher: buttons or keys 1/2/3 (white light mode; ALL THREE ship as user themes) */
+const pals=["pal-a","pal-b","pal-c"];
+function setPal(p){document.body.className=p;document.querySelectorAll("#pal button").forEach(b=>b.classList.toggle("on",b.dataset.p===p));try{localStorage.setItem("dhw-theme",p)}catch(e){}}
+try{const saved=localStorage.getItem("dhw-theme");if(saved&&["pal-a","pal-b","pal-c"].includes(saved))setPal(saved)}catch(e){}
+document.querySelectorAll("#pal button").forEach(b=>b.onclick=()=>setPal(b.dataset.p));
+addEventListener("keydown",e=>{if(e.target.id!=="q"&&e.key>="1"&&e.key<="3")setPal(pals[e.key-1])});
 </script>
 </body>
 </html>
