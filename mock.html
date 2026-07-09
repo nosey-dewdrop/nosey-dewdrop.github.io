@@ -79,7 +79,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 /* ---------- marquees: two thin rows, opposite directions, decoration only ---------- */
 #marquees{padding:28px 0;overflow:hidden}
 .mq{display:flex;gap:44px;white-space:nowrap;width:max-content;color:var(--ink-dim)}
-.mq span b{font-weight:400;color:var(--ink)}
+.mq span b{font-weight:400}
 .mq .g{margin-right:10px}
 .mq1{animation:sl 60s linear infinite}
 .mq2{animation:sr 75s linear infinite;margin-top:14px}
@@ -474,7 +474,7 @@ renderWall();
 /* marquees: same list, two rows, opposite directions (content doubled for seamless loop) */
 const G=["+","*","·"];const COL=["hl-p","hl-m","hl-g","hl-y","hl-b"];
 function fill(el,rev){
-  let items=P.map(([n],i)=>`<span><b class="${COL[i%5]}">*</b> ${n}</span>`);
+  let items=P.map(([n],i)=>`<span class="${COL[i%5]}"><b>*</b> ${n}</span>`);
   if(rev)items=items.reverse();
   el.innerHTML=items.join("")+items.join("");
 }
