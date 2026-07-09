@@ -141,16 +141,19 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .cols{position:relative}
 .art-cols{right:20px;top:58%}
 .about{padding:28px 0;position:relative}
-.about .mascot{position:absolute;right:4%;bottom:0;opacity:.35;z-index:0;animation:none}
+.about .mascot{position:absolute;right:6%;bottom:30px;opacity:.45;font-size:13px;z-index:0;animation:none}
 .about-text{position:relative;z-index:1}
 .about-row{display:flex;gap:28px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
 .about-row p{margin:0 0 6px}
 .about-text{font-size:15px;line-height:1.7;column-count:2;column-gap:44px}
 .about-text p{break-inside:avoid}
 .about-text>p:first-child{color:var(--purple);column-span:all}
+.about-end{column-span:all;text-align:center;margin-top:18px}
+.heart{color:var(--pink)}
 .about-text .dim{color:var(--purple)}
 .about-text p{margin:0 0 12px}
-footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
+footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim);text-align:center}
+footer p{margin:0 0 8px}
 .at-pink{color:var(--pink)}
 
 /* confetti */
@@ -306,7 +309,8 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
       <p><span class="dim">hands &amp; craft.</span> Former board member of the Knitting &amp; Crocheting Society, environmental volunteer at TEMA. I sew, I doodle, I brew coffee every way possible: chemex, V60, french press, aeropress, I know them all from my barista days at a third wave specialty shop</p>
       <p><span class="dim">body &amp; mind.</span> Competitive swimmer from age 6 to 11, before my diagnosis changed everything. Three years at the gym and pilates regularly now, not for aesthetics, for my mind! Slow living, quiet walks, meditation, a good matcha and long afternoons with a book</p>
       <p>this lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty!</p>
-      <p class="dim">꒰ she builds soft things ꒱ &nbsp; ~ ʚɞ ~</p>
+      <p class="about-end heart">{i build things come from the heart!}</p>
+      <p class="about-end dim">~ ʚɞ ~</p>
     </div>
     <pre class="mascot" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⣀⡄⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠐⢿⠓⠀⢀⡴⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -338,7 +342,8 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 </main>
 
 <footer>
-  <span>[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>] [<a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener">linkedin ↗</a>] &nbsp; <span class="at-pink">@damlahelloworld</span> ~ ʚɞ ~</span>
+  <p>[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>] [<a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener">linkedin ↗</a>]</p>
+  <p class="at-pink">@damlahelloworld</p>
 </footer>
 
 <!-- ===== DETAIL TEMPLATE (mock shows one example; real version reads products.json) ===== -->
