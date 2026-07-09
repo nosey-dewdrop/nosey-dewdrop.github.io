@@ -125,6 +125,8 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .doc{max-width:720px;margin:56px auto;background:var(--bg-soft);border-radius:3px;padding:44px}
 .doc .close{float:right;cursor:pointer;color:var(--ink-dim)}
 .doc h1{font-size:20px;margin-bottom:8px}
+#d-live{display:none;font-size:34px;color:var(--green);text-decoration:none;margin:4px 0}
+#d-live:hover{text-decoration:underline}
 .doc .sect{margin-top:28px}
 .doc .sect h2{font-size:16px;color:var(--purple);margin-bottom:8px}
 .doc pre{color:var(--ink-dim);line-height:1.6;overflow-x:auto}
@@ -300,6 +302,7 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
   <div class="doc">
     <span class="close" onclick="detail.classList.remove('open')">✕ close</span>
     <p class="dim">damlahelloworld / <span id="d-name">lingolingo</span></p>
+    <a id="d-live" target="_blank" rel="noopener"></a>
     <h1 id="d-title">english speaking practice with honest AI feedback</h1>
     <div class="tags" id="d-tags"></div>
     <div class="sect"><h2>+ what it is</h2><p id="d-what"></p></div>
@@ -440,8 +443,13 @@ function openDetail(n,one,tech){
   document.getElementById("d-what").innerHTML=pj?pj.d:one;
   const tags=pj&&pj.t&&pj.t.length?pj.t:tech.split("·");
   document.getElementById("d-tags").innerHTML=tags.map(t=>`<span>${String(t).trim()}</span>`).join("");
+  const liveA=document.getElementById("d-live");
+  if(pj&&pj.l){
+    liveA.style.display="inline-block";liveA.href=pj.l;liveA.textContent="";
+    let li_=0;const LT="live! ↗";
+    (function tl(){if(li_<=LT.length&&detail.classList.contains("open")||li_===0){liveA.textContent=LT.slice(0,li_);if(li_<LT.length){li_++;setTimeout(tl,70)}}})();
+  }else liveA.style.display="none";
   const L=[];
-  if(pj&&pj.l)L.push(`<a href="${pj.l}" target="_blank" rel="noopener">live ↗</a>`);
   if(pj&&pj.g)L.push(`<a href="${pj.g}" target="_blank" rel="noopener">repo ↗</a>`);
   document.getElementById("d-links").innerHTML=L.length?L.join(" &nbsp; "):'<span class="dim">docs on the way</span>';
   const tree=BUILT[ALIAS[key]||key];
