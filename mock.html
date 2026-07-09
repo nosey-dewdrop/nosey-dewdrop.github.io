@@ -452,10 +452,19 @@ function openDetail(n,one,tech){
 detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
 
 /* terminal typing for the hero line */
-const TXT="3rd-year CS student at Bilkent who ships real products. Founder of damlahelloworld.";
-const typer=document.getElementById("typer");let ti=0;
-(function type(){if(ti<=TXT.length){typer.textContent=TXT.slice(0,ti);ti++;setTimeout(type,28)}
-else{typer.innerHTML='3rd-year CS student at <span class="hl-b">Bilkent</span> who ships <span class="hl-p">real products</span>. Founder of <span class="hl-m">damlahelloworld</span>.'}})();
+const SEG=[["3rd-year CS student at ",""],["Bilkent","hl-b"],[" who ships ",""],["real products","hl-p"],[". Founder of ",""],["damlahelloworld","hl-m"],[".",""]];
+const typer=document.getElementById("typer");
+const TOTAL=SEG.reduce((a,[t])=>a+t.length,0);let ti=0;
+(function type(){
+  if(ti>TOTAL)return;
+  let left=ti,html="";
+  for(const [t,c] of SEG){
+    if(left<=0)break;
+    const part=t.slice(0,left);left-=t.length;
+    html+=c?`<span class="${c}">${part}</span>`:part;
+  }
+  typer.innerHTML=html;ti++;setTimeout(type,28);
+})();
 
 /* stars */
 const sf=document.getElementById("stars");
