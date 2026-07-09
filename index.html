@@ -163,7 +163,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .about-text{font-size:13px;line-height:1.6;column-count:2;column-gap:44px}
 .about-text p{break-inside:avoid}
 .about-text>p:first-child{color:var(--purple);column-span:all}
-.about-end{column-span:all;text-align:center;margin-top:14px}
+.about-end{text-align:center;margin:14px 0 0}
 .heart{color:var(--purple)}
 .about-text .dim{color:var(--purple)}
 .about-text p{margin:0 0 12px}
@@ -243,7 +243,7 @@ footer p{margin:0 0 8px}
 </section>
 
 <section class="stats">
-  <span class="cg" id="pcount">40 projects</span> <span class="dim">-</span>
+  <span class="cg" id="pcount">40+ projects</span> <span class="dim">-</span>
   <span class="c2">IT Girl</span> <span class="dim">-</span>
   <span class="c3">I am an idea machine</span> <span class="dim">-</span>
   <span class="c4">{vibecoder}</span>
@@ -283,6 +283,8 @@ footer p{margin:0 0 8px}
     <p>Bilkent Sociology Society <span class="dim">· 2024 – 2025</span><br><span class="dim">audit board president</span></p>
     <p>Bilkent Music, Crochet &amp; TEMA clubs <span class="dim">· 2023 – 2024</span><br><span class="dim">former board member across three clubs</span></p>
   </div>
+  <p class="about-end heart">{i build things come from the heart!}</p>
+  <p class="about-end dim">~ ʚɞ ~</p>
 </section>
 
 </main>
@@ -353,8 +355,6 @@ footer p{margin:0 0 8px}
       <p><span class="dim">hands &amp; craft.</span> Former board member of the Knitting &amp; Crocheting Society, environmental volunteer at TEMA. I sew, I doodle, I brew coffee every way possible: chemex, V60, french press, aeropress, I know them all from my barista days at a third wave specialty shop</p>
       <p><span class="dim">body &amp; mind.</span> Competitive swimmer from age 6 to 11, before life changed. Three years at the gym and pilates regularly now, not for aesthetics, for my mind! Slow living, quiet walks, meditation, a good matcha and long afternoons with a book</p>
       <p>this lifetime is mine, and every project here is curiosity, stubbornness, and a belief that technology should serve connection and beauty!</p>
-      <p class="about-end heart">{i build things come from the heart!}</p>
-      <p class="about-end dim">~ ʚɞ ~</p>
     </div>
     <pre class="mascot" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⣀⡄⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠐⢿⠓⠀⢀⡴⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -381,6 +381,8 @@ footer p{margin:0 0 8px}
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠶⢾⣿⣟⠁⠀⠀⠺⡟⠃
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⢉⠓⠀⠀⠀⠀⠀</pre>
   </div>
+  <p class="about-end heart">{i build things come from the heart!}</p>
+  <p class="about-end dim">~ ʚɞ ~</p>
 </section>
 
 </main>
@@ -601,6 +603,7 @@ function setPal(p){document.body.className=p;document.querySelectorAll("#pal but
 try{const saved=localStorage.getItem("dhw-theme");if(saved&&["pal-a","pal-b","pal-c"].includes(saved))setPal(saved)}catch(e){}
 document.querySelectorAll("#pal button").forEach(b=>b.onclick=()=>setPal(b.dataset.p));
 addEventListener("keydown",e=>{if(e.target.id!=="q"&&e.key>="1"&&e.key<="3")setPal(pals[e.key-1])});
+document.getElementById("pcount").textContent=P.length+"+ projects";
 </script>
 </body>
 </html>
