@@ -50,12 +50,13 @@ main,header.site,#marquees{position:relative;z-index:1}
 /* ---------- HR layer ---------- */
 header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
 .wordmark{font-weight:400}
-.hero{padding:56px 0 28px;display:flex;gap:28px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.hero{padding:56px 0 28px;position:relative;min-height:220px}
 .hero-text{max-width:720px}
 .hero .hi{color:var(--ink-dim);margin-bottom:8px}
 .hl-p{color:var(--pink)} .hl-m{color:var(--purple)} .hl-g{color:var(--green)} .hl-y{color:var(--yellow)} .hl-b{color:var(--blue)}
 .mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--ink-dim);user-select:none;animation:bob 4s ease-in-out infinite}
-.hero .mascot{font-size:15px;line-height:1.1}
+.hero .mascot{font-size:15px;line-height:1.1;position:absolute;right:0;top:28px}
+@media(max-width:1000px){.hero .mascot{display:none}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
 .stats{display:flex;gap:24px;flex-wrap:wrap;align-items:baseline;padding:28px 0 0;font-size:20px}
@@ -124,7 +125,10 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .about{padding:28px 0}
 .about-row{display:flex;gap:28px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
 .about-row p{margin:0 0 6px}
-.about-text{font-size:15px;line-height:1.7}
+.about-text{font-size:15px;line-height:1.7;column-count:2;column-gap:44px}
+.about-text p{break-inside:avoid}
+.about-text>p:first-child{color:var(--purple);column-span:all}
+.about-text .dim{color:var(--purple)}
 .about-text p{margin:0 0 12px}
 footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 
