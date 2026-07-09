@@ -55,9 +55,11 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .hero .hi{color:var(--ink-dim);margin-bottom:8px}
 .hl-p{color:var(--pink)} .hl-m{color:var(--purple)} .hl-g{color:var(--green)} .hl-y{color:var(--yellow)} .hl-b{color:var(--blue)}
 .mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--ink-dim);user-select:none;animation:bob 4s ease-in-out infinite}
+.hero .mascot{font-size:15px;line-height:1.1}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
-.stats{display:flex;gap:24px;flex-wrap:wrap;padding:28px 0 0;font-size:20px}
+.stats{display:flex;gap:24px;flex-wrap:wrap;align-items:baseline;padding:28px 0 0;font-size:20px}
+.stats .c0{font-size:34px;color:var(--pink)}
 .stats .c1{color:var(--green)} .stats .c2{color:var(--purple)} .stats .c3{color:var(--yellow)} .stats .c4{color:var(--pink)}
 .pr{color:var(--ink-dim);user-select:none}
 .cols{display:grid;grid-template-columns:1fr 1.4fr 1.2fr;gap:24px;padding:20px 0;font-size:13.5px;line-height:1.6}
@@ -126,7 +128,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 
 /* confetti */
-.cf{position:fixed;z-index:30;pointer-events:none;font-size:13px;animation:fall 1.1s ease-out forwards}
+.cf{position:fixed;z-index:30;pointer-events:none;font-size:15px;animation:fall 1.1s ease-out forwards}
 @keyframes fall{to{transform:translateY(70px) rotate(220deg);opacity:0}}
 </style>
 </head>
@@ -171,6 +173,7 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 </section>
 
 <section class="stats">
+  <span class="c0">{+40 projects}</span>
   <span class="c1">{iOS + web}</span>
   <span class="c2">{IT girl}</span>
   <span class="c3">{I am an idea machine.}</span>
@@ -398,7 +401,7 @@ detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
 
 /* stars */
 const sf=document.getElementById("stars");
-for(let i=0;i<60;i++){
+for(let i=0;i<130;i++){
   const s=document.createElement("span");s.className="star";s.textContent=G[i%3];
   s.style.left=Math.random()*100+"vw";s.style.top=Math.random()*100+"vh";
   s.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(s);
@@ -412,8 +415,8 @@ function piece(x,y,vx){
   c.style.color=`var(${CFC[Math.floor(Math.random()*5)]})`;
   document.body.appendChild(c);setTimeout(()=>c.remove(),1100);
 }
-addEventListener("mousemove",e=>{const t=Date.now();if(t-last>90){last=t;piece(e.clientX,e.clientY,0)}});
-function burst(x,y){for(let i=0;i<14;i++)piece(x,y,(Math.random()-.5)*120)}
+addEventListener("mousemove",e=>{const t=Date.now();if(t-last>45){last=t;piece(e.clientX,e.clientY,0)}});
+function burst(x,y){for(let i=0;i<24;i++)piece(x,y,(Math.random()-.5)*160)}
 
 /* palette switcher: buttons or keys 1/2/3 (light mode = white per damla) */
 const pals=["pal-a","pal-b","pal-c"];
