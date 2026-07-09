@@ -156,8 +156,8 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 <section class="hero">
   <div class="hero-text">
     <p class="hi">hi, i'm damla —</p>
-    <h1>3rd-year CS student at Bilkent who ships real products,
-    not course projects. founder of damlahelloworld.</h1>
+    <h1>3rd-year CS student at Bilkent who ships real products.
+    founder of damlahelloworld.</h1>
   </div>
   <pre class="mascot" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢔⣶⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠗⡿⣾⠀⠀
@@ -407,7 +407,9 @@ detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
 /* stars */
 const sf=document.getElementById("stars");
 for(let i=0;i<130;i++){
-  const s=document.createElement("span");s.className="star";s.textContent=G[i%3];
+  const SG=["*","+","·",".","-"];
+  const s=document.createElement("span");s.className="star";s.textContent=SG[i%5];
+  s.style.fontSize=(9+(i%3)*3)+"px";
   if(i%4===0)s.style.color=`var(${["--pink","--purple","--green","--yellow","--blue"][i%5]})`;
   s.style.left=Math.random()*100+"vw";s.style.top=Math.random()*100+"vh";
   s.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(s);
