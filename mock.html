@@ -28,7 +28,7 @@ body{
   font-size:16px; line-height:1.75; overflow-x:hidden; cursor:default;
   transition:background .35s,color .35s;
 }
-a{color:var(--ink);text-decoration:underline dotted;display:inline-block;transition:transform .15s}
+a{color:var(--pink);text-decoration:underline dotted;display:inline-block;transition:transform .15s}
 a:hover{text-decoration:underline;transform:translateY(-3px)}
 header.site nav,#pal,footer{font-size:14px}
 main{max-width:1060px;margin:0 auto;padding:28px}
@@ -51,14 +51,14 @@ main,header.site,#marquees{position:relative;z-index:1}
 
 /* ---------- HR layer ---------- */
 header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
-.wordmark{font-weight:400;text-decoration:none}
+.wordmark{font-weight:400;text-decoration:none;color:var(--purple)}
 .wordmark:hover span{display:none}
 .wordmark:hover::after{content:'linkedin!'}
 .hero{padding:56px 0 28px;position:relative;min-height:220px}
 .hero-text{max-width:720px}
 .hero .hi{color:var(--ink-dim);margin-bottom:8px}
 .hl-p{color:var(--pink)} .hl-m{color:var(--purple)} .hl-g{color:var(--green)} .hl-y{color:var(--yellow)} .hl-b{color:var(--blue)}
-.mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--ink-dim);user-select:none;animation:bob 4s ease-in-out infinite}
+.mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--purple);user-select:none;animation:bob 4s ease-in-out infinite}
 .hero .mascot{font-size:15px;line-height:1.1;position:absolute;right:0;top:28px}
 @media(max-width:1000px){.hero .mascot{display:none}}
 .cur{animation:blink 1s steps(1) infinite}
@@ -98,16 +98,17 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .tok{cursor:pointer;color:var(--ink-dim);margin-right:10px}
 .tok::before{content:'['}.tok::after{content:']'}
 .tok:hover{color:var(--ink)}
-.tok.on{color:var(--ink);text-decoration:underline}
-#q{font:inherit;background:none;border:none;outline:none;color:var(--ink);width:170px}
+.tok.on{color:var(--pink);text-decoration:underline}
+#q{font:inherit;background:none;border:none;outline:none;color:var(--pink);width:170px}
 .cmdline{color:var(--ink-dim);padding-top:4px}
-.cmdline b{color:var(--ink);font-weight:400}
+.cmdline b{color:var(--green);font-weight:400}
 .wall{list-style:none;font-size:13.5px;line-height:1.55}
 .wall li{display:grid;grid-template-columns:26px 185px 1fr 195px;gap:12px;padding:2px 8px;border-radius:2px;cursor:pointer;align-items:baseline}
 .wall li:hover{background:var(--bg-soft)}
 .wall .no{font-weight:400}
-.wall .no{color:var(--ink-dim)}
+.no.st-live{color:var(--green)} .no.st-wip{color:var(--yellow)} .no.st-uni{color:var(--blue)} .no.st-arc{color:var(--ink-dim)}
 .wall .nm{font-weight:400}
+.nm.t-swift{color:var(--purple)} .nm.t-js{color:var(--yellow)} .nm.t-python{color:var(--green)} .nm.t-java{color:var(--blue)} .nm.t-other{color:var(--pink)}
 .wall .one{color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wall .tech{color:var(--ink-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:860px){
@@ -123,7 +124,8 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .doc .close{float:right;cursor:pointer;color:var(--ink-dim)}
 .doc h1{font-size:20px;margin-bottom:8px}
 .doc .sect{margin-top:28px}
-.doc .sect h2{font-size:16px;color:var(--ink-dim);margin-bottom:8px}
+.doc .sect h2{font-size:16px;color:var(--purple);margin-bottom:8px}
+.doc pre{color:var(--ink-dim);line-height:1.6;overflow-x:auto}
 .doc strong{font-weight:400}
 .doc em{font-style:normal}
 .doc .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
@@ -138,6 +140,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .about-text .dim{color:var(--purple)}
 .about-text p{margin:0 0 12px}
 footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
+.at-pink{color:var(--pink)}
 
 /* confetti */
 .cf{position:fixed;z-index:30;pointer-events:none;font-size:17px;animation:fall 1.1s ease-out forwards}
@@ -287,7 +290,7 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 </main>
 
 <footer>
-  <span>[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>] [<a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener">linkedin ↗</a>] &nbsp; ~ ʚɞ ~</span>
+  <span>[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>] [<a href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener">linkedin ↗</a>] &nbsp; <span class="at-pink">@damlahelloworld</span> ~ ʚɞ ~</span>
 </footer>
 
 <!-- ===== DETAIL TEMPLATE (mock shows one example; real version reads products.json) ===== -->
@@ -298,6 +301,7 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
     <h1 id="d-title">english speaking practice with honest AI feedback</h1>
     <div class="tags" id="d-tags"></div>
     <div class="sect"><h2>+ what it is</h2><p id="d-what"></p></div>
+    <div class="sect" id="d-built-sect"><h2>+ how it's built</h2><pre id="d-arch"></pre></div>
     <div class="sect"><h2>+ links</h2><p id="d-links"></p></div>
   </div>
 </div>
@@ -336,6 +340,8 @@ const PJ=[
   {sl:"dating-app",e:"💘",n:"a dating app",tg:"the idea exists, the name doesn't yet",d:"A dating app idea. It exists in my head, the name is still on its way.",t:[],s:"idea",g:null},
   {sl:"home-workout",e:"🤸🏻‍♀️",n:"home workouts",tg:"workout at home, name pending",d:"A home workouts app. The repo exists, the Swift files exist, the name doesn't, yet.",t:["Swift"],s:"idea",g:"https://github.com/damlahelloworld/home-workout"},
 ];
+const BUILT={"braindot": " ├─ Braindot/  (24 files)\n │   ├─ Views/ (8)\n │   ├─ Services/ (5)\n │   ├─ Assets.xcassets/ (3)\n ├─ docs/  (3 files)\n ├─ worker/  (2 files)\n ├─ Braindot.xcodeproj/  (1 files)\n ├─ landing/  (1 files)\n ├─ .gitignore\n ├─ README.md", "mbti-tester": " ├─ assets/  (20 files)\n │   ├─ types/ (16)\n ├─ js/  (2 files)\n ├─ css/  (1 files)\n ├─ README.md\n ├─ index.html", "wildflower.dev": " ├─ assets/  (145 files)\n │   ├─ garden/ (36)\n │   ├─ flowers/ (28)\n │   ├─ timer_scene/ (27)\n ├─ Wildflower/  (93 files)\n │   ├─ Assets.xcassets/ (67)\n │   ├─ Views/ (12)\n │   ├─ Models/ (5)\n ├─ docs/  (3 files)\n ├─ Wildflower.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md", "damla.log": " ├─ DamlaLog/  (26 files)\n │   ├─ DamlaLog/ (23)\n │   ├─ DamlaLog.xcodeproj/ (3)\n ├─ docs/  (3 files)\n ├─ scripts/  (1 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md", "gymgyme": " ├─ gymgyme/  (49 files)\n │   ├─ Views/ (19)\n │   ├─ Models/ (10)\n │   ├─ Assets.xcassets/ (8)\n ├─ docs/  (11 files)\n │   ├─ screens/ (7)\n ├─ gymgymeWidget/  (6 files)\n │   ├─ Assets.xcassets/ (1)\n ├─ workers/  (3 files)\n │   ├─ usda-proxy/ (3)\n ├─ Shared/  (2 files)\n ├─ gymgyme.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ .gitignore", "scrapp": " ├─ Scrapp/  (113 files)\n │   ├─ Assets.xcassets/ (52)\n │   ├─ Stickers/ (37)\n │   ├─ Screens/ (5)\n ├─ stickers-web/  (21 files)\n ├─ Scrapp.xcodeproj/  (3 files)\n │   ├─ project.xcworkspace/ (1)\n │   ├─ xcuserdata/ (1)\n ├─ plans/  (1 files)\n ├─ .gitignore\n ├─ CLAUDE.md\n ├─ LICENSE\n ├─ README.md\n └─ … 2 more files", "vibematch": " ├─ desktop/  (81 files)\n │   ├─ screens/ (21)\n │   ├─ server/ (13)\n │   ├─ model/ (10)\n ├─ docs/  (4 files)\n ├─ deploy/  (2 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ .gitignore\n ├─ BUILD_STAGES.md\n ├─ PROJECT.md\n ├─ RAPOR.md\n └─ … 4 more files", "shortstorylong": " ├─ src/  (31 files)\n │   ├─ app/ (14)\n │   ├─ components/ (9)\n │   ├─ lib/ (5)\n ├─ .github/  (2 files)\n │   ├─ scripts/ (1)\n │   ├─ workflows/ (1)\n ├─ public/  (1 files)\n ├─ supabase/  (1 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ README.md\n ├─ eslint.config.mjs\n └─ … 5 more files", "ladybug": " ├─ app/  (19 files)\n │   ├─ api/ (9)\n │   ├─ account/ (1)\n │   ├─ auth/ (1)\n ├─ src/  (13 files)\n │   ├─ lib/ (7)\n │   ├─ components/ (4)\n ├─ public/  (2 files)\n │   ├─ assets/ (1)\n ├─ .env.local.example\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md\n └─ … 9 more files", "mystic_queen": " ├─ MysticQueen/  (47 files)\n │   ├─ Assets.xcassets/ (28)\n │   ├─ Models/ (6)\n │   ├─ Views/ (6)\n ├─ MysticQueen.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ .gitignore\n ├─ LICENSE\n ├─ ideas.md\n ├─ project.yml\n └─ … 2 more files", "sunflower": " ├─ Sunflower/  (56 files)\n │   ├─ Assets.xcassets/ (31)\n │   ├─ Views/ (7)\n │   ├─ Extensions/ (6)\n ├─ landing/  (18 files)\n │   ├─ assets/ (13)\n │   ├─ shots/ (4)\n ├─ SunflowerWidget/  (4 files)\n ├─ docs/  (3 files)\n ├─ Sunflower.xcodeproj/  (1 files)\n ├─ .gitignore\n ├─ README.md\n ├─ Sunflower.storekit\n ├─ project.yml", "home-workout": " ├─ HomeWorkout.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ HomeWorkout/  (2 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ project.yml", "linc-matik": " ├─ frontend/  (18 files)\n │   ├─ src/ (8)\n │   ├─ public/ (6)\n ├─ .env.example\n ├─ .gitignore\n ├─ BRIEFING.md\n ├─ Procfile\n └─ … 7 more files", "moonlight": " ├─ Moonlight/  (307 files)\n │   ├─ Assets.xcassets/ (272)\n │   ├─ Views/ (11)\n │   ├─ Services/ (9)\n ├─ assets/  (132 files)\n │   ├─ animations/ (64)\n │   ├─ atmospheric/ (19)\n │   ├─ ui/ (14)\n ├─ docs/  (6 files)\n ├─ Moonlight.xcodeproj/  (4 files)\n │   ├─ project.xcworkspace/ (2)\n │   ├─ xcuserdata/ (1)\n ├─ app/  (4 files)\n ├─ backend/  (4 files)", "butterfry": " ├─ src/  (19 files)\n │   ├─ app/ (9)\n │   ├─ components/ (4)\n │   ├─ lib/ (3)\n ├─ public/  (5 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ documents/  (1 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md\n ├─ eslint.config.mjs\n └─ … 6 more files", "creator-books": " ├─ sources/  (36 files)\n │   ├─ kitap1/ (27)\n ├─ cekim-gunu.epub\n ├─ kanallar-nasil-buyur.epub\n ├─ neden-izliyorlar.epub\n ├─ superstar-medya-training.epub", "vibecodedflopware": " ├─ CLAUDE.md\n ├─ index.html\n ├─ script.js\n ├─ style.css", "iwantmymtv": " ├─ js/  (2 files)\n ├─ css/  (1 files)\n ├─ data/  (1 files)\n ├─ CLAUDE.md\n ├─ index.html\n ├─ yayinla.sh", "coffee-menu": " ├─ concepts-in-javascript/  (3 files)\n ├─ .vscode/  (1 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md\n ├─ ROADMAP.md\n └─ … 4 more files", "forget-me-not": " ├─ app/  (17 files)\n │   ├─ (auth)/ (2)\n │   ├─ blog/ (2)\n │   ├─ auth/ (1)\n ├─ supabase/  (8 files)\n │   ├─ .temp/ (8)\n ├─ public/  (6 files)\n ├─ components/  (3 files)\n ├─ config/  (3 files)\n ├─ lib/  (3 files)\n ├─ docs/  (1 files)\n ├─ … 3 more folders\n ├─ .gitignore\n ├─ LICENSE", "lingolingo": " ├─ Lingolingo/  (57 files)\n │   ├─ Assets.xcassets/ (27)\n │   ├─ Views/ (10)\n │   ├─ Models/ (4)\n ├─ mock/  (29 files)\n │   ├─ assets/ (28)\n ├─ docs/  (20 files)\n │   ├─ assets/ (17)\n ├─ Lingolingo.xcodeproj/  (3 files)\n │   ├─ project.xcworkspace/ (1)\n │   ├─ xcshareddata/ (1)\n ├─ .gitignore\n ├─ APP_STORE_SUBMISSION.md\n ├─ CLAUDE.md", "mergeconflict": " ├─ src/  (30 files)\n │   ├─ data/ (12)\n │   ├─ app/ (10)\n │   ├─ components/ (5)\n ├─ .github/  (2 files)\n │   ├─ scripts/ (1)\n │   ├─ workflows/ (1)\n ├─ scripts/  (1 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ eslint.config.mjs\n ├─ next.config.ts\n └─ … 4 more files", "damlahelloworld": " ├─ README.md", "youdecide": " ├─ README.md\n ├─ index.html\n ├─ script.js\n ├─ styles.css", "tamagotchi-hair-design": " ├─ .gitignore\n ├─ LAYOUT_GUIDE.md\n ├─ PROJECT.md\n ├─ README.md\n └─ … 3 more files", "hide-on-bush": " ├─ web/  (34 files)\n │   ├─ src/ (28)\n ├─ ios/  (33 files)\n │   ├─ LeagueOfBilkent/ (29)\n │   ├─ LeagueOfBilkent.xcodeproj/ (1)\n ├─ docs/  (3 files)\n ├─ supabase/  (2 files)\n │   ├─ migrations/ (2)\n ├─ .gitignore\n ├─ mock.html", "kisalafinuzunu": " ├─ src/  (30 files)\n │   ├─ app/ (13)\n │   ├─ components/ (8)\n │   ├─ lib/ (6)\n ├─ public/  (6 files)\n ├─ .github/  (2 files)\n │   ├─ scripts/ (1)\n │   ├─ workflows/ (1)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ README.md\n ├─ eslint.config.mjs\n └─ … 5 more files", "age-wiz": " ├─ .gitignore\n ├─ README.md\n ├─ detector.py\n ├─ requirements.txt", "daylight": " ├─ daylight/  (50 files)\n │   ├─ Views/ (25)\n │   ├─ Models/ (6)\n │   ├─ Fonts/ (5)\n ├─ supabase/  (10 files)\n │   ├─ .temp/ (8)\n │   ├─ migrations/ (1)\n ├─ .gitignore\n ├─ ideas.md\n ├─ project.yml\n ├─ roadmap.md\n └─ … 1 more files", "stitchu": " ├─ App/  (53 files)\n │   ├─ Stitchu/ (50)\n │   ├─ Stitchu.xcodeproj/ (2)\n ├─ assets-src/  (7 files)\n ├─ knowledge/  (6 files)\n ├─ backend/  (3 files)\n ├─ engine-check/  (2 files)\n ├─ .gitignore\n ├─ PROJECT.md\n ├─ asset-guide-tr.html\n ├─ asset-guide.html\n └─ … 3 more files", "fantaisie-impromptu": " ├─ excercism/  (64 files)\n │   ├─ java/ (41)\n │   ├─ python/ (10)\n │   ├─ javascript/ (1)\n ├─ cpp_lectures/  (61 files)\n │   ├─ weeks/ (25)\n │   ├─ build/ (11)\n │   ├─ week5/ (11)\n ├─ pythun-tutor-labs/  (48 files)\n │   ├─ labs/ (35)\n │   ├─ lab04/ (3)\n │   ├─ tutorial_rojects/ (3)\n ├─ homeworks/  (33 files)\n │   ├─ cs102/ (16)", "insta-analyzer": " ├─ .env.example\n ├─ .gitignore\n ├─ README.md\n ├─ analyze.py", "sunny": " ├─ sunny/  (44 files)\n │   ├─ sunny/ (37)\n │   ├─ sunny.xcodeproj/ (4)\n │   ├─ sunnyUITests/ (2)\n ├─ docs/  (10 files)\n │   ├─ images/ (9)\n ├─ .DS_Store\n ├─ .gitignore\n ├─ README.md", "musical-improvisation-tool": " ├─ extended-files-philosopy/  (2 files)\n ├─ .gitignore\n ├─ LICENSE\n ├─ PossibleFeatures.md\n ├─ README.md\n └─ … 5 more files", "msducky": " ├─ web/  (554 files)\n │   ├─ makale/ (547)\n ├─ data/  (54 files)\n │   ├─ mine/ (24)\n │   ├─ research-raw/ (7)\n ├─ icons/  (5 files)\n ├─ mocks/  (5 files)\n ├─ js/  (2 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ api/  (1 files)\n ├─ … 4 more folders\n ├─ .gitignore\n ├─ CLAUDE.md", "snailmail-web": " ├─ public/  (18 files)\n ├─ art/  (14 files)\n ├─ .gitignore\n ├─ RESEARCH.md\n ├─ clothesline.html\n ├─ deck.html\n └─ … 10 more files", "lady-fantasy.ai": " ├─ app/  (9 files)\n │   ├─ api/ (5)\n ├─ .DS_Store\n ├─ .gitignore\n ├─ README.md\n ├─ next.config.mjs\n └─ … 2 more files", "msducky-abone": " ├─ {\"message\":\"Git Repository is empty.\",\"documentation_url\":\"https:/  (1 files)\n │   ├─ / (1)", "league-of-bilkent": " ├─ LeagueOfBilkent_ReadyToPlay/  (30 files)\n │   ├─ bin/ (29)\n ├─ bin/  (28 files)\n │   ├─ META-INF/ (15)\n │   ├─ com/ (10)\n ├─ panels/  (14 files)\n ├─ model/  (9 files)\n ├─ tools/  (6 files)\n ├─ screens/  (5 files)\n ├─ lib/  (3 files)\n ├─ .DS_Store\n ├─ .gitignore\n ├─ .nojekyll\n ├─ LICENSE", "lala-retro": " ├─ LalaRetro/  (47 files)\n │   ├─ LalaRetro/ (42)\n │   ├─ LalaRetro.xcodeproj/ (4)\n ├─ docs/  (3 files)\n ├─ .github/  (1 files)\n │   ├─ workflows/ (1)\n ├─ .gitignore\n ├─ LICENSE\n ├─ README.md", "damlahelloworld.github.io": " ├─ damla-log/  (3 files)\n ├─ content/  (2 files)\n ├─ doodles/  (1 files)\n ├─ sunflower/  (1 files)\n ├─ .gitignore\n ├─ CLAUDE.md\n ├─ PROJECT.md\n ├─ README.md\n └─ … 5 more files", "prolotherapy-reference": " ├─ ProloGuide/  (32 files)\n │   ├─ Assets.xcassets/ (22)\n │   ├─ Data/ (2)\n ├─ design/  (10 files)\n │   ├─ region-bases/ (10)\n ├─ Guttik/  (7 files)\n │   ├─ Assets/ (2)\n ├─ research/  (7 files)\n │   ├─ raw/ (4)\n │   ├─ pubmed/ (2)\n ├─ ProloGuide.xcodeproj/  (2 files)\n │   ├─ project.xcworkspace/ (1)\n ├─ web/  (2 files)\n │   ├─ data/ (1)"};
+const ALIAS={"snailmail":"snailmail-web","gymgyme v2":"gymgyme"};
 /* wall list */
 const P=[
  ["lingolingo","speak english, get honest voice analysis on a credit model","Swift · SwiftUI · AI","wip"],
@@ -389,7 +395,8 @@ function renderWall(){
     if(F.q&&!(n+" "+one+" "+tech).toLowerCase().includes(F.q))return;
     shown++;
     const li=document.createElement("li");
-    li.innerHTML=`<span class="no st-${st}">${String(i+1).padStart(2,"0")}</span><span class="nm">${n}</span><span class="one">${one}</span><span class="tech">${tech}</span>`;
+    const tl=tech.toLowerCase();const tc=tl.includes("swift")?"t-swift":tl.includes("js")||tl.includes("ts")?"t-js":tl.includes("python")?"t-python":tl.includes("java")?"t-java":"t-other";
+    li.innerHTML=`<span class="no st-${st}">${String(i+1).padStart(2,"0")}</span><span class="nm ${tc}">${n}</span><span class="one">${one}</span><span class="tech">${tech}</span>`;
     li.onclick=e=>{openDetail(n,one,tech);burst(e.clientX,e.clientY)};
     wall.appendChild(li);
   });
@@ -435,6 +442,9 @@ function openDetail(n,one,tech){
   if(pj&&pj.l)L.push(`<a href="${pj.l}" target="_blank" rel="noopener">live ↗</a>`);
   if(pj&&pj.g)L.push(`<a href="${pj.g}" target="_blank" rel="noopener">repo ↗</a>`);
   document.getElementById("d-links").innerHTML=L.length?L.join(" &nbsp; "):'<span class="dim">docs on the way</span>';
+  const tree=BUILT[ALIAS[key]||key];
+  document.getElementById("d-built-sect").style.display=tree?"block":"none";
+  if(tree)document.getElementById("d-arch").textContent=key+"/\n"+tree;
   detail.classList.add("open");
 }
 detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
@@ -442,7 +452,8 @@ detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
 /* terminal typing for the hero line */
 const TXT="3rd-year CS student at Bilkent who ships real products. Founder of damlahelloworld.";
 const typer=document.getElementById("typer");let ti=0;
-(function type(){if(ti<=TXT.length){typer.textContent=TXT.slice(0,ti);ti++;setTimeout(type,28)}})();
+(function type(){if(ti<=TXT.length){typer.textContent=TXT.slice(0,ti);ti++;setTimeout(type,28)}
+else{typer.innerHTML='3rd-year CS student at <span class="hl-b">Bilkent</span> who ships <span class="hl-p">real products</span>. Founder of <span class="hl-m">damlahelloworld</span>.'}})();
 
 /* stars */
 const sf=document.getElementById("stars");
