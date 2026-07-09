@@ -59,10 +59,11 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
 .stats{display:flex;gap:24px;flex-wrap:wrap;align-items:baseline;padding:28px 0 0;font-size:20px}
-.stats .c0{font-size:34px;color:var(--pink)}
+.counter b{font-size:34px;font-weight:400;color:var(--green);display:block;line-height:1.2}
+.counter span{color:var(--ink-dim);font-size:16px}
 .stats .c1{color:var(--green)} .stats .c2{color:var(--purple)} .stats .c3{color:var(--yellow)} .stats .c4{color:var(--pink)}
 .pr{color:var(--ink-dim);user-select:none}
-.cols{display:grid;grid-template-columns:1fr 1.4fr 1.2fr;gap:24px;padding:20px 0;font-size:13.5px;line-height:1.6}
+.cols{display:grid;grid-template-columns:1.1fr 1.2fr 1.2fr;gap:28px;padding:24px 0;font-size:15px;line-height:1.65}
 .cols>div>p{margin:0 0 6px}
 .cols .pr{margin-bottom:6px}
 .edu-b{font-size:16px}
@@ -123,12 +124,12 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .about{padding:28px 0}
 .about-row{display:flex;gap:28px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
 .about-row p{margin:0 0 6px}
-.about-text{max-width:660px;font-size:13.5px;line-height:1.65}
+.about-text{font-size:15px;line-height:1.7}
 .about-text p{margin:0 0 12px}
 footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 
 /* confetti */
-.cf{position:fixed;z-index:30;pointer-events:none;font-size:15px;animation:fall 1.1s ease-out forwards}
+.cf{position:fixed;z-index:30;pointer-events:none;font-size:17px;animation:fall 1.1s ease-out forwards}
 @keyframes fall{to{transform:translateY(70px) rotate(220deg);opacity:0}}
 </style>
 </head>
@@ -173,7 +174,7 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 </section>
 
 <section class="stats">
-  <span class="c0">{+40 projects}</span>
+  <div class="counter"><b>+40</b><span>products built</span></div>
   <span class="c1">{iOS + web}</span>
   <span class="c2">{IT girl}</span>
   <span class="c3">{I am an idea machine.}</span>
@@ -370,9 +371,9 @@ document.getElementById("q").oninput=e=>{F.q=e.target.value.toLowerCase();render
 renderWall();
 
 /* marquees: same list, two rows, opposite directions (content doubled for seamless loop) */
-const G=["+","*","·"];
+const G=["+","*","·"];const COL=["hl-p","hl-m","hl-g","hl-y","hl-b"];
 function fill(el,rev){
-  let items=P.slice(0,-1).map(([n],i)=>`<span><b>${G[i%3]}</b> ${n}</span>`);
+  let items=P.slice(0,-1).map(([n],i)=>`<span><b class="${COL[i%5]}">${G[i%3]}</b> ${n}</span>`);
   if(rev)items=items.reverse();
   el.innerHTML=items.join("")+items.join("");
 }
@@ -403,6 +404,7 @@ detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
 const sf=document.getElementById("stars");
 for(let i=0;i<130;i++){
   const s=document.createElement("span");s.className="star";s.textContent=G[i%3];
+  if(i%4===0)s.style.color=`var(${["--pink","--purple","--green","--yellow","--blue"][i%5]})`;
   s.style.left=Math.random()*100+"vw";s.style.top=Math.random()*100+"vh";
   s.style.animationDelay=(Math.random()*3)+"s";sf.appendChild(s);
 }
