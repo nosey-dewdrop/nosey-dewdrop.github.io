@@ -28,7 +28,9 @@ body{
   font-size:16px; line-height:1.75; overflow-x:hidden; cursor:default;
   transition:background .35s,color .35s;
 }
-a{color:var(--ink);text-decoration:underline dotted} a:hover{text-decoration:underline}
+a{color:var(--ink);text-decoration:underline dotted;display:inline-block;transition:transform .15s}
+a:hover{text-decoration:underline;transform:translateY(-3px)}
+header.site nav,#pal,footer{font-size:14px}
 main{max-width:1060px;margin:0 auto;padding:28px}
 h1{font-size:34px;line-height:1.35;font-weight:400}
 h2{font-size:20px;font-weight:400}
@@ -37,19 +39,21 @@ h2{font-size:20px;font-weight:400}
 
 /* star field */
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0}
-.star{position:absolute;font-size:11px;color:var(--ink-dim);opacity:.5;animation:tw 3.4s ease-in-out infinite}
+.star{position:absolute;font-size:11px;color:var(--ink-dim);opacity:.32;animation:tw 3.4s ease-in-out infinite}
 @keyframes tw{0%,100%{opacity:.15}50%{opacity:.65}}
 main,header.site,#marquees{position:relative;z-index:1}
 
 /* palette switcher (dev control) */
-#pal{position:fixed;top:14px;right:14px;z-index:9;display:flex;gap:8px;font-size:16px}
+#pal{position:absolute;top:14px;right:14px;z-index:9;display:flex;gap:8px}
 #pal button{font:inherit;background:none;color:var(--ink-dim);cursor:pointer;border:none}
 #pal button::before{content:'['}#pal button::after{content:']'}
 #pal button.on{color:var(--ink);text-decoration:underline}
 
 /* ---------- HR layer ---------- */
 header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
-.wordmark{font-weight:400}
+.wordmark{font-weight:400;text-decoration:none}
+.wordmark:hover span{display:none}
+.wordmark:hover::after{content:'linkedin!'}
 .hero{padding:56px 0 28px;position:relative;min-height:220px}
 .hero-text{max-width:720px}
 .hero .hi{color:var(--ink-dim);margin-bottom:8px}
@@ -149,8 +153,8 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 </div>
 
 <header class="site">
-  <span class="wordmark">damlahelloworld *</span>
-  <nav class="dim">[<a href="https://github.com/damlahelloworld">github ↗</a>] [<a href="mailto:damummyphus@gmail.com">mail ↗</a>]</nav>
+  <a class="wordmark" href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener"><span>damlahelloworld *</span></a>
+  <nav class="dim">[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>]</nav>
 </header>
 
 <main>
@@ -181,7 +185,6 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 
 <section class="stats">
   <div class="counter"><b>+40</b><span>products built</span></div>
-  <span class="c1">{iOS + web}</span>
   <span class="c2">{IT girl}</span>
   <span class="c3">{I am an idea machine.}</span>
   <span class="c4">{VIBECODER}</span>
@@ -437,7 +440,7 @@ function openDetail(n,one,tech){
 detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
 
 /* terminal typing for the hero line */
-const TXT="3rd-year CS student at Bilkent who ships real products. founder of damlahelloworld.";
+const TXT="3rd-year CS student at Bilkent who ships real products. Founder of damlahelloworld.";
 const typer=document.getElementById("typer");let ti=0;
 (function type(){if(ti<=TXT.length){typer.textContent=TXT.slice(0,ti);ti++;setTimeout(type,28)}})();
 
