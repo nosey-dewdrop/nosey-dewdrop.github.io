@@ -61,4 +61,5 @@ Overlay layout order: header (nr, name, status, one-liner) → tags → what →
 5. Damla passes: palette pick, copy rewrite, per-project detail corrections
 
 ## Status
-- 2026-07-10: plan frozen, zero code written. Damla paused the session (tired). Start at step 1 next time.
+- 2026-07-10 (gece): REWORK SHIPPED to damlahelloworld.github.io after ~60 iteration rounds with Damla. mock.html retired.
+- Open: 2nd YKS app row, per-project modules docs, products.json extraction, one-liner copy pass by Damla.
