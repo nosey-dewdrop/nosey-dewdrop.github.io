@@ -56,9 +56,14 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--purple);user-select:none;animation:bob 4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
-.meta{padding:28px 0}
+.meta{padding:28px 0 0}
 .meta p{margin:0}
-.meta .pr{color:var(--ink-dim);user-select:none}
+.pr{color:var(--ink-dim);user-select:none}
+.cols{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:28px;padding:28px 0}
+.cols>div>p{margin:0 0 10px}
+.cols .pr{margin-bottom:6px}
+.edu-b{font-size:20px;font-weight:700}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
 
 /* ---------- marquees: two thin rows, opposite directions, decoration only ---------- */
 #marquees{padding:28px 0;overflow:hidden}
@@ -77,8 +82,16 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .legend i{font-style:normal}
 .d{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
 .d-live{background:var(--green)} .d-wip{background:var(--yellow)} .d-uni{background:var(--blue)} .d-arc{background:var(--ink-dim)}
-.wall{list-style:none}
-.wall li{display:grid;grid-template-columns:15px 200px 1fr 210px;gap:14px;padding:5px 10px;border-radius:2px;cursor:pointer;align-items:baseline}
+.filters{padding:0 0 10px;font-size:14px}
+.filters p{margin:0}
+.tok{cursor:pointer;color:var(--ink-dim);margin-right:10px}
+.tok:hover{color:var(--ink)}
+.tok.on{color:var(--ink);font-weight:700}
+#q{font:inherit;background:none;border:none;outline:none;color:var(--pink);width:170px}
+.cmdline{color:var(--ink-dim);padding-top:4px}
+.cmdline b{color:var(--green);font-weight:500}
+.wall{list-style:none;font-size:13.5px;line-height:1.55}
+.wall li{display:grid;grid-template-columns:14px 185px 1fr 195px;gap:12px;padding:2px 8px;border-radius:2px;cursor:pointer;align-items:baseline}
 .wall li:hover{background:var(--bg-soft)}
 .wall .nm{font-weight:700}
 .wall li:nth-child(4n+1) .nm{color:var(--pink)}
@@ -150,8 +163,24 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 <section class="meta">
   <p><span class="pr">$ stats:</span> 40 products · live on iOS + web · one-woman company · IT girl</p>
   <p><span class="pr">$ motto:</span> I am an idea machine.</p>
-  <p><span class="pr">$ education:</span> Bilkent University — computer science, 3rd year · Ankara</p>
-  <p><span class="pr">$ stack:</span> swift · swiftui · javascript · python · java · c++ · supabase</p>
+</section>
+
+<section class="cols">
+  <div>
+    <p class="pr">$ education</p>
+    <p class="edu-b">Bilkent University</p>
+    <p class="dim">computer science, 3rd year<br>Ankara, Türkiye</p>
+  </div>
+  <div>
+    <p class="pr">$ skills</p>
+    <p class="dim">swift · swiftui · javascript<br>python · java · c++<br>supabase · git · product design</p>
+  </div>
+  <div>
+    <p class="pr">$ experience</p>
+    <p>FAB Fellowship <span class="dim">· 2026 –</span><br><span class="dim">client interviews, community projects</span></p>
+    <p>CS115 teaching assistant <span class="dim">· 2025</span><br><span class="dim">100+ students through 10 python labs</span></p>
+    <p>Software Persona internship <span class="dim">· 2026</span><br><span class="dim">ui/ux, figma, react from scratch</span></p>
+  </div>
 </section>
 
 </main>
@@ -168,12 +197,15 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 <section>
   <div class="wall-head">
     <h2>everything i've shipped <span class="dim">— click any for the mini-docs</span></h2>
-    <div class="legend">
-      <i><span class="d d-live"></span>live</i>
-      <i><span class="d d-wip"></span>in progress</i>
-      <i><span class="d d-uni"></span>university</i>
-      <i><span class="d d-arc"></span>archive</i>
-    </div>
+  </div>
+  <div class="filters">
+    <p><span class="pr">$ ls projects/ --status</span>
+      <span class="tok st on" data-v="">all</span><span class="tok st" data-v="live"><span class="d d-live"></span>live</span><span class="tok st" data-v="wip"><span class="d d-wip"></span>in progress</span><span class="tok st" data-v="uni"><span class="d d-uni"></span>university</span><span class="tok st" data-v="arc"><span class="d d-arc"></span>archive</span>
+      <span class="pr">--tech</span>
+      <span class="tok te" data-v="swift">swift</span><span class="tok te" data-v="js">js</span><span class="tok te" data-v="python">python</span><span class="tok te" data-v="java">java</span><span class="tok te" data-v="supabase">supabase</span>
+      <span class="pr">| grep "</span><input id="q" autocomplete="off"><span class="pr">"</span>
+    </p>
+    <p class="cmdline" id="cmdline"></p>
   </div>
   <ul class="wall" id="wall"></ul>
 </section>
@@ -243,12 +275,36 @@ const P=[
 ];
 const DOT={live:"d-live",wip:"d-wip",uni:"d-uni",arc:"d-arc"};
 const wall=document.getElementById("wall");
-P.forEach(([n,one,tech,st])=>{
-  const li=document.createElement("li");
-  li.innerHTML=`<span class="d ${DOT[st]}"></span><span class="nm">${n}</span><span class="one">${one}</span><span class="tech">${tech}</span>`;
-  li.onclick=e=>{openDetail(n,one,tech);burst(e.clientX,e.clientY)};
-  wall.appendChild(li);
+const F={st:"",te:new Set(),q:""};
+function renderWall(){
+  wall.innerHTML="";let shown=0;
+  P.forEach(([n,one,tech,st])=>{
+    if(F.st&&st!==F.st)return;
+    if(F.te.size&&![...F.te].some(t=>tech.toLowerCase().includes(t)))return;
+    if(F.q&&!(n+" "+one+" "+tech).toLowerCase().includes(F.q))return;
+    shown++;
+    const li=document.createElement("li");
+    li.innerHTML=`<span class="d ${DOT[st]}"></span><span class="nm">${n}</span><span class="one">${one}</span><span class="tech">${tech}</span>`;
+    li.onclick=e=>{openDetail(n,one,tech);burst(e.clientX,e.clientY)};
+    wall.appendChild(li);
+  });
+  let cmd="$ ls projects/";
+  if(F.st)cmd+=" --status="+F.st;
+  if(F.te.size)cmd+=" --tech="+[...F.te].join(",");
+  if(F.q)cmd+=` | grep "${F.q}"`;
+  document.getElementById("cmdline").innerHTML=`${cmd} <b>→ ${shown}/${P.length} shown</b>`;
+}
+document.querySelectorAll(".tok.st").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tok.st").forEach(x=>x.classList.remove("on"));
+  t.classList.add("on");F.st=t.dataset.v;renderWall();
 });
+document.querySelectorAll(".tok.te").forEach(t=>t.onclick=()=>{
+  t.classList.toggle("on");
+  t.classList.contains("on")?F.te.add(t.dataset.v):F.te.delete(t.dataset.v);
+  renderWall();
+});
+document.getElementById("q").oninput=e=>{F.q=e.target.value.toLowerCase();renderWall()};
+renderWall();
 
 /* marquees: same list, two rows, opposite directions (content doubled for seamless loop) */
 const G=["+","*","·"];const COL=["hl-p","hl-m","hl-g","hl-y","hl-b"];
