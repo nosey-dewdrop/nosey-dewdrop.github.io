@@ -98,7 +98,12 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .tok{cursor:pointer;color:var(--ink-dim);margin-right:10px}
 .tok::before{content:'['}.tok::after{content:']'}
 .tok:hover{color:var(--ink)}
-.tok.on{color:var(--pink);text-decoration:underline}
+.tok.st[data-v="live"]{color:var(--green)}
+.tok.st[data-v="wip"]{color:var(--yellow)}
+.tok.st[data-v="uni"]{color:var(--blue)}
+.tok.st[data-v="arc"]{color:var(--ink-dim)}
+.tok.on{text-decoration:underline}
+.tok.on[data-v=""]{color:var(--pink)}
 #q{font:inherit;background:none;border:none;outline:none;color:var(--pink);width:170px}
 .cmdline{color:var(--ink-dim);padding-top:4px}
 .cmdline b{color:var(--green);font-weight:400}
@@ -201,7 +206,7 @@ footer p{margin:0 0 8px}
 </section>
 
 <section class="stats">
-  <span class="cg">40 projects</span> <span class="dim">-</span>
+  <span class="cg" id="pcount">40 projects</span> <span class="dim">-</span>
   <span class="c2">IT Girl</span> <span class="dim">-</span>
   <span class="c3">I am an idea machine</span> <span class="dim">-</span>
   <span class="c4">{vibecoder}</span>
@@ -285,7 +290,7 @@ footer p{margin:0 0 8px}
   </div>
   <div class="filters">
     <p><span class="pr">filter:</span>
-      <span class="tok st on" data-v="">all</span><span class="tok st" data-v="live"><span class="d d-live"></span>live</span><span class="tok st" data-v="wip"><span class="d d-wip"></span>in progress</span><span class="tok st" data-v="uni"><span class="d d-uni"></span>university</span><span class="tok st" data-v="arc"><span class="d d-arc"></span>archive</span>
+      <span class="tok st on" data-v="">all</span><span class="tok st" data-v="live">live</span><span class="tok st" data-v="wip">in progress</span><span class="tok st" data-v="uni">university</span><span class="tok st" data-v="arc">archive</span>
       <span class="pr">tech:</span>
       <span class="tok te" data-v="swift">swift</span><span class="tok te" data-v="js">js</span><span class="tok te" data-v="python">python</span><span class="tok te" data-v="java">java</span><span class="tok te" data-v="supabase">supabase</span>
       <span class="pr">search:</span> <input id="q" autocomplete="off" placeholder="type anything…">
@@ -400,11 +405,12 @@ const P=[
  ["lingolingo","speak english, get honest voice analysis on a credit model","Swift · SwiftUI · AI","wip"],
  ["sunflower","pomodoro garden that grows while you focus, wilts when you don't","Swift · WidgetKit","wip"],
  ["msducky","duolingo-style case bank for prolotherapy, 1200+ sourced questions","JS · SRS engine","live"],
- ["snailmail","slow letter platform for university clubs","JS · GitHub Pages","live"],
+ ["snailmail","slow letter platform for university clubs","JS · GitHub Pages","wip"],
  ["stitchu","photo of you → sewing pattern → printable A4 PDF","Swift · geometry","wip"],
  ["kisalafinuzunu","turkish sayings, the sea keeps sand, i keep words","JS","live"],
  ["shortstorylong","impromptu speaking practice, pull a topic and talk","JS","live"],
  ["vibecodedflopware","leetcode but every question comes from your own repo","JS · AST","wip"],
+ ["mergeconflict","the questions interviews actually ask, real sources only","Next","wip"],
  ["prolotherapy-reference","evidence-based 3D injection atlas for clinicians, B2B","Swift · 3D","wip"],
  ["yks-koc","exam coach that plans every study day for turkish students","JS · Supabase","wip"],
  ["scrapp","iOS scrapbook, glue things like it's paper","Swift","wip"],
