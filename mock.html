@@ -14,8 +14,8 @@ body.pal-a{
   --pink:#ff8fb3; --purple:#c9a6ff; --green:#b8e39a; --yellow:#ffd479; --blue:#8fc7ff;
 }
 body.pal-b{
-  --bg:#ffffff; --bg-soft:#f4f4f4; --ink:#1f1a2e; --ink-dim:#8a8399;
-  --pink:#d4497e; --purple:#6f3fc0; --green:#3e8a33; --yellow:#b07806; --blue:#2e6fb0;
+  --bg:#ffffff; --bg-soft:#f2f2f2; --ink:#1f1a2e; --ink-dim:#6d6680;
+  --pink:#c23a70; --purple:#5f35a8; --green:#357422; --yellow:#8a5f00; --blue:#1f5c9e;
 }
 body.pal-c{
   --bg:#101623; --bg-soft:#182032; --ink:#e6eef6; --ink-dim:#8b98ad;
@@ -45,7 +45,7 @@ main,header.site,#marquees{position:relative;z-index:1}
 
 /* palette switcher (dev control) */
 .site-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-#pal{display:flex;gap:8px}
+#pal{display:flex;flex-direction:column;align-items:flex-end;gap:0}
 #pal button{font:inherit;background:none;color:var(--ink-dim);cursor:pointer;border:none}
 #pal button::before{content:'['}#pal button::after{content:']'}
 #pal button.on{color:var(--ink);text-decoration:underline}
