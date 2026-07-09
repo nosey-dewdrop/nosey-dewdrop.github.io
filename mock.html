@@ -28,7 +28,7 @@ body{
   font-size:16px; line-height:1.75; overflow-x:hidden; cursor:default;
   transition:background .35s,color .35s;
 }
-a{color:var(--pink);text-decoration:none} a:hover{text-decoration:underline}
+a{color:var(--ink);text-decoration:underline dotted} a:hover{text-decoration:underline}
 main{max-width:1060px;margin:0 auto;padding:28px}
 h1{font-size:34px;line-height:1.35;font-weight:400}
 h2{font-size:20px;font-weight:400}
@@ -45,22 +45,20 @@ main,header.site,#marquees{position:relative;z-index:1}
 #pal{position:fixed;top:14px;right:14px;z-index:9;display:flex;gap:8px;font-size:16px}
 #pal button{font:inherit;background:none;color:var(--ink-dim);cursor:pointer;border:none}
 #pal button::before{content:'['}#pal button::after{content:']'}
-#pal button.on{color:var(--pink)}
+#pal button.on{color:var(--ink);text-decoration:underline}
 
 /* ---------- HR layer ---------- */
 header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
-.wordmark{font-weight:400;color:var(--purple)}
+.wordmark{font-weight:400}
 .hero{padding:56px 0 28px;display:flex;gap:28px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
 .hero-text{max-width:720px}
 .hero .hi{color:var(--ink-dim);margin-bottom:8px}
 .hl-p{color:var(--pink)} .hl-m{color:var(--purple)} .hl-g{color:var(--green)} .hl-y{color:var(--yellow)} .hl-b{color:var(--blue)}
-.mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--purple);user-select:none;animation:bob 4s ease-in-out infinite}
+.mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--ink-dim);user-select:none;animation:bob 4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
-.stats{display:flex;gap:28px;flex-wrap:wrap;padding:28px 0 0}
-.stats b{font-size:34px;font-weight:400;display:block;line-height:1.2}
-.stats span{color:var(--ink-dim)}
-.stats .s1 b{color:var(--pink)} .stats .s2 b{color:var(--green)} .stats .s3 b{color:var(--purple)} .stats .s4 b{color:var(--yellow)}
+.stats{display:flex;gap:24px;flex-wrap:wrap;padding:28px 0 0;font-size:20px}
+.stats .c1{color:var(--green)} .stats .c2{color:var(--purple)} .stats .c3{color:var(--yellow)} .stats .c4{color:var(--pink)}
 .pr{color:var(--ink-dim);user-select:none}
 .cols{display:grid;grid-template-columns:1fr 1.4fr 1.2fr;gap:24px;padding:20px 0;font-size:13.5px;line-height:1.6}
 .cols>div>p{margin:0 0 6px}
@@ -90,16 +88,16 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .tok{cursor:pointer;color:var(--ink-dim);margin-right:10px}
 .tok::before{content:'['}.tok::after{content:']'}
 .tok:hover{color:var(--ink)}
-.tok.on{color:var(--pink)}
-#q{font:inherit;background:none;border:none;outline:none;color:var(--pink);width:170px}
+.tok.on{color:var(--ink);text-decoration:underline}
+#q{font:inherit;background:none;border:none;outline:none;color:var(--ink);width:170px}
 .cmdline{color:var(--ink-dim);padding-top:4px}
-.cmdline b{color:var(--green);font-weight:400}
+.cmdline b{color:var(--ink);font-weight:400}
 .wall{list-style:none;font-size:13.5px;line-height:1.55}
 .wall li{display:grid;grid-template-columns:26px 185px 1fr 195px;gap:12px;padding:2px 8px;border-radius:2px;cursor:pointer;align-items:baseline}
 .wall li:hover{background:var(--bg-soft)}
 .wall .no{font-weight:400}
-.no.st-live{color:var(--green)} .no.st-wip{color:var(--yellow)} .no.st-uni{color:var(--blue)} .no.st-arc{color:var(--ink-dim)}
-.wall .nm{font-weight:400;color:var(--purple)}
+.wall .no{color:var(--ink-dim)}
+.wall .nm{font-weight:400}
 .wall .one{color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wall .tech{color:var(--ink-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:860px){
@@ -115,7 +113,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .doc .close{float:right;cursor:pointer;color:var(--ink-dim)}
 .doc h1{font-size:20px;margin-bottom:8px}
 .doc .sect{margin-top:28px}
-.doc .sect h2{font-size:16px;color:var(--purple);margin-bottom:8px}
+.doc .sect h2{font-size:16px;color:var(--ink-dim);margin-bottom:8px}
 .doc pre{color:var(--ink-dim);line-height:1.6;overflow-x:auto}
 .doc .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 .doc .tags span{background:var(--bg);padding:2px 12px;border-radius:2px}
@@ -168,10 +166,10 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 </section>
 
 <section class="stats">
-  <div class="s1"><b>40</b><span>products built</span></div>
-  <div class="s2"><b>iOS + web</b><span>both platforms, live</span></div>
-  <div class="s3"><b>1</b><span>IT girl</span></div>
-  <div class="s4"><b>∞</b><span>I am an idea machine.</span></div>
+  <span class="c1">{iOS + web}</span>
+  <span class="c2">{IT girl}</span>
+  <span class="c3">{I am an idea machine.}</span>
+  <span class="c4">{VIBECODER}</span>
 </section>
 
 <section class="cols">
@@ -322,9 +320,9 @@ document.getElementById("q").oninput=e=>{F.q=e.target.value.toLowerCase();render
 renderWall();
 
 /* marquees: same list, two rows, opposite directions (content doubled for seamless loop) */
-const G=["+","*","·"];const COL=["hl-p","hl-m","hl-g","hl-y","hl-b"];
+const G=["+","*","·"];
 function fill(el,rev){
-  let items=P.slice(0,-1).map(([n],i)=>`<span><b class="${COL[i%5]}">${G[i%3]}</b> ${n}</span>`);
+  let items=P.slice(0,-1).map(([n],i)=>`<span><b>${G[i%3]}</b> ${n}</span>`);
   if(rev)items=items.reverse();
   el.innerHTML=items.join("")+items.join("");
 }
