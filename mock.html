@@ -43,7 +43,7 @@ main,header.site,#marquees{position:relative;z-index:1}
 
 /* palette switcher (dev control) */
 #pal{position:fixed;top:14px;right:14px;z-index:9;display:flex;gap:8px;font-size:16px}
-#pal button{font:inherit;background:var(--bg-soft);color:var(--ink);padding:4px 12px;cursor:pointer;border:none;border-radius:20px}
+#pal button{font:inherit;background:var(--bg-soft);color:var(--ink);padding:4px 12px;cursor:pointer;border:none;border-radius:2px}
 #pal button.on{background:var(--pink);color:var(--bg);font-weight:700}
 
 /* ---------- HR layer ---------- */
@@ -65,7 +65,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .facts h2{margin-bottom:8px}
 .facts h2 .g{color:var(--yellow);margin-right:8px}
 .skill-row{display:flex;gap:10px;flex-wrap:wrap;max-width:560px}
-.skill{background:var(--bg-soft);padding:2px 12px;border-radius:20px}
+.skill{background:var(--bg-soft);padding:2px 12px;border-radius:2px}
 
 /* ---------- marquees: two thin rows, opposite directions, decoration only ---------- */
 #marquees{padding:28px 0;overflow:hidden}
@@ -85,7 +85,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .d{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
 .d-live{background:var(--green)} .d-wip{background:var(--yellow)} .d-uni{background:var(--blue)} .d-arc{background:var(--ink-dim)}
 .wall{list-style:none}
-.wall li{display:grid;grid-template-columns:15px 200px 1fr 210px;gap:14px;padding:5px 10px;border-radius:8px;cursor:pointer;align-items:baseline}
+.wall li{display:grid;grid-template-columns:15px 200px 1fr 210px;gap:14px;padding:5px 10px;border-radius:2px;cursor:pointer;align-items:baseline}
 .wall li:hover{background:var(--bg-soft)}
 .wall .nm{font-weight:700}
 .wall li:nth-child(4n+1) .nm{color:var(--pink)}
@@ -103,14 +103,14 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 /* ---------- detail mock (overlay, template for per-project mini docs) ---------- */
 #detail{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(3px);display:none;z-index:20;overflow-y:auto}
 #detail.open{display:block}
-.doc{max-width:720px;margin:56px auto;background:var(--bg-soft);border-radius:16px;padding:44px}
+.doc{max-width:720px;margin:56px auto;background:var(--bg-soft);border-radius:3px;padding:44px}
 .doc .close{float:right;cursor:pointer;color:var(--ink-dim)}
 .doc h1{font-size:20px;margin-bottom:8px}
 .doc .sect{margin-top:28px}
 .doc .sect h2{font-size:16px;color:var(--purple);margin-bottom:8px}
 .doc pre{color:var(--ink-dim);line-height:1.6;overflow-x:auto}
 .doc .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-.doc .tags span{background:var(--bg);padding:2px 12px;border-radius:20px}
+.doc .tags span{background:var(--bg);padding:2px 12px;border-radius:2px}
 
 footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 
