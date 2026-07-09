@@ -71,7 +71,9 @@ header.site{max-width:1340px;margin:0 auto;padding:28px 40px 0;display:flex;just
 .pr{color:var(--ink-dim);user-select:none}
 .cols{display:grid;grid-template-columns:1.1fr 1.2fr 1.2fr;gap:28px;padding:24px 0;font-size:15px;line-height:1.65}
 .cols>div:nth-child(2){font-size:13px;line-height:1.55}
-.cols>div>p{margin:0 0 6px}
+.cols>div{display:flex;flex-direction:column;justify-content:space-between}
+.cols>div>p{margin:0}
+.cols .pr{margin-bottom:0}
 .cols>div:nth-child(3){font-size:13px;line-height:1.55}
 .cols .pr{margin-bottom:6px}
 .edu-b{font-size:16px}
