@@ -30,8 +30,8 @@ body{
 }
 a{color:var(--pink);text-decoration:none} a:hover{text-decoration:underline}
 main{max-width:1060px;margin:0 auto;padding:28px}
-h1{font-size:34px;line-height:1.35;font-weight:700}
-h2{font-size:20px;font-weight:700}
+h1{font-size:34px;line-height:1.35;font-weight:400}
+h2{font-size:20px;font-weight:400}
 .dim{color:var(--ink-dim)}
 ::selection{background:var(--pink);color:var(--bg)}
 
@@ -44,11 +44,11 @@ main,header.site,#marquees{position:relative;z-index:1}
 /* palette switcher (dev control) */
 #pal{position:fixed;top:14px;right:14px;z-index:9;display:flex;gap:8px;font-size:16px}
 #pal button{font:inherit;background:var(--bg-soft);color:var(--ink);padding:4px 12px;cursor:pointer;border:none;border-radius:2px}
-#pal button.on{background:var(--pink);color:var(--bg);font-weight:700}
+#pal button.on{background:var(--pink);color:var(--bg);font-weight:400}
 
 /* ---------- HR layer ---------- */
 header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
-.wordmark{font-weight:700;color:var(--purple)}
+.wordmark{font-weight:400;color:var(--purple)}
 .hero{padding:56px 0 28px;display:flex;gap:28px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
 .hero-text{max-width:720px}
 .hero .hi{color:var(--ink-dim);margin-bottom:8px}
@@ -57,20 +57,20 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
 .stats{display:flex;gap:28px;flex-wrap:wrap;padding:28px 0 0}
-.stats b{font-size:34px;font-weight:700;display:block;line-height:1.2}
+.stats b{font-size:34px;font-weight:400;display:block;line-height:1.2}
 .stats span{color:var(--ink-dim)}
 .stats .s1 b{color:var(--pink)} .stats .s2 b{color:var(--green)} .stats .s3 b{color:var(--purple)} .stats .s4 b{color:var(--yellow)}
 .pr{color:var(--ink-dim);user-select:none}
 .cols{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:28px;padding:28px 0}
 .cols>div>p{margin:0 0 10px}
 .cols .pr{margin-bottom:6px}
-.edu-b{font-size:20px;font-weight:700}
+.edu-b{font-size:20px;font-weight:400}
 @media(max-width:860px){.cols{grid-template-columns:1fr}}
 
 /* ---------- marquees: two thin rows, opposite directions, decoration only ---------- */
 #marquees{padding:28px 0;overflow:hidden}
 .mq{display:flex;gap:44px;white-space:nowrap;width:max-content;color:var(--ink-dim)}
-.mq span b{font-weight:500;color:var(--ink)}
+.mq span b{font-weight:400;color:var(--ink)}
 .mq .g{margin-right:10px}
 .mq1{animation:sl 60s linear infinite}
 .mq2{animation:sr 75s linear infinite;margin-top:14px}
@@ -88,16 +88,16 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .filters p{margin:0}
 .tok{cursor:pointer;color:var(--ink-dim);margin-right:10px}
 .tok:hover{color:var(--ink)}
-.tok.on{color:var(--ink);font-weight:700}
+.tok.on{color:var(--pink)}
 #q{font:inherit;background:none;border:none;outline:none;color:var(--pink);width:170px}
 .cmdline{color:var(--ink-dim);padding-top:4px}
-.cmdline b{color:var(--green);font-weight:500}
+.cmdline b{color:var(--green);font-weight:400}
 .wall{list-style:none;font-size:13.5px;line-height:1.55}
 .wall li{display:grid;grid-template-columns:26px 185px 1fr 195px;gap:12px;padding:2px 8px;border-radius:2px;cursor:pointer;align-items:baseline}
 .wall li:hover{background:var(--bg-soft)}
-.wall .no{font-weight:700}
+.wall .no{font-weight:400}
 .no.st-live{color:var(--green)} .no.st-wip{color:var(--yellow)} .no.st-uni{color:var(--blue)} .no.st-arc{color:var(--ink-dim)}
-.wall .nm{font-weight:700;color:var(--purple)}
+.wall .nm{font-weight:400;color:var(--purple)}
 .wall .one{color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wall .tech{color:var(--ink-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:860px){
