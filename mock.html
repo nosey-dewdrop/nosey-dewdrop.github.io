@@ -113,7 +113,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .wall .no{font-weight:400}
 .no.st-live{color:var(--green)} .no.st-wip{color:var(--yellow)} .no.st-uni{color:var(--blue)} .no.st-arc{color:var(--ink-dim)}
 .wall .nm{font-weight:400}
-.nm.t-swift{color:var(--purple)} .nm.t-js{color:var(--yellow)} .nm.t-python{color:var(--green)} .nm.t-java{color:var(--blue)} .nm.t-other{color:var(--pink)}
+.nm.st-live{color:var(--green)} .nm.st-wip{color:var(--yellow)} .nm.st-uni{color:var(--blue)} .nm.st-arc{color:var(--ink-dim)}
 .wall .one{color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wall .tech{color:var(--ink-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:860px){
@@ -144,7 +144,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .art-wall{right:-30px;top:120px}
 .cols{position:relative}
 .art-cols{right:20px;top:58%}
-.about{padding:28px 0;position:relative}
+.about{padding:28px 0 0;position:relative}
 .about .mascot{position:absolute;right:6%;bottom:30px;opacity:.45;font-size:13px;z-index:0;animation:none}
 .about-text{position:relative;z-index:1}
 .about-row{display:flex;gap:28px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
@@ -156,7 +156,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .heart{color:var(--purple)}
 .about-text .dim{color:var(--purple)}
 .about-text p{margin:0 0 12px}
-footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim);text-align:center}
+footer{max-width:1060px;margin:0 auto;padding:80px 28px;color:var(--ink-dim);text-align:center}
 footer p{margin:0 0 8px}
 .at-pink{color:var(--pink)}
 
@@ -402,48 +402,49 @@ const BUILT={"braindot": " ├─ Braindot/  (24 files)\n │   ├─ Views/ (8
 const ALIAS={"snailmail":"snailmail-web","gymgyme v2":"gymgyme"};
 /* wall list */
 const P=[
- ["lingolingo","speak english, get honest voice analysis on a credit model","Swift · SwiftUI · AI","wip"],
- ["sunflower","pomodoro garden that grows while you focus, wilts when you don't","Swift · WidgetKit","wip"],
- ["msducky","duolingo-style case bank for prolotherapy, 1200+ sourced questions","JS · SRS engine","live"],
- ["snailmail","slow letter platform for university clubs","JS · GitHub Pages","wip"],
- ["stitchu","photo of you → sewing pattern → printable A4 PDF","Swift · geometry","wip"],
- ["kisalafinuzunu","turkish sayings, the sea keeps sand, i keep words","JS","live"],
- ["shortstorylong","impromptu speaking practice, pull a topic and talk","JS","live"],
- ["vibecodedflopware","leetcode but every question comes from your own repo","JS · AST","wip"],
- ["mergeconflict","the questions interviews actually ask, real sources only","Next","wip"],
- ["prolotherapy-reference","evidence-based 3D injection atlas for clinicians, B2B","Swift · 3D","wip"],
- ["yks-koc","exam coach that plans every study day for turkish students","JS · Supabase","wip"],
- ["scrapp","iOS scrapbook, glue things like it's paper","Swift","wip"],
- ["moonlight","moon phases, horary and astrology tracking","JS","live"],
- ["musical-improvisation-tool","play few notes, learn your scale, improvise better","JS · music theory","live"],
- ["age-wiz","age guessing from a photo, tiny model in the browser","Python · JS","live"],
- ["iwantmymtv","music television, but mine","JS","wip"],
- ["creator-books","two books on audience psychology and growth, EPUB pipeline","Python · EPUB","wip"],
- ["gymgyme v2","pink social home workouts + diet for women","Swift","wip"],
- ["ladybug","which class caused this? debugging for vibecoders","TS · Next","wip"],
- ["insta-analyzer","who follows you but never likes your photos","Python","live"],
- ["mbti-tester","quick personality test, zero pretension","JS","live"],
- ["coffee-menu","what espresso drinks actually are, from my barista summer","JS","live"],
- ["sunny","my first iOS app — weather-based sunscreen reminders","Swift","live"],
- ["vibematch","find bilkent communities that match your vibe","Java · Swing","uni"],
- ["league-of-bilkent","cs102 team project, campus league","Java","uni"],
- ["hide-on-bush","cs102 but on mobile","Java","uni"],
- ["fantaisie-impromptu","every exercise, leetcode and TA note i've written","C++ · Java","uni"],
- ["daylight","lettering platform on iOS","Swift","arc"],
- ["forget-me-not","letter platform for web, i respect slow bonds","JS · DB","arc"],
- ["wildflower.dev","focus timer gamified like stardew valley","JS","arc"],
- ["damla.log","personal assistant for my own project chaos","JS","arc"],
- ["braindot","a content production pipeline","Python","arc"],
- ["lala-retro","cosmetic ingredient comparison by barcode","Swift","arc"],
- ["butterfry","food ingredient comparison algorithm","JS","arc"],
- ["linc-matik","mental martial art practice with AI","JS","arc"],
- ["mystic_queen","d minor arpeggio worship, camel forever","JS","arc"],
- ["lady-fantasy.ai","pick a card, AI gives you a video","Next · fal.ai","arc"],
- ["youdecide","took 20 minutes, my brother is happy","JS","arc"],
- ["tamagotchi-hair-design","grow a little creature's hair","JS","arc"],
- ["home-workout","seed of gymgyme v2","Swift","arc"],
+ ["lingolingo","speak english, get honest voice analysis on a credit model","Swift · SwiftUI · AI","wip","2026-07-08T12:33:08Z"],
+ ["sunflower","pomodoro garden that grows while you focus, wilts when you don't","Swift · WidgetKit","wip","2026-07-08T12:19:16Z"],
+ ["msducky","duolingo-style case bank for prolotherapy, 1200+ sourced questions","JS · SRS engine","live","2026-07-09T21:31:34Z"],
+ ["snailmail","slow letter platform for university clubs","JS · GitHub Pages","wip","2026-07-08T11:20:00Z"],
+ ["stitchu","photo of you → sewing pattern → printable A4 PDF","Swift · geometry","wip","2026-07-08T11:32:48Z"],
+ ["kisalafinuzunu","turkish sayings, the sea keeps sand, i keep words","JS","live","2026-07-09T19:08:23Z"],
+ ["shortstorylong","impromptu speaking practice, pull a topic and talk","JS","live","2026-07-09T20:13:55Z"],
+ ["vibecodedflopware","leetcode but every question comes from your own repo","JS · AST","wip","2026-07-09T21:21:32Z"],
+ ["mergeconflict","the questions interviews actually ask, real sources only","Next","wip","2026-07-09T22:10:10Z"],
+ ["prolotherapy-reference","evidence-based 3D injection atlas for clinicians, B2B","Swift · 3D","wip","2026-07-07T19:16:48Z"],
+ ["yks-koc","exam coach that plans every study day for turkish students","JS · Supabase","wip","2026-07-09T23:33:19+03:00"],
+ ["scrapp","iOS scrapbook, glue things like it's paper","Swift","wip","2026-07-08T11:06:42Z"],
+ ["moonlight","moon phases, horary and astrology tracking","JS","live","2026-07-08T11:00:41Z"],
+ ["musical-improvisation-tool","play few notes, learn your scale, improvise better","JS · music theory","live","2026-07-09T22:15:36Z"],
+ ["age-wiz","age guessing from a photo, tiny model in the browser","Python · JS","live","2026-07-08T11:16:03Z"],
+ ["iwantmymtv","music television, but mine","JS","wip","2026-07-09T20:40:35Z"],
+ ["creator-books","two books on audience psychology and growth, EPUB pipeline","Python · EPUB","wip","2026-07-09T11:22:26Z"],
+ ["gymgyme v2","pink social home workouts + diet for women","Swift","wip","2026-07-01T22:47:34Z"],
+ ["ladybug","which class caused this? debugging for vibecoders","TS · Next","wip","2026-07-08T11:08:49Z"],
+ ["insta-analyzer","who follows you but never likes your photos","Python","live","2026-06-11T16:37:50Z"],
+ ["mbti-tester","quick personality test, zero pretension","JS","live","2026-07-08T11:05:30Z"],
+ ["coffee-menu","what espresso drinks actually are, from my barista summer","JS","live","2026-07-08T11:03:54Z"],
+ ["sunny","my first iOS app — weather-based sunscreen reminders","Swift","live","2026-03-24T13:42:46Z"],
+ ["vibematch","find bilkent communities that match your vibe","Java · Swing","uni","2026-07-01T22:41:08Z"],
+ ["league-of-bilkent","cs102 team project, campus league","Java","uni","2026-04-12T14:20:49Z"],
+ ["hide-on-bush","cs102 but on mobile","Java","uni","2026-03-31T14:22:29Z"],
+ ["fantaisie-impromptu","every exercise, leetcode and TA note i've written","C++ · Java","uni","2026-03-24T16:12:32Z"],
+ ["daylight","lettering platform on iOS","Swift","arc","2026-03-25T23:13:34Z"],
+ ["forget-me-not","letter platform for web, i respect slow bonds","JS · DB","arc","2026-03-22T00:17:10Z"],
+ ["wildflower.dev","focus timer gamified like stardew valley","JS","arc","2026-03-25T23:13:43Z"],
+ ["damla.log","personal assistant for my own project chaos","JS","arc","2026-03-27T12:53:28Z"],
+ ["braindot","a content production pipeline","Python","arc","2026-03-27T17:31:07Z"],
+ ["lala-retro","cosmetic ingredient comparison by barcode","Swift","arc","2026-03-31T14:28:05Z"],
+ ["butterfry","food ingredient comparison algorithm","JS","arc","2026-03-22T00:17:08Z"],
+ ["linc-matik","mental martial art practice with AI","JS","arc","2026-03-22T17:50:55Z"],
+ ["mystic_queen","d minor arpeggio worship, camel forever","JS","arc","2026-03-25T23:13:38Z"],
+ ["lady-fantasy.ai","pick a card, AI gives you a video","Next · fal.ai","arc","2026-03-19T22:00:58Z"],
+ ["youdecide","took 20 minutes, my brother is happy","JS","arc","2025-05-23T11:09:37Z"],
+ ["tamagotchi-hair-design","grow a little creature's hair","JS","arc","2026-07-01T11:31:07Z"],
+ ["home-workout","seed of gymgyme v2","Swift","arc","2026-07-02T08:36:37Z"],
 ];
 const DOT={live:"d-live",wip:"d-wip",uni:"d-uni",arc:"d-arc"};
+P.sort((a,b)=>(b[4]||"").localeCompare(a[4]||""));
 const wall=document.getElementById("wall");
 const F={st:"",te:new Set(),q:""};
 function renderWall(){
@@ -454,8 +455,7 @@ function renderWall(){
     if(F.q&&!(n+" "+one+" "+tech).toLowerCase().includes(F.q))return;
     shown++;
     const li=document.createElement("li");
-    const tl=tech.toLowerCase();const tc=tl.includes("swift")?"t-swift":tl.includes("js")||tl.includes("ts")?"t-js":tl.includes("python")?"t-python":tl.includes("java")?"t-java":"t-other";
-    li.innerHTML=`<span class="no st-${st}">${String(i+1).padStart(2,"0")}</span><span class="nm ${tc}">${n}</span><span class="one">${one}</span><span class="tech">${tech}</span>`;
+    li.innerHTML=`<span class="no st-${st}">${String(i+1).padStart(2,"0")}</span><span class="nm st-${st}">${n}</span><span class="one">${one}</span><span class="tech">${tech}</span>`;
     li.onclick=e=>{openDetail(n,one,tech);burst(e.clientX,e.clientY)};
     wall.appendChild(li);
   });
