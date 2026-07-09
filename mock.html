@@ -44,7 +44,8 @@ h2{font-size:20px;font-weight:400}
 main,header.site,#marquees{position:relative;z-index:1}
 
 /* palette switcher (dev control) */
-#pal{position:absolute;top:14px;right:14px;z-index:9;display:flex;gap:8px}
+.site-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+#pal{display:flex;gap:8px}
 #pal button{font:inherit;background:none;color:var(--ink-dim);cursor:pointer;border:none}
 #pal button::before{content:'['}#pal button::after{content:']'}
 #pal button.on{color:var(--ink);text-decoration:underline}
@@ -170,16 +171,17 @@ footer p{margin:0 0 8px}
 </head>
 <body class="pal-c">
 <div id="stars"></div>
-<div id="pal">
-  <button data-p="pal-a">1 gece</button>
-  <button data-p="pal-b">2 beyaz</button>
-  <button data-p="pal-c" class="on">3 menekşe</button>
-</div>
-
 <header class="site">
   <a class="wordmark" href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener"><span>damlahelloworld ⋆˙⟡</span></a>
 <div id="tip">linkedin!</div>
-  <nav class="dim">[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>]</nav>
+  <div class="site-right">
+    <div id="pal">
+      <button data-p="pal-a">gece</button>
+      <button data-p="pal-b">beyaz</button>
+      <button data-p="pal-c" class="on">menekşe</button>
+    </div>
+    <nav class="dim">[<a href="https://github.com/damlahelloworld" target="_blank" rel="noopener">github ↗</a>]</nav>
+  </div>
 </header>
 
 <main>
