@@ -56,16 +56,9 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--purple);user-select:none;animation:bob 4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
-.stats{display:flex;gap:28px;flex-wrap:wrap;padding:28px 0}
-.stats b{font-size:34px;font-weight:700;display:block;line-height:1.2}
-.stats span{color:var(--ink-dim)}
-.stats .s1 b{color:var(--pink)} .stats .s2 b{color:var(--green)} .stats .s3 b{color:var(--purple)} .stats .s4 b{color:var(--yellow)}
-
-.facts{display:flex;gap:56px;flex-wrap:wrap;padding:0 0 28px}
-.facts h2{margin-bottom:8px}
-.facts h2 .g{color:var(--yellow);margin-right:8px}
-.skill-row{display:flex;gap:10px;flex-wrap:wrap;max-width:560px}
-.skill{background:var(--bg-soft);padding:2px 12px;border-radius:2px}
+.meta{padding:28px 0}
+.meta p{margin:0}
+.meta .pr{color:var(--ink-dim);user-select:none}
 
 /* ---------- marquees: two thin rows, opposite directions, decoration only ---------- */
 #marquees{padding:28px 0;overflow:hidden}
@@ -119,13 +112,8 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 @keyframes fall{to{transform:translateY(70px) rotate(220deg);opacity:0}}
 </style>
 </head>
-<body class="pal-a">
+<body class="pal-c">
 <div id="stars"></div>
-<div id="pal">
-  <button data-p="pal-a" class="on">1 gece</button>
-  <button data-p="pal-b">2 krem</button>
-  <button data-p="pal-c">3 menekşe</button>
-</div>
 
 <header class="site">
   <span class="wordmark">damlahelloworld *</span>
@@ -138,9 +126,8 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 <section class="hero">
   <div class="hero-text">
     <p class="hi">hi, i'm damla —</p>
-    <h1>3rd-year CS student at <span class="hl-b">Bilkent</span> who ships
-    <span class="hl-p">real products</span>, not course projects.
-    founder of <span class="hl-m">damlahelloworld</span>.</h1>
+    <h1>3rd-year CS student at Bilkent who ships real products,
+    not course projects. founder of damlahelloworld.</h1>
   </div>
   <pre class="mascot" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢔⣶⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠗⡿⣾⠀⠀
@@ -160,26 +147,11 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠽⠞⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
 </section>
 
-<section class="stats">
-  <div class="s1"><b>40</b><span>products built</span></div>
-  <div class="s2"><b>iOS + web</b><span>both platforms, live</span></div>
-  <div class="s3"><b>1</b><span>one-woman company</span></div>
-  <div class="s4"><b>∞</b><span>ideas in the queue</span></div>
-</section>
-
-<section class="facts">
-  <div>
-    <h2><span class="g">*</span>education</h2>
-    <p>Bilkent University — Computer Science<br><span class="dim">3rd year · Ankara, Türkiye</span></p>
-  </div>
-  <div>
-    <h2><span class="g">*</span>skills</h2>
-    <div class="skill-row">
-      <span class="skill">Swift / SwiftUI</span><span class="skill">JavaScript</span>
-      <span class="skill">Python</span><span class="skill">Java</span><span class="skill">C++</span>
-      <span class="skill">Supabase</span><span class="skill">Git</span><span class="skill">product design</span>
-    </div>
-  </div>
+<section class="meta">
+  <p><span class="pr">$ stats:</span> 40 products · live on iOS + web · one-woman company · IT girl</p>
+  <p><span class="pr">$ motto:</span> I am an idea machine.</p>
+  <p><span class="pr">$ education:</span> Bilkent University — computer science, 3rd year · Ankara</p>
+  <p><span class="pr">$ stack:</span> swift · swiftui · javascript · python · java · c++ · supabase</p>
 </section>
 
 </main>
@@ -327,11 +299,7 @@ function piece(x,y,vx){
 addEventListener("mousemove",e=>{const t=Date.now();if(t-last>90){last=t;piece(e.clientX,e.clientY,0)}});
 function burst(x,y){for(let i=0;i<14;i++)piece(x,y,(Math.random()-.5)*120)}
 
-/* palette switcher: buttons or keys 1/2/3 */
-const pals=["pal-a","pal-b","pal-c"];
-function setPal(p){document.body.className=p;document.querySelectorAll("#pal button").forEach(b=>b.classList.toggle("on",b.dataset.p===p))}
-document.querySelectorAll("#pal button").forEach(b=>b.onclick=()=>setPal(b.dataset.p));
-addEventListener("keydown",e=>{if(e.key>="1"&&e.key<="3")setPal(pals[e.key-1])});
+/* palette decided: menekse (pal-c). switcher removed. */
 </script>
 </body>
 </html>
