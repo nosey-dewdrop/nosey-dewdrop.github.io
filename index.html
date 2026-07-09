@@ -38,7 +38,7 @@ body{
 a{color:var(--pink);text-decoration:underline dotted;display:inline-block;transition:transform .15s}
 a:hover{text-decoration:underline;transform:translateY(-3px)}
 header.site nav,#pal,footer{font-size:14px}
-main{max-width:1060px;margin:0 auto;padding:28px}
+main{max-width:1060px;margin:0 auto;padding:28px 28px 0}
 h1{font-size:34px;line-height:1.35;font-weight:400}
 h2{font-size:20px;font-weight:400}
 .dim{color:var(--ink-dim)}
@@ -128,7 +128,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .wall .one{color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wall .tech{color:var(--ink-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:860px){
-  .wall li{grid-template-columns:15px 1fr;grid-auto-rows:auto}
+  .wall li{grid-template-columns:26px 1fr;grid-auto-rows:auto}
   .wall .tech{text-align:left}
   .stats{gap:20px} .facts{gap:28px}
 }
@@ -167,9 +167,27 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .heart{color:var(--purple)}
 .about-text .dim{color:var(--purple)}
 .about-text p{margin:0 0 12px}
-footer{max-width:1060px;margin:0 auto;padding:32px 28px 40px;color:var(--ink-dim);text-align:center}
+footer{max-width:1060px;margin:0 auto;padding:12px 28px 32px;color:var(--ink-dim);text-align:center}
 footer p{margin:0 0 8px}
 .at-pink{color:var(--pink)}
+
+/* phone */
+@media(max-width:700px){
+  main{padding:20px 16px 0}
+  header.site{padding:20px 16px 0}
+  .hero{padding:32px 0 16px;min-height:0}
+  h1{font-size:22px;line-height:1.5}
+  .stats{font-size:15px;gap:12px;row-gap:6px}
+  .cols{grid-template-columns:1fr;gap:20px}
+  .about-text{column-count:1}
+  .about .mascot{display:none}
+  .filters{font-size:13px}
+  #q{width:120px}
+  .doc{margin:16px;padding:24px 20px}
+  #d-live{font-size:26px}
+  .mq{gap:28px}
+  footer{padding:8px 16px 24px}
+}
 
 /* confetti */
 .cf{position:fixed;z-index:30;pointer-events:none;font-size:17px;animation:fall 1.1s ease-out forwards}
