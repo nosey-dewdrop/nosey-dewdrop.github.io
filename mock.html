@@ -57,6 +57,8 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .mascot{font-size:11px;line-height:1.05;white-space:pre;color:var(--ink-dim);user-select:none;animation:bob 4s ease-in-out infinite}
 .hero .mascot{font-size:15px;line-height:1.1;position:absolute;right:0;top:28px}
 @media(max-width:1000px){.hero .mascot{display:none}}
+.cur{animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
 .stats{display:flex;gap:24px;flex-wrap:wrap;align-items:baseline;padding:28px 0 0;font-size:20px}
@@ -156,8 +158,7 @@ footer{max-width:1060px;margin:0 auto;padding:28px;color:var(--ink-dim)}
 <section class="hero">
   <div class="hero-text">
     <p class="hi">hi, i'm damla —</p>
-    <h1>3rd-year CS student at Bilkent who ships real products.
-    founder of damlahelloworld.</h1>
+    <h1><span id="typer"></span><span class="cur">▊</span></h1>
   </div>
   <pre class="mascot" aria-hidden="true">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢔⣶⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠗⡿⣾⠀⠀
@@ -403,6 +404,11 @@ notes per project, generated then hand-checked)`;
   detail.classList.add("open");
 }
 detail.onclick=e=>{if(e.target===detail)detail.classList.remove("open")};
+
+/* terminal typing for the hero line */
+const TXT="3rd-year CS student at Bilkent who ships real products. founder of damlahelloworld.";
+const typer=document.getElementById("typer");let ti=0;
+(function type(){if(ti<=TXT.length){typer.textContent=TXT.slice(0,ti);ti++;setTimeout(type,28)}})();
 
 /* stars */
 const sf=document.getElementById("stars");
