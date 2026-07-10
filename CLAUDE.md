@@ -5,6 +5,6 @@ CURRENT DESIGN (2026-07-10, REWORK SHIPPED): single page, monospace, 3 user them
 
 RULES (Damla, non-negotiable): NO bold anywhere (400 only). Sharp corners 0-3px. No borders. Terminal chars only (* + · . -), her ASCII mascots only (butterfly hero, big butterfly behind wall, creature behind cols, stars behind about). Colors mean something: status colors (live green/wip yellow/uni blue/arc dim); filters plain until selected. No "not course projects" style dissing. Copy is Damla's — never invent. mun = "4x mun delegate". snailmail NOT live. IEEE 2025-2026.
 
-LEFT OFF: published 10 Tem gece. OPEN: 2nd YKS app name missing from wall (she'll tell); per-project class-hierarchy docs (modules) not written; products.json extraction (data still inline in index.html); msducky-abone stays PRIVATE (KVKK), not on wall.
+LEFT OFF: published 10 Tem gece; phone pass done; count auto (40+); YKS resolved: single row 'meyvetabagi' (Sira Sende retired, 'koc' word banned, cilek = the AI). OPEN: per-project class-hierarchy docs (modules); products.json extraction (data inline); Damla's copy pass on one-liners; msducky-abone stays PRIVATE (KVKK), never on wall.
 
 Detail spec + plan: PROJECT.md. Old terminal design: git history (pre-rework).
