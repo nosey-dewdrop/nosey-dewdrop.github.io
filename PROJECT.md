@@ -62,4 +62,5 @@ Overlay layout order: header (nr, name, status, one-liner) → tags → what →
 
 ## Status
 - 2026-07-10 (gece): REWORK SHIPPED to damlahelloworld.github.io after ~60 iteration rounds with Damla. mock.html retired.
-- Open: 2nd YKS app row, per-project modules docs, products.json extraction, one-liner copy pass by Damla.
+- 2026-07-10 (later): phone pass (2 rounds), footer gap fixed, count auto 40+, heart line dead centered, white theme neutralized, meyvetabagi row added (yks single brand, cilek = the AI, "koc" word banned), theme choice persists via localStorage.
+- Open: per-project modules docs (class hierarchies), products.json extraction (data inline in index.html), Damla copy pass on wall one-liners, mobile check on her real phone.
