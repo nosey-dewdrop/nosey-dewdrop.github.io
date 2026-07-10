@@ -2,7 +2,7 @@ name: portfolio sync
 
 on:
   schedule:
-    - cron: "0 8 * * 1" # monday 08:00 utc, 11:00 tr
+    - cron: "0 8 * * *" # every day 08:00 utc, 11:00 tr
   workflow_dispatch: {}
 
 permissions:
