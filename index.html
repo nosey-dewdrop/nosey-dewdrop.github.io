@@ -141,6 +141,7 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .doc h1{font-size:20px;margin-bottom:8px}
 #d-live{display:none;font-size:34px;color:var(--green);text-decoration:none;margin:4px 0}
 #d-live:hover{text-decoration:underline}
+#d-live.landing{color:var(--purple)}
 .doc .sect{margin-top:28px}
 .doc .sect h2{font-size:16px;color:var(--purple);margin-bottom:8px}
 .doc pre{color:var(--ink-dim);line-height:1.6;overflow-x:auto}
@@ -550,7 +551,7 @@ function openDetail(n,one,tech){
   const lbl=(pj&&pj.ll)||(x&&x.landing?"landing page":null);
   const liveA=document.getElementById("d-live");
   if(liveUrl){
-    liveA.style.display="inline-block";liveA.href=liveUrl;liveA.textContent="";
+    liveA.style.display="inline-block";liveA.href=liveUrl;liveA.textContent="";liveA.classList.toggle("landing",!!lbl);
     let li_=0;const LT=(lbl||"live!")+" ↗";
     (function tl(){liveA.textContent=LT.slice(0,li_);if(li_<LT.length){li_++;setTimeout(tl,70)}})();
   }else liveA.style.display="none";
