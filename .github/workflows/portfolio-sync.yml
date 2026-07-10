@@ -1,0 +1,41 @@
+name: portfolio sync
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # monday 08:00 utc, 11:00 tr
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: scan repos and refresh data
+        id: sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUMMARY_PATH: ${{ runner.temp }}/summary.md
+        run: node scripts/sync.mjs
+      - name: open pr if anything changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet index.html; then
+            echo "nothing to sync"
+            exit 0
+          fi
+          branch="sync-$(date +%Y%m%d-%H%M)"
+          git checkout -b "$branch"
+          git config user.name "Damla"
+          git config user.email "damummyphus@gmail.com"
+          git add index.html
+          git commit -m "portfolio sync: repo data refresh"
+          git push origin "$branch"
+          gh pr create --title "portfolio sync $(date +%Y-%m-%d)" --body-file "$RUNNER_TEMP/summary.md"
