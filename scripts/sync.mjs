@@ -1,7 +1,8 @@
 // portfolio sync: scans public repos of the damlahelloworld org and refreshes
-// the data baked into index.html. Never invents copy for existing rows, never
-// deletes rows, never marks anything "live" — new deployments enter as landing
-// links and new repos as draft wip rows for Damla to reword in the PR.
+// the data baked into index.html and commits the refresh straight to main so the
+// live site self-updates daily. Never invents copy, never deletes rows, never marks
+// anything "live" — new deployments enter as landing links, new repos as wip rows
+// (only once they carry a one-liner), and Damla promotes landing -> live herself.
 // Run: GITHUB_TOKEN=... node scripts/sync.mjs   (token optional, raises rate limit)
 
 import { readFileSync, writeFileSync } from "node:fs";
@@ -81,11 +82,9 @@ const changes = [];
 
 // ---- parse data blocks ----
 const pMatch = src.match(/const P=\[\n([\s\S]*?)\n\];/);
-const rows = pMatch[1].split("\n").map((line) => {
-  const m = line.match(/^ (\[.*\]),?$/);
-  if (!m) throw new Error(`unparsable wall row: ${line}`);
-  return JSON.parse(m[1]);
-});
+// parse the whole array body at once (robust to rows sharing a line); the
+// write-back below re-normalises to one row per line
+const rows = JSON.parse(`[${pMatch[1].replace(/,\s*$/, "")}]`);
 const builtMatch = src.match(/const BUILT=(\{[\s\S]*?\});/);
 const BUILT = JSON.parse(builtMatch[1]);
 const xinfoMatch = src.match(/const XINFO=(\{[\s\S]*?\});\n/);
@@ -104,13 +103,18 @@ for (const row of rows) {
   }
 }
 
-// ---- 2. draft rows for repos not on the wall ----
+// ---- 2. new repos join the wall as wip — but only once they carry a one-liner
+// (their GitHub About description); no invented copy, no placeholder on the live site ----
 const known = new Set([...rows.map((r) => toRepo(r[0])), ...Object.keys(BUILT), ...Object.values(ALIAS)]);
 for (const r of repos) {
   if (known.has(r.name)) continue;
-  rows.push([r.name, r.description || "(one-liner needed — reword me in this PR)", r.language || "?", "wip", r.pushed_at]);
-  changes.push(`new project on the wall: **${r.name}** (draft copy, status wip)`);
   known.add(r.name);
+  if (!r.description) {
+    changes.push(`held off the wall until it has a one-liner: **${r.name}** — set its GitHub About description and it appears next sync`);
+    continue;
+  }
+  rows.push([r.name, r.description, r.language || "?", "wip", r.pushed_at]);
+  changes.push(`new project on the wall: **${r.name}** (status wip)`);
 }
 
 // ---- 3. landing links for freshly deployed repos (never auto-"live") ----
@@ -166,12 +170,12 @@ if (out !== src) {
   writeFileSync(INDEX, out);
   const dateChanges = changes.length ? changes : [];
   const body = [
-    "weekly portfolio sync. merging this publishes the changes to the live site.",
+    "portfolio sync committed straight to main — the live site is already updated.",
     "",
     ...(dateChanges.length ? dateChanges.map((c) => `- ${c}`) : []),
     "- last-commit dates and repo trees refreshed where stale",
     "",
-    "new rows carry draft copy — reword before merging. nothing is ever auto-labeled live; promote landing → live yourself when the product works.",
+    "nothing is ever auto-labeled live; promote landing → live yourself when the product works.",
   ].join("\n");
   writeFileSync(SUMMARY, body);
   console.log("changed");
