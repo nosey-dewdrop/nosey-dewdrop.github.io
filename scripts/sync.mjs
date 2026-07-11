@@ -33,7 +33,11 @@ async function listPublicRepos() {
 }
 
 function buildTree(entries) {
-  const blobs = entries.filter((e) => e.type === "blob").map((e) => e.path);
+  // internal claude docs are gitignored in the repos; never list them even if an old commit still tracks one
+  const blobs = entries
+    .filter((e) => e.type === "blob")
+    .map((e) => e.path)
+    .filter((p) => !/(^|\/)CLAUDE(\.context)?\.md$/.test(p));
   const rootFiles = blobs.filter((p) => !p.includes("/")).sort();
   const top = {}, sub = {};
   for (const p of blobs) {
