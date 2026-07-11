@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   sync:
@@ -23,19 +22,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SUMMARY_PATH: ${{ runner.temp }}/summary.md
         run: node scripts/sync.mjs
-      - name: open pr if anything changed
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: commit refresh straight to main
         run: |
           if git diff --quiet index.html; then
             echo "nothing to sync"
             exit 0
           fi
-          branch="sync-$(date +%Y%m%d-%H%M)"
-          git checkout -b "$branch"
           git config user.name "Damla"
           git config user.email "damummyphus@gmail.com"
           git add index.html
           git commit -m "portfolio sync: repo data refresh"
-          git push origin "$branch"
-          gh pr create --title "portfolio sync $(date +%Y-%m-%d)" --body-file "$RUNNER_TEMP/summary.md"
+          git push origin HEAD:main
