@@ -1,4 +1,4 @@
-// portfolio sync: scans public repos of the damlahelloworld org and refreshes
+// portfolio sync: scans public repos of the nosey-dewdrop org and refreshes
 // the data baked into index.html and commits the refresh straight to main so the
 // live site self-updates daily. Never invents copy, never deletes rows, never marks
 // anything "live" — new deployments enter as landing links, new repos as wip rows
@@ -7,7 +7,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 
-const ORG = "damlahelloworld";
+const ORG = "nosey-dewdrop";
 const INDEX = new URL("../index.html", import.meta.url).pathname;
 const SUMMARY = process.env.SUMMARY_PATH || "/tmp/sync-summary.md";
 // wall names that differ from repo names (mirror of ALIAS in index.html)
