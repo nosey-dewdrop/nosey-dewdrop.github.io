@@ -1,4 +1,4 @@
-# damlahelloworld.github.io — rework plan (2026-07-10)
+# nosey-dewdrop.github.io — rework plan (2026-07-10)
 
 Final rework. Decided with Damla over long back-and-forth; scope is FROZEN below. Whimsy stays. No reference to existing portfolio designs; anti-reference: vibecodedflopware landing (bad: huge paddings, narrow column, slow reveal; good: confetti mouse trail + click confetti, glyph dividers, colored word highlights).
 
@@ -51,7 +51,7 @@ Overlay layout order: header (nr, name, status, one-liner) → tags → what →
 ## Data model
 - `products.json` = single source of truth: name, one-liner, tech[], status, live URL, repo URL, detail fields
 - Generated initially from gh repo list (39 public repos) + READMEs; maintained by hand afterwards
-- Fits ecosystem plan (reports/2026-07-09-damlahelloworld-ekosistem.md): portfolio is the brand hub
+- Fits ecosystem plan (reports/2026-07-09-nosey-dewdrop-ekosistem.md): portfolio is the brand hub
 
 ## Build order (next session)
 1. products.json from repo data (names, descriptions, tech via languages API)
@@ -61,7 +61,7 @@ Overlay layout order: header (nr, name, status, one-liner) → tags → what →
 5. Damla passes: palette pick, copy rewrite, per-project detail corrections
 
 ## Status
-- 2026-07-10 (gece): REWORK SHIPPED to damlahelloworld.github.io after ~60 iteration rounds with Damla. mock.html retired.
+- 2026-07-10 (gece): REWORK SHIPPED to nosey-dewdrop.github.io after ~60 iteration rounds with Damla. mock.html retired.
 - 2026-07-10 (later): phone pass (2 rounds), footer gap fixed, count auto 40+, heart line dead centered, white theme neutralized, meyvetabagi row added (yks single brand, cilek = the AI, "koc" word banned), theme choice persists via localStorage.
 - 2026-07-10 (session 3): modules docs DONE (5 parallel agents read 23 repos, real files + jobs), live iframe previews added for verified live sites (msducky, kisalafinuzunu, vibecodedflopware, iwantmymtv, mbti-tester + PJ links), tagline/what fallbacks for repos that had none.
 - Open: products.json extraction (data inline in index.html), Damla copy pass on one-liners and new what texts, mobile check on her real phone.
