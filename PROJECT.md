@@ -65,3 +65,32 @@ Overlay layout order: header (nr, name, status, one-liner) → tags → what →
 - 2026-07-10 (later): phone pass (2 rounds), footer gap fixed, count auto 40+, heart line dead centered, white theme neutralized, meyvetabagi row added (yks single brand, cilek = the AI, "koc" word banned), theme choice persists via localStorage.
 - 2026-07-10 (session 3): modules docs DONE (5 parallel agents read 23 repos, real files + jobs), live iframe previews added for verified live sites (msducky, kisalafinuzunu, vibecodedflopware, iwantmymtv, mbti-tester + PJ links), tagline/what fallbacks for repos that had none.
 - Open: products.json extraction (data inline in index.html), Damla copy pass on one-liners and new what texts, mobile check on her real phone.
+
+---
+
+## Shipped design spec (moved from CLAUDE.md 2026-07-18)
+CURRENT DESIGN (2026-07-10, rework shipped): single page, monospace, 3 user themes [night]/[white]/[violet] (violet default, localStorage). Layout top→bottom:
+- header (wordmark "damlahelloworld ⋆˙⟡" = linkedin link with mouse-following "linkedin!" tooltip; right: theme row + [github ↗] under it)
+- hero typed like a terminal WITH colors as it types, butterfly ASCII top right
+- colored stat line "40 projects - IT Girl - I am an idea machine - {vibecoder}" (count computed from list)
+- 3 columns education(14px)/skills(13px)/experience(12px, ALL real entries)
+- dual opposite marquees, all names colored, uniform * glyph
+- wall: every project one row (nr colored by status = name color, one-liner, tech), human filter bar (status+tech+search), sorted by REAL last-commit date newest first
+- detail overlay per project (real live-site copy + real repo file trees from 42 repos, big green typed "live! ↗" on top for live ones)
+- about.txt (full about-me.md, 2 columns, lilac labels, 13px, star doodle bg right, centered "{i build things come from the heart!}" + ~ ʚɞ ~)
+- footer centered links + pink @damlahelloworld
+
+Mascot rules: her ASCII mascots only — butterfly hero, big butterfly behind wall, creature behind cols, stars behind about.
+
+Copy facts (never invent): mun = "4x mun delegate". snailmail NOT live. IEEE 2025-2026. kitschat was reworked into "short story long" (live title), copy updated 10 Tem; deployment URL stays kitschat.vercel.app.
+
+## Sync workflow (moved from CLAUDE.md 2026-07-18)
+.github/workflows/portfolio-sync.yml + scripts/sync.mjs = daily (11:00 tr) + manual github action. Scans public repos and commits the refresh STRAIGHT TO MAIN (no PR) so the live site self-updates without Damla merging. New wall rows (wip) only once a repo has a one-liner (its GitHub About description) — no placeholder ever hits live; landing links never auto-live; tree/date refresh. Damla still promotes landing → live herself. mergeconflict renamed missingsemicolon in data 10 Tem. sync.mjs never overwrites existing live/landing entries.
+
+## Domain (moved from CLAUDE.md 2026-07-18, 2026-07-12)
+damlahelloworld.com live; apex + github.io both serve the portfolio (identical). All wall/overlay links audited with curl, all 200. Vercel products link their subdomains (calicocat/forgetmenot/gymgyme/kisalafinuzunu/ladyfantasy/lincmatik/missingsemicolon/msducky/shortstorylong — the earlier "kitschat.vercel.app stays" note is obsolete for links but the deploy URL still lives there); ir-globe landing moved github.io → ir-globe.damlahelloworld.com. vibematch stays on github.io: vibematch.damlahelloworld.com + its vercel project both 404 (broken on vercel side, Damla's call).
+
+## Archive — resolved / stale left-off notes (moved from CLAUDE.md 2026-07-18)
+- LEFT OFF (10 Tem gece): published; phone pass done; count auto (40+); YKS resolved: single row 'meyvetabagi' (Sira Sende retired, 'koc' word banned, cilek = the AI). msducky-abone stays PRIVATE (KVKK), never on wall.
+- 10 Tem fix pass: BUILT trees regenerated UNTRUNCATED from live GitHub (41 repos; msducky-abone removed from BUILT entirely); msducky corrected (862 questions, live+preview = msducky.vercel.app doctors site); vibecodedflopware wall status = live.
+- Detail spec + old terminal design: this file + git history (pre-rework).
