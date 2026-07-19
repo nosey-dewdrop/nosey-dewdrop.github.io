@@ -93,6 +93,8 @@ main,header.site,#marquees{position:relative;z-index:1}
 /* ---------- HR layer ---------- */
 header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;justify-content:space-between;align-items:baseline}
 .wordmark{font-weight:400;text-decoration:none;color:var(--purple)}
+.bloglink{color:var(--blue);text-decoration:none}
+.bloglink:hover{text-decoration:underline dotted}
 #tip{position:fixed;display:none;pointer-events:none;z-index:99;font-size:13px;color:var(--pink)}
 .hero{padding:56px 0 28px;position:relative;min-height:220px}
 .hero-text{max-width:720px}
@@ -242,7 +244,7 @@ footer p{margin:0 0 8px}
 <body class="pal-c">
 <div id="stars"></div>
 <header class="site">
-  <a class="wordmark" href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener"><span>nosey-dewdrop ⋆˙⟡</span></a>
+  <div><a class="wordmark" href="https://www.linkedin.com/in/damla-su-bilge-278841278/" target="_blank" rel="noopener"><span>nosey-dewdrop ⋆˙⟡</span></a> <a class="bloglink" href="/blog">blog</a></div>
 <div id="tip">linkedin!</div>
   <div class="site-right">
     <div id="pal">
@@ -250,7 +252,7 @@ footer p{margin:0 0 8px}
       <button data-p="pal-b">white</button>
       <button data-p="pal-c" class="on">violet</button>
     </div>
-    <nav class="dim">[<a href="/blog">blog</a>] [<a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener">github ↗</a>]</nav>
+    <nav class="dim">[<a href="https://github.com/nosey-dewdrop" target="_blank" rel="noopener">github ↗</a>]</nav>
   </div>
 </header>
 
@@ -904,7 +906,6 @@ function piece(x,y,vx){
   c.style.color=`var(${CFC[Math.floor(Math.random()*5)]})`;
   document.body.appendChild(c);setTimeout(()=>c.remove(),1100);
 }
-addEventListener("mousemove",e=>{const t=Date.now();if(t-last>45){last=t;piece(e.clientX,e.clientY,0)}});
 function burst(x,y){for(let i=0;i<24;i++)piece(x,y,(Math.random()-.5)*160)}
 
 /* wordmark: linkedin tooltip follows the mouse */
