@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/blog", "destination": "https://blog-sigma-five-29.vercel.app/index.html" },
+    { "source": "/blog/", "destination": "https://blog-sigma-five-29.vercel.app/index.html" },
+    { "source": "/blog/p/:slug", "destination": "https://blog-sigma-five-29.vercel.app/p/:slug" },
+    { "source": "/blog/:path*", "destination": "https://blog-sigma-five-29.vercel.app/:path*" }
+  ]
+}
