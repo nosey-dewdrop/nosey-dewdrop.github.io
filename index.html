@@ -21,24 +21,37 @@
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://noseydewdrop.com/#person",
+      "@id": "https://damlahelloworld.com/#damla",
       "name": "Damla Su Bilge",
-      "alternateName": "nosey-dewdrop",
-      "url": "https://noseydewdrop.com/",
-      "jobTitle": "Computer Science Student & IT Girl",
-      "affiliation": {"@type": "CollegeOrUniversity", "name": "Bilkent University"},
+      "alternateName": ["nosey-dewdrop", "noseydewdrop", "Damla Bilge"],
+      "url": "https://damlahelloworld.com/",
+      "description": "Damla Su Bilge builds real products people use on iOS and web. Bilkent University Computer Science. Creator of noseydewdrop: 50+ projects and 20+ live products including stitchu, gymgyme, ir-globe.",
+      "jobTitle": "Software Engineer",
+      "knowsAbout": ["Software Engineering", "iOS Development", "C++", "Machine Learning", "Computer Vision", "Web Development"],
+      "alumniOf": {"@type": "CollegeOrUniversity", "name": "Bilkent University"},
+      "worksFor": {"@type": "Organization", "name": "noseydewdrop", "url": "https://noseydewdrop.com/"},
       "sameAs": [
         "https://github.com/nosey-dewdrop",
-        "https://nosey-dewdrop.github.io/",
-        "https://www.linkedin.com/in/damla-su-bilge-278841278/"
+        "https://www.linkedin.com/in/damla-su-bilge",
+        "https://www.instagram.com/meraklicigtanesi",
+        "https://www.instagram.com/dewdrop.cpp"
       ]
     },
     {
       "@type": "WebSite",
-      "@id": "https://noseydewdrop.com/#website",
+      "@id": "https://damlahelloworld.com/#website",
+      "name": "Damla Su Bilge - noseydewdrop",
+      "url": "https://damlahelloworld.com/",
+      "author": {"@id": "https://damlahelloworld.com/#damla"},
+      "publisher": {"@id": "https://damlahelloworld.com/#damla"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://noseydewdrop.com/#org",
       "name": "noseydewdrop",
       "url": "https://noseydewdrop.com/",
-      "author": {"@id": "https://noseydewdrop.com/#person"}
+      "founder": {"@id": "https://damlahelloworld.com/#damla"},
+      "sameAs": ["https://github.com/nosey-dewdrop"]
     }
   ]
 }
