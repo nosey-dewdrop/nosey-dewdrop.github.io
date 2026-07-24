@@ -67,74 +67,134 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Latin+Modern+Roman&display=swap" rel="stylesheet">
 <style>
-:root{ --bg:#ffffff; --bg-soft:#f5f5f5; --ink:#141414; --ink-dim:#6b6b6b;
-  --pink:#c23a70; --purple:#5f35a8; --green:#357422; --blue:#1f5c9e; }
+/* portfolio's violet-night world in the background (its own default pal, #171221),
+   the doc sits on top as a white LaTeX-style paper sheet, floating over the stars */
+:root{
+  --void:#171221; --void-soft:#221a33;
+  --star:#b0b6ff; --accent:#b0b6ff; --accent-deep:#7b6fd6;
+  /* paper (LaTeX article) */
+  --paper:#fdfdfb; --ptext:#1a1a1a; --pdim:#5a5a5a; --prule:#e2e2df;
+  --serif: "Latin Modern Roman", "Computer Modern", Georgia, "Times New Roman", serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Mono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:720px;margin:0 auto;padding:40px 24px 80px}
-.crumb{font-size:13px;color:var(--ink-dim);margin-bottom:28px}
-.crumb a{color:var(--ink-dim);text-decoration:none}
-.crumb a:hover{color:var(--ink)}
-h1{font-size:30px;font-weight:700;line-height:1.2;letter-spacing:-0.01em;margin-bottom:6px}
-.tag{color:var(--ink-dim);font-size:15px;margin-bottom:14px}
-.meta{font-size:13px;color:var(--ink-dim);margin-bottom:8px}
-.meta b{color:var(--green);font-weight:500}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 30px}
-.badge{font-size:12px;border:1px solid var(--ink);padding:3px 9px;color:var(--ink)}
-.live{background:var(--ink);color:var(--bg);text-decoration:none}
-h2{font-size:18px;font-weight:700;margin:34px 0 10px}
-h2::before{content:"+ ";color:var(--pink)}
-p{margin-bottom:14px}
-ul{margin:0 0 14px 20px}
-li{margin-bottom:6px}
-strong{font-weight:700}
-.num{color:var(--blue);font-weight:700}
-.updated{margin-top:44px;padding-top:18px;border-top:1px solid var(--bg-soft);font-size:13px;color:var(--ink-dim)}
-.back{display:inline-block;margin-top:26px;font-size:14px;color:var(--ink)}
-a{color:var(--purple)}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--void);
+  background-image:radial-gradient(circle at 20% 15%, #2a2140 0%, transparent 45%),
+                   radial-gradient(circle at 82% 70%, #241a38 0%, transparent 50%);
+  min-height:100vh;
+  font-family:var(--serif);
+  color:var(--ptext);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* star field behind the paper (the portfolio's whimsy, carried over) */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;color:var(--star);opacity:.35;font-size:11px;animation:tw 3.6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.55}}
+
+/* the white LaTeX paper sheet, centered, floating */
+.sheet{
+  position:relative;z-index:2;
+  max-width:660px;margin:56px auto;
+  background:var(--paper);
+  padding:64px 72px 56px;
+  border-radius:2px;
+  box-shadow:0 24px 70px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.3);
+}
+
+/* tiny "back to the world" chip above the paper, in the world's voice */
+.ret{position:relative;z-index:2;max-width:660px;margin:0 auto;padding:0 4px}
+.ret a{font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none}
+.ret a:hover{color:#fff}
+
+/* LaTeX article typography */
+.doc-head{text-align:center;border-bottom:1px solid var(--prule);padding-bottom:22px;margin-bottom:30px}
+.doc-title{font-size:27px;font-weight:400;letter-spacing:.01em;line-height:1.25;margin-bottom:10px}
+.doc-author{font-size:15px;color:var(--pdim)}
+.doc-author b{color:var(--ptext);font-weight:400}
+.doc-date{font-family:var(--mono);font-size:12px;color:var(--pdim);margin-top:8px}
+
+.abstract{font-style:italic;color:#333;font-size:15px;line-height:1.65;margin:0 auto 30px;max-width:52ch;text-align:justify}
+
+.sheet h2{font-family:var(--serif);font-size:19px;font-weight:700;margin:30px 0 10px}
+.sheet h2 .sec{color:var(--accent-deep);margin-right:8px;font-family:var(--mono);font-size:15px}
+.sheet p{font-size:16px;line-height:1.7;margin-bottom:14px;text-align:justify}
+.sheet ul{margin:0 0 14px 22px}
+.sheet li{font-size:16px;line-height:1.6;margin-bottom:6px}
+.sheet strong{font-weight:700}
+.sheet a{color:var(--accent-deep);text-decoration:none;border-bottom:1px solid var(--prule)}
+.sheet a:hover{border-color:var(--accent-deep)}
+.num{font-weight:700;font-variant-numeric:tabular-nums}
+.mono{font-family:var(--mono);font-size:.9em}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0 4px}
+.btn{font-family:var(--mono);font-size:13px;padding:7px 15px;border:1px solid var(--ptext);color:var(--ptext);text-decoration:none;border-bottom:1px solid var(--ptext)}
+.btn.solid{background:var(--ptext);color:var(--paper)}
+.btn:hover{opacity:.8}
+
+.updated{margin-top:40px;padding-top:16px;border-top:1px solid var(--prule);font-family:var(--mono);font-size:12px;color:var(--pdim);text-align:center}
+
+@media(max-width:640px){
+  .sheet{padding:40px 26px;margin:28px auto}
+  .doc-title{font-size:22px}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<nav class="crumb"><a href="/">Damla Su Bilge</a> / stitchu</nav>
+<div id="stars" aria-hidden="true"></div>
 
-<h1>stitchu</h1>
-<p class="tag">a garment photo in, a real sewable A4 pattern out</p>
-<div class="meta">by <b>Damla Su Bilge</b> &middot; C++ / WASM / vision</div>
+<div class="ret"><a href="/">&larr; back to noseydewdrop</a></div>
 
-<div class="badges">
-  <a class="badge live" href="https://stitchu.noseydewdrop.com/" target="_blank" rel="noopener">open stitchu &rarr;</a>
-  <span class="badge">C++</span>
-  <span class="badge">WASM</span>
-  <span class="badge">computer vision</span>
-</div>
+<article class="sheet">
+  <div class="doc-head">
+    <h1 class="doc-title">stitchu: a photo becomes a sewable pattern</h1>
+    <div class="doc-author">by <b>Damla Su Bilge</b></div>
+    <div class="doc-date">noseydewdrop &middot; C++ / WASM / computer vision</div>
+  </div>
 
-<p>stitchu takes a photo of a garment, a few body measurements, and returns a <strong>real sewing pattern</strong> as a calibrated, print-ready <strong>A4 PDF</strong> you can cut against fabric. Not a picture of a pattern, the actual draft.</p>
+  <p class="abstract">stitchu takes a photo of a garment, a few body measurements, and returns a real sewing pattern as a calibrated, print-ready A4 PDF you can cut against fabric. Not a picture of a pattern, the actual draft, produced by a deterministic engine rather than a model that guesses.</p>
 
-<h2>why a deterministic engine, not ML</h2>
-<p>The pattern is drafted by a <strong>C++ engine</strong> compiled to WASM, running on the reader's own processor. Every line comes from an explainable formula, not a model that guesses. This matters because a sewing pattern is cut against real cloth: if the same measurements produced a slightly different pattern next time, someone wastes money and fabric.</p>
-<p>So the rule is <strong>same input, same pattern, every time</strong>. A rented model cannot promise that the way owned deterministic code can, and it costs <span class="num">0</span> tokens per draft, whether one person opens it or a thousand do.</p>
+  <div class="actions">
+    <a class="btn solid" href="https://stitchu.noseydewdrop.com/" target="_blank" rel="noopener">open stitchu &rarr;</a>
+    <a class="btn" href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">read the patch log</a>
+  </div>
 
-<h2>how it works</h2>
-<ul>
-  <li><strong>vision</strong> reads the garment photo and describes what it is (neckline, sleeve, silhouette)</li>
-  <li>a <strong>spec</strong> turns that reading into structured garment data</li>
-  <li>the <strong>C++ engine</strong> drafts the actual pattern pieces from the spec plus the measurements</li>
-  <li>the pieces are laid out flat and exported as a tiled, calibrated <strong>A4 PDF</strong></li>
-</ul>
+  <h2><span class="sec">1</span>why a deterministic engine, not ML</h2>
+  <p>The pattern is drafted by a <strong>C++ engine</strong> compiled to WASM, running on the reader's own processor. Every line comes from an explainable formula, not a model that guesses. This matters because a sewing pattern is cut against real cloth: if the same measurements produced a slightly different pattern next time, someone wastes money and fabric.</p>
+  <p>So the rule is <strong>same input, same pattern, every time</strong>. A rented model cannot promise that the way owned deterministic code can, and it costs <span class="num">0</span> tokens per draft, whether one person opens it or a thousand do.</p>
 
-<h2>measured, not claimed</h2>
-<p>stitchu keeps a public benchmark and a dated patch log. Every change to the engine is measured and published, the misses included, in the League-of-Legends patch-note tradition. The number the project tracks: how many of <span class="num">54</span> real product photos become a complete, sewable pattern.</p>
-<p>You can read the full, dated engineering log at <a href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">stitchu.noseydewdrop.com/patches.html</a>.</p>
+  <h2><span class="sec">2</span>how it works</h2>
+  <ul>
+    <li><strong>vision</strong> reads the garment photo and describes what it is: neckline, sleeve, silhouette</li>
+    <li>a <strong>spec</strong> turns that reading into structured garment data</li>
+    <li>the <strong>C++ engine</strong> drafts the actual pattern pieces from the spec plus the measurements</li>
+    <li>the pieces are laid out flat and exported as a tiled, calibrated <strong>A4 PDF</strong></li>
+  </ul>
 
-<h2>who built it</h2>
-<p>stitchu is built by <a href="/"><strong>Damla Su Bilge</strong></a>, one of 50+ projects and 20+ live products under <a href="https://noseydewdrop.com/">noseydewdrop</a>. It started as a Swift iOS app; the valuable core turned out to be the engine underneath, so the identity moved onto the C++ core and every platform became a thin consumer of the same draft.</p>
+  <h2><span class="sec">3</span>measured, not claimed</h2>
+  <p>stitchu keeps a public benchmark and a dated patch log. Every change to the engine is measured and published, the misses included, in the League-of-Legends patch-note tradition. The number the project tracks: how many of <span class="num">54</span> real product photos become a complete, sewable pattern. The full, dated engineering log lives at <a href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">the patch notes</a>.</p>
 
-<p class="updated">last update: 2026-07-24 &middot; in active development, this may change</p>
+  <h2><span class="sec">4</span>who built it</h2>
+  <p>stitchu is built by <a href="/"><strong>Damla Su Bilge</strong></a>, one of 50+ projects and 20+ live products under <a href="https://noseydewdrop.com/">noseydewdrop</a>. It started as a Swift iOS app; the valuable core turned out to be the engine underneath, so the identity moved onto the C++ core and every platform became a thin consumer of the same draft.</p>
 
-<a class="back" href="/">&larr; all projects</a>
-</div>
+  <p class="updated">last update: 2026-07-24 &middot; in active development, everything here may change tomorrow</p>
+</article>
+
+<script>
+// carry the portfolio's star whimsy behind the paper
+(function(){
+  var sf=document.getElementById('stars'), g=['*','+','.','·'];
+  for(var i=0;i<70;i++){
+    var s=document.createElement('span');s.className='star';
+    s.textContent=g[i%4];s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';
+    s.style.fontSize=(9+(i%3)*3)+'px';s.style.animationDelay=(Math.random()*3.5)+'s';
+    sf.appendChild(s);
+  }
+})();
+</script>
 </body>
 </html>
