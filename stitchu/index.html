@@ -4,196 +4,202 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>stitchu - a photo becomes a sewable pattern | Damla Su Bilge</title>
-<meta name="description" content="stitchu turns a garment photo into a real, sewable A4 pattern with a deterministic C++ engine, not an ML guess. Built by Damla Su Bilge. Same measurements, same pattern, every time.">
+<meta name="description" content="Technical documentation of stitchu: a deterministic C++ pattern engine that turns a garment photo into a real, sewable A4 pattern. 70,200-draft verification matrix, 6-layer architecture, golden diff. Built by Damla Su Bilge.">
 <link rel="canonical" href="https://noseydewdrop.com/stitchu/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="noseydewdrop">
-<meta property="og:title" content="stitchu - a photo becomes a sewable pattern">
-<meta property="og:description" content="A deterministic C++ pattern engine. A photo in, a print-ready A4 sewing pattern out. Built by Damla Su Bilge.">
+<meta property="og:title" content="stitchu - technical documentation">
+<meta property="og:description" content="A deterministic C++ pattern engine. Photo in, print-ready A4 sewing pattern out. Documented by Damla Su Bilge.">
 <meta property="og:url" content="https://noseydewdrop.com/stitchu/">
 <meta property="og:image" content="https://noseydewdrop.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="stitchu - a photo becomes a sewable pattern">
-<meta name="twitter:description" content="A deterministic C++ pattern engine, built by Damla Su Bilge.">
+<meta name="twitter:title" content="stitchu - technical documentation">
+<meta name="twitter:description" content="A deterministic C++ pattern engine, documented by Damla Su Bilge.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://noseydewdrop.com/stitchu/#app",
-      "name": "stitchu",
-      "url": "https://stitchu.noseydewdrop.com/",
-      "applicationCategory": "DesignApplication",
-      "operatingSystem": "Web, iOS",
-      "description": "stitchu turns a garment photo into a real, sewable A4 pattern using a deterministic C++ engine compiled to WASM. Same input, same pattern, every time.",
-      "author": {"@id": "https://noseydewdrop.com/#damla"},
-      "creator": {"@id": "https://noseydewdrop.com/#damla"},
-      "dateModified": "2026-07-24",
-      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
-    },
-    {
-      "@type": "TechArticle",
-      "@id": "https://noseydewdrop.com/stitchu/#doc",
-      "headline": "stitchu - a photo becomes a sewable pattern",
-      "about": {"@id": "https://noseydewdrop.com/stitchu/#app"},
-      "author": {"@id": "https://noseydewdrop.com/#damla"},
-      "dateModified": "2026-07-24",
-      "mainEntityOfPage": "https://noseydewdrop.com/stitchu/",
-      "publisher": {"@id": "https://noseydewdrop.com/#damla"}
-    },
-    {
-      "@type": "Person",
-      "@id": "https://noseydewdrop.com/#damla",
-      "name": "Damla Su Bilge",
-      "url": "https://noseydewdrop.com/",
-      "sameAs": [
-        "https://github.com/nosey-dewdrop",
-        "https://www.linkedin.com/in/damla-su-bilge",
-        "https://www.instagram.com/meraklicigtanesi",
-        "https://www.instagram.com/dewdrop.cpp"
-      ]
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Damla Su Bilge", "item": "https://noseydewdrop.com/"},
-        {"@type": "ListItem", "position": 2, "name": "stitchu", "item": "https://noseydewdrop.com/stitchu/"}
-      ]
-    }
+    {"@type":"SoftwareApplication","@id":"https://noseydewdrop.com/stitchu/#app","name":"stitchu","url":"https://stitchu.noseydewdrop.com/","applicationCategory":"DesignApplication","operatingSystem":"Web, iOS","description":"stitchu turns a garment photo into a real, sewable A4 pattern using a deterministic C++ engine compiled to WASM. Same input, same pattern, every time.","author":{"@id":"https://noseydewdrop.com/#damla"},"creator":{"@id":"https://noseydewdrop.com/#damla"},"dateModified":"2026-07-24","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+    {"@type":"TechArticle","@id":"https://noseydewdrop.com/stitchu/#doc","headline":"stitchu - technical documentation","about":{"@id":"https://noseydewdrop.com/stitchu/#app"},"author":{"@id":"https://noseydewdrop.com/#damla"},"dateModified":"2026-07-24","mainEntityOfPage":"https://noseydewdrop.com/stitchu/","publisher":{"@id":"https://noseydewdrop.com/#damla"},"proficiencyLevel":"Expert"},
+    {"@type":"Person","@id":"https://noseydewdrop.com/#damla","name":"Damla Su Bilge","url":"https://noseydewdrop.com/","sameAs":["https://github.com/nosey-dewdrop","https://www.linkedin.com/in/damla-su-bilge","https://www.instagram.com/meraklicigtanesi","https://www.instagram.com/dewdrop.cpp"]},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Damla Su Bilge","item":"https://noseydewdrop.com/"},{"@type":"ListItem","position":2,"name":"stitchu","item":"https://noseydewdrop.com/stitchu/"}]}
   ]
 }
 </script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Latin+Modern+Roman&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Latin+Modern+Roman&display=swap" rel="stylesheet">
 <style>
-/* portfolio's violet-night world in the background (its own default pal, #171221),
-   the doc sits on top as a white LaTeX-style paper sheet, floating over the stars */
 :root{
-  --void:#171221; --void-soft:#221a33;
-  --star:#b0b6ff; --accent:#b0b6ff; --accent-deep:#7b6fd6;
-  /* paper (LaTeX article) */
-  --paper:#fdfdfb; --ptext:#1a1a1a; --pdim:#5a5a5a; --prule:#e2e2df;
-  --serif: "Latin Modern Roman", "Computer Modern", Georgia, "Times New Roman", serif;
-  --mono: 'IBM Plex Mono', monospace;
+  --void:#171221; --star:#b0b6ff; --accent:#b0b6ff; --accent-deep:#6b5fc9;
+  --paper:#fdfdfb; --ptext:#1a1a1a; --pdim:#585858; --prule:#e4e4e0;
+  --serif:"Latin Modern Roman","Computer Modern",Georgia,"Times New Roman",serif;
+  --mono:'IBM Plex Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
   background:var(--void);
-  background-image:radial-gradient(circle at 20% 15%, #2a2140 0%, transparent 45%),
-                   radial-gradient(circle at 82% 70%, #241a38 0%, transparent 50%);
-  min-height:100vh;
-  font-family:var(--serif);
-  color:var(--ptext);
-  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 18% 12%,#2a2140 0%,transparent 45%),
+                   radial-gradient(circle at 84% 72%,#241a38 0%,transparent 50%);
+  min-height:100vh;font-family:var(--serif);color:var(--ptext);-webkit-font-smoothing:antialiased;
 }
-
-/* star field behind the paper (the portfolio's whimsy, carried over) */
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.star{position:absolute;color:var(--star);opacity:.35;font-size:11px;animation:tw 3.6s ease-in-out infinite}
-@keyframes tw{0%,100%{opacity:.15}50%{opacity:.55}}
+.star{position:absolute;color:var(--star);opacity:.32;font-size:11px;animation:tw 3.6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.12}50%{opacity:.5}}
 
-/* the white LaTeX paper sheet, centered, floating */
-.sheet{
-  position:relative;z-index:2;
-  max-width:660px;margin:56px auto;
-  background:var(--paper);
-  padding:64px 72px 56px;
-  border-radius:2px;
-  box-shadow:0 24px 70px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.3);
-}
-
-/* tiny "back to the world" chip above the paper, in the world's voice */
-.ret{position:relative;z-index:2;max-width:660px;margin:0 auto;padding:0 4px}
+.ret{position:relative;z-index:3;max-width:900px;margin:0 auto;padding:20px 8px 0}
 .ret a{font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none}
 .ret a:hover{color:#fff}
 
-/* LaTeX article typography */
-.doc-head{text-align:center;border-bottom:1px solid var(--prule);padding-bottom:22px;margin-bottom:30px}
-.doc-title{font-size:27px;font-weight:400;letter-spacing:.01em;line-height:1.25;margin-bottom:10px}
-.doc-author{font-size:15px;color:var(--pdim)}
+/* wide LaTeX paper */
+.sheet{
+  position:relative;z-index:2;max-width:900px;margin:20px auto 40px;
+  background:var(--paper);padding:70px 96px 54px;border-radius:2px;
+  box-shadow:0 26px 80px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.3);
+  min-height:78vh;
+}
+.doc-head{text-align:center;border-bottom:1px solid var(--prule);padding-bottom:20px;margin-bottom:26px}
+.doc-title{font-size:23px;font-weight:400;line-height:1.25;margin-bottom:9px}
+.doc-author{font-size:13.5px;color:var(--pdim)}
 .doc-author b{color:var(--ptext);font-weight:400}
-.doc-date{font-family:var(--mono);font-size:12px;color:var(--pdim);margin-top:8px}
+.doc-date{font-family:var(--mono);font-size:11px;color:var(--pdim);margin-top:7px}
 
-.abstract{font-style:italic;color:#333;font-size:15px;line-height:1.65;margin:0 auto 30px;max-width:52ch;text-align:justify}
+.abstract{font-style:italic;color:#333;font-size:12.5px;line-height:1.65;margin:0 auto 22px;max-width:62ch;text-align:justify}
+.ab-label{font-style:normal;font-weight:700;font-size:12px;display:block;text-align:center;margin-bottom:4px;letter-spacing:.03em}
 
-.sheet h2{font-family:var(--serif);font-size:19px;font-weight:700;margin:30px 0 10px}
-.sheet h2 .sec{color:var(--accent-deep);margin-right:8px;font-family:var(--mono);font-size:15px}
-.sheet p{font-size:16px;line-height:1.7;margin-bottom:14px;text-align:justify}
-.sheet ul{margin:0 0 14px 22px}
-.sheet li{font-size:16px;line-height:1.6;margin-bottom:6px}
+/* pages: only .on is shown */
+.page{display:none}
+.page.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.sheet h2{font-family:var(--serif);font-size:15px;font-weight:700;margin:22px 0 9px}
+.sheet h2 .sec{color:var(--accent-deep);margin-right:7px;font-family:var(--mono);font-size:12px}
+.sheet h3{font-size:13px;font-weight:700;margin:16px 0 6px;font-style:italic}
+.sheet p{font-size:12.5px;line-height:1.68;margin-bottom:11px;text-align:justify}
+.sheet ul,.sheet ol{margin:0 0 11px 22px}
+.sheet li{font-size:12.5px;line-height:1.6;margin-bottom:5px}
 .sheet strong{font-weight:700}
+.sheet code,.mono{font-family:var(--mono);font-size:.88em;background:#f2f2ef;padding:1px 4px;border-radius:2px}
 .sheet a{color:var(--accent-deep);text-decoration:none;border-bottom:1px solid var(--prule)}
 .sheet a:hover{border-color:var(--accent-deep)}
 .num{font-weight:700;font-variant-numeric:tabular-nums}
-.mono{font-family:var(--mono);font-size:.9em}
+.fig{font-family:var(--mono);font-size:11px;line-height:1.5;background:#f6f6f3;border:1px solid var(--prule);padding:12px 14px;margin:12px 0;white-space:pre;overflow-x:auto;color:#333}
+.eq{text-align:center;font-style:italic;margin:12px 0;font-size:13px}
 
-.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0 4px}
-.btn{font-family:var(--mono);font-size:13px;padding:7px 15px;border:1px solid var(--ptext);color:var(--ptext);text-decoration:none;border-bottom:1px solid var(--ptext)}
+.actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:20px 0 6px}
+.btn{font-family:var(--mono);font-size:12px;padding:6px 13px;border:1px solid var(--ptext);color:var(--ptext);text-decoration:none}
 .btn.solid{background:var(--ptext);color:var(--paper)}
 .btn:hover{opacity:.8}
 
-.updated{margin-top:40px;padding-top:16px;border-top:1px solid var(--prule);font-family:var(--mono);font-size:12px;color:var(--pdim);text-align:center}
+/* page turner */
+.pager{display:flex;align-items:center;justify-content:space-between;margin-top:36px;padding-top:16px;border-top:1px solid var(--prule);font-family:var(--mono);font-size:12px}
+.pager button{font-family:var(--mono);font-size:12px;background:none;border:1px solid var(--ptext);padding:5px 12px;cursor:pointer;color:var(--ptext)}
+.pager button:disabled{opacity:.3;cursor:default}
+.pager .pnum{color:var(--pdim)}
+.updated{margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--pdim);text-align:center}
 
-@media(max-width:640px){
-  .sheet{padding:40px 26px;margin:28px auto}
-  .doc-title{font-size:22px}
-}
+@media(max-width:760px){.sheet{padding:40px 26px;max-width:100%}.ret,.sheet{max-width:100%}}
 </style>
 </head>
 <body>
 <div id="stars" aria-hidden="true"></div>
-
 <div class="ret"><a href="/">&larr; back to noseydewdrop</a></div>
 
 <article class="sheet">
   <div class="doc-head">
-    <h1 class="doc-title">stitchu: a photo becomes a sewable pattern</h1>
+    <h1 class="doc-title">stitchu: turning a garment photo into a sewable pattern</h1>
     <div class="doc-author">by <b>Damla Su Bilge</b></div>
-    <div class="doc-date">noseydewdrop &middot; C++ / WASM / computer vision</div>
+    <div class="doc-date">noseydewdrop &middot; C++ / WASM / computer vision &middot; technical documentation</div>
   </div>
 
-  <p class="abstract">stitchu takes a photo of a garment, a few body measurements, and returns a real sewing pattern as a calibrated, print-ready A4 PDF you can cut against fabric. Not a picture of a pattern, the actual draft, produced by a deterministic engine rather than a model that guesses.</p>
+  <p class="abstract"><span class="ab-label">Abstract</span>stitchu takes a photograph of a garment, seven body measurements, and returns a calibrated, print-ready A4 sewing pattern you can cut against fabric. The draft is produced by a deterministic C++ engine compiled to WASM, running in the browser: every line traces to an explainable pattern-cutting formula rather than a model that guesses. This document describes the layered architecture, the drafting geometry, the contract that binds the layers, and the verification matrix of <span class="num">70,200</span> drafts that every release must pass.</p>
 
   <div class="actions">
     <a class="btn solid" href="https://stitchu.noseydewdrop.com/" target="_blank" rel="noopener">open stitchu &rarr;</a>
-    <a class="btn" href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">read the patch log</a>
+    <a class="btn" href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">dated patch log</a>
   </div>
 
-  <h2><span class="sec">1</span>why a deterministic engine, not ML</h2>
-  <p>The pattern is drafted by a <strong>C++ engine</strong> compiled to WASM, running on the reader's own processor. Every line comes from an explainable formula, not a model that guesses. This matters because a sewing pattern is cut against real cloth: if the same measurements produced a slightly different pattern next time, someone wastes money and fabric.</p>
-  <p>So the rule is <strong>same input, same pattern, every time</strong>. A rented model cannot promise that the way owned deterministic code can, and it costs <span class="num">0</span> tokens per draft, whether one person opens it or a thousand do.</p>
+  <!-- PAGE 1 -->
+  <section class="page on">
+    <h2><span class="sec">1</span>overview</h2>
+    <p>A sewing pattern is cut against real cloth. If the same measurements produced a slightly different pattern next time, someone wastes money and fabric. So the governing rule of the engine is <strong>same input, same pattern, every time</strong>. A rented probabilistic model cannot promise that the way owned deterministic code can, and the deterministic engine costs <span class="num">0</span> tokens per draft, whether one person opens it or a thousand do.</p>
+    <p>stitchu began as a Swift iOS app. The valuable core turned out to be the drafting engine underneath the screens, so the identity moved onto a C++ core; every platform is now a thin consumer of the same draft, and the website reaches it through WASM.</p>
 
-  <h2><span class="sec">2</span>how it works</h2>
-  <ul>
-    <li><strong>vision</strong> reads the garment photo and describes what it is: neckline, sleeve, silhouette</li>
-    <li>a <strong>spec</strong> turns that reading into structured garment data</li>
-    <li>the <strong>C++ engine</strong> drafts the actual pattern pieces from the spec plus the measurements</li>
-    <li>the pieces are laid out flat and exported as a tiled, calibrated <strong>A4 PDF</strong></li>
-  </ul>
+    <h2><span class="sec">2</span>the pipeline</h2>
+    <div class="fig">photo ──▶ Cloudflare Worker (vision) ──▶ confirmed GarmentSpec
+                                              │
+7 measurements (local) ───────────────────────┤
+                                              ▼
+                    C++ engine (WASM, in-browser)
+        geometry core → blocks → garment drafter → validator
+                                              │
+                                              ▼
+                    web app: SVG render → tiled A4 PDF</div>
+    <p>Vision reads the garment photo and describes what it is; a spec turns that reading into structured garment data; the C++ engine drafts the pattern pieces from the spec plus the measurements; the pieces are laid out flat and exported as a tiled, calibrated A4 PDF.</p>
+  </section>
 
-  <h2><span class="sec">3</span>measured, not claimed</h2>
-  <p>stitchu keeps a public benchmark and a dated patch log. Every change to the engine is measured and published, the misses included, in the League-of-Legends patch-note tradition. The number the project tracks: how many of <span class="num">54</span> real product photos become a complete, sewable pattern. The full, dated engineering log lives at <a href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">the patch notes</a>.</p>
+  <!-- PAGE 2 -->
+  <section class="page">
+    <h2><span class="sec">3</span>the contract</h2>
+    <p>One versioned contract binds every layer boundary. <code>garment-spec.schema.json</code> is the semantic garment language: closed enums and bounded scalars, the only language the vision model or a human speaks. The render layer is deliberately <strong>not</strong> in the contract; each renderer compiles its own parameters from the semantics, and a runtime gate (<code>additionalProperties:false</code>) strips any render knob smuggled into a vision answer.</p>
+    <p><code>tables.json</code> holds every shared value (skirt lengths, EU size chart, gather ratios, cross-layer word maps) and is generated into the C++, web and backend so consumers never copy numbers by hand. A guard, <code>validate-contract.mjs</code>, runs as a test and fails on any schema drift, vocabulary defect, or generated-file desync.</p>
 
-  <h2><span class="sec">4</span>who built it</h2>
-  <p>stitchu is built by <a href="/"><strong>Damla Su Bilge</strong></a>, one of 50+ projects and 20+ live products under <a href="https://noseydewdrop.com/">noseydewdrop</a>. It started as a Swift iOS app; the valuable core turned out to be the engine underneath, so the identity moved onto the C++ core and every platform became a thin consumer of the same draft.</p>
+    <h2><span class="sec">4</span>geometry core</h2>
+    <p>Point, path and cubic-Bezier primitives, seam-length measurement, outline offsetting, and self-intersection checks. All geometry is in millimeters; each piece lives in its own local space; curves are flattened to 24 segments for length and 16 for self-intersection. These were unit-tested before anything was built on them.</p>
+  </section>
 
+  <!-- PAGE 3 -->
+  <section class="page">
+    <h2><span class="sec">5</span>drafting blocks</h2>
+    <p>Parametric blocks (bodice, skirt, sleeve) are drafted from published pattern-cutting sources: FreeSewing (Bella/Titan), Muller &amp; Sohn, Winifred Aldrich. They are driven by seven measurements plus <strong>percent ease</strong>, never a fixed centimetre. Assumptions the app does not collect (for example underbust ≈ bust − 70 mm, shoulder drop ≈ 13°) are labelled in the formula spec and covered by a muslin warning in the sewing guide.</p>
+    <p>Every constant now lives in one machine-readable table with a status field: <code>verified</code>, <code>assumed</code> or <code>refuted</code>, each row carrying its source and the experiment that set its status. A 2026 paper-sloper comparison against an independent Aldrich hand draft verified the shoulder-slope and shoulder-seam values and refuted two legacy ones.</p>
+
+    <h2><span class="sec">6</span>seam allowance</h2>
+    <p>The piece outline <strong>is</strong> the sewing line; the cut line is a drawn outward offset. The outward side is found empirically by probing the longest edge's normal with a point-in-polygon test, because traversal direction is not trusted (an area-sign heuristic once shipped an inward offset). After the per-edge offset, an envelope pass pushes any point closer than the allowance back out to exactly it, which tames concave curves whose radius is below the allowance, such as a sleeve underarm.</p>
+  </section>
+
+  <!-- PAGE 4 -->
+  <section class="page">
+    <h2><span class="sec">7</span>the validator</h2>
+    <p>Geometric invariants run on every draft and again at runtime before any PDF: side-seam balance, dart sums, armhole and cap ease, waist joins, self-intersection, print fit, cut-line sanity. A broken pattern cannot reach the printer. These invariants are physical facts about garments: side seams must balance, bust ease must survive the pipeline, a sleeve cap must converge on its armhole. If any breaks, the output is not slightly off, it is unsewable fabric.</p>
+
+    <h2><span class="sec">8</span>verification</h2>
+    <p>The matrix drafts EU 34 to 52 plus edge bodies across the full spec space, <span class="num">70,200</span> drafts, all of which must validate. Per-feature checks assert piece geometry, printability (a tile cap of 3000 mm) and a byte-identical base draft when a feature is off. A committed golden reference is compared at <span class="num">0.1</span> mm tolerance: the engine was first ported from Swift against a Swift golden dump of <span class="num">2,805</span> drafts for port fidelity, then re-pinned to the C++ output once precision truing deliberately improved on the original geometry.</p>
+    <p>The public benchmark tracks a different, harder number: how many of <span class="num">54</span> real product photos become a complete, sewable pattern. Every change is measured and published, the misses included, in the <a href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">dated patch log</a>.</p>
+
+    <h2><span class="sec">9</span>who built it</h2>
+    <p>stitchu is built and documented by <a href="/"><strong>Damla Su Bilge</strong></a>, one of 50+ projects and 20+ live products under <a href="https://noseydewdrop.com/">noseydewdrop</a>.</p>
+  </section>
+
+  <div class="pager">
+    <button id="prev" disabled>&larr; prev</button>
+    <span class="pnum"><span id="cur">1</span> / <span id="tot">4</span></span>
+    <button id="next">next &rarr;</button>
+  </div>
   <p class="updated">last update: 2026-07-24 &middot; in active development, everything here may change tomorrow</p>
 </article>
 
 <script>
-// carry the portfolio's star whimsy behind the paper
 (function(){
-  var sf=document.getElementById('stars'), g=['*','+','.','·'];
-  for(var i=0;i<70;i++){
-    var s=document.createElement('span');s.className='star';
-    s.textContent=g[i%4];s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';
-    s.style.fontSize=(9+(i%3)*3)+'px';s.style.animationDelay=(Math.random()*3.5)+'s';
-    sf.appendChild(s);
-  }
+  var sf=document.getElementById('stars'),g=['*','+','.','·'];
+  for(var i=0;i<70;i++){var s=document.createElement('span');s.className='star';s.textContent=g[i%4];
+    s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';
+    s.style.fontSize=(9+(i%3)*3)+'px';s.style.animationDelay=(Math.random()*3.5)+'s';sf.appendChild(s);}
+
+  var pages=[].slice.call(document.querySelectorAll('.page')),i=0,
+      prev=document.getElementById('prev'),next=document.getElementById('next'),
+      cur=document.getElementById('cur');
+  document.getElementById('tot').textContent=pages.length;
+  function show(n){pages[i].classList.remove('on');i=n;pages[i].classList.add('on');
+    cur.textContent=i+1;prev.disabled=i===0;next.disabled=i===pages.length-1;
+    window.scrollTo({top:0,behavior:'smooth'});}
+  prev.onclick=function(){if(i>0)show(i-1)};
+  next.onclick=function(){if(i<pages.length-1)show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'&&i<pages.length-1)show(i+1);
+    if(e.key==='ArrowLeft'&&i>0)show(i-1);});
 })();
 </script>
 </body>
