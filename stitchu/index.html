@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>stitchu - a photo becomes a sewable pattern | Damla Su Bilge</title>
+<meta name="description" content="stitchu turns a garment photo into a real, sewable A4 pattern with a deterministic C++ engine, not an ML guess. Built by Damla Su Bilge. Same measurements, same pattern, every time.">
+<link rel="canonical" href="https://noseydewdrop.com/stitchu/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="noseydewdrop">
+<meta property="og:title" content="stitchu - a photo becomes a sewable pattern">
+<meta property="og:description" content="A deterministic C++ pattern engine. A photo in, a print-ready A4 sewing pattern out. Built by Damla Su Bilge.">
+<meta property="og:url" content="https://noseydewdrop.com/stitchu/">
+<meta property="og:image" content="https://noseydewdrop.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="stitchu - a photo becomes a sewable pattern">
+<meta name="twitter:description" content="A deterministic C++ pattern engine, built by Damla Su Bilge.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://noseydewdrop.com/stitchu/#app",
+      "name": "stitchu",
+      "url": "https://stitchu.noseydewdrop.com/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web, iOS",
+      "description": "stitchu turns a garment photo into a real, sewable A4 pattern using a deterministic C++ engine compiled to WASM. Same input, same pattern, every time.",
+      "author": {"@id": "https://noseydewdrop.com/#damla"},
+      "creator": {"@id": "https://noseydewdrop.com/#damla"},
+      "dateModified": "2026-07-24",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://noseydewdrop.com/stitchu/#doc",
+      "headline": "stitchu - a photo becomes a sewable pattern",
+      "about": {"@id": "https://noseydewdrop.com/stitchu/#app"},
+      "author": {"@id": "https://noseydewdrop.com/#damla"},
+      "dateModified": "2026-07-24",
+      "mainEntityOfPage": "https://noseydewdrop.com/stitchu/",
+      "publisher": {"@id": "https://noseydewdrop.com/#damla"}
+    },
+    {
+      "@type": "Person",
+      "@id": "https://noseydewdrop.com/#damla",
+      "name": "Damla Su Bilge",
+      "url": "https://noseydewdrop.com/",
+      "sameAs": [
+        "https://github.com/nosey-dewdrop",
+        "https://www.linkedin.com/in/damla-su-bilge",
+        "https://www.instagram.com/meraklicigtanesi",
+        "https://www.instagram.com/dewdrop.cpp"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Damla Su Bilge", "item": "https://noseydewdrop.com/"},
+        {"@type": "ListItem", "position": 2, "name": "stitchu", "item": "https://noseydewdrop.com/stitchu/"}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{ --bg:#ffffff; --bg-soft:#f5f5f5; --ink:#141414; --ink-dim:#6b6b6b;
+  --pink:#c23a70; --purple:#5f35a8; --green:#357422; --blue:#1f5c9e; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Mono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:40px 24px 80px}
+.crumb{font-size:13px;color:var(--ink-dim);margin-bottom:28px}
+.crumb a{color:var(--ink-dim);text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+h1{font-size:30px;font-weight:700;line-height:1.2;letter-spacing:-0.01em;margin-bottom:6px}
+.tag{color:var(--ink-dim);font-size:15px;margin-bottom:14px}
+.meta{font-size:13px;color:var(--ink-dim);margin-bottom:8px}
+.meta b{color:var(--green);font-weight:500}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 30px}
+.badge{font-size:12px;border:1px solid var(--ink);padding:3px 9px;color:var(--ink)}
+.live{background:var(--ink);color:var(--bg);text-decoration:none}
+h2{font-size:18px;font-weight:700;margin:34px 0 10px}
+h2::before{content:"+ ";color:var(--pink)}
+p{margin-bottom:14px}
+ul{margin:0 0 14px 20px}
+li{margin-bottom:6px}
+strong{font-weight:700}
+.num{color:var(--blue);font-weight:700}
+.updated{margin-top:44px;padding-top:18px;border-top:1px solid var(--bg-soft);font-size:13px;color:var(--ink-dim)}
+.back{display:inline-block;margin-top:26px;font-size:14px;color:var(--ink)}
+a{color:var(--purple)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="crumb"><a href="/">Damla Su Bilge</a> / stitchu</nav>
+
+<h1>stitchu</h1>
+<p class="tag">a garment photo in, a real sewable A4 pattern out</p>
+<div class="meta">by <b>Damla Su Bilge</b> &middot; C++ / WASM / vision</div>
+
+<div class="badges">
+  <a class="badge live" href="https://stitchu.noseydewdrop.com/" target="_blank" rel="noopener">open stitchu &rarr;</a>
+  <span class="badge">C++</span>
+  <span class="badge">WASM</span>
+  <span class="badge">computer vision</span>
+</div>
+
+<p>stitchu takes a photo of a garment, a few body measurements, and returns a <strong>real sewing pattern</strong> as a calibrated, print-ready <strong>A4 PDF</strong> you can cut against fabric. Not a picture of a pattern, the actual draft.</p>
+
+<h2>why a deterministic engine, not ML</h2>
+<p>The pattern is drafted by a <strong>C++ engine</strong> compiled to WASM, running on the reader's own processor. Every line comes from an explainable formula, not a model that guesses. This matters because a sewing pattern is cut against real cloth: if the same measurements produced a slightly different pattern next time, someone wastes money and fabric.</p>
+<p>So the rule is <strong>same input, same pattern, every time</strong>. A rented model cannot promise that the way owned deterministic code can, and it costs <span class="num">0</span> tokens per draft, whether one person opens it or a thousand do.</p>
+
+<h2>how it works</h2>
+<ul>
+  <li><strong>vision</strong> reads the garment photo and describes what it is (neckline, sleeve, silhouette)</li>
+  <li>a <strong>spec</strong> turns that reading into structured garment data</li>
+  <li>the <strong>C++ engine</strong> drafts the actual pattern pieces from the spec plus the measurements</li>
+  <li>the pieces are laid out flat and exported as a tiled, calibrated <strong>A4 PDF</strong></li>
+</ul>
+
+<h2>measured, not claimed</h2>
+<p>stitchu keeps a public benchmark and a dated patch log. Every change to the engine is measured and published, the misses included, in the League-of-Legends patch-note tradition. The number the project tracks: how many of <span class="num">54</span> real product photos become a complete, sewable pattern.</p>
+<p>You can read the full, dated engineering log at <a href="https://stitchu.noseydewdrop.com/patches.html" target="_blank" rel="noopener">stitchu.noseydewdrop.com/patches.html</a>.</p>
+
+<h2>who built it</h2>
+<p>stitchu is built by <a href="/"><strong>Damla Su Bilge</strong></a>, one of 50+ projects and 20+ live products under <a href="https://noseydewdrop.com/">noseydewdrop</a>. It started as a Swift iOS app; the valuable core turned out to be the engine underneath, so the identity moved onto the C++ core and every platform became a thin consumer of the same draft.</p>
+
+<p class="updated">last update: 2026-07-24 &middot; in active development, this may change</p>
+
+<a class="back" href="/">&larr; all projects</a>
+</div>
+</body>
+</html>
