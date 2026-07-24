@@ -146,6 +146,22 @@ for (const r of repos) {
   changes.push(`new project on the wall: **${r.name}** (status wip)`);
 }
 
+// ---- 2b. drop rows Damla removed from her README (the wall mirrors the curated
+// list both ways: add via README, remove via README). Guard: only sweep when the
+// allowlist actually loaded — an empty set means the README fetch failed, and we
+// must NOT wipe the whole wall on a transient error. ----
+if (allowed.size > 0) {
+  const before = rows.length;
+  for (let i = rows.length - 1; i >= 0; i--) {
+    const repo = toRepo(rows[i][0]);
+    if (!allowed.has(repo) && !allowed.has(repo.replace(/-web$/, ""))) {
+      changes.push(`removed from the wall (not in profile README): **${rows[i][0]}**`);
+      rows.splice(i, 1);
+    }
+  }
+  if (rows.length === before) { /* nothing to drop */ }
+}
+
 // ---- 3. landing links for freshly deployed repos (never auto-"live") ----
 // a repo already carrying a link in PJ (l:"...") is skipped even when the
 // detected url differs (e.g. a second vercel alias) — one link per project,
