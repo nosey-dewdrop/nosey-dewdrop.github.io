@@ -71,8 +71,8 @@ body{
 
 /* pages: only .on is shown */
 .page{display:none}
-.page.on{display:block;animation:fade .25s ease}
-@keyframes fade{from{opacity:0}to{opacity:1}}
+.page.on{display:block;animation:slide .28s cubic-bezier(.4,0,.2,1)}
+@keyframes slide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
 
 .sheet h2{font-family:var(--serif);font-size:15px;font-weight:700;margin:22px 0 9px}
 .sheet h2 .sec{color:var(--accent-deep);margin-right:7px;font-family:var(--mono);font-size:12px}
@@ -89,7 +89,7 @@ body{
 .eq{text-align:center;font-style:italic;margin:12px 0;font-size:13px}
 
 .actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:20px 0 6px}
-.btn{font-family:var(--mono);font-size:12px;padding:6px 13px;border:1px solid var(--ptext);color:var(--ptext);text-decoration:none}
+.actions a.btn{font-family:var(--mono);font-size:12px;padding:6px 14px;border:1px solid var(--ptext)!important;color:var(--ptext);text-decoration:none;display:inline-block;line-height:1.4}
 .btn.solid{background:var(--ptext);color:var(--paper)}
 .btn:hover{opacity:.8}
 
@@ -200,6 +200,28 @@ body{
   document.addEventListener('keydown',function(e){
     if(e.key==='ArrowRight'&&i<pages.length-1)show(i+1);
     if(e.key==='ArrowLeft'&&i>0)show(i-1);});
+  // swipe / touch to turn pages, Kindle-style
+  var x0=null,y0=null;
+  var sheet=document.querySelector('.sheet');
+  sheet.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  sheet.addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){
+      if(dx<0 && i<pages.length-1)show(i+1);   // swipe left -> next
+      if(dx>0 && i>0)show(i-1);                 // swipe right -> prev
+    }
+    x0=null;y0=null;
+  },{passive:true});
+  // trackpad two-finger horizontal swipe (desktop, Kindle-app feel)
+  var wlock=false;
+  window.addEventListener('wheel',function(e){
+    if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>30){
+      if(wlock)return;wlock=true;setTimeout(function(){wlock=false;},600);
+      if(e.deltaX>0&&i<pages.length-1)show(i+1);
+      if(e.deltaX<0&&i>0)show(i-1);
+    }
+  },{passive:true});
 })();
 </script>
 </body>
