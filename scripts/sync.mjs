@@ -32,6 +32,24 @@ async function listPublicRepos() {
   return out.filter((r) => !r.fork && !r.private);
 }
 
+// Damla's curated list is her profile README (nosey-dewdrop/nosey-dewdrop).
+// The wall shows ONLY what she chose there — a newly public repo does NOT join
+// the wall on its own; she adds it to the README first. Returns a Set of repo
+// names (lowercased) pulled from the bold **name** entries in the README.
+async function allowedFromReadme() {
+  try {
+    const meta = await gh(`/repos/${ORG}/${ORG}/contents/README.md`);
+    const md = Buffer.from(meta.content, "base64").toString("utf8");
+    const names = [...md.matchAll(/[-*]\s*\*\*([a-z0-9][a-z0-9._-]*)\*\*/gi)].map((m) => m[1].toLowerCase());
+    return new Set(names);
+  } catch (e) {
+    // if the README can't be read, fail SAFE: allow nothing new (never auto-dump
+    // every public repo onto the wall just because one fetch failed)
+    console.error(`readme allowlist unavailable (${e.message}); no new repos will be added this run`);
+    return new Set();
+  }
+}
+
 function buildTree(entries) {
   // internal claude docs are gitignored in the repos; never list them even if an old commit still tracks one
   const blobs = entries
@@ -98,6 +116,7 @@ const linkedUrls = [...src.matchAll(/(?:[,{\s]l:|"live":\s*|"landing":\s*)"(http
 
 const repos = await listPublicRepos();
 const repoByName = Object.fromEntries(repos.map((r) => [r.name, r]));
+const allowed = await allowedFromReadme(); // Damla's curated list — only these may join the wall
 
 // ---- 1. refresh last-commit dates on existing rows ----
 for (const row of rows) {
@@ -107,12 +126,18 @@ for (const row of rows) {
   }
 }
 
-// ---- 2. new repos join the wall as wip — but only once they carry a one-liner
-// (their GitHub About description); no invented copy, no placeholder on the live site ----
+// ---- 2. new repos join the wall as wip — ONLY if Damla curated them into her
+// profile README (allowlist). A newly public repo is never auto-added; she picks
+// what belongs on the wall. Still needs a one-liner (GitHub About) before it shows,
+// so no invented copy / placeholder on the live site. ----
 const known = new Set([...rows.map((r) => toRepo(r[0])), ...Object.keys(BUILT), ...Object.values(ALIAS)]);
 for (const r of repos) {
   if (known.has(r.name)) continue;
   known.add(r.name);
+  if (!allowed.has(r.name.toLowerCase())) {
+    changes.push(`skipped (not in profile README): **${r.name}** — add it to your nosey-dewdrop README to put it on the wall`);
+    continue;
+  }
   if (!r.description) {
     changes.push(`held off the wall until it has a one-liner: **${r.name}** — set its GitHub About description and it appears next sync`);
     continue;
