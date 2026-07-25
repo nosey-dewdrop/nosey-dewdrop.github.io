@@ -894,6 +894,7 @@ function piece(x,y,vx){
 }
 function burst(x,y){for(let i=0;i<24;i++)piece(x,y,(Math.random()-.5)*160)}
 addEventListener("mousemove",e=>{const t=Date.now();if(t-last>90){last=t;piece(e.clientX,e.clientY,0)}});
+addEventListener("touchmove",e=>{const t=Date.now();if(t-last>90){last=t;const p=e.touches[0];if(p)piece(p.clientX,p.clientY,0)}},{passive:true});
 
 /* wordmark: linkedin tooltip follows the mouse */
 const wm=document.querySelector(".wordmark"),tip=document.getElementById("tip");
