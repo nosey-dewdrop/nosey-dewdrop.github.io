@@ -175,8 +175,9 @@ header.site{max-width:1060px;margin:0 auto;padding:28px 28px 0;display:flex;just
 .wall .one{color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wall .tech{color:var(--ink-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:860px){
-  .wall li{grid-template-columns:26px 1fr;grid-auto-rows:auto}
-  .wall .tech{text-align:left}
+  .wall li{grid-template-columns:26px 1fr;grid-auto-rows:auto;row-gap:2px;padding:8px;margin-bottom:6px}
+  .wall .one{grid-column:1 / -1;white-space:normal;overflow:visible}
+  .wall .tech{grid-column:1 / -1;text-align:left;white-space:normal;overflow:visible}
   .stats{gap:20px} .facts{gap:28px}
 }
 
